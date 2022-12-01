@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+require('dotenv').config();
 import Overview from './components/Overview.jsx';
 import RatingsReviews from './components/RatingsReviews.jsx';
 import QuestionsAnswers from './components/QA.jsx';
@@ -8,6 +9,9 @@ import axios from 'axios';
 
 const App = () => {
   const [product, setProduct] = React.useState({});
+
+  console.log('My GitHub Token->', process.env.GITHUB_TOKEN);
+  //delete console above after confirmed
 
   React.useEffect( () => {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products', {
