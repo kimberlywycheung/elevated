@@ -8,7 +8,7 @@ import axios from 'axios';
 const App = () => {
   const [product, setProduct] = React.useState({});
 
-  console.log('My GitHub Token->', process.env.GITHUB_TOKEN);//
+  console.log('My GitHub Token->', process.env.GITHUB_TOKEN);
   //delete console above after confirmed
 
   React.useEffect( () => {
