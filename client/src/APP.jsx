@@ -8,14 +8,17 @@ import axios from 'axios';
 const App = () => {
   const [product, setProduct] = React.useState({});
 
-
-  React.useEffect( () => {
+  const get = () => {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products', {
-    headers: { 'Authorization': process.env.GITHUB_TOKEN }
+      headers: { 'Authorization': process.env.GITHUB_TOKEN }
     })
     .then((results) => setProduct(results.data[0]))
     .catch((err) => console.log(err));
-  }, [product])
+  }
+
+  React.useEffect( () => {
+    get();
+  }, [])
 
   return (
     <div id='root'>
