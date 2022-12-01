@@ -1,36 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-require('dotenv').config();
-import Overview from './components/Overview.jsx';
-import RatingsReviews from './components/RatingsReviews.jsx';
-import QuestionsAnswers from './components/QA.jsx';
-import RelatedProducts from './components/RelatedProducts.jsx';
-import axios from 'axios';
-
-const App = () => {
-  const [product, setProduct] = React.useState({});
-
-  console.log('My GitHub Token->', process.env.GITHUB_TOKEN);
-  //delete console above after confirmed
-
-  React.useEffect( () => {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products', {
-    headers: { 'Authorization': GITHUB_KEY } // enter your own github key here for now
-    })
-    .then((results) => setProduct(results.data[0]))
-    .catch((err) => console.log(err));
-  }, [product])
-
-  return (
-    <div id='root'>
-      <h1>Del Taco Product Page</h1>
-      <Overview product={product}/>
-      <RatingsReviews product={product}/>
-      <QuestionsAnswers product={product}/>
-      <RelatedProducts product={product}/>
-    </div>
-  )
-};
+import App from './APP.jsx';
 
 
 ReactDOM.render(<App />, document.getElementById('app'));
