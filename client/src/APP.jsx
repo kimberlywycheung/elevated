@@ -8,12 +8,10 @@ import axios from 'axios';
 const App = () => {
   const [product, setProduct] = React.useState({});
 
-  console.log('My GitHub Token->', process.env.GITHUB_TOKEN);
-  //delete console above after confirmed
 
   React.useEffect( () => {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products', {
-    headers: { 'Authorization': process.env.GITHUB_TOKEN } // enter your own github key here for now
+    headers: { 'Authorization': process.env.GITHUB_TOKEN }
     })
     .then((results) => setProduct(results.data[0]))
     .catch((err) => console.log(err));
