@@ -8,6 +8,7 @@ const QuestionsAnswers = ({productID}) => {
     <div className='questions-answers'>
       QuestionsAnswers Div
       {/* add your sub-widgets here */}
+      some edits here
     </div>
   )
 }
