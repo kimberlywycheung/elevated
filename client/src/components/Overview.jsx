@@ -1,6 +1,8 @@
 import React from 'react';
+import axios from 'axios';
 
-const Overview = () => {
+
+const Overview = ({productID}) => {
 
   return (
     <div className='overview'>

@@ -1,6 +1,8 @@
 import React from 'react';
+import axios from 'axios';
 
-const RatingsReviews = () => {
+
+const RatingsReviews = ({productID}) => {
 
   return (
     <div className='ratings-reviews'>
