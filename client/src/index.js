@@ -7,20 +7,25 @@ import RelatedProducts from './components/RelatedProducts.jsx';
 import axios from 'axios';
 
 const App = () => {
-  const [productID, setProductID] = React.useState(40344);
+  const [product, setProduct] = React.useState({});
+
+  React.useEffect( () => {
+    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products', {
+    headers: { 'Authorization': GITHUB_KEY } // enter your own github key here for now
+    })
+    .then((results) => setProduct(results.data[0]))
+    .catch((err) => console.log(err));
+  }, [product])
 
   return (
     <div id='root'>
       <h1>Del Taco Product Page</h1>
-      <Overview productID={productID}/>
-      <RatingsReviews productID={productID}/>
-      <QuestionsAnswers productID={productID}/>
-      <RelatedProducts productID={productID}/>
+      <Overview product={product}/>
+      <RatingsReviews product={product}/>
+      <QuestionsAnswers product={product}/>
+      <RelatedProducts product={product}/>
     </div>
-
-
   )
-
 };
 
 
