@@ -6,7 +6,7 @@ const RatingsReviews = ({productID}) => {
 
   return (
     <div className='ratings-reviews'>
-      RatingsReviews Div
+      Changed Wording of Ratings and Reviews
       {/* add your sub-widgets here */}
     </div>
   )
