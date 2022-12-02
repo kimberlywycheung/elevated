@@ -13,7 +13,10 @@ const App = () => {
       headers: { 'Authorization': process.env.GITHUB_TOKEN },
       data: body ? body : undefined
     })
-    .then((results) => setProduct(results.data[0]))
+    .then((results) => {
+      setProduct(results.data[0]);
+      console.log(results.data[0]);
+    })
     .catch((err) => console.log(err));
   }
 
