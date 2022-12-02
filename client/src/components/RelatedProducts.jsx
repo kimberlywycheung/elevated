@@ -3,23 +3,18 @@ import axios from 'axios';
 
 import Carousel from './K_relatedProd_subs/Carousel.jsx';
 
-const RelatedProducts = ({ get, product }) => {
+const RelatedProducts = ({ product }) => {
   // save state for related prods
   const [related, setRelated] = useState([]);
   // save state for outfits (local storage)
   const [outfits, setOutfits] = useState([]);
 
-  if (product.id) {
-    get({ endpoint: `/products/${product.id}/related`, callback: setRelated });
-    console.log(related)
-  }
-
-  // useEffect(() => {
-  //   if (product.id) {
-  //     get({ endpoint: `/products/${product.id}/related`, callback: setRelated });
-  //     console.log(related)
-  //   }
-  // }, [product]);
+  useEffect(() => {
+    if (product.id) {
+      get();
+      console.log(related)
+    }
+  }, [product]);
 
   // const getRelated = () => {
   //   if (product.id) {

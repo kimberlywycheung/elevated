@@ -10,8 +10,7 @@ const App = () => {
 
   const get = () => {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products', {
-      headers: { 'Authorization': process.env.GITHUB_TOKEN },
-      data: body ? body : undefined
+      headers: { 'Authorization': process.env.GITHUB_TOKEN }
     })
     .then((results) => {
       setProduct(results.data[0]);
@@ -36,7 +35,7 @@ const App = () => {
       <Overview product={product}/>
       <RatingsReviews product={product}/>
       <QuestionsAnswers product={product}/>
-      <RelatedProducts product={product} get={get}/>
+      <RelatedProducts product={product}/>
     </div>
   )
 };
