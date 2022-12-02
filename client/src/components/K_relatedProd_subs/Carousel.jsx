@@ -11,11 +11,11 @@ const Carousel = ({ type, currentState }) => {
   return (
     <div>
       <p id={type}>{title}</p>
-      {
+      {/* {
         currentState.map((item) => {
           return <Card key={item} item={item}/>
         })
-      }
+      } */}
     </div>
   )
 }
