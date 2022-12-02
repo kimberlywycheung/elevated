@@ -13,17 +13,15 @@ const App = () => {
       headers: { 'Authorization': process.env.GITHUB_TOKEN }
     })
     .then((results) => {
-      setProduct(results.data[0]);
-      console.log(results.data[0]);
+      var randIndex = Math.floor(Math.random() * results.data.length);
+      console.log('Random Product->\n', results.data[randIndex]);
+      setProduct(results.data[randIndex]);
     })
     .catch((err) => console.log(err));
   }
 
   React.useEffect( () => {
-    if (!product) {
       get();
-    }
-    console.log(product);
     if (!window.localStorage.getItem('favorites')) {
       window.localStorage.setItem('favorites', []);
     }
@@ -34,7 +32,7 @@ const App = () => {
       <h1>Del Taco Product Page1</h1>
       <Overview product={product}/>
       <RatingsReviews product={product}/>
-      <QuestionsAnswers product={product}/>
+      <QuestionsAnswers productID={product.id}/>
       <RelatedProducts product={product}/>
     </div>
   )
