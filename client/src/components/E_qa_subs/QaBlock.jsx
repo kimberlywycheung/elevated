@@ -3,20 +3,42 @@ import axios from 'axios';
 import Answer from './Answer.jsx';
 
 const QaBlock = ({q}) => {
-  const [Alist, setAlist] = React.useState(q.answers);
-  console.log('Q:', q);
+  const [Alist, setAlist] = React.useState([]);
+
+  React.useEffect(() => { //set answer list
+    if(q) {
+          setAlist(Object.values(q.answers));
+    }
+  }, [q]);
+
+  React.useEffect(() => { //see Ans list
+    console.log('Alist values', Alist);
+  }, [Alist]);
+
+
+  const handleReport = () => {
+    console.log('clicked report');
+  };
+  const handleHelpful = () => {
+    console.log('clicked Helpful');
+  };
+
+
+
   return (
     <div>
       <div className='q-body'>
-      <span>Q: {q.body}</span>
-      <span>Helpful: <a>Yes {q.helpfullness}</a> <a>Report</a></span>
+        <span className='bold'>Q: {q.question_body}</span>
+        <span>Helpful: <a onClick={e => {e.preventDefault(); handleHelpful()}}>Yes</a> <a onClick={e => {e.preventDefault(); handleReport()}}>Report</a></span>
       </div>
       <div className='a-body'>
-        {/* {Alist.map((a) => {
+        {Alist.map((a) => {
           return (
-            <Answer a={a}/>
+            <span>
+              <Answer a={a} key={a.id}/>
+            </span>
           )
-        })} */}
+        })}
       </div>
 
     <a>load more answers</a>
