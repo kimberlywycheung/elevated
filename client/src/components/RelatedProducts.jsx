@@ -4,24 +4,22 @@ import axios from 'axios';
 import Carousel from './K_relatedProd_subs/Carousel.jsx';
 
 const RelatedProducts = ({ product }) => {
-  const [outfits, setOutfits] = useState(window.localStorage.getItem('favorites'));
-  const [relatedIds, setRelatedIds] = useState([]);
+  const [outfits, setOutfits] = useState([]);
+  let relatedIds = [];
 
   // console.log('product', product);
   // console.log('outfits: ', outfits);
   // console.log('related ids', relatedIds);
 
   useEffect(() => {
-    if (product.id) {
-      getRelated();
-    }
-  }, [product]);
+    setOutfits(window.localStorage.getItem('favorites'));
+  }, [outfits])
 
-  const getRelated = () => {
+  if (product.id) {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${product.id}/related`, {
       headers: { 'Authorization': process.env.GITHUB_TOKEN }
     })
-    .then(({ data }) => setRelatedIds(data))
+    .then(({ data }) => relatedIds = data)
     .catch((err) => console.log(err));
   }
 
