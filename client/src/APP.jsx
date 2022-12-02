@@ -12,12 +12,21 @@ const App = () => {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products', {
       headers: { 'Authorization': process.env.GITHUB_TOKEN }
     })
-    .then((results) => setProduct(results.data[0]))
+    .then((results) => {
+      setProduct(results.data[0]);
+      console.log(results.data[0]);
+    })
     .catch((err) => console.log(err));
   }
 
   React.useEffect( () => {
-    get();
+    if (!product) {
+      get();
+    }
+    console.log(product);
+    if (!window.localStorage.getItem('favorites')) {
+      window.localStorage.setItem('favorites', []);
+    }
   }, [])
 
   return (
