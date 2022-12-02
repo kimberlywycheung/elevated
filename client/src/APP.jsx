@@ -8,8 +8,8 @@ import axios from 'axios';
 const App = () => {
   const [product, setProduct] = React.useState({});
 
-  const get = (endpoint, body) => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp${endpoint}`, {
+  const get = () => {
+    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products', {
       headers: { 'Authorization': process.env.GITHUB_TOKEN },
       data: body ? body : undefined
     })
@@ -18,8 +18,10 @@ const App = () => {
   }
 
   React.useEffect( () => {
-    get('/products');
-
+    if (!product) {
+      get();
+    }
+    console.log(product);
     if (!window.localStorage.getItem('favorites')) {
       window.localStorage.setItem('favorites', []);
     }
@@ -31,7 +33,7 @@ const App = () => {
       <Overview product={product}/>
       <RatingsReviews product={product}/>
       <QuestionsAnswers product={product}/>
-      <RelatedProducts product={product}/>
+      <RelatedProducts product={product} get={get}/>
     </div>
   )
 };
