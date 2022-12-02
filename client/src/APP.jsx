@@ -33,7 +33,7 @@ const App = () => {
       <Overview product={product}/>
       <RatingsReviews product={product}/>
       <QuestionsAnswers productID={product.id}/>
-      <RelatedProducts product={product}/>
+      {/* <RelatedProducts product={product}/> */}
     </div>
   )
 };
