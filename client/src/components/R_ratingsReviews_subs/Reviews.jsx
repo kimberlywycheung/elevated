@@ -32,8 +32,8 @@ const Reviews = function Reviews({ productID }) {
   );
 };
 
-Reviews.propTypes = {
-  productID: PropTypes.number.isRequired,
-};
+// Reviews.propTypes = {
+//   productID: PropTypes.number.isRequired,
+// };
 
 export default Reviews;
