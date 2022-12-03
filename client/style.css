@@ -1,29 +1,31 @@
 #root { /* entire page */
   font-family: 'Varela Round', sans-serif;
+  color: rgb(56, 56, 56);
 }
 button {
   padding: 20px;
   font-size: 1em;
+  margin: 10px;
 }
 a {
   cursor: pointer;
 }
 
 .overview {
-  background-color: rgb(108, 108, 229);
+  background-color: rgb(176, 176, 215);
   min-height: 300px;
 }
 .ratings-reviews {
-  background-color: rgb(102, 205, 136);
+  background-color: rgb(159, 198, 172);
     min-height: 300px;
 }
 .questions-answers {
-  background-color: rgb(98, 94, 93);
+  background-color: rgb(216, 190, 183);
   color: white;
   min-height: 300px;
 }
 .related-products {
-  background-color: rgb(192, 98, 141);
+  background-color: rgb(183, 156, 168);
   min-height: 300px;
 }
 
@@ -34,7 +36,13 @@ a {
 /* QUESTIONS / ANSWERS */
 
 #questions-answers {
-  background-color: white;
+  /* background-color: white; */
+  border-top: solid rgb(189, 184, 184) 2px;
+  border-bottom: solid rgb(191, 189, 189) 2px;
+}
+
+h2 {
+  margin: 20px;
 }
 
 #qa-search {
@@ -46,7 +54,7 @@ a {
 }
 
 .qa-block {
-  background-color: aqua;
+  /* background-color: rgb(169, 205, 205); */
   display: flex;
   flex-direction: column;
   padding-bottom: 30px;
@@ -57,7 +65,7 @@ a {
   display: flex;
   justify-content: space-between;
   width: 95%;
-  background-color: blueviolet;
+  /* background-color: rgb(186, 168, 202); */
   padding: 20px;
   padding-bottom: 20px;
   padding-left: 40px;
@@ -67,23 +75,23 @@ a {
 }
 
 .a-box {
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
   padding-left: 40px;
 }
 .ans {
-  background-color: rgb(131, 173, 210);
+  /* background-color: rgb(187, 206, 222); */
 }
 .load-ans {
-  background-color: rgb(41, 76, 107);
+  /* background-color: rgb(183, 205, 224); */
   padding: 5px 40px;
   font-size: .8em;
 }
 .qa-meta {
-  background-color: rgb(255, 255, 255);
+  /* background-color: rgb(216, 191, 191); */
   font-size: .8em;
   color: grey;
   padding: 10px 0;
 }
 .bold {
-  background-color: rgb(214, 89, 35);
+  /* background-color: rgb(217, 191, 180); */
 }

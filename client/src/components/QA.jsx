@@ -34,6 +34,7 @@ const QuestionsAnswers = ({productID}) => {
 
   return (
     <div id='questions-answers'>
+      <h2>Questions & Answers</h2>
       <Search setQlist={setQlist}/>
       <QaList list={Qlist}/>
       <div className='qa-btns'>

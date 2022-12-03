@@ -12,8 +12,8 @@ const QaBlock = ({q}) => {
   }, [q]);
 
 
-  const handleReport = () => {
-    console.log('clicked report');
+  const handleAddAns = () => {
+    console.log('clicked Add answer');
   };
   const handleHelpful = () => {
     console.log('clicked Helpful');
@@ -25,7 +25,7 @@ const QaBlock = ({q}) => {
     <div className='qa-block'>
       <div className='q-box'>
         <span><span className='bold'>Q:</span><span className='qa-body'>{q.question_body}</span></span>
-        <span className='qa-meta'>Helpful: <a className='underline' onClick={e => {e.preventDefault(); handleHelpful()}}>Yes</a> | <a onClick={e => {e.preventDefault(); handleReport()}}>Add Answer</a></span>
+        <span className='qa-meta'>Helpful: <a className='underline' onClick={e => {e.preventDefault(); handleHelpful()}}>Yes</a> | <a onClick={e => {e.preventDefault(); handleAddAns()}}>Add Answer</a></span>
       </div>
       <div className='a-box'>
         {Alist.map((a) => {
