@@ -6,6 +6,7 @@ const Card = function ({ type, item, addToFavorites, deleteFromFavorites }) {
   const [itemInfo, setItemInfo] = useState(null);
   const [itemStyles, setItemStyles] = useState(null);
 
+  // inititlizing states for info and styles based on prod id
   useEffect(() => {
     if (item) {
       axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${item}`, {
@@ -22,6 +23,7 @@ const Card = function ({ type, item, addToFavorites, deleteFromFavorites }) {
     }
   }, [item]);
 
+  // inititlizing default img url to be used later
   let defaultImg = '';
 
   if (itemStyles) {
@@ -32,6 +34,7 @@ const Card = function ({ type, item, addToFavorites, deleteFromFavorites }) {
     });
   }
 
+  // handler for the favorite/delete button
   const clickHandler = () => {
     if (type === 'related') {
       addToFavorites(itemInfo.id);

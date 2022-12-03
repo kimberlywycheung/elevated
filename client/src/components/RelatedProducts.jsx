@@ -44,8 +44,6 @@ const RelatedProducts = function ({ product }) {
       let newOutfits = outfits.slice();
       newOutfits.push(id);
       setOutfits(newOutfits);
-    } else {
-      console.log('dupe found in outfits!'); //TODO: delete later
     }
   };
 
