@@ -4,10 +4,14 @@ import Answer from './Answer.jsx';
 
 const QaBlock = ({q}) => {
   const [Alist, setAlist] = React.useState([]);
+  const [loadView, setloadView] = React.useState({'display': 'none'});
 
   React.useEffect(() => { //set answer list
     if(q) {
       setAlist(Object.values(q.answers));
+    }
+    if(Object.values(q.answers).length > 0) { //set Load More
+      setloadView({'display': 'block'});
     }
   }, [q]);
 
@@ -25,8 +29,10 @@ const QaBlock = ({q}) => {
     <div className='qa-block'>
       <div className='q-box'>
         <span><span className='bold'>Q:</span><span className='qa-body'>{q.question_body}</span></span>
+
         <span className='qa-meta'>Helpful: <a className='underline' onClick={e => {e.preventDefault(); handleHelpful()}}>Yes</a> | <a onClick={e => {e.preventDefault(); handleAddAns()}}>Add Answer</a></span>
       </div>
+
       <div className='a-box'>
         {Alist.map((a) => {
           return (
@@ -35,7 +41,7 @@ const QaBlock = ({q}) => {
         })}
       </div>
 
-    <a className='load-ans'>load more answers</a>
+    <a style={loadView} className='load-ans'>load more answers</a>
     </div>
 
   )

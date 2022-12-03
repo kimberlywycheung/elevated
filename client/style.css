@@ -14,19 +14,23 @@ a {
 .overview {
   background-color: rgb(176, 176, 215);
   min-height: 300px;
+  margin: 10px;
 }
 .ratings-reviews {
   background-color: rgb(159, 198, 172);
     min-height: 300px;
+    margin: 10px;
 }
 .questions-answers {
   background-color: rgb(216, 190, 183);
   color: white;
   min-height: 300px;
+  margin: 10px;
 }
 .related-products {
   background-color: rgb(183, 156, 168);
   min-height: 300px;
+  margin: 10px;
 }
 
 
@@ -59,6 +63,7 @@ h2 {
   flex-direction: column;
   padding-bottom: 30px;
   font-size: 1.4em;
+  border-bottom: solid rgb(236, 233, 233) 1px;
 }
 
 .q-box {
@@ -80,6 +85,8 @@ h2 {
 }
 .ans {
   /* background-color: rgb(187, 206, 222); */
+  padding-left: 20px;
+  font-size: 1em;
 }
 .load-ans {
   /* background-color: rgb(183, 205, 224); */
@@ -94,4 +101,5 @@ h2 {
 }
 .bold {
   /* background-color: rgb(217, 191, 180); */
+  font-style: bold;
 }

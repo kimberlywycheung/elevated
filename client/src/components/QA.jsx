@@ -38,7 +38,7 @@ const QuestionsAnswers = ({productID}) => {
       <Search setQlist={setQlist}/>
       <QaList list={Qlist}/>
       <div className='qa-btns'>
-        <button>more answered questions</button>
+        <button>more questions</button>
         <button onClick={e => {e.preventDefault(); setFormStyle({display: "block"})}}>add question</button>
       </div>
       <div style={formStyle}>
