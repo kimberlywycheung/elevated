@@ -5,7 +5,7 @@ import Carousel from './K_relatedProd_subs/Carousel.jsx';
 
 const RelatedProducts = ({ product }) => {
   const [outfits, setOutfits] = useState([]);
-  let relatedIds = [];
+  const [relatedIds, setRelatedIds] = useState([]);
 
   // console.log('product', product);
   // console.log('outfits: ', outfits);
@@ -19,7 +19,7 @@ const RelatedProducts = ({ product }) => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${product.id}/related`, {
       headers: { 'Authorization': process.env.GITHUB_TOKEN }
     })
-    .then(({ data }) => relatedIds = data)
+    .then(({ data }) => setRelatedIds(data))
     .catch((err) => console.log(err));
   }
 

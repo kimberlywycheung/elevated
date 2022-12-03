@@ -4,20 +4,12 @@ import Card from './Card.jsx';
 
 const Carousel = ({ type, currentState, currentProd }) => {
 
-  // console.log('type: ', type);
-  // console.log('currentState: ', currentState);
+  if (typeof(currentState) === 'string') {
+    currentState = currentState.replace(/\r?\n|\r/g, '').split(',');
+  }
 
-  const emptyOutfit = currentState.length === 0 ? true : false;
   const showAdd = type === 'outfits'? true : false;
   const title = type === 'outfits' ? 'Your Outfit' : 'Related Products';
-
-  const cards = () => {
-    if (currentState.length > 0) {
-      currentState.map((item) => {
-        return <Card key={item} item={item}/>
-      })
-    }
-  }
 
   return (
     <div>
