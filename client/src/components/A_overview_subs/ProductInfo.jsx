@@ -1,10 +1,12 @@
 import React from 'react';
+import Stars from './Stars.jsx';
 
 
-const ProductInfo = () => (
+
+const ProductInfo = ({ product }) => (
   <div className="product-info">
-    Product Info
-    <div>Stars</div>
+    Product Inf
+    <Stars id={product.id} />
   </div>);
 
 

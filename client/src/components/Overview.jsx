@@ -4,13 +4,15 @@ import ImageGallery from './A_overview_subs/ImageGallery.jsx';
 import ProductInfo from './A_overview_subs/productInfo.jsx';
 //testing
 
-const Overview = ({productID}) => {
+const Overview = ({product}) => {
+
+
 
   return (
     <div className='overview'>
       Overview Div
       <ImageGallery />
-      <ProductImage />
+      <ProductInfo product={product} />
     </div>
   )
 }
