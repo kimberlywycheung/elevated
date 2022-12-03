@@ -12,9 +12,9 @@ const Answer = ({a}) => {
   return (
     <div className='ans'>
       <div>
-        <span><span className='bold'>A: </span> {a.body}</span>
+        <span><span className='bold'>A:</span><span className='qa-body'>{a.body}</span></span>
       </div>
-      <div>
+      <div className='qa-meta'>
         by username, Date | Helpful? <a>Yes</a> | <a>Report</a>
       </div>
     </div>
