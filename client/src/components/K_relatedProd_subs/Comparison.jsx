@@ -1,7 +1,7 @@
 import Characteristic from './Characteristic.jsx';
 
-const Comparison = ({ props }) => {
+const Comparison = function ({ props }) {
 
-}
+};
 
 export default Comparison;
