@@ -25,7 +25,7 @@ const QaBlock = ({q}) => {
     <div className='qa-block'>
       <div className='q-box'>
         <span><span className='bold'>Q:</span><span className='qa-body'>{q.question_body}</span></span>
-        <span className='qa-meta'>Helpful: <a onClick={e => {e.preventDefault(); handleHelpful()}}>Yes</a> <a onClick={e => {e.preventDefault(); handleReport()}}>Report</a></span>
+        <span className='qa-meta'>Helpful: <a className='underline' onClick={e => {e.preventDefault(); handleHelpful()}}>Yes</a> | <a onClick={e => {e.preventDefault(); handleReport()}}>Add Answer</a></span>
       </div>
       <div className='a-box'>
         {Alist.map((a) => {

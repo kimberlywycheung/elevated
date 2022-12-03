@@ -33,6 +33,10 @@ a {
 
 /* QUESTIONS / ANSWERS */
 
+#questions-answers {
+  background-color: white;
+}
+
 #qa-search {
   padding: 20px;
   margin: 20px;
