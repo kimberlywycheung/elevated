@@ -10,6 +10,9 @@ button {
 a {
   cursor: pointer;
 }
+.underline {
+  text-decoration: underline;
+}
 
 .overview {
   background-color: rgb(176, 176, 215);
@@ -93,9 +96,22 @@ h2 {
   padding: 5px 40px;
   font-size: .8em;
 }
-.qa-meta {
+.q-meta {
+  display: flex;
+  width: 200px;
+  justify-content: space-between;
   /* background-color: rgb(216, 191, 191); */
-  font-size: .8em;
+  font-size: .6em;
+  color: grey;
+  padding: 10px 0;
+}
+
+.a-meta {
+  display: flex;
+  max-width: 35%;
+  justify-content: space-between;
+  /* background-color: rgb(216, 191, 191); */
+  font-size: .6em;
   color: grey;
   padding: 10px 0;
 }

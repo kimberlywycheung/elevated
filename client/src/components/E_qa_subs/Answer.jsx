@@ -14,8 +14,13 @@ const Answer = ({a}) => {
       <div>
         <span><span className='bold'>A:</span><span className='qa-body'>{a.body}</span></span>
       </div>
-      <div className='qa-meta'>
-        by username, Date | Helpful? <a>Yes</a> | <a>Report</a>
+      <div className='a-meta'>
+        <span>by {a.answerer_name}</span>
+        <span>{a.date.slice(0,10)}</span>
+        <span>|</span>
+        <span>Helpful? <a style={{'paddingRight': '5px'}} className='underline'>Yes</a>{a.helpfulness}</span>
+        <span>|</span>
+        <a>Report</a>
       </div>
     </div>
 
