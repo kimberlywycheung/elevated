@@ -13,8 +13,9 @@ const App = () => {
       headers: { 'Authorization': process.env.GITHUB_TOKEN }
     })
     .then((results) => {
-      var randIndex = Math.floor(Math.random() * results.data.length);
-      console.log('Random Product->\n', results.data[randIndex]);
+      // var randIndex = Math.floor(Math.random() * results.data.length);
+      var randIndex = 3;
+      console.log(`Random Product->\n`, results.data[randIndex]);
       setProduct(results.data[randIndex]);
     })
     .catch((err) => console.log(err));
@@ -33,7 +34,7 @@ const App = () => {
       <Overview product={product}/>
       <RatingsReviews product={product}/>
       <QuestionsAnswers productID={product.id}/>
-      <RelatedProducts product={product}/>
+      {/* <RelatedProducts product={product}/> */}
     </div>
   )
 };

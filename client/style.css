@@ -1,20 +1,73 @@
 #root { /* entire page */
   font-family: 'Varela Round', sans-serif;
 }
+button {
+  padding: 20px;
+  font-size: 1em;
+}
 
 .overview {
   background-color: rgb(108, 108, 229);
-  min-height: 500px;
+  min-height: 300px;
 }
 .ratings-reviews {
   background-color: rgb(102, 205, 136);
-    min-height: 500px;
+    min-height: 300px;
 }
 .questions-answers {
-  background-color: rgb(201, 138, 119);
-  min-height: 500px;
+  background-color: rgb(98, 94, 93);
+  color: white;
+  min-height: 300px;
 }
 .related-products {
   background-color: rgb(192, 98, 141);
-  min-height: 500px;
+  min-height: 300px;
+}
+
+
+
+
+
+/* QUESTIONS / ANSWERS */
+
+#qa-search {
+  padding: 20px;
+  margin: 20px;
+  height: 20px;
+  width: 80%;
+  font-size: 2em;
+}
+
+.qa-block {
+  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 30px;
+  font-size: 1.2em;
+}
+
+.q-box {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  background-color: blueviolet;
+  padding-bottom: 20px;
+  padding-left: 40px;
+}
+
+.a-box {
+  background-color: aliceblue;
+  padding-left: 40px;
+}
+.ans {
+  background-color: rgb(131, 173, 210);
+}
+.load-ans {
+  background-color: rgb(41, 76, 107);
+}
+.q-meta {
+  background-color: rgb(89, 132, 108);
+}
+.bold {
+  background-color: rgb(214, 89, 35);
 }

@@ -7,13 +7,9 @@ const QaBlock = ({q}) => {
 
   React.useEffect(() => { //set answer list
     if(q) {
-          setAlist(Object.values(q.answers));
+      setAlist(Object.values(q.answers));
     }
   }, [q]);
-
-  React.useEffect(() => { //see Ans list
-    console.log('Alist values', Alist);
-  }, [Alist]);
 
 
   const handleReport = () => {
@@ -26,22 +22,20 @@ const QaBlock = ({q}) => {
 
 
   return (
-    <div>
-      <div className='q-body'>
-        <span className='bold'>Q: {q.question_body}</span>
-        <span>Helpful: <a onClick={e => {e.preventDefault(); handleHelpful()}}>Yes</a> <a onClick={e => {e.preventDefault(); handleReport()}}>Report</a></span>
+    <div className='qa-block'>
+      <div className='q-box'>
+        <span><span className='bold'>Q: </span>{q.question_body}</span>
+        <span className='q-meta'>Helpful: <a onClick={e => {e.preventDefault(); handleHelpful()}}>Yes</a> <a onClick={e => {e.preventDefault(); handleReport()}}>Report</a></span>
       </div>
-      <div className='a-body'>
+      <div className='a-box'>
         {Alist.map((a) => {
           return (
-            <span>
-              <Answer a={a} key={a.id}/>
-            </span>
+            <Answer a={a} key={a.id}/>
           )
         })}
       </div>
 
-    <a>load more answers</a>
+    <a className='load-ans'>load more answers</a>
     </div>
 
   )
