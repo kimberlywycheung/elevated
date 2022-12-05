@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Comparison from './Comparison.jsx';
 
-const Card = function ({ type, item, addToFavorites, deleteFromFavorites, setProduct }) {
+const Card = function ({ type, currentProd, item, addToFavorites, deleteFromFavorites, setProduct }) {
   const [itemInfo, setItemInfo] = useState(null);
   const [itemStyles, setItemStyles] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // inititlizing states for info and styles based on prod id
   useEffect(() => {
@@ -42,13 +43,14 @@ const Card = function ({ type, item, addToFavorites, deleteFromFavorites, setPro
   const buttonHandler = () => {
     if (type === 'related') {
       addToFavorites(itemInfo.id);
+      setIsModalOpen(true);
     } else {
       deleteFromFavorites(itemInfo.id);
     }
   };
 
+  // handler for changing current product page to product user has clicked
   const changeCards = () => {
-
     const updateProd = (products) => {
       products.forEach((product) => {
         if (product.id === itemInfo.id) {
@@ -67,16 +69,24 @@ const Card = function ({ type, item, addToFavorites, deleteFromFavorites, setPro
     }
   };
 
-  const buttonText = type === 'related' ? 'Favorite' : 'Delete';
 
   // TODO: can refactor saleprice later
   if (itemInfo && itemStyles) {
     return (
       <div className="card" id={type} onClick={changeCards}>
+
+        <button className="card_button" onClick={buttonHandler}>
+          {type === 'related' ? 'Favorite' : 'Delete'}
+        </button>
+
+        {type === 'related' &&
+        <Comparison itemInfo={itemInfo} currentProd={currentProd} isModalOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />}
+
         <img src={defaultImg} className="card_image"/>
-        <button onClick={buttonHandler}>{buttonText}</button>
+
         <p><strong>{itemInfo.name}</strong></p>
         <p>{itemInfo.category}</p>
+
         { !salePrice &&
           <p>${originalPrice}</p>
         }
@@ -86,6 +96,7 @@ const Card = function ({ type, item, addToFavorites, deleteFromFavorites, setPro
             <strike>${originalPrice}</strike>
           </p>
         }
+
         <p>(insert stars)</p>
       </div>
     );

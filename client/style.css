@@ -143,23 +143,30 @@ h2 {
 /* Related Products / Components */
 
 .carousel {
-  padding: 30px, 0px, 0px;
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
+  padding: 30px, 0px, 0px;
+  max-height: 450px;
 }
 
 .card {
+  background-color: whitesmoke;
   position: relative;
-  width: 25%;
-  height: 100%;
-  min-height: 400px;
-  min-width: 200px;
+  width: 20%;
+  height: 95%;
+  min-height: 300px;
+  margin-top: 0;
   margin-right: 25px;
-  float: left;
+  margin-bottom: 10px;
   display: inline-block;
 }
 
+.card_button {
+  position: relative;
+  float: right;
+  top: 0;
+}
 
 .card_image {
   position: relative;

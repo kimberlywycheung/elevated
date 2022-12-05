@@ -22,7 +22,7 @@ const Carousel = function ({ type, currentState, currentProd, addToFavorites, de
         </div> }
       {currentState.length > 0 &&
         currentState.map((item) => {
-          return <Card key={item} type={type} item={item} addToFavorites={addToFavorites} deleteFromFavorites={deleteFromFavorites} setProduct={setProduct}/>
+          return <Card key={item} type={type} item={item} currentProd={currentProd} addToFavorites={addToFavorites} deleteFromFavorites={deleteFromFavorites} setProduct={setProduct}/>
         })}
     </div>
   );
