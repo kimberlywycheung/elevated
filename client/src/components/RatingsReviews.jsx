@@ -6,6 +6,12 @@ import Reviews from './R_ratingsReviews_subs/Reviews.jsx';
 const RatingsReviews = ({product}) => {
   // console.log("R&R ID", product.id)
 
+  if(!product.id) {
+    return (
+      <div>loading...</div>
+    )
+  }
+
   return (
     <div className='ratings-reviews'>
       Ratings and Reviews
@@ -13,6 +19,7 @@ const RatingsReviews = ({product}) => {
       <Reviews productID={product.id}/>
     </div>
   )
+
 }
 
 export default RatingsReviews;
