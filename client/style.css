@@ -1,4 +1,5 @@
-#root { /* entire page */
+#root {
+  /* entire page */
   font-family: 'Varela Round', sans-serif;
 }
 
@@ -6,14 +7,17 @@
   background-color: rgb(108, 108, 229);
   min-height: 500px;
 }
+
 .ratings-reviews {
   background-color: rgb(102, 205, 136);
-    min-height: 500px;
+  min-height: 500px;
 }
+
 .questions-answers {
   background-color: rgb(201, 138, 119);
   min-height: 500px;
 }
+
 .related-products {
   background-color: rgb(192, 98, 141);
   min-height: 500px;
