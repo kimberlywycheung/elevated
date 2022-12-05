@@ -10,6 +10,7 @@ const QuestionsAnswers = ({productID}) => {
   const [formType, setFormType] = React.useState('addQ');
   const [Qlist, setQlist] = React.useState([]);
   const [Qid, setQid] = React.useState(undefined);
+  const [searchTerm, setSearchTerm] = React.useState(undefined);
 
   React.useEffect(() => {
     if(productID) {
@@ -37,13 +38,13 @@ const QuestionsAnswers = ({productID}) => {
   return (
     <div id='questions-answers'>
       <h2>Questions & Answers</h2>
-      <Search setQlist={setQlist}/>
-      <QaList setQid={setQid} setFormType={setFormType} setModalStyle={setModalStyle} list={Qlist}/>
+      <Search setSearchTerm={setSearchTerm} setQlist={setQlist}/>
+      <QaList searchTerm={searchTerm} setQid={setQid} setFormType={setFormType} setModalStyle={setModalStyle} list={Qlist}/>
       <div className='qa-btns'>
         <button>more questions</button>
         <button onClick={e => {e.preventDefault(); setFormType('addQ'); setModalStyle({display: 'block'})}}>Add question</button>
       </div>
-      <div>
+      <div className='click-modal' onClick={e => {e.preventDefault(); console.log('bgclicked2')}}>
         <QaModal getQlist={getQlist} qID={Qid} setModalStyle={setModalStyle} formType={formType} productID={productID} style={modalStyle}/>
       </div>
     </div>
