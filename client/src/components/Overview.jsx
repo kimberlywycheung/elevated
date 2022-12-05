@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import ImageGallery from './A_overview_subs/ImageGallery.jsx';
 import ProductInfo from './A_overview_subs/productInfo.jsx';
+import StyleSelector from './A_overview_subs/StyleSelector.jsx';
 //testing
 
 const Overview = ({ product }) => {
