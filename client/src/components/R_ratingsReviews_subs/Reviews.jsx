@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import SortReviews from './SortReviews.jsx'
+import ListReviews from './ListReviews.jsx'
+import MoreReviews from './MoreReviews.jsx'
+import AddReviews from './AddReviews.jsx'
 
 const Reviews = function Reviews({ productID }) {
   const [reviews, setReviews] = useState({});
@@ -20,14 +24,18 @@ const Reviews = function Reviews({ productID }) {
     }
   }, [productID]);
 
+  if (!reviews.product) {
+    return <div>loading...</div>
+  }
+
   return (
     <div>
-      Reviews list, sort, and add review button
-      <span>
-        There are
-        {reviews.count}
-        reviews
-      </span>
+      <SortReviews reviews={reviews}/>
+      <ListReviews reviews={reviews}/>
+      <div>
+        <MoreReviews />
+        <AddReviews />
+      </div>
     </div>
   );
 };
