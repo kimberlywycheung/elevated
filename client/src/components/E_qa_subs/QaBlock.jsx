@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Answer from './Answer.jsx';
 
-const QaBlock = ({q, setModalStyle, setFormType}) => {
+const QaBlock = ({q, setModalStyle, setFormType, setQid}) => {
   const [Alist, setAlist] = React.useState([]);
   const [loadView, setloadView] = React.useState({'display': 'none'});
 
@@ -20,6 +20,7 @@ const QaBlock = ({q, setModalStyle, setFormType}) => {
     console.log('clicked Add answer for Q', q.question_id);
     setModalStyle({display: 'block'});
     setFormType('addA');
+    setQid(q.question_id);
   };
   const handleHelpful = () => {
     console.log('clicked Helpful');
