@@ -17,9 +17,10 @@ const QaList = ({list, setModalStyle, setFormType, setQid, searchTerm}) => {
         return -1;
       });//end sort
       setSortedList(sortedL);
-    } else { //is a Search
-      var sortedL = list.filter(item => {
-        return item.question_body.toLowerCase().contains(searchTerm.toLowerCase());
+    } else { //is a Search term
+      var sortedL = list.filter(q => {
+        var qContent = q.question_body + q.asker_name;
+        return qContent.toLowerCase().includes(searchTerm.toLowerCase());
       });//end sort
       setSortedList(sortedL);
     }
@@ -29,7 +30,7 @@ const QaList = ({list, setModalStyle, setFormType, setQid, searchTerm}) => {
   };//end Limit
   React.useEffect(() => {
       sort();
-  },[list]);
+  },[list, searchTerm]);
   React.useEffect(() => {
       limit(sortedList, listCount);
   },[sortedList]);
