@@ -1,20 +1,140 @@
 #root { /* entire page */
   font-family: 'Varela Round', sans-serif;
+  color: rgb(56, 56, 56);
+}
+button {
+  padding: 20px;
+  font-size: 1em;
+  margin: 10px;
+}
+a {
+  cursor: pointer;
+}
+.underline {
+  text-decoration: underline;
 }
 
 .overview {
-  background-color: rgb(108, 108, 229);
-  min-height: 500px;
+  background-color: rgb(176, 176, 215);
+  min-height: 300px;
+  margin: 10px;
 }
 .ratings-reviews {
-  background-color: rgb(102, 205, 136);
-    min-height: 500px;
+  background-color: rgb(159, 198, 172);
+    min-height: 300px;
+    margin: 10px;
 }
 .questions-answers {
-  background-color: rgb(201, 138, 119);
-  min-height: 500px;
+  background-color: rgb(216, 190, 183);
+  color: white;
+  min-height: 300px;
+  margin: 10px;
 }
 .related-products {
-  background-color: rgb(192, 98, 141);
-  min-height: 500px;
+  background-color: rgb(183, 156, 168);
+  min-height: 300px;
+  margin: 10px;
+}
+.modal-bg { /* pop up form BACKGROUND OVERLAY, use on div wrapper for <Moda/> component*/
+  /*display: none;  Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+}
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+
+
+
+
+/* QUESTIONS / ANSWERS */
+
+#questions-answers {
+  /* background-color: white; */
+  border-top: solid rgb(189, 184, 184) 2px;
+  border-bottom: solid rgb(191, 189, 189) 2px;
+}
+
+h2 {
+  margin: 20px;
+}
+
+#qa-search {
+  padding: 20px;
+  margin: 20px;
+  height: 20px;
+  width: 80%;
+  font-size: 2em;
+}
+
+.qa-block {
+  /* background-color: rgb(169, 205, 205); */
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 30px;
+  font-size: 1.4em;
+  border-bottom: solid rgb(236, 233, 233) 1px;
+}
+
+.q-box {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  /* background-color: rgb(186, 168, 202); */
+  padding: 20px;
+  padding-bottom: 20px;
+  padding-left: 40px;
+}
+.qa-body {
+  padding-left: 20px;
+}
+
+.a-box {
+  /* background-color: aliceblue; */
+  padding-left: 40px;
+}
+.ans {
+  /* background-color: rgb(187, 206, 222); */
+  padding-left: 20px;
+  font-size: 1em;
+}
+.load-ans {
+  /* background-color: rgb(183, 205, 224); */
+  padding: 5px 40px;
+  font-size: .8em;
+}
+.q-meta {
+  display: flex;
+  width: 200px;
+  justify-content: space-between;
+  /* background-color: rgb(216, 191, 191); */
+  font-size: .6em;
+  color: grey;
+  padding: 10px 0;
+}
+
+.a-meta {
+  display: flex;
+  width: 450px;
+  justify-content: space-between;
+  /* background-color: rgb(216, 191, 191); */
+  font-size: .6em;
+  color: grey;
+  padding: 10px 0;
+}
+.bold {
+  /* background-color: rgb(217, 191, 180); */
+  font-style: bold;
 }
