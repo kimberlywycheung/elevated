@@ -6,7 +6,8 @@ import QaModal from './E_qa_subs/QaModal.jsx';
 
 
 const QuestionsAnswers = ({productID}) => {
-  const [formStyle, setFormStyle] = React.useState({display:"none"});
+  const [modalStyle, setModalStyle] = React.useState({display:"none"});
+  const [formType, setFormType] = React.useState('addQ');
   const [Qlist, setQlist] = React.useState([]);
 
   React.useEffect(() => {
@@ -36,13 +37,13 @@ const QuestionsAnswers = ({productID}) => {
     <div id='questions-answers'>
       <h2>Questions & Answers</h2>
       <Search setQlist={setQlist}/>
-      <QaList list={Qlist}/>
+      <QaList setFormType={setFormType} setModalStyle={setModalStyle} list={Qlist}/>
       <div className='qa-btns'>
         <button>more questions</button>
-        <button onClick={e => {e.preventDefault(); setFormStyle({display: "block"})}}>add question</button>
+        <button onClick={e => {e.preventDefault(); setFormType('addQ'); setModalStyle({display: 'block'})}}>Add question</button>
       </div>
-      <div style={formStyle}>
-        <QaModal />
+      <div>
+        <QaModal setModalStyle={setModalStyle} formType={formType} productID={productID} style={modalStyle}/>
       </div>
     </div>
   )
