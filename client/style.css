@@ -117,8 +117,10 @@ h2 {
 }
 
 .a-box {
-  /* background-color: aliceblue; */
+  /* background-color: rgb(167, 204, 237); */
   padding-left: 40px;
+  max-height: 200px;
+  overflow: auto;
 }
 .ans {
   /* background-color: rgb(187, 206, 222); */

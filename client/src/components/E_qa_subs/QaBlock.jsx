@@ -11,14 +11,12 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid}) => {
 
   React.useEffect(() => { //set initial list
     if(q) {
-      console.log('setting')
       setLimitedAList(Object.values(q.answers).slice(0, ansCount));
     }
   },[]);
 
 
   React.useEffect(() => { //update list limit
-    console.log('Alist', Alist.length, ansCount);
     if(Alist.length > ansCount) {
       setloadView({'display': 'block'});
     } else {
@@ -28,7 +26,6 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid}) => {
   }, [ansCount]);
 
   const loadMoreAns = () => {
-    console.log('loading more ans');
     setAnsCount(ansCount + 2);
   };
 
@@ -49,7 +46,6 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid}) => {
 
 
   const handleAddAns = () => {
-    console.log('clicked Add answer for Q', q.question_id);
     setModalStyle({display: 'block'});
     setFormType('addA');
     setQid(q.question_id);
