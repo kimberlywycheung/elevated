@@ -3,44 +3,44 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 
 const QaModal = ({style, productID, formType, setModalStyle, qID}) => {
+  var type = formType === 'addQ' ? 'Question' : 'Answer';
+  var addOnArr = formType === 'addQ' ? ['1','2','3','0'] : ['4','5','6','9'];
   var inputFields = [
-    <input type='text' name='body' key={productID + '1'} placeholder='question body..'></input>,
-    <input type='text' name='name' key={productID + '2'} placeholder='name for username'></input>,
-    <input type='email' name='email' key={productID + '3'} placeholder='myemail@email.com'></input>
+    <input type='text' name='body' key={productID + addOnArr[0]} placeholder={`${type} body`}></input>,
+    <input type='text' name='name' key={productID + addOnArr[1]} placeholder='name for username'></input>,
+    <input type='email' name='email' key={productID + addOnArr[2]} placeholder='myemail@email.com'></input>
   ];
   if(formType === 'addA') {
-    inputFields.push(<input type='text' name='photos' key={productID + '4'} placeholder='PHOTO UPLOADS'></input>)
+    inputFields.push(<input type='text' name='photos' key={productID + addOnArr[3]} placeholder='url of photos, new line per photo'></input>)
   }
 
   const sendData = () => {
-    console.log('sending Data for ', formType);
+    const auth = {'Authorization': process.env.GITHUB_TOKEN};
 
       var form = document.getElementById(formType);
       const formData = new FormData(form);
-      console.log('FORM DATA-> \n');
       const dataObj = {};
       for (const [key, value] of formData) {
-        console.log(`${key}: ${value}\n`);
         Object.assign(dataObj, {[key]: value})
       }
-      console.log('Data Obj after for-of loop\n', dataObj);
-    if(formType === 'addQ') {
+    if(formType === 'addQ') { //doesn't work yet..
       Object.assign(dataObj, {product_id: productID});
-      console.log('dataObj SEND QDATA', dataObj); //got em!
+      console.log('dataObj SEND QDATA', dataObj);
       //post Question from form
-      // axios.post(url, dataObj)
-      // .then((res) => {
-      //   console.log('res Qdata POST response', res)
-      // })
-    } else {
-      Object.assign(dataObj, {question_id: qID});
+      const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions';
+      axios({method: 'post', url: url, headers: auth, data: dataObj})
+      .then((res) => {
+        console.log('res Qdata POST response', res);
+      })
+    } else { //SEND ANSWER WORKS!
+      Object.assign(dataObj, {question_id: qID, photos: []});
       console.log('dataObj SEND ADATA', dataObj); //got em!
-      const url = ``;
+      const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${qID}/answers`;
       //post answer from form
-      // axios.post(url, dataObj)
-      // .then((res) => {
-      //   console.log('res Adata POST response', res)
-      // })
+      axios({method: 'post', url: url, headers: auth, data: dataObj})
+      .then((res) => {
+        console.log('res Adata POST response', res)
+      })
     }
   };
 
@@ -50,7 +50,7 @@ const QaModal = ({style, productID, formType, setModalStyle, qID}) => {
         QA Modal
         <form id={formType} onSubmit={e => {e.preventDefault(); sendData(); setModalStyle({display: 'none'});}}>
           {inputFields}
-          <button type='submit'>Submit {formType === 'addQ' ? 'Question' : 'Answer'}</button>
+          <button type='submit'>Submit {type}</button>
         </form>
       </div>
 

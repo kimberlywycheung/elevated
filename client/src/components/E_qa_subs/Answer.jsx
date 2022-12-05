@@ -3,12 +3,6 @@ import axios from 'axios';
 
 const Answer = ({a}) => {
 
-  React.useEffect(() => { //log answer
-    if(a) {
-      console.log('A', a);
-    }
-  }, [a]);
-
   return (
     <div className='ans'>
       <div>
