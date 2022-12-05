@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Characteristic = ({ item }) => {
+const Characteristic = function ({ item }) {
   return (
     <div>
-      
+
     </div>
   )
 }
