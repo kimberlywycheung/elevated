@@ -6,6 +6,7 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid}) => {
   const [Alist, setAlist] = React.useState(Object.values(q.answers));
   const [limitedAList, setLimitedAList] = React.useState(Object.values(q.answers));
   const [loadView, setloadView] = React.useState({'display': 'block'});
+  const [collapseView, setCollapseView] = React.useState({'display': 'none'});
   const [ansCount, setAnsCount] = React.useState(2);
   // console.log('OG ALIST->', Object.values(q.answers));
 
@@ -21,6 +22,9 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid}) => {
       setloadView({'display': 'block'});
     } else {
       setloadView({'display': 'none'});
+      if(Alist.length > 0) {
+        setCollapseView({'display': 'block'});
+      }
     }
     setLimitedAList(Alist.slice(0, ansCount));
   }, [ansCount]);
@@ -28,22 +32,11 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid}) => {
   const loadMoreAns = () => {
     setAnsCount(ansCount + 2);
   };
-
-  // React.useEffect(() => { //set answer list for each Q
-  //   if(q) {
-  //     setAlist(Object.values(q.answers).slice(0, ansCount));
-  //   }
-  //   if(Object.values(q.answers).length > 2 && Object.values(q.answers).length >= ansCount) { //set Load More
-  //     setloadView({'display': 'block'});
-  //   } else {
-  //     setloadView({'display': 'none'});
-  //   }
-  // }, [q, ansCount]);
-
-  // React.useEffect(() => {
-  //   setAlist(Alist.slice(0, ansCount));
-  // },[ansCount]);
-
+  const collapseAns = () => {
+    setAnsCount(2);
+    setloadView({'display': 'block'});
+    setCollapseView({'display': 'none'});
+  };
 
   const handleAddAns = () => {
     setModalStyle({display: 'block'});
@@ -77,6 +70,7 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid}) => {
       </div>
 
     <a style={loadView} onClick={e => {e.preventDefault(); loadMoreAns()}} className='load-ans'>load more answers</a>
+    <a style={collapseView} onClick={e => {e.preventDefault(); collapseAns()}} className='load-ans'>collapse answers</a>
     <div className='q-meta q-meta2'>
       question from {q.asker_name}
     </div>
