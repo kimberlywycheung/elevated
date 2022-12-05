@@ -18,7 +18,7 @@ const QuestionsAnswers = ({productID}) => {
   },[productID]);
 
   const getQlist = () => {
-    var url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions?product_id=${productID}`;
+    var url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions?product_id=${productID}&count=10`;
     axios.get(url, {
       headers: { 'Authorization': process.env.GITHUB_TOKEN }
     })
@@ -44,7 +44,7 @@ const QuestionsAnswers = ({productID}) => {
         <button onClick={e => {e.preventDefault(); setFormType('addQ'); setModalStyle({display: 'block'})}}>Add question</button>
       </div>
       <div>
-        <QaModal qID={Qid} setModalStyle={setModalStyle} formType={formType} productID={productID} style={modalStyle}/>
+        <QaModal getQlist={getQlist} qID={Qid} setModalStyle={setModalStyle} formType={formType} productID={productID} style={modalStyle}/>
       </div>
     </div>
   )

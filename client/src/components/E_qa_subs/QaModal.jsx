@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
-const QaModal = ({style, productID, formType, setModalStyle, qID}) => {
+const QaModal = ({style, productID, formType, setModalStyle, qID, getQlist}) => {
   var type = formType === 'addQ' ? 'Question' : 'Answer';
   var addOnArr = formType === 'addQ' ? ['1','2','3','0'] : ['4','5','6','9'];
   var inputFields = [
@@ -31,6 +31,7 @@ const QaModal = ({style, productID, formType, setModalStyle, qID}) => {
       axios({method: 'post', url: url, headers: auth, data: dataObj})
       .then((res) => {
         console.log('res Qdata POST response', res);
+        getQlist();
       })
     } else { //SEND ANSWER WORKS!
       Object.assign(dataObj, {question_id: qID, photos: []});
@@ -39,7 +40,8 @@ const QaModal = ({style, productID, formType, setModalStyle, qID}) => {
       //post answer from form
       axios({method: 'post', url: url, headers: auth, data: dataObj})
       .then((res) => {
-        console.log('res Adata POST response', res)
+        console.log('res Adata POST response', res);
+        getQlist();
       })
     }
   };
