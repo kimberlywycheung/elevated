@@ -138,3 +138,38 @@ h2 {
   /* background-color: rgb(217, 191, 180); */
   font-style: bold;
 }
+
+
+/* Related Products / Components */
+
+.carousel {
+  padding: 30px, 0px, 0px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.card {
+  position: relative;
+  width: 25%;
+  height: 100%;
+  min-height: 400px;
+  min-width: 200px;
+  margin-right: 25px;
+  float: left;
+  display: inline-block;
+}
+
+
+.card_image {
+  position: relative;
+  width: 90%;
+  height: 30%;
+  max-height: 250px;
+  max-width: 186px;
+  object-fit: cover;
+}
+
+.sale_price {
+
+}
