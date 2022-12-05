@@ -35,6 +35,13 @@ const QaList = ({list, setModalStyle, setFormType, setQid, searchTerm}) => {
       limit(sortedList, listCount);
   },[sortedList]);
 
+  if(newList.length === 0 && searchTerm) {
+    return (
+      <div style={{fontSize: '2em', width: "100%"}} className='q-meta2'>
+        no search results for "{searchTerm}"...
+      </div>
+    )
+  }
   return (
     <div>
       {newList.map(q => {

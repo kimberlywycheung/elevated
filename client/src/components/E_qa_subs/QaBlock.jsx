@@ -3,17 +3,49 @@ import axios from 'axios';
 import Answer from './Answer.jsx';
 
 const QaBlock = ({q, setModalStyle, setFormType, setQid}) => {
-  const [Alist, setAlist] = React.useState([]);
-  const [loadView, setloadView] = React.useState({'display': 'none'});
+  const [Alist, setAlist] = React.useState(Object.values(q.answers));
+  const [limitedAList, setLimitedAList] = React.useState(Object.values(q.answers));
+  const [loadView, setloadView] = React.useState({'display': 'block'});
+  const [ansCount, setAnsCount] = React.useState(2);
+  // console.log('OG ALIST->', Object.values(q.answers));
 
-  React.useEffect(() => { //set answer list
+  React.useEffect(() => { //set initial list
     if(q) {
-      setAlist(Object.values(q.answers));
+      console.log('setting')
+      setLimitedAList(Object.values(q.answers).slice(0, ansCount));
     }
-    if(Object.values(q.answers).length > 0) { //set Load More
+  },[]);
+
+
+  React.useEffect(() => { //update list limit
+    console.log('Alist', Alist.length, ansCount);
+    if(Alist.length > ansCount) {
       setloadView({'display': 'block'});
+    } else {
+      setloadView({'display': 'none'});
     }
-  }, [q]);
+    setLimitedAList(Alist.slice(0, ansCount));
+  }, [ansCount]);
+
+  const loadMoreAns = () => {
+    console.log('loading more ans');
+    setAnsCount(ansCount + 2);
+  };
+
+  // React.useEffect(() => { //set answer list for each Q
+  //   if(q) {
+  //     setAlist(Object.values(q.answers).slice(0, ansCount));
+  //   }
+  //   if(Object.values(q.answers).length > 2 && Object.values(q.answers).length >= ansCount) { //set Load More
+  //     setloadView({'display': 'block'});
+  //   } else {
+  //     setloadView({'display': 'none'});
+  //   }
+  // }, [q, ansCount]);
+
+  // React.useEffect(() => {
+  //   setAlist(Alist.slice(0, ansCount));
+  // },[ansCount]);
 
 
   const handleAddAns = () => {
@@ -25,7 +57,6 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid}) => {
   const handleHelpful = () => {
     console.log('clicked Helpful');
   };
-
 
 
   return (
@@ -41,14 +72,18 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid}) => {
       </div>
 
       <div className='a-box'>
-        {Alist.map((a) => {
+        {limitedAList.map((a) => {
           return (
             <Answer a={a} key={a.id}/>
           )
         })}
+
       </div>
 
-    <a style={loadView} className='load-ans'>load more answers</a>
+    <a style={loadView} onClick={e => {e.preventDefault(); loadMoreAns()}} className='load-ans'>load more answers</a>
+    <div className='q-meta q-meta2'>
+      question from {q.asker_name}
+    </div>
     </div>
 
   )

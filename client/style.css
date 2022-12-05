@@ -127,8 +127,9 @@ h2 {
 }
 .load-ans {
   /* background-color: rgb(183, 205, 224); */
-  padding: 5px 40px;
+  padding: 10px 60px;
   font-size: .8em;
+  width: 160px;
 }
 .q-meta {
   display: flex;
@@ -139,7 +140,11 @@ h2 {
   color: grey;
   padding: 10px 0;
 }
-
+.q-meta2 {
+  width: 500px;
+  padding: 5px 40px;
+  font-size: .8em;
+}
 .a-meta {
   display: flex;
   width: 450px;
