@@ -48,8 +48,8 @@ const Card = function ({ type, item, addToFavorites, deleteFromFavorites }) {
   if (itemInfo && itemStyles) {
     return (
       <div>
-        <button onClick={clickHandler}>{buttonText}</button>
         <img src={defaultImg} />
+        <button onClick={clickHandler}>{buttonText}</button>
         <p>{itemInfo.name}</p>
         <p>{itemInfo.category}</p>
         <p>(insert price)</p>
