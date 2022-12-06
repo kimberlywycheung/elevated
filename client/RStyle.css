@@ -12,3 +12,24 @@
   max-height: 500px;
   overflow: auto;
 }
+
+/* Quarter star CSS */
+
+
+.single-star-outline {
+  height: 24px;
+  width: 20.3px;
+}
+
+.single-star-fill {
+  position: relative;
+  display: inline-block;
+  height: 24px;
+  background-color: blue;
+}
+
+.single-star-container {
+  height: 24px;
+  width: 20.3px;
+  display: inline-block;
+}
