@@ -2,16 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
-const QaModal = ({style, productID, formType, setModalStyle, qID}) => {
+const QaModal = ({style, productID, formType, setModalStyle, qID, getQlist}) => {
   var type = formType === 'addQ' ? 'Question' : 'Answer';
-  var addOnArr = formType === 'addQ' ? ['1','2','3','0'] : ['4','5','6','9'];
+  var addOnKey = formType === 'addQ' ? ['1','2','3','0'] : ['4','5','6','9'];
   var inputFields = [
-    <input type='text' name='body' key={productID + addOnArr[0]} placeholder={`${type} body`}></input>,
-    <input type='text' name='name' key={productID + addOnArr[1]} placeholder='name for username'></input>,
-    <input type='email' name='email' key={productID + addOnArr[2]} placeholder='myemail@email.com'></input>
+    <input type='text' name='body' key={productID + addOnKey[0]} placeholder={`${type} body`}></input>,
+    <input type='text' name='name' key={productID + addOnKey[1]} placeholder='name for username'></input>,
+    <input type='email' name='email' key={productID + addOnKey[2]} placeholder='myemail@email.com'></input>
   ];
   if(formType === 'addA') {
-    inputFields.push(<input type='text' name='photos' key={productID + addOnArr[3]} placeholder='url of photos, new line per photo'></input>)
+    inputFields.push(<textarea rows={4} name='photos' key={productID + addOnKey[3]} placeholder='url of photos, new line per photo'></textarea>)
   }
 
   const sendData = () => {
@@ -31,6 +31,7 @@ const QaModal = ({style, productID, formType, setModalStyle, qID}) => {
       axios({method: 'post', url: url, headers: auth, data: dataObj})
       .then((res) => {
         console.log('res Qdata POST response', res);
+        getQlist();
       })
     } else { //SEND ANSWER WORKS!
       Object.assign(dataObj, {question_id: qID, photos: []});
@@ -39,15 +40,16 @@ const QaModal = ({style, productID, formType, setModalStyle, qID}) => {
       //post answer from form
       axios({method: 'post', url: url, headers: auth, data: dataObj})
       .then((res) => {
-        console.log('res Adata POST response', res)
+        console.log('res Adata POST response', res);
+        getQlist();
       })
     }
   };
 
   return ReactDOM.createPortal(
-    <div style={style} className='qa-modal modal-bg'>
+    <div onClick={e => {e.stopPropagation(); console.log('modal clicked')}} style={style} className='qa-modal modal-bg'>
       <div className='modal-content'>
-        QA Modal
+        <span id='qa-model-text'>Add {type}</span>
         <form id={formType} onSubmit={e => {e.preventDefault(); sendData(); setModalStyle({display: 'none'});}}>
           {inputFields}
           <button type='submit'>Submit {type}</button>
