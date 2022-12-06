@@ -12,7 +12,10 @@ const Overview = ({ product }) => {
 
 
   const getStyles = async () => {
-    const { data: { results } } = await axios(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344/styles`, {
+
+    if (product.id) {
+
+    const { data: { results } } = await axios(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${product.id}/styles`, {
       headers: { Authorization: process.env.GITHUB_TOKEN }
     })
     setStyles(results);
@@ -22,6 +25,8 @@ const Overview = ({ product }) => {
   React.useEffect(() => {
     getStyles();
   }, []);
+}
+
 
 
   return (

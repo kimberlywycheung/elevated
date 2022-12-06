@@ -3,11 +3,10 @@ import axios from 'axios';
 
 
 const Stars = ({ id }) => {
-  // console.log('log1:', id);
   const [rating, setRating] = React.useState('null') //AVERAGE rating
 
   const getRatings = async () => {
-    // console.log('log2:', id);
+
     if (id) {
       const { data: { ratings } } = await axios(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta/?product_id=${id}`, { //destructured total ratings get
         headers: { Authorization: process.env.GITHUB_TOKEN }

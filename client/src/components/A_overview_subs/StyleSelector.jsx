@@ -9,6 +9,7 @@ const StyleSelector = ({ styles, style, setStyle }) => {
         Style {'> ' + style.name}
 
         <div className="style-selector">
+          Styles Placeholder
           {/* {styles.map((oneStyle) => { return <Swatch oneStyle={oneStyle} className="swatch" /> })} */}
         </div>
       </div>)
