@@ -39,11 +39,7 @@ const App = () => {
       <Overview product={product}/>
       <RatingsReviews product={product}/>
       <QuestionsAnswers productID={product.id}/>
-<<<<<<< HEAD
-      {/* <RelatedProducts product={product}/> */}
-=======
       <RelatedProducts product={product} setProduct={setProduct}/>
->>>>>>> main
     </div>
   )
 };
