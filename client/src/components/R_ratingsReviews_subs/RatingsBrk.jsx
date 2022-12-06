@@ -106,23 +106,43 @@ const RatingsBrk = function RatingsBrk({ breakdown }) {
       <div>
         <div>
           <span>5 stars</span>
-          <span> {stats.ratings['5']}% of bar</span>
+          <div className="containerStyles">
+            <div className="fillerStyles" style={{"width": stats.ratings['5']/100*120}}>
+              <span className="labelStyles">{stats.ratings['5']}%</span>
+            </div>
+          </div>
         </div>
         <div>
           <span>4 stars</span>
-          <span> {stats.ratings['4']}% of bar</span>
+          <div className="containerStyles">
+            <div className="fillerStyles" style={{"width": stats.ratings['4']/100*120}}>
+              <span className="labelStyles">{stats.ratings['4']}%</span>
+            </div>
+          </div>
         </div>
         <div>
           <span>3 stars</span>
-          <span> {stats.ratings['3']}% of bar</span>
+          <div className="containerStyles">
+            <div className="fillerStyles"  style={{"width": stats.ratings['3']/100*120}}>
+              <span className="labelStyles">{stats.ratings['3']}%</span>
+            </div>
+          </div>
         </div>
         <div>
           <span>2 stars</span>
-          <span> {stats.ratings['2']}% of bar</span>
+          <div className="containerStyles">
+            <div className="fillerStyles"  style={{"width": stats.ratings['2']/100*120}}>
+              <span className="labelStyles">{stats.ratings['2']}%</span>
+            </div>
+          </div>
         </div>
         <div>
           <span>1 stars</span>
-          <span> {stats.ratings['1']}% of bar</span>
+          <div className="containerStyles">
+            <div className="fillerStyles"  style={{"width": stats.ratings['1']/100*120}}>
+              <span className="labelStyles">{stats.ratings['1']}%</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

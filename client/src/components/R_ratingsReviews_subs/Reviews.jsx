@@ -15,7 +15,7 @@ const Reviews = function Reviews({ productID, name }) {
       headers: { Authorization: process.env.GITHUB_TOKEN },
     })
       .then((result) => {
-        console.log('REVIEW State', result.data)
+        // console.log('REVIEW State', result.data)
         setReviews(result.data);
       })
       .catch((err) => {
@@ -26,7 +26,7 @@ const Reviews = function Reviews({ productID, name }) {
 
   useEffect(() => {
     setReviewList();
-  }, [productID]);
+  }, [productID, sort]);
 
   if (!reviews.product) {
     return <div>loading...</div>
