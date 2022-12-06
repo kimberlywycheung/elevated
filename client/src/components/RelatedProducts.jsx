@@ -22,10 +22,10 @@ const RelatedProducts = function ({ product }) {
 
   // inititlizes state for relatedIds whenever the product changes
   useEffect(() => {
+    const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${product.id}/related`;
+    const auth = {'Authorization': process.env.GITHUB_TOKEN};
     if (product.id) {
-      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${product.id}/related`, {
-        headers: { Authorization: process.env.GITHUB_TOKEN },
-      })
+      axios({method: 'get', url, headers: auth})
         .then(({ data }) => setRelatedIds(deduplicate(data)))
         .catch((err) => console.log(err));
     }

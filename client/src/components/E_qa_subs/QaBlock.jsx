@@ -2,30 +2,85 @@ import React from 'react';
 import axios from 'axios';
 import Answer from './Answer.jsx';
 
-const QaBlock = ({q, setModalStyle, setFormType, setQid}) => {
+const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist, list}) => {
   const [Alist, setAlist] = React.useState([]);
-  const [loadView, setloadView] = React.useState({'display': 'none'});
+  const [limitedAList, setLimitedAList] = React.useState([]);
+  const [loadView, setloadView] = React.useState({'display': 'block'});
+  const [collapseView, setCollapseView] = React.useState({'display': 'none'});
+  const [ansCount, setAnsCount] = React.useState(2);
+  // console.log('OG ALIST->', Object.values(q.answers));
 
-  React.useEffect(() => { //set answer list
+  const getAndSetAnswers = () => {
+    //get answer
+    console.log('getting new answers');
+    const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${q.question_id}/answers`;
+    const auth = {'Authorization': process.env.GITHUB_TOKEN};
+    axios({method: 'get', url, headers: auth})
+    .then(res => {
+      var sortedList = res.data.results.sort((a,b) => {
+        if(a < b) {return -1};
+        return 1;
+      })
+      setAlist(sortedList);
+    })
+    .catch(err => {
+      console.log('err in getAns', err);
+    })
+  }; //getSetAns DONE
+
+  React.useEffect(() => { //set initial list
     if(q) {
-      setAlist(Object.values(q.answers));
+      getAndSetAnswers();
     }
-    if(Object.values(q.answers).length > 0) { //set Load More
-      setloadView({'display': 'block'});
-    }
-  }, [q]);
+  },[list]);
 
+
+  React.useEffect(() => { //view toggle buttons
+    if(Alist.length <= 2) {
+      setloadView({'display': 'none'});
+      setCollapseView({'display': 'none'});
+    } else if (Alist.length > ansCount) {
+      setloadView({'display': 'block'});
+    } else {
+      setloadView({'display': 'none'});
+      if(Alist.length > 0) {
+        setCollapseView({'display': 'block'});
+      }
+    }
+    setLimitedAList(Alist.slice(0, ansCount));
+  }, [ansCount, Alist]);
+
+  const loadMoreAns = () => {
+    setAnsCount(ansCount + 2);
+  };
+  const collapseAns = () => {
+    setAnsCount(2);
+    setloadView({'display': 'block'});
+    setCollapseView({'display': 'none'});
+  };
 
   const handleAddAns = () => {
-    console.log('clicked Add answer for Q', q.question_id);
     setModalStyle({display: 'block'});
     setFormType('addA');
     setQid(q.question_id);
   };
-  const handleHelpful = () => {
-    console.log('clicked Helpful');
-  };
+  const handleHelpfulQ = () => {
+    console.log('local', window.localStorage.getItem(`QHelpful${q.question_id}`));
+    if(window.localStorage.getItem(`QHelpful${q.question_id}`) === null) {
+      window.localStorage.setItem(`QHelpful${q.question_id}`, true);
+      const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${q.question_id}/helpful`;
+      const auth = {'Authorization': process.env.GITHUB_TOKEN}
+      axios({method: 'put', url, headers: auth})
+      .then(res => {
+        console.log('res for PUT Q Helpful->', res);
+        getQlist();
+      })
+      .catch(err => {
+        console.log('err for PUT Q Helpful->', err);
+      })
+    }
 
+  };
 
 
   return (
@@ -34,21 +89,26 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid}) => {
         <span><span className='bold'>Q:</span><span className='qa-body'>{q.question_body}</span></span>
 
         <div className='q-meta'>
-          <span>Helpful? <a className='underline' style={{'paddingRight': '5px'}} onClick={e => {e.preventDefault(); handleHelpful()}}>Yes</a>{q.question_helpfulness}</span>
+          <span>Helpful? <a className='underline' style={{'paddingRight': '5px'}} onClick={e => {e.preventDefault(); handleHelpfulQ()}}>Yes</a>{q.question_helpfulness}</span>
           <span>|</span>
           <span><a onClick={e => {e.preventDefault(); handleAddAns()}}>Add Answer</a></span>
         </div>
       </div>
 
       <div className='a-box'>
-        {Alist.map((a) => {
+        {limitedAList.map((a) => {
           return (
-            <Answer a={a} key={a.id}/>
+            <Answer getAndSetAnswers={getAndSetAnswers} a={a} key={a.answer_id}/>
           )
         })}
+
       </div>
 
-    <a style={loadView} className='load-ans'>load more answers</a>
+    <a style={loadView} onClick={e => {e.preventDefault(); loadMoreAns()}} className='load-ans'>load more answers</a>
+    <a style={collapseView} onClick={e => {e.preventDefault(); collapseAns()}} className='load-ans'>collapse answers</a>
+    <div className='q-meta q-meta2'>
+      question from "{q.asker_name}"
+    </div>
     </div>
 
   )
