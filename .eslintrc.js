@@ -4,6 +4,6 @@ module.exports = {
     'airbnb/hooks',
   ],
   rules: [
-    //'indent': 0,
+  //   'indent': 0,
   ],
 };

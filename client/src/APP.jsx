@@ -21,9 +21,9 @@ const App = () => {
   }
 
   React.useEffect( () => {
-      get();
+    get();
     if (!window.localStorage.getItem('favorites')) {
-      window.localStorage.setItem('favorites', []);
+      window.localStorage.setItem('favorites', '');
     }
   }, [])
 
