@@ -2,10 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import QaBlock from './QaBlock.jsx';
 
-const QaList = ({list, setModalStyle, setFormType, setQid, searchTerm, getQlist}) => {
+const QaList = ({list, setModalStyle, setFormType, setQid, searchTerm, getQlist, qCount}) => {
  const [sortedList, setSortedList] = React.useState(list);
  const [limitedList, setLimitedList] = React.useState(list);
- const [listCount, setListCount] = React.useState(4);
  const [newList, setNewList] = React.useState(list);
 
   const sort = () => {
@@ -19,21 +18,30 @@ const QaList = ({list, setModalStyle, setFormType, setQid, searchTerm, getQlist}
       setSortedList(sortedL);
     } else { //is a Search term
       var sortedL = list.filter(q => {
-        var qContent = q.question_body + q.asker_name;
-        return qContent.toLowerCase().includes(searchTerm.toLowerCase());
+        var qContent = q.question_body + '' + q.asker_name;
+        return qContent.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1;
       });//end sort
       setSortedList(sortedL);
     }
   }; //end SORT
-  const limit = (thisList, count) => {
-    setNewList(thisList.slice(0, count));
+  const limit = (thisList) => {
+    setNewList(thisList.slice(0, qCount));
   };//end Limit
+  React.useEffect(() => {
+    limit(sortedList);
+  },[qCount])
   React.useEffect(() => {
       sort();
   },[list, searchTerm]);
   React.useEffect(() => {
-      limit(sortedList, listCount);
+      limit(sortedList, qCount);
   },[sortedList]);
+//   React.useEffect(() => {
+//     const theElement = document.getElementById('qa-list');
+//     console.log('theEl', theElement);
+//     theElement.scrollTop = theElement.scrollHeight;
+// },[newList]);
+
 
   if(newList.length === 0 && searchTerm) {
     return (
@@ -43,10 +51,10 @@ const QaList = ({list, setModalStyle, setFormType, setQid, searchTerm, getQlist}
     )
   }
   return (
-    <div>
+    <div id='qa-list'>
       {newList.map(q => {
         return (
-          <QaBlock getQlist={getQlist} setQid={setQid} setFormType={setFormType} setModalStyle={setModalStyle} q={q} key={q.question_id}/>
+          <QaBlock list={list} getQlist={getQlist} setQid={setQid} setFormType={setFormType} setModalStyle={setModalStyle} q={q} key={q.question_id}/>
         )
       })}
     </div>

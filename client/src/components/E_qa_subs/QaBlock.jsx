@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Answer from './Answer.jsx';
 
-const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist}) => {
+const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist, list}) => {
   const [Alist, setAlist] = React.useState([]);
   const [limitedAList, setLimitedAList] = React.useState([]);
   const [loadView, setloadView] = React.useState({'display': 'block'});
@@ -12,11 +12,16 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist}) => {
 
   const getAndSetAnswers = () => {
     //get answer
+    console.log('getting new answers');
     const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${q.question_id}/answers`;
     const auth = {'Authorization': process.env.GITHUB_TOKEN};
     axios({method: 'get', url, headers: auth})
     .then(res => {
-      setAlist(res.data.results);
+      var sortedList = res.data.results.sort((a,b) => {
+        if(a < b) {return -1};
+        return 1;
+      })
+      setAlist(sortedList);
     })
     .catch(err => {
       console.log('err in getAns', err);
@@ -27,10 +32,10 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist}) => {
     if(q) {
       getAndSetAnswers();
     }
-  },[]);
+  },[list]);
 
 
-  React.useEffect(() => { //update list limit
+  React.useEffect(() => { //view toggle buttons
     if(Alist.length <= 2) {
       setloadView({'display': 'none'});
       setCollapseView({'display': 'none'});
@@ -102,7 +107,7 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist}) => {
     <a style={loadView} onClick={e => {e.preventDefault(); loadMoreAns()}} className='load-ans'>load more answers</a>
     <a style={collapseView} onClick={e => {e.preventDefault(); collapseAns()}} className='load-ans'>collapse answers</a>
     <div className='q-meta q-meta2'>
-      question from {q.asker_name}
+      question from "{q.asker_name}"
     </div>
     </div>
 

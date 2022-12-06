@@ -9,6 +9,7 @@ const QuestionsAnswers = ({productID}) => {
   const [modalStyle, setModalStyle] = React.useState({display:"none"});
   const [formType, setFormType] = React.useState('addQ');
   const [Qlist, setQlist] = React.useState([]);
+  const [qCount, setQCount] = React.useState(4);
   const [Qid, setQid] = React.useState(undefined);
   const [searchTerm, setSearchTerm] = React.useState(undefined);
 
@@ -29,6 +30,14 @@ const QuestionsAnswers = ({productID}) => {
     })
   };
 
+  const moreQs = () => {
+    setQCount(qCount + 2);
+        // To scroll to the bottom of a div
+    const theElement = document.getElementById('qa-list');
+    console.log('theEl', theElement);
+    theElement.scrollTop = theElement.scrollHeight;
+  };
+
   if(!productID) {
     return (
       <div>loading...</div>
@@ -39,9 +48,9 @@ const QuestionsAnswers = ({productID}) => {
     <div id='questions-answers'>
       <h2>Questions & Answers</h2>
       <Search setSearchTerm={setSearchTerm} setQlist={setQlist}/>
-      <QaList getQlist={getQlist} searchTerm={searchTerm} setQid={setQid} setFormType={setFormType} setModalStyle={setModalStyle} list={Qlist}/>
+      <QaList qCount={qCount} getQlist={getQlist} searchTerm={searchTerm} setQid={setQid} setFormType={setFormType} setModalStyle={setModalStyle} list={Qlist}/>
       <div className='qa-btns'>
-        <button>more questions</button>
+        <button onClick={e => {e.preventDefault(); moreQs()}}>more questions</button>
         <button onClick={e => {e.preventDefault(); setFormType('addQ'); setModalStyle({display: 'block'})}}>Add question</button>
       </div>
       <div className='click-modal' onClick={e => {e.preventDefault(); console.log('bgclicked2')}}>

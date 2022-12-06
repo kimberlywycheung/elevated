@@ -1,6 +1,8 @@
 #root { /* entire page */
   font-family: 'Varela Round', sans-serif;
   color: rgb(56, 56, 56);
+  max-width: 1200px;
+  margin: 20px auto;
 }
 button {
   padding: 20px;
@@ -92,6 +94,11 @@ h2 {
   height: 20px;
   width: 80%;
   font-size: 2em;
+}
+#qa-list {
+  background-color: rgb(251, 251, 251);
+  max-height: 1200px;
+  overflow: scroll;
 }
 
 .qa-block {
