@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ReviewModal from './ReviewModal.jsx'
 
-const AddReviews =function AddReviews() {
+const AddReviews =function AddReviews({ name, id }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <button>Add Review</button>
+    <span>
+      <button onClick={() => setIsOpen(true)}>Add Review</button>
+      <ReviewModal isOpen={isOpen} setIsOpen={setIsOpen} name={name} id={id}/>
+    </span>
   )
 }
 

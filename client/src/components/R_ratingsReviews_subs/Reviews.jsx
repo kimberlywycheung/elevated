@@ -5,8 +5,10 @@ import ListReviews from './ListReviews.jsx'
 import MoreReviews from './MoreReviews.jsx'
 import AddReviews from './AddReviews.jsx'
 
-const Reviews = function Reviews({ productID }) {
+const Reviews = function Reviews({ productID, name }) {
   const [reviews, setReviews] = useState({});
+  const [displayCount, setDisplayCount] = useState(2);
+  const [moreReviews, setMoreReviews] = useState(true);
 
   useEffect(() => {
     if (productID !== undefined) {
@@ -31,10 +33,10 @@ const Reviews = function Reviews({ productID }) {
   return (
     <div>
       <SortReviews reviews={reviews}/>
-      <ListReviews reviews={reviews}/>
+      <ListReviews reviews={reviews} displayCount={displayCount}/>
       <div>
-        <MoreReviews />
-        <AddReviews />
+        <MoreReviews reviews={reviews.count} displayCount={displayCount} setDisplayCount={setDisplayCount}/>
+        <AddReviews id={productID} name={name}/>
       </div>
     </div>
   );

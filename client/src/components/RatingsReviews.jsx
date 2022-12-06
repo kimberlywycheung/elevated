@@ -5,7 +5,6 @@ import Reviews from './R_ratingsReviews_subs/Reviews.jsx';
 
 const RatingsReviews = ({product}) => {
   // console.log("R&R ID", product.id)
-
   if(!product.id) {
     return (
       <div>loading...</div>
@@ -14,9 +13,8 @@ const RatingsReviews = ({product}) => {
 
   return (
     <div className='ratings-reviews'>
-      Ratings and Reviews
       <Breakdown productID={product.id}/>
-      <Reviews productID={product.id}/>
+      <Reviews productID={product.id} name={product.name}/>
     </div>
   )
 
