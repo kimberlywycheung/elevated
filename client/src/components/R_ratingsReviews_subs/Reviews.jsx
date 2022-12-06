@@ -8,11 +8,11 @@ import AddReviews from './AddReviews.jsx'
 const Reviews = function Reviews({ productID, name }) {
   const [reviews, setReviews] = useState({});
   const [displayCount, setDisplayCount] = useState(2);
-  const [moreReviews, setMoreReviews] = useState(true);
+  const [sort, setSort] = useState('relevant');
 
   useEffect(() => {
     if (productID !== undefined) {
-      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${productID}`, {
+      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${productID}&page=1&count=200&sort=${sort}`, {
         headers: { Authorization: process.env.GITHUB_TOKEN },
       })
         .then((result) => {
@@ -24,7 +24,7 @@ const Reviews = function Reviews({ productID, name }) {
           alert('Error in Breakdown.jsx', err);
         });
     }
-  }, [productID]);
+  }, [productID, sort]);
 
   if (!reviews.product) {
     return <div>loading...</div>
@@ -32,7 +32,7 @@ const Reviews = function Reviews({ productID, name }) {
 
   return (
     <div>
-      <SortReviews reviews={reviews}/>
+      <SortReviews reviews={reviews} setSort={setSort}/>
       <ListReviews reviews={reviews} displayCount={displayCount}/>
       <div>
         <MoreReviews reviews={reviews.count} displayCount={displayCount} setDisplayCount={setDisplayCount}/>

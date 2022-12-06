@@ -8,7 +8,7 @@ const IndProdBrk = function IndProdBrk({ char, breakdown }) {
       <div>{Math.round(breakdown[char].value * 10)/10} -   -   -</div>
       <div>
         <span>poor </span>
-        <span> perfect</span>
+        <span> amazing</span>
       </div>
     </div>
   )
