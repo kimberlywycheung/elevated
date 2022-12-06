@@ -1,7 +1,7 @@
 /* Related Products / Components */
 
 .carousel {
-  overflow-x: auto;
+  overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
   display: flex;
@@ -12,7 +12,7 @@
 }
 
 .carousel::-webkit-scrollbar {
-  display: none;
+  /* display: none; */
 }
 
 .card {
@@ -69,6 +69,14 @@
 .sale_price {
 
 }
+/*
+.scroll_buttons {
+  display: none;
+}
+
+.carousel:hover + .scroll_buttons:hover {
+  display: block;
+} */
 
 #flex-box {
   display: flex;

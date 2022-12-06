@@ -63,13 +63,15 @@ const Card = function ({ type, currentProd, item, addToFavorites, deleteFromFavo
   // handler for changing current product page to product user has clicked
   const changeCards = () => {
     const updateProd = (products) => {
-      products.forEach((product) => {
-        if (product.id === itemInfo.id) {
-          setProduct(product);
-          console.log('updating to new product'); // TODO: delete
-          return;
-        }
-      })
+      if (itemInfo.id !== currentProd.id) {
+        products.forEach((product) => {
+          if (product.id === itemInfo.id) {
+            setProduct(product);
+            console.log('updating to new product'); // TODO: delete
+            return;
+          }
+        });
+      }
     };
 
     if (itemInfo) {
