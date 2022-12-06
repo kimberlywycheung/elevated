@@ -18,7 +18,7 @@ const App = () => {
       console.log(`Random Product from index ${randIndex}->\n`, results.data[randIndex]);
       setProduct(results.data[randIndex]);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.error(err));
   }
 
   React.useEffect( () => {

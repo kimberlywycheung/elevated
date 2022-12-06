@@ -15,7 +15,8 @@ const Answer = ({a, getAndSetAnswers}) => {
         getAndSetAnswers();
       })
       .catch(err => {
-        console.log(`err for PUT A ${type}->`, err);
+        alert(`Error Put request for Answer ${type}\n\n` + err.response.data);
+        console.error(err);
       })
     }
   };

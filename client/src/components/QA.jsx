@@ -29,6 +29,9 @@ const QuestionsAnswers = ({productID}) => {
       console.log('GetQlist Response->\n', response.data.results);
       setQlist(response.data.results);
     })
+    .catch(err => {
+      alert('Error getting Q/A List\n\n' + err.response.data);
+    })
   };
 
   const moreQs = () => {

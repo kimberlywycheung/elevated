@@ -35,6 +35,12 @@ a {
   min-height: 300px;
   margin: 10px;
 }
+
+
+
+
+/* SHARED */
+
 .modal-bg { /* pop up form BACKGROUND OVERLAY, use on div wrapper for <Moda/> component*/
   /*display: none;  Hidden by default */
   position: fixed; /* Stay in place */
