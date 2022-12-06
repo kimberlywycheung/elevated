@@ -16,26 +16,25 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist}) => {
     const auth = {'Authorization': process.env.GITHUB_TOKEN};
     axios({method: 'get', url, headers: auth})
     .then(res => {
-      console.log('got ans', res.data.results);
       setAlist(res.data.results);
     })
     .catch(err => {
       console.log('err in getAns', err);
     })
-    //set Alist
-    //trigger limitedAlist
-  };
+  }; //getSetAns DONE
 
   React.useEffect(() => { //set initial list
     if(q) {
       getAndSetAnswers();
-      // setLimitedAList(Object.values(q.answers).slice(0, ansCount));
     }
   },[]);
 
 
   React.useEffect(() => { //update list limit
-    if(Alist.length > ansCount) {
+    if(Alist.length <= 2) {
+      setloadView({'display': 'none'});
+      setCollapseView({'display': 'none'});
+    } else if (Alist.length > ansCount) {
       setloadView({'display': 'block'});
     } else {
       setloadView({'display': 'none'});
