@@ -2,17 +2,34 @@ import React from 'react';
 import axios from 'axios';
 import Answer from './Answer.jsx';
 
-const QaBlock = ({q, setModalStyle, setFormType, setQid}) => {
-  const [Alist, setAlist] = React.useState(Object.values(q.answers));
-  const [limitedAList, setLimitedAList] = React.useState(Object.values(q.answers));
+const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist}) => {
+  const [Alist, setAlist] = React.useState([]);
+  const [limitedAList, setLimitedAList] = React.useState([]);
   const [loadView, setloadView] = React.useState({'display': 'block'});
   const [collapseView, setCollapseView] = React.useState({'display': 'none'});
   const [ansCount, setAnsCount] = React.useState(2);
   // console.log('OG ALIST->', Object.values(q.answers));
 
+  const getAndSetAnswers = () => {
+    //get answer
+    const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${q.question_id}/answers`;
+    const auth = {'Authorization': process.env.GITHUB_TOKEN};
+    axios({method: 'get', url, headers: auth})
+    .then(res => {
+      console.log('got ans', res.data.results);
+      setAlist(res.data.results);
+    })
+    .catch(err => {
+      console.log('err in getAns', err);
+    })
+    //set Alist
+    //trigger limitedAlist
+  };
+
   React.useEffect(() => { //set initial list
     if(q) {
-      setLimitedAList(Object.values(q.answers).slice(0, ansCount));
+      getAndSetAnswers();
+      // setLimitedAList(Object.values(q.answers).slice(0, ansCount));
     }
   },[]);
 
@@ -27,7 +44,7 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid}) => {
       }
     }
     setLimitedAList(Alist.slice(0, ansCount));
-  }, [ansCount]);
+  }, [ansCount, Alist]);
 
   const loadMoreAns = () => {
     setAnsCount(ansCount + 2);
@@ -43,20 +60,16 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid}) => {
     setFormType('addA');
     setQid(q.question_id);
   };
-  const handleHelpful = () => {
-    console.log('clicked Helpful');
+  const handleHelpfulQ = () => {
     console.log('local', window.localStorage.getItem(`QHelpful${q.question_id}`));
-    console.log('q id', q.question_id);
     if(window.localStorage.getItem(`QHelpful${q.question_id}`) === null) {
       window.localStorage.setItem(`QHelpful${q.question_id}`, true);
-      const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/\
-      qa/questions/${q.question_id}/helpful`;
+      const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${q.question_id}/helpful`;
       const auth = {'Authorization': process.env.GITHUB_TOKEN}
       axios({method: 'put', url, headers: auth})
       .then(res => {
         console.log('res for PUT Q Helpful->', res);
-        //update page
-
+        getQlist();
       })
       .catch(err => {
         console.log('err for PUT Q Helpful->', err);
@@ -72,7 +85,7 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid}) => {
         <span><span className='bold'>Q:</span><span className='qa-body'>{q.question_body}</span></span>
 
         <div className='q-meta'>
-          <span>Helpful? <a className='underline' style={{'paddingRight': '5px'}} onClick={e => {e.preventDefault(); handleHelpful()}}>Yes</a>{q.question_helpfulness}</span>
+          <span>Helpful? <a className='underline' style={{'paddingRight': '5px'}} onClick={e => {e.preventDefault(); handleHelpfulQ()}}>Yes</a>{q.question_helpfulness}</span>
           <span>|</span>
           <span><a onClick={e => {e.preventDefault(); handleAddAns()}}>Add Answer</a></span>
         </div>
@@ -81,7 +94,7 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid}) => {
       <div className='a-box'>
         {limitedAList.map((a) => {
           return (
-            <Answer a={a} key={a.id}/>
+            <Answer getAndSetAnswers={getAndSetAnswers} a={a} key={a.answer_id}/>
           )
         })}
 

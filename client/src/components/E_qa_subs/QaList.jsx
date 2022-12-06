@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import QaBlock from './QaBlock.jsx';
 
-const QaList = ({list, setModalStyle, setFormType, setQid, searchTerm}) => {
+const QaList = ({list, setModalStyle, setFormType, setQid, searchTerm, getQlist}) => {
  const [sortedList, setSortedList] = React.useState(list);
  const [limitedList, setLimitedList] = React.useState(list);
  const [listCount, setListCount] = React.useState(4);
@@ -46,7 +46,7 @@ const QaList = ({list, setModalStyle, setFormType, setQid, searchTerm}) => {
     <div>
       {newList.map(q => {
         return (
-          <QaBlock setQid={setQid} setFormType={setFormType} setModalStyle={setModalStyle} q={q} key={q.question_id}/>
+          <QaBlock getQlist={getQlist} setQid={setQid} setFormType={setFormType} setModalStyle={setModalStyle} q={q} key={q.question_id}/>
         )
       })}
     </div>
