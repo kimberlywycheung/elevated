@@ -21,11 +21,6 @@ a {
   min-height: 300px;
   margin: 10px;
 }
-.ratings-reviews {
-  background-color: rgb(159, 198, 172);
-    min-height: 300px;
-    margin: 10px;
-}
 .questions-answers {
   background-color: rgb(216, 190, 183);
   color: white;
@@ -166,4 +161,19 @@ h2 {
 .bold {
   /* background-color: rgb(217, 191, 180); */
   font-style: bold;
+}
+
+/* Ratings and Reviews */
+
+.ratings-reviews {
+  background-color: rgb(159, 198, 172);
+  min-height: 300px;
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.reviewList {
+  max-height: 500px;
+  overflow: auto;
 }
