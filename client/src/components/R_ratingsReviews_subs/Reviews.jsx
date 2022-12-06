@@ -10,20 +10,22 @@ const Reviews = function Reviews({ productID, name }) {
   const [displayCount, setDisplayCount] = useState(2);
   const [sort, setSort] = useState('relevant');
 
-  useEffect(() => {
-    if (productID !== undefined) {
-      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${productID}&page=1&count=200&sort=${sort}`, {
-        headers: { Authorization: process.env.GITHUB_TOKEN },
+  const setReviewList = function() {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${productID}&page=1&count=200&sort=${sort}`, {
+      headers: { Authorization: process.env.GITHUB_TOKEN },
+    })
+      .then((result) => {
+        // console.log('REVIEW State', result.data)
+        setReviews(result.data);
       })
-        .then((result) => {
-          // console.log('REVIEW State', result.data)
-          setReviews(result.data);
-        })
-        .catch((err) => {
-          // console.log('Error fetching data in "Breakdown.jsx"', err);
-          alert('Error in Breakdown.jsx', err);
-        });
-    }
+      .catch((err) => {
+        // console.log('Error fetching data in "Breakdown.jsx"', err);
+        alert('Error in Breakdown.jsx', err);
+      });
+  };
+
+  useEffect(() => {
+    setReviewList();
   }, [productID, sort]);
 
   if (!reviews.product) {
@@ -33,9 +35,14 @@ const Reviews = function Reviews({ productID, name }) {
   return (
     <div>
       <SortReviews reviews={reviews} setSort={setSort}/>
-      <ListReviews reviews={reviews} displayCount={displayCount}/>
+      <ListReviews reviews={reviews} displayCount={displayCount} setRList={setReviewList}/>
       <div>
-        <MoreReviews reviews={reviews.count} displayCount={displayCount} setDisplayCount={setDisplayCount}/>
+        { (reviews.count - displayCount >= 2) &&
+          <button onClick={() => setDisplayCount(displayCount + 2)}>
+            More Reviews
+          </button>
+        }
+        {/* <MoreReviews reviews={reviews.count} displayCount={displayCount} setDisplayCount={setDisplayCount}/> */}
         <AddReviews id={productID} name={name}/>
       </div>
     </div>

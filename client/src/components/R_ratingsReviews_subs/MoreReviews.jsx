@@ -1,14 +1,17 @@
-import React from 'react';
+// PROBABLY CAN DELETE
 
-const MoreReviews =function MoreReviews({ reviews, displayCount, setDisplayCount }) {
 
-  if (reviews - displayCount < 1) return null;
+// import React from 'react';
 
-  return (
-    <button onClick={() => setDisplayCount(displayCount + 2)}>
-      More Reviews
-    </button>
-  )
-}
+// const MoreReviews =function MoreReviews({ reviews, displayCount, setDisplayCount }) {
 
-export default MoreReviews;
+//   if (reviews - displayCount < 1) return null;
+
+//   return (
+//     <button onClick={() => setDisplayCount(displayCount + 2)}>
+//       More Reviews
+//     </button>
+//   )
+// }
+
+// export default MoreReviews;
