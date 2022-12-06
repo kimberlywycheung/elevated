@@ -28,13 +28,18 @@ const App = () => {
     }
   }, [])
 
+  // can delete later - purpose is to log current prod when user clicks on product card from related products section
+  React.useEffect( () => {
+    console.log('product has been changed to: ', product);
+  }, [product]);
+
   return (
     <div id='root'>
       <h1>Del Taco Product Page1</h1>
-      <Overview product={product}/>
+      {/* <Overview product={product}/>
       <RatingsReviews product={product}/>
-      <QuestionsAnswers productID={product.id}/>
-      <RelatedProducts product={product}/>
+      <QuestionsAnswers productID={product.id}/> */}
+      <RelatedProducts product={product} setProduct={setProduct}/>
     </div>
   )
 };
