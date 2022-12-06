@@ -8,16 +8,16 @@ const ReviewTile = function ReviewTile({ review, setRList }) {
     e.preventDefault()
     if(window.localStorage.getItem(`voted${review.review_id}`) === null) {
       window.localStorage.setItem(`voted${review.review_id}`, true);
-      const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${review.review_id}/helpful`;
+      const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${review.review_id}/helpful`;
       const auth = {'Authorization': process.env.GITHUB_TOKEN}
       axios({method: 'put', url, headers: auth})
-      .then(res => {
-        console.log('response', res);
-        setRList();
-      })
-      .catch(err => {
-        console.log('error', err);
-      })
+        .then(res => {
+          console.log('response', res);
+          setRList(review.review_id);
+        })
+        .catch(err => {
+          console.log('error', err);
+        })
     }
 
   };
