@@ -42,7 +42,7 @@ const Card = function ({ type, currentProd, item, addToFavorites, deleteFromFavo
   // handler for the favorite/delete button
   const buttonHandler = () => {
     if (type === 'related') {
-      addToFavorites(itemInfo.id);
+      //addToFavorites(itemInfo.id);
       setIsModalOpen(true);
     } else {
       deleteFromFavorites(itemInfo.id);
@@ -76,7 +76,7 @@ const Card = function ({ type, currentProd, item, addToFavorites, deleteFromFavo
       <div className="card" id={type} onClick={changeCards}>
 
         <button className="card_button" onClick={buttonHandler}>
-          {type === 'related' ? 'Favorite' : 'Delete'}
+          {type === 'related' ?  ' ⭐ ' : ' X '}
         </button>
 
         {type === 'related' &&
@@ -84,8 +84,8 @@ const Card = function ({ type, currentProd, item, addToFavorites, deleteFromFavo
 
         <img src={defaultImg} className="card_image"/>
 
-        <p><strong>{itemInfo.name}</strong></p>
         <p>{itemInfo.category}</p>
+        <h4>{itemInfo.name}</h4>
 
         { !salePrice &&
           <p>${originalPrice}</p>

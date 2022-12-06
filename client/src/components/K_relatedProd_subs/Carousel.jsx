@@ -12,18 +12,27 @@ const Carousel = function ({ type, currentState, currentProd, addToFavorites, de
   };
 
   return (
-    <div className="carousel">
-      <p id={type}>{title}</p>
-      {type === 'outfits' &&
-        <div className="card">
-          <button onClick={clickHandler}>
-            <p>+<br/>Add to Outfit</p>
-          </button>
-        </div> }
+    <div>
+      <h2 id={type}>{title}</h2>
+
+      <div className="carousel" id="flex-box">
+        {type === 'outfits' &&
+          <div className="card">
+            <button onClick={clickHandler}>
+              <p>
+                +
+                <br/>
+                Add to Outfit
+              </p>
+            </button>
+          </div> }
+
       {currentState.length > 0 &&
         currentState.map((item) => {
           return <Card key={item} type={type} item={item} currentProd={currentProd} addToFavorites={addToFavorites} deleteFromFavorites={deleteFromFavorites} setProduct={setProduct}/>
         })}
+
+      </div>
     </div>
   );
 };
