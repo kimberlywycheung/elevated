@@ -1,5 +1,5 @@
 import React from "react";
-
+import Swatch from "./Swatch.jsx";
 
 const StyleSelector = ({ styles, style, setStyle }) => {
 
