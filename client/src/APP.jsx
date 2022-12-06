@@ -13,8 +13,9 @@ const App = () => {
       headers: { 'Authorization': process.env.GITHUB_TOKEN }
     })
     .then((results) => {
-      var randIndex = Math.floor(Math.random() * results.data.length);
-      console.log('Random Product->\n', results.data[randIndex]);
+      // var randIndex = Math.floor(Math.random() * results.data.length);
+      var randIndex = 0;
+      console.log(`Random Product from index ${randIndex}->\n`, results.data[randIndex]);
       setProduct(results.data[randIndex]);
     })
     .catch((err) => console.log(err));
@@ -27,13 +28,22 @@ const App = () => {
     }
   }, [])
 
+  // can delete later - purpose is to log current prod when user clicks on product card from related products section
+  React.useEffect( () => {
+    console.log('product has been changed to: ', product);
+  }, [product]);
+
   return (
     <div id='root'>
       <h1>Del Taco Product Page1</h1>
       <Overview product={product}/>
       <RatingsReviews product={product}/>
       <QuestionsAnswers productID={product.id}/>
+<<<<<<< HEAD
       {/* <RelatedProducts product={product}/> */}
+=======
+      <RelatedProducts product={product} setProduct={setProduct}/>
+>>>>>>> main
     </div>
   )
 };

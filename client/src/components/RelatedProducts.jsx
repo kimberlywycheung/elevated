@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Carousel from './K_relatedProd_subs/Carousel.jsx';
 
-const RelatedProducts = function ({ product }) {
+const RelatedProducts = function ({ product, setProduct }) {
   const [outfits, setOutfits] = useState([]);
   const [relatedIds, setRelatedIds] = useState([]);
 
@@ -16,16 +16,16 @@ const RelatedProducts = function ({ product }) {
   useEffect(() => {
     let currentFavs = window.localStorage.getItem('favorites');
     currentFavs = currentFavs.replace(/\r?\n|\r/g, '').split(','); //convert localstorage string to array
-    console.log('initial loaded outfits', currentFavs);
+    //console.log('initial loaded outfits', currentFavs);
     setOutfits(currentFavs);
   }, []);
 
   // inititlizes state for relatedIds whenever the product changes
   useEffect(() => {
+    const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${product.id}/related`;
+    const auth = {'Authorization': process.env.GITHUB_TOKEN};
     if (product.id) {
-      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${product.id}/related`, {
-        headers: { Authorization: process.env.GITHUB_TOKEN },
-      })
+      axios({method: 'get', url, headers: auth})
         .then(({ data }) => setRelatedIds(deduplicate(data)))
         .catch((err) => console.log(err));
     }
@@ -63,8 +63,8 @@ const RelatedProducts = function ({ product }) {
 
   return (
     <div className="related-products">
-      <Carousel type="related" currentState={relatedIds} currentProd={product} addToFavorites={addToFavorites}/>
-      <Carousel type="outfits" currentState={outfits} currentProd={product} addToFavorites={addToFavorites} deleteFromFavorites={deleteFromFavorites}/>
+      <Carousel type="related" currentState={relatedIds} currentProd={product} addToFavorites={addToFavorites} setProduct={setProduct} />
+      <Carousel type="outfits" currentState={outfits} currentProd={product} addToFavorites={addToFavorites} deleteFromFavorites={deleteFromFavorites} setProduct={setProduct} />
     </div>
   );
 };
