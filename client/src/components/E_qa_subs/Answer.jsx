@@ -1,7 +1,13 @@
 import React from 'react';
 import axios from 'axios';
+import ImgView from './ImgView.jsx';
 
 const Answer = ({a, getAndSetAnswers}) => {
+  const [photosArr, setPhotosArr] = React.useState([]);
+  const [imgViewStyle, setImgViewStyle] = React.useState({display: 'none'});
+  const [imgUrl, setImgUrl] = React.useState('');
+
+  // console.log('a', a);
 
   const handleAnsMeta = (type) => { //type == helpful / report
     console.log('local', window.localStorage.getItem(`A${type}${a.answer_id}`));
@@ -20,11 +26,30 @@ const Answer = ({a, getAndSetAnswers}) => {
       })
     }
   };
+  const openImg = (url) => {
+    console.log('opening image with url ', url);
+    setImgUrl(url);
+    setImgViewStyle({display: 'block'});
+  };
+
+  React.useEffect(() => {
+    if(a.photos.length) {
+      var photoInput = [];
+      a.photos.forEach(photo => {
+        photoInput.push(
+          <img onClick={e => {e.preventDefault(); openImg(photo.url)}} className='a-thumbnails' key={photo.id} src={photo.url}></img>
+        )
+      });
+      setPhotosArr(photoInput);
+    }
+  },[a]);
+
 
   return (
     <div className='ans'>
       <div>
         <span><span className='bold'>A:</span><span className='qa-body'>{a.body}</span></span>
+        <div className='photo-div'>{photosArr}</div>
       </div>
       <div className='a-meta'>
         <span>by {a.answerer_name}</span>
@@ -33,6 +58,9 @@ const Answer = ({a, getAndSetAnswers}) => {
         <span>Helpful? <a onClick={e => {e.preventDefault(); handleAnsMeta('helpful');}} style={{'paddingRight': '5px'}} className='underline'>Yes</a>{a.helpfulness}</span>
         <span>|</span>
         <a onClick={e => {e.preventDefault(); handleAnsMeta('report')}} >Report</a>
+      </div>
+      <div>
+        <ImgView style={imgViewStyle} setStyle={setImgViewStyle} url={imgUrl}/>
       </div>
     </div>
 

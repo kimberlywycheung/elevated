@@ -13,7 +13,6 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist, list}) => {
 
   const getAndSetAnswers = () => {
     //get answer
-    console.log('getting new answers');
     const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${q.question_id}/answers`;
     const auth = {'Authorization': process.env.GITHUB_TOKEN};
     axios({method: 'get', url, headers: auth})

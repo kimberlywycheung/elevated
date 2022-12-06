@@ -6,7 +6,7 @@ const QaModal = ({style, productID, formType, setModalStyle, qID, getQlist}) => 
   var type = formType === 'addQ' ? 'Question' : 'Answer';
   var addOnKey = formType === 'addQ' ? ['1','2','3','0'] : ['4','5','6','9'];
   var inputFields = [
-    <input type='text' name='body' key={productID + addOnKey[0]} placeholder={`${type} body`} required='true'></input>,
+    <input type='text' name='body' key={productID + addOnKey[0]} placeholder={`${type} body`} required={true}></input>,
     <input type='text' name='name' key={productID + addOnKey[1]} placeholder='name for username'></input>,
     <input type='email' name='email' key={productID + addOnKey[2]} placeholder='myemail@email.com'></input>
   ];
@@ -40,8 +40,11 @@ const QaModal = ({style, productID, formType, setModalStyle, qID, getQlist}) => 
         console.error(err);
       })
     } else { //SEND ANSWER WORKS!
-      Object.assign(dataObj, {question_id: qID});
-      console.log('photos from ANS', dataObj.photos);
+      var photosArr = dataObj.photos.split('\n');
+      if(photosArr.length === 1 && photosArr[0] == '') {
+        photosArr = [];
+      }
+      Object.assign(dataObj, {question_id: qID, photos: photosArr});
       // console.log('dataObj SEND ADATA', dataObj); //got em!
       const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${qID}/answers`;
       //post answer from form
@@ -61,6 +64,7 @@ const QaModal = ({style, productID, formType, setModalStyle, qID, getQlist}) => 
 
   return ReactDOM.createPortal(
     <div onClick={e => {e.stopPropagation(); console.log('modal clicked')}} style={style} className='qa-modal modal-bg'>
+      <span onClick={e => {e.preventDefault(); setModalStyle({display:'none'})}} id='pop-up-exit'>X</span>
       <div className='modal-content'>
         <span id='qa-model-text'>Add {type}</span>
         <form id={formType} onSubmit={e => {e.preventDefault(); sendData(); setModalStyle({display: 'none'});}}>
