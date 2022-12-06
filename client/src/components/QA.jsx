@@ -3,6 +3,7 @@ import axios from 'axios';
 import Search from './E_qa_subs/Search.jsx';
 import QaList from './E_qa_subs/QaList.jsx';
 import QaModal from './E_qa_subs/QaModal.jsx';
+import $ from "jquery";
 
 
 const QuestionsAnswers = ({productID}) => {
@@ -32,10 +33,9 @@ const QuestionsAnswers = ({productID}) => {
 
   const moreQs = () => {
     setQCount(qCount + 2);
-        // To scroll to the bottom of a div
-    const theElement = document.getElementById('qa-list');
-    console.log('theEl', theElement);
-    theElement.scrollTop = theElement.scrollHeight;
+
+    $("#qa-list").animate({ scrollTop: $('#qa-list')[0].scrollHeight}, 1000);
+
   };
 
   if(!productID) {

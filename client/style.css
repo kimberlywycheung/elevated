@@ -1,4 +1,5 @@
-#root { /* entire page */
+#root {
+  /* entire page */
   font-family: 'Varela Round', sans-serif;
   color: rgb(56, 56, 56);
   max-width: 1200px;
@@ -27,6 +28,7 @@ a {
   min-height: 300px;
   margin: 10px;
 }
+
 .related-products {
   background-color: rgb(183, 156, 168);
   min-height: 300px;
