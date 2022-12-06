@@ -17,6 +17,7 @@ const QuestionsAnswers = ({productID}) => {
   React.useEffect(() => {
     if(productID) {
       getQlist();
+      setQCount(4);
     }
   },[productID]);
 
