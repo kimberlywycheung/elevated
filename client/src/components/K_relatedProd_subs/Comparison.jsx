@@ -44,7 +44,7 @@ const Comparison = function ({ itemInfo, currentProd, isModalOpen, onClose }) {
       <div className='modal-bg' />
       <div className='modal_compare'>
         <h4>Comparing</h4>
-        <button className='card_button' id='inline' onClick={onClose}>Close</button>
+        <button className='modal_button' id='inline' onClick={onClose}>Close</button>
         <div>
           <span id='inline'>{itemInfo.name}</span>
           <span id='inline'>{currentProd.name}</span>

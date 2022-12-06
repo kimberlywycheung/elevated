@@ -37,14 +37,24 @@ const Card = function ({ type, currentProd, item, addToFavorites, deleteFromFavo
         salePrice = style.sale_price;
       }
     });
+
+    // corner case: grabs the first style if there are no default styles defined
+    if (!originalPrice) {
+      defaultImg = itemStyles[0].photos[0].thumbnail_url;
+      originalPrice = itemStyles[0].original_price;
+      salePrice = itemStyles[0].sale_price;
+    }
   }
 
   // handler for the favorite/delete button
-  const buttonHandler = () => {
+  const buttonHandler = (e) => {
+    e.stopPropagation();
     if (type === 'related') {
       //addToFavorites(itemInfo.id);
+      console.log('opening comparison modal'); // TODO: delete
       setIsModalOpen(true);
     } else {
+      console.log('delete from local storage faves'); // TODO: delete
       deleteFromFavorites(itemInfo.id);
     }
   };
@@ -55,6 +65,7 @@ const Card = function ({ type, currentProd, item, addToFavorites, deleteFromFavo
       products.forEach((product) => {
         if (product.id === itemInfo.id) {
           setProduct(product);
+          console.log('updating to new product'); // TODO: delete
           return;
         }
       })

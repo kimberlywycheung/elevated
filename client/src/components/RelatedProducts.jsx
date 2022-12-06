@@ -6,9 +6,10 @@ const RelatedProducts = function ({ product, setProduct }) {
   const [outfits, setOutfits] = useState([]);
   const [relatedIds, setRelatedIds] = useState([]);
 
-  // remove any duplicates from outfits and relatedIds
+  // remove any duplicates from relatedIds
   let deduplicate = (ids) => {
     ids = [...new Set(ids)];
+    console.log('# of related products: ', Array(ids)[0].length) // TODO: delete
     return Array(ids)[0];
   };
 
@@ -16,7 +17,6 @@ const RelatedProducts = function ({ product, setProduct }) {
   useEffect(() => {
     let currentFavs = window.localStorage.getItem('favorites');
     currentFavs = currentFavs.replace(/\r?\n|\r/g, '').split(','); //convert localstorage string to array
-    //console.log('initial loaded outfits', currentFavs);
     setOutfits(currentFavs);
   }, []);
 

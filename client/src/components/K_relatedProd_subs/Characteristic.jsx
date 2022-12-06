@@ -1,22 +1,29 @@
 import React from 'react';
 
 const Characteristic = function ({ feature, items }) {
+  const relatedChar = items[0];
+  const currentChar = items[1];
+
   return (
     <div>
-      <div id="flex-box">
-        {items[0] === items[0] &&
+      {relatedChar &&
+        <div id="flex-box">
+          {relatedChar === relatedChar &&
+            <p id='inline'>yes</p>}
+          <p id='inline'>{relatedChar}</p>
+          {currentChar === relatedChar &&
+            <p id='inline'>yes</p>}
+        </div>
+      }
+      {currentChar && relatedChar !== currentChar &&
+        <div id="flex-box">
+        {relatedChar === currentChar &&
           <p id='inline'>yes</p>}
-        <p id='inline'>{items[0]}</p>
-        {items[1] === items[0] &&
+        <p id='inline'>{currentChar}</p>
+        {currentChar === currentChar &&
           <p id='inline'>yes</p>}
       </div>
-      <div id="flex-box">
-        {items[0] === items[1] &&
-          <p id='inline'>yes</p>}
-        <p id='inline'>{items[1]}</p>
-        {items[1] === items[1] &&
-          <p id='inline'>yes</p>}
-      </div>
+      }
     </div>
   );
 }
