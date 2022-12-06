@@ -1,10 +1,18 @@
 import React from "react";
 
 
-const StyleSelector = ({ styles }) => {
+const StyleSelector = ({ styles, style, setStyle }) => {
 
+  if (style) {
+    return (
+      <div className="current-style">
+        Style {'> ' + style.name}
 
-  return (<div>Style Selector</div>)
+        <div className="style-selector">
+          {styles.map((oneStyle) => { return <Swatch oneStyle={oneStyle} /> })}
+        </div>
+      </div>)
+  }
 
 }
 

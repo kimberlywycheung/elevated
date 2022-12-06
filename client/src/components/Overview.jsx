@@ -29,7 +29,7 @@ const Overview = ({ product }) => {
       Overview Div
       <ImageGallery />
       <ProductInfo product={product} style={style} />
-      <StyleSelector styles={styles} />
+      <StyleSelector styles={styles} style={style} setStyle={setStyle} />
     </div>
   )
 }
