@@ -1,6 +1,8 @@
 #root { /* entire page */
   font-family: 'Varela Round', sans-serif;
   color: rgb(56, 56, 56);
+  max-width: 1200px;
+  margin: 20px auto;
 }
 button {
   padding: 20px;
@@ -38,7 +40,7 @@ a {
 .modal-bg { /* pop up form BACKGROUND OVERLAY, use on div wrapper for <Moda/> component*/
   /*display: none;  Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 10; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -53,6 +55,21 @@ a {
   padding: 20px;
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
+}
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* align-items: center; */
+}
+form input,textarea,#qa-model-text {
+  font-family: 'Varela Round', sans-serif;
+  width: 50%;
+  padding: 10px;
+  margin: 10px auto;
+}
+textarea {
+  resize: none;
 }
 
 
@@ -78,6 +95,11 @@ h2 {
   width: 80%;
   font-size: 2em;
 }
+#qa-list {
+  background-color: rgb(251, 251, 251);
+  max-height: 1200px;
+  overflow: scroll;
+}
 
 .qa-block {
   /* background-color: rgb(169, 205, 205); */
@@ -102,8 +124,10 @@ h2 {
 }
 
 .a-box {
-  /* background-color: aliceblue; */
+  /* background-color: rgb(167, 204, 237); */
   padding-left: 40px;
+  max-height: 200px;
+  overflow: auto;
 }
 .ans {
   /* background-color: rgb(187, 206, 222); */
@@ -112,8 +136,9 @@ h2 {
 }
 .load-ans {
   /* background-color: rgb(183, 205, 224); */
-  padding: 5px 40px;
+  padding: 10px 60px;
   font-size: .8em;
+  width: 160px;
 }
 .q-meta {
   display: flex;
@@ -124,7 +149,11 @@ h2 {
   color: grey;
   padding: 10px 0;
 }
-
+.q-meta2 {
+  width: 500px;
+  padding: 5px 40px;
+  font-size: .8em;
+}
 .a-meta {
   display: flex;
   width: 450px;
