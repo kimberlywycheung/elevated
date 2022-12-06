@@ -45,6 +45,24 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid}) => {
   };
   const handleHelpful = () => {
     console.log('clicked Helpful');
+    console.log('local', window.localStorage.getItem(`QHelpful${q.question_id}`));
+    console.log('q id', q.question_id);
+    if(window.localStorage.getItem(`QHelpful${q.question_id}`) === null) {
+      window.localStorage.setItem(`QHelpful${q.question_id}`, true);
+      const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/\
+      qa/questions/${q.question_id}/helpful`;
+      const auth = {'Authorization': process.env.GITHUB_TOKEN}
+      axios({method: 'put', url, headers: auth})
+      .then(res => {
+        console.log('res for PUT Q Helpful->', res);
+        //update page
+
+      })
+      .catch(err => {
+        console.log('err for PUT Q Helpful->', err);
+      })
+    }
+
   };
 
 
