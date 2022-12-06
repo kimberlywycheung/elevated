@@ -44,10 +44,10 @@ const Comparison = function ({ itemInfo, currentProd, isModalOpen, onClose }) {
       <div className='modal-bg' />
       <div className='modal_compare'>
         <h4>Comparing</h4>
-        <button className='modal_button' id='inline' onClick={onClose}>Close</button>
+        <button className='modal_button' id='flex-box' onClick={onClose}>Close</button>
         <div>
-          <span id='inline'>{itemInfo.name}</span>
-          <span id='inline'>{currentProd.name}</span>
+          <span id='left'>{itemInfo.name}</span>
+          <span id='right'>{currentProd.name}</span>
         </div >
         <div className='modal_container'>
           {allFeatures &&

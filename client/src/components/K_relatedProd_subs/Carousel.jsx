@@ -16,9 +16,10 @@ const Carousel = function ({ type, currentState, currentProd, addToFavorites, de
       <h2 id={type}>{title}</h2>
 
       <div className="carousel" id="flex-box">
+        <button>⬅️</button>
         {type === 'outfits' &&
           <div className="card">
-            <button onClick={clickHandler}>
+            <button id="center" onClick={clickHandler}>
               <p>
                 +
                 <br/>
@@ -31,7 +32,7 @@ const Carousel = function ({ type, currentState, currentProd, addToFavorites, de
         currentState.map((item) => {
           return <Card key={item} type={type} item={item} currentProd={currentProd} addToFavorites={addToFavorites} deleteFromFavorites={deleteFromFavorites} setProduct={setProduct}/>
         })}
-
+      <button>➡️</button>
       </div>
     </div>
   );

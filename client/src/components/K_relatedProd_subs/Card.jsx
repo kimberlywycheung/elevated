@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Comparison from './Comparison.jsx';
+import Stars from '../A_overview_subs/Stars.jsx';
 
 const Card = function ({ type, currentProd, item, addToFavorites, deleteFromFavorites, setProduct }) {
   const [itemInfo, setItemInfo] = useState(null);
@@ -80,6 +81,9 @@ const Card = function ({ type, currentProd, item, addToFavorites, deleteFromFavo
     }
   };
 
+  const handleClose = () => {
+    setIsModalOpen(false);
+  };
 
   // TODO: can refactor saleprice later
   if (itemInfo && itemStyles) {
@@ -91,24 +95,20 @@ const Card = function ({ type, currentProd, item, addToFavorites, deleteFromFavo
         </button>
 
         {type === 'related' &&
-        <Comparison itemInfo={itemInfo} currentProd={currentProd} isModalOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />}
+        <Comparison itemInfo={itemInfo} currentProd={currentProd} isModalOpen={isModalOpen} onClose={handleClose} />}
 
         <img src={defaultImg} className="card_image"/>
 
         <p>{itemInfo.category}</p>
         <h4>{itemInfo.name}</h4>
 
-        { !salePrice &&
-          <p>${originalPrice}</p>
-        }
-        { salePrice &&
+        {salePrice ?
           <p>
             <span className="sale_price">${salePrice}</span>
             <strike>${originalPrice}</strike>
-          </p>
-        }
+          </p> : <p>${originalPrice}</p> }
 
-        <p>(insert stars)</p>
+        <Stars id={itemInfo.id}/>
       </div>
     );
   }

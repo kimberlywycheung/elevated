@@ -9,7 +9,6 @@ const RelatedProducts = function ({ product, setProduct }) {
   // remove any duplicates from relatedIds
   let deduplicate = (ids) => {
     ids = [...new Set(ids)];
-    console.log('# of related products: ', Array(ids)[0].length) // TODO: delete
     return Array(ids)[0];
   };
 
