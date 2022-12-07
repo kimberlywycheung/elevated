@@ -38,29 +38,35 @@ class SelectSize extends React.Component {
 
   render() {
   //  console.log()
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
+  return (
+    <form className='ov-form' onSubmit={this.handleSubmit}>
+      <div className='ov-form-1'>
 
-          <div className="size-drop">
-          Size:  
-          <select value={this.state.size} onChange={this.handleChange}>
-            {Object.keys(this.state.skus).map((sku) => { return <option>{this.state.skus[sku].size}</option> ; })}
-          </select>
-          </div>
+        <div className="size-drop">
+        Size:
+        <select className='select-size' value={this.state.size} onChange={this.handleChange}>
+        <option selected='selected' key={99}>SELECT SIZE</option>
+          {Object.keys(this.state.skus).map((sku, i) => { return <option key={i}>{this.state.skus[sku].size}</option> })}
+        </select>
+        </div>
 
-          <div className="quantity-drop">
-          Quantity:  
-          <select value={this.state.quantity} onChange={this.handleChange}>
-            <option>{this.state.quantity}</option>
-          </select>
-          </div>
+        <div className="quantity-drop">
+        Quantity:
+        <select value={this.state.quantity} onChange={this.handleChange}>
+          <option>{this.state.quantity}</option>
+        </select>
+        </div>
 
-        </label>
-        <input type="submit" value="Add to Cart" /> <button className="favorite-button">♡</button>
-      </form>
-    );
-  }
+      </div>
+      <div className='ov-form-2'>
+        {/* <input type="submit" value="Add to Cart" /> */}
+        <button type='submit' className="add-cart-button">Add to Cart</button>
+        <button className="favorite-button">♡</button>
+      </div>
+
+    </form>
+  );
 }
-
+}
+//♡
 export default SelectSize;

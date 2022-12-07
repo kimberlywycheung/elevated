@@ -6,10 +6,9 @@ const StyleSelector = ({ styles, style, setStyle }) => {
   if (style) {
     return (
       <div className="ov-styles-selector">
-        <div class="ov-style-text">Style {'> ' + style.name}</div>
-        <div class="ov-style-select">
-          (images hidden)
-          {/* {styles.map((oneStyle) => { return <Swatch oneStyle={oneStyle} /> })} */}
+        <div className="ov-style-text">Style {'> ' + style.name}</div>
+        <div>
+          {styles.map((oneStyle, i) => { return <Swatch key={i} oneStyle={oneStyle} /> })}
         </div>
       </div>)
   }
