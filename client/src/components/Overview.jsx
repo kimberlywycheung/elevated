@@ -35,12 +35,18 @@ const Overview = ({ product }) => {
 
 
     return (
-      <div className='overview'>
-        Overview Div
-        <ImageGallery />
-        <ProductInfo product={product} style={style} />
-        {style ? <StyleSelector styles={styles} style={style} /> : null}
-        {style ? <AddToCart sku={sku} skus={skus} /> : null}
+      <div className="ov-section">
+
+        <div className="ov-image">
+          <ImageGallery />
+        </div>
+
+        <div className="ov-info">
+          <ProductInfo product={product} style={style} />
+          {style ? <StyleSelector styles={styles} style={style} /> : null}
+          {style ? <AddToCart sku={sku} skus={skus} /> : null}
+        </div>
+
       </div>
     )
   }

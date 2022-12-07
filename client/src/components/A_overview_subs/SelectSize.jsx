@@ -1,6 +1,6 @@
 import React from "react";
 
-// git
+
 
 class SelectSize extends React.Component {
 
