@@ -2,16 +2,19 @@
 /* MAIN */
 .ov-section {
   display: flex;
+  height: 500px;
   flex-direction: row;
   background-color: rgb(138, 72, 231);
 }
 .ov-info {
+  padding: 15px;
   background-color: rgb(216, 147, 57);
   flex: 1 1 0;
 }
 .ov-img-container {
+  padding: 15px;
   background-color: rgb(227, 191, 144);
-  flex: 2 1 0;
+  flex: 1.3 1 0;
 }
 
 /* IMAGES */
@@ -27,6 +30,7 @@
 /* HEADER */
 
 .ov-header {
+  padding: 10px;
   background-color: rgb(123, 226, 171);
 }
 .ov-review {
@@ -47,6 +51,7 @@
 
 /* STYLES SELECTOR */
 .ov-styles-selector {
+  padding: 10px;
   background-color: rgb(55, 131, 236);
 }
 .ov-style-text {
@@ -61,7 +66,8 @@
 /* ADD TO CART SECTION */
 
 .ov-add-to-cart {
-  background-color: rgb(217, 112, 225);
+  padding: 10px;
+  background-color: rgb(169, 152, 178);
 }
 .ov-fave-btn {
   background-color: rgb(213, 148, 63);

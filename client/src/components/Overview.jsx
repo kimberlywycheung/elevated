@@ -37,7 +37,7 @@ const Overview = ({ product }) => {
     return (
       <div className="ov-section">
 
-        <div className="ov-image">
+        <div className="ov-img-container">
           <ImageGallery />
         </div>
 
