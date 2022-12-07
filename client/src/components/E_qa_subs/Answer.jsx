@@ -34,11 +34,22 @@ const Answer = ({a, getAndSetAnswers}) => {
 
   React.useEffect(() => {
     if(a.photos.length) {
+      console.log('Ans Photos', a.photos);
       var photoInput = [];
-      a.photos.forEach(photo => {
+
+      a.photos.forEach((photo, i) => {
+        // console.log('photo', photo, typeof photo);
+        var photoUrl = typeof photo === 'object' ? photo.url : photo;
+        var photoID = typeof photo === 'object' ? photo.id : Number((a.answer_id + '')+i);
+
         photoInput.push(
-          <img onClick={e => {e.preventDefault(); openImg(photo.url)}} className='a-thumbnails' key={photo.id} src={photo.url}></img>
+          <img onClick={e => {e.preventDefault(); openImg(photoUrl)}} className='a-thumbnails' key={photoID} src={photoUrl} onError={({ currentTarget }) => {
+            currentTarget.onerror = null; // prevents looping
+            currentTarget.style.display = 'none';
+            currentTarget.src="https://climate.onep.go.th/wp-content/uploads/2020/01/default-image.jpg";
+          }}></img>
         )
+//"this.onerror=null; this.src='https://placeimg.com/200/300/animals';"
       });
       setPhotosArr(photoInput);
     }

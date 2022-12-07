@@ -11,6 +11,7 @@ const QaModal = ({style, productID, formType, setModalStyle, qID, getQlist}) => 
     <input type='email' name='email' key={productID + addOnKey[2]} placeholder='myemail@email.com'></input>
   ];
   if(formType === 'addA') {
+    inputFields.push(<div key={5768} className='label1'>Separate images by Comma-space</div>);
     inputFields.push(<textarea rows={4} name='photos' key={productID + addOnKey[3]} placeholder='url of photos, new line per photo'></textarea>)
   }
 
@@ -39,13 +40,13 @@ const QaModal = ({style, productID, formType, setModalStyle, qID, getQlist}) => 
         alert(`Error Posting Question\n\n` + err.response.data);
         console.error(err);
       })
-    } else { //SEND ANSWER WORKS!
-      var photosArr = dataObj.photos.split('\n');
+    } else {
+      var photosArr = dataObj.photos.split(', ');
       if(photosArr.length === 1 && photosArr[0] == '') {
         photosArr = [];
       }
       Object.assign(dataObj, {question_id: qID, photos: photosArr});
-      // console.log('dataObj SEND ADATA', dataObj); //got em!
+      console.log('dataObj SEND ADATA', dataObj); //got em!
       const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${qID}/answers`;
       //post answer from form
       axios({method: 'post', url: url, headers: auth, data: dataObj})
