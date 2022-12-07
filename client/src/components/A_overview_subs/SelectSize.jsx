@@ -44,8 +44,9 @@ class SelectSize extends React.Component {
 
         <div className="size-drop">
         Size:
-        <select value={this.state.size} onChange={this.handleChange}>
-          {Object.keys(this.state.skus).map((sku) => { return <option>{this.state.skus[sku].size}</option> ; })}
+        <select className='select-size' value={this.state.size} onChange={this.handleChange}>
+        <option selected='selected' key={99}>SELECT SIZE</option>
+          {Object.keys(this.state.skus).map((sku, i) => { return <option key={i}>{this.state.skus[sku].size}</option> })}
         </select>
         </div>
 
