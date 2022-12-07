@@ -30,7 +30,6 @@ const ReviewTile = function ReviewTile({ review, setRList }) {
       const auth = {'Authorization': process.env.GITHUB_TOKEN}
       axios({method: 'put', url, headers: auth})
         .then(res => {
-          console.log('reported');
           console.log('response', res);
           setRList();
         })
