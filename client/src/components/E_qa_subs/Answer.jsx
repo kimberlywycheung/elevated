@@ -34,7 +34,6 @@ const Answer = ({a, getAndSetAnswers}) => {
 
   React.useEffect(() => {
     if(a.photos.length) {
-      console.log('Ans Photos', a.photos);
       var photoInput = [];
 
       a.photos.forEach((photo, i) => {
@@ -59,8 +58,8 @@ const Answer = ({a, getAndSetAnswers}) => {
   return (
     <div className='ans'>
       <div>
-        <span><span className='bold'>A:</span><span className='qa-body'>{a.body}</span></span>
-        <div className='photo-div'>{photosArr}</div>
+        <span><span className='qa-body ans-body'>{a.body}</span></span>
+         <div className='photo-div'>{photosArr}</div> {/* photo THUMBNAILS HERE */}
       </div>
       <div className='a-meta'>
         <span>by {a.answerer_name}</span>

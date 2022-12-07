@@ -97,18 +97,20 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist, list}) => {
           <span><a onClick={e => {e.preventDefault(); handleAddAns()}}>Add Answer</a></span>
         </div>
       </div>
-
-      <div className='a-box'>
-        {limitedAList.map((a) => {
-          return (
-            <Answer getAndSetAnswers={getAndSetAnswers} a={a} key={a.answer_id}/>
-          )
-        })}
-
+      <div className='ans-section'>
+        <div>A:</div>
+        <div>
+          <div className='a-box'>
+            {limitedAList.map((a) => {
+              return (
+                <Answer getAndSetAnswers={getAndSetAnswers} a={a} key={a.answer_id}/>
+              )
+            })}
+          </div>
+          <a style={loadView} onClick={e => {e.preventDefault(); loadMoreAns()}} className='load-ans'>load more answers</a>
+          <a style={collapseView} onClick={e => {e.preventDefault(); collapseAns()}} className='load-ans'>collapse answers</a>
+        </div>
       </div>
-
-    <a style={loadView} onClick={e => {e.preventDefault(); loadMoreAns()}} className='load-ans'>load more answers</a>
-    <a style={collapseView} onClick={e => {e.preventDefault(); collapseAns()}} className='load-ans'>collapse answers</a>
     <div className='q-meta q-meta2'>
       question from "{q.asker_name}"
     </div>

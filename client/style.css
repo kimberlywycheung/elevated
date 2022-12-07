@@ -148,10 +148,20 @@ h2 {
 .qa-body {
   padding-left: 20px;
 }
-
+.ans-body {
+  display: block;
+  /* background-color: aquamarine; */
+  margin-bottom: 15px;
+}
+.ans-section {
+  padding-left: 60px;
+  /* background-color: aquamarine; */
+  display: flex;
+  flex-direction: row;
+}
 .a-box {
-  /* background-color: rgb(167, 204, 237); */
-  padding-left: 40px;
+  /* background-color: rgb(99, 157, 208); */
+  padding-left: 10px;
   max-height: 320px;
   overflow: auto;
 }
@@ -166,11 +176,16 @@ h2 {
   border: solid rgb(229, 229, 229) .5px;
 }
 .photo-div {
-  max-width: 50%;
+  /* background-color: rgb(56, 121, 179); */
+  padding-left: 20px;
+  width: 400px;
+  max-height: 100px;
+  overflow-x: visible;
+  overflow-y: hidden;
 }
 .load-ans {
   /* background-color: rgb(183, 205, 224); */
-  padding: 10px 60px;
+  padding: 10px 30px;
   font-size: .8em;
   width: 160px;
 }
@@ -182,6 +197,9 @@ h2 {
   font-size: .6em;
   color: grey;
   padding: 10px 0;
+}
+.no-qs {
+  margin: 50px;
 }
 .q-meta2 {
   width: 500px;
@@ -196,10 +214,6 @@ h2 {
   font-size: .6em;
   color: grey;
   padding: 10px 0;
-}
-.bold {
-  /* background-color: rgb(217, 191, 180); */
-  font-style: bold;
 }
 
 /* Ratings and Reviews */
