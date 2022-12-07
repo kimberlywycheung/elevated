@@ -103,10 +103,18 @@
   padding: 10px;
   background-color: rgb(208, 184, 220);
 }
+.add-cart-button {
+  position: relative;
+  display: inline-block;
+  /* background-color: rgb(176, 212, 200); */
+}
 .ov-form-1 {
   display: flex;
   height: 50%;
   flex-direction: row;
+}
+.size-drop {
+  font-size: 1.6em;
 }
 .ov-form-2 {
   display: flex;

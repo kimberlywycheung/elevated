@@ -40,7 +40,7 @@ class SelectSize extends React.Component {
   //  console.log()
   return (
     <form className='ov-form' onSubmit={this.handleSubmit}>
-      <label className='ov-form-1'>
+      <div className='ov-form-1'>
 
         <div className="size-drop">
         Size:
@@ -56,12 +56,12 @@ class SelectSize extends React.Component {
         </select>
         </div>
 
-      </label>
-      <label className='ov-form-2'>
+      </div>
+      <div className='ov-form-2'>
         {/* <input type="submit" value="Add to Cart" /> */}
         <button type='submit' className="add-cart-button">Add to Cart</button>
         <button className="favorite-button">♡</button>
-      </label>
+      </div>
 
     </form>
   );
