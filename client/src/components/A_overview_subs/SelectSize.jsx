@@ -11,7 +11,7 @@ class SelectSize extends React.Component {
 
       sku: props.sku,
       skus: props.skus,
-      size: props.skus[props.sku].size
+      quantity: 1
       // skusArr:
      };
 
@@ -41,12 +41,23 @@ class SelectSize extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Select Size:
+
+          <div className="size-drop">
+          Size:  
           <select value={this.state.size} onChange={this.handleChange}>
             {Object.keys(this.state.skus).map((sku) => { return <option>{this.state.skus[sku].size}</option> ; })}
           </select>
+          </div>
+
+          <div className="quantity-drop">
+          Quantity:  
+          <select value={this.state.quantity} onChange={this.handleChange}>
+            <option>{this.state.quantity}</option>
+          </select>
+          </div>
+
         </label>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Add to Cart" /> <button className="favorite-button">♡</button>
       </form>
     );
   }
