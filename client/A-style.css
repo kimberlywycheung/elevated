@@ -74,11 +74,22 @@
   background-color: rgb(218, 125, 228);
   margin-bottom: 20px;
 }
+
+.ov-style-container {
+  /* background-color: rgb(191, 30, 216); */
+    position: relative;
+    width: 20%;
+    padding-bottom: 20%;
+    margin: 10px 2%;
+    float: left;
+    height: 0;
+}
 .ov-style-select {
-  margin: 0 10px;
-  background-color: rgb(178, 152, 182);
-  width: 20%;
-  height: 50%;
+  /* margin: 0 10px;
+  background-color: rgb(178, 152, 182); */
+  position: absolute;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   object-fit: cover;
   /* circle crop? */
