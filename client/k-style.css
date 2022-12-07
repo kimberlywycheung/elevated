@@ -4,20 +4,27 @@
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
+  display: flex;
+  flex-direction: row;
   padding: 30px, 0px, 0px;
-  max-height: 450px;
+  height: 300px;
+  width: 95% auto;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
 }
 
 .card {
   background-color: whitesmoke;
-  width: 20%;
+  border-radius: 5px;
+  width: 18%;
   height: 95%;
-  min-height: 300px;
+  min-width: 180px;
   margin-top: 0;
   margin-left: 20px;
   margin-bottom: 10px;
-  display: inline-block;
-  align-self: auto;
+  overflow: none;
 }
 
 .card_button {
@@ -32,15 +39,21 @@
 .card_image {
   position: relative;
   width: 90%;
-  height: 30%;
+  height: 75%;
   max-height: 250px;
+  min-height: 180px;
   object-fit: cover;
   border-radius: 5px;
 }
 
+.card_info {
+  padding: 0px;
+  margin: 2px;
+}
+
 .modal_compare {
-  position: fixed;
-  z-index: 1;
+  position: absolute;
+  z-index: 10;
   background-color: #fefefe;
   margin: 20% auto; /* 15% from the top and centered */
   padding: 20px;
@@ -55,9 +68,21 @@
   max-height: 450px;
 }
 
+.modal_button {
+  z-index: 10;
+}
+
 .sale_price {
 
 }
+/*
+.scroll_buttons {
+  display: none;
+}
+
+.carousel:hover + .scroll_buttons:hover {
+  display: block;
+} */
 
 #flex-box {
   display: flex;
@@ -65,13 +90,20 @@
 }
 
 #inline {
-  display: inline-block;
+  /* display: inline-block; */
 }
 
-#float_left {
-  float: left;
+#center {
+  margin-left: auto;
+  margin-right: auto;
 }
 
-#float_right {
-  float: right;
+#left {
+  /* float: left; */
+  margin-left: auto;
+}
+
+#right {
+  /* float: right; */
+  margin-right: auto;
 }

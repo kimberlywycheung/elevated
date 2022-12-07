@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Comparison from './Comparison.jsx';
+import Stars from '../A_overview_subs/Stars.jsx';
 
 const Card = function ({ type, currentProd, item, addToFavorites, deleteFromFavorites, setProduct }) {
   const [itemInfo, setItemInfo] = useState(null);
@@ -37,38 +38,47 @@ const Card = function ({ type, currentProd, item, addToFavorites, deleteFromFavo
         salePrice = style.sale_price;
       }
     });
+
+    // corner case: grabs the first style if there are no default styles defined
+    if (!originalPrice) {
+      defaultImg = itemStyles[0].photos[0].thumbnail_url;
+      originalPrice = itemStyles[0].original_price;
+      salePrice = itemStyles[0].sale_price;
+    }
   }
 
   // handler for the favorite/delete button
-  const buttonHandler = () => {
+  const buttonHandler = (e) => {
+    e.stopPropagation();
     if (type === 'related') {
       //addToFavorites(itemInfo.id);
+      // console.log('opening comparison modal'); // TODO: delete
       setIsModalOpen(true);
     } else {
+      // console.log('delete from local storage faves'); // TODO: delete
       deleteFromFavorites(itemInfo.id);
     }
   };
 
   // handler for changing current product page to product user has clicked
   const changeCards = () => {
-    const updateProd = (products) => {
-      products.forEach((product) => {
-        if (product.id === itemInfo.id) {
-          setProduct(product);
-          return;
-        }
-      })
-    };
-
     if (itemInfo) {
-      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products`, {
+      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${itemInfo.id}`, {
           headers: { Authorization: process.env.GITHUB_TOKEN },
+      })
+        .then(({ data }) => {
+          if (itemInfo.id !== currentProd.id) {
+            setProduct(data);
+          }
         })
-          .then(({ data }) => updateProd(data))
-          .catch((err) => console.log(err));
+        .catch((err) => console.log(err));
     }
   };
 
+  const handleClose = (e) => {
+    e.stopPropagation();
+    setIsModalOpen(false);
+  };
 
   // TODO: can refactor saleprice later
   if (itemInfo && itemStyles) {
@@ -80,24 +90,22 @@ const Card = function ({ type, currentProd, item, addToFavorites, deleteFromFavo
         </button>
 
         {type === 'related' &&
-        <Comparison itemInfo={itemInfo} currentProd={currentProd} isModalOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />}
+        <Comparison itemInfo={itemInfo} currentProd={currentProd} isModalOpen={isModalOpen} onClose={handleClose} />}
 
         <img src={defaultImg} className="card_image"/>
 
-        <p>{itemInfo.category}</p>
-        <h4>{itemInfo.name}</h4>
+        <span className="card_info">
+          <p className="card_info">{itemInfo.category}</p>
+          <h4 className="card_info">{itemInfo.name}</h4>
 
-        { !salePrice &&
-          <p>${originalPrice}</p>
-        }
-        { salePrice &&
-          <p>
-            <span className="sale_price">${salePrice}</span>
-            <strike>${originalPrice}</strike>
-          </p>
-        }
+          {salePrice ?
+            <p className="card_info">
+              <span className="sale_price">${salePrice}</span>
+              <strike>${originalPrice}</strike>
+            </p> : <p className="card_info">${originalPrice}</p> }
 
-        <p>(insert stars)</p>
+          <Stars id={itemInfo.id}/>
+        </span>
       </div>
     );
   }
