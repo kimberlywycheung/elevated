@@ -43,16 +43,17 @@ class SelectSize extends React.Component {
       <div className='ov-form-1'>
 
         <div className="size-drop">
-        Size:
-        <select className='select-size' value={this.state.size} onChange={this.handleChange}>
-        <option selected='selected' key={99}>SELECT SIZE</option>
-          {Object.keys(this.state.skus).map((sku, i) => { return <option key={i}>{this.state.skus[sku].size}</option> })}
+        {/* Size: */}
+        <select className='select-size-qty' value={this.state.size} onChange={this.handleChange}>
+        <option selected value={0} key={99}>SELECT SIZE</option>
+          {Object.keys(this.state.skus).map((sku, i) => { return <option value={i+1} key={i}>{this.state.skus[sku].size}</option> })}
         </select>
         </div>
 
         <div className="quantity-drop">
-        Quantity:
-        <select value={this.state.quantity} onChange={this.handleChange}>
+        {/* Quantity: */}
+        <select className='select-size-qty' value={this.state.quantity} onChange={this.handleChange}>
+          <option>QTY</option>
           <option>{this.state.quantity}</option>
         </select>
         </div>
