@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import starArray from '../../helperFunctions/starArray.js'
+import starArray from '../../helperFunctions/starArray.js';
+import ImgView from './ImgView.jsx';
 
 const ReviewTile = function ReviewTile({ review, setRList }) {
+  const [photosArr, setPhotosArr] = React.useState([]);
+  const [imgViewStyle, setImgViewStyle] = React.useState({display: 'none'});
+  const [imgUrl, setImgUrl] = React.useState('');
   let date = new Date(review.date)
 
   const handleVote = (e) => {
@@ -22,6 +26,8 @@ const ReviewTile = function ReviewTile({ review, setRList }) {
     }
   };
 
+  console.log(review);
+
   const handleReport = (e) => {
     e.preventDefault()
     if(window.localStorage.getItem(`reported${review.review_id}`) === null) {
@@ -38,6 +44,34 @@ const ReviewTile = function ReviewTile({ review, setRList }) {
         })
     }
   }
+
+  const openImg = (url) => {
+    console.log('opening image with url ', url);
+    setImgUrl(url);
+    setImgViewStyle({display: 'block'});
+  };
+
+  React.useEffect(() => {
+    if(review.photos.length) {
+      var photoInput = [];
+
+      review.photos.forEach((photo, i) => {
+        // console.log('photo', photo, typeof photo);
+        var photoUrl = typeof photo === 'object' ? photo.url : photo;
+        var photoID = typeof photo === 'object' ? photo.id : Number((review.review_id + '')+i);
+
+        photoInput.push(
+          <img onClick={e => {e.preventDefault(); openImg(photoUrl)}} className='a-thumbnails' key={photoID} src={photoUrl} onError={({ currentTarget }) => {
+            currentTarget.onerror = null; // prevents looping
+            currentTarget.style.display = 'none';
+            currentTarget.src="https://climate.onep.go.th/wp-content/uploads/2020/01/default-image.jpg";
+          }}></img>
+        )
+//"this.onerror=null; this.src='https://placeimg.com/200/300/animals';"
+      });
+      setPhotosArr(photoInput);
+    }
+  },[review]);
 
   return (
     <div style={{border: "1px solid red"}}>
@@ -76,7 +110,7 @@ const ReviewTile = function ReviewTile({ review, setRList }) {
       <h3>{review.summary}</h3>
       <div>
         <div>{review.body}</div>
-        <span>Photos: <a>{review.photos.length}</a></span>
+        <div className='photo-div'>{photosArr}</div> {/* photo THUMBNAILS HERE */}
       </div>
       {review.response &&
         <div style={{backgroundColor: "gray"}}>
@@ -85,6 +119,9 @@ const ReviewTile = function ReviewTile({ review, setRList }) {
         </div>
       }
       <span>Helpful? <a onClick={handleVote}>Yes</a> ({review.helpfulness}) | <a onClick={handleReport}>Report</a></span>
+      <div>
+        <ImgView style={imgViewStyle} setStyle={setImgViewStyle} url={imgUrl}/>
+      </div>
       <hr></hr>
     </div>
   )

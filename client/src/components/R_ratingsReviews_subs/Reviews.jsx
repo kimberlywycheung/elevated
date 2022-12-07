@@ -4,13 +4,13 @@ import SortReviews from './SortReviews.jsx'
 import ListReviews from './ListReviews.jsx'
 import AddReviews from './AddReviews.jsx'
 
-const Reviews = function Reviews({ productID, name, starFilter }) {
+const Reviews = function Reviews({ productID, name, starFilter, charBreak }) {
   const [reviews, setReviews] = useState({});
   const [displayCount, setDisplayCount] = useState(2);
   const [sort, setSort] = useState('relevant');
 
   const setReviewList = function() {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${productID}&page=1&count=200&sort=${sort}`, {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${productID}&page=1&count=5&sort=${sort}`, {
       headers: { Authorization: process.env.GITHUB_TOKEN },
     })
       .then((result) => {
@@ -32,7 +32,7 @@ const Reviews = function Reviews({ productID, name, starFilter }) {
   }
 
   return (
-    <div>
+    <div  className="review-cont">
       <SortReviews reviews={reviews} setSort={setSort}/>
       <ListReviews reviews={reviews} displayCount={displayCount} setRList={setReviewList} starFilter={starFilter}/>
       <div>
@@ -41,7 +41,7 @@ const Reviews = function Reviews({ productID, name, starFilter }) {
             More Reviews
           </button>
         }
-        <AddReviews id={productID} name={name}/>
+        <AddReviews id={productID} name={name} charBreak={charBreak}/>
       </div>
     </div>
   );

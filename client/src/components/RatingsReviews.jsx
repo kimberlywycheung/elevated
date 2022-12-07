@@ -4,6 +4,7 @@ import Breakdown from './R_ratingsReviews_subs/Breakdown.jsx';
 import Reviews from './R_ratingsReviews_subs/Reviews.jsx';
 
 const RatingsReviews = ({product}) => {
+  const [charBreak, setCharBreak] = useState({})
   const [starFilter, setStarFilter] = useState(
     {
       inUse: false,
@@ -39,9 +40,12 @@ const RatingsReviews = ({product}) => {
   }
 
   return (
-    <div className='ratings-reviews'>
-      <Breakdown productID={product.id} ratingsArray={ratingsArray}/>
-      <Reviews productID={product.id} name={product.name} starFilter={starFilter}/>
+    <div className='ratings-reviews-cont'>
+      <h2>Ratings and Reviews</h2>
+      <div className='ratings-reviews'>
+        <Breakdown productID={product.id} ratingsArray={ratingsArray} setCharBreak={setCharBreak}/>
+        <Reviews productID={product.id} name={product.name} starFilter={starFilter} charBreak={charBreak}/>
+      </div>
     </div>
   )
 }

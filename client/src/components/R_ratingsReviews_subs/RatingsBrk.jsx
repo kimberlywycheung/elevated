@@ -51,8 +51,8 @@ const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray }) {
 
   return (
     <div>
-      <div>
-        <span>{stats.ratings.avg}</span>
+      <div className="rating-and-stars">
+        <h1>{stats.ratings.avg}</h1>
         <span>
           {starArray(stats.ratings.avg).map((item, i) => {
             return (

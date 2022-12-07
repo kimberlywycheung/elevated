@@ -1,15 +1,46 @@
+* {
+  border: red solid 1px;
+}
+
 /* Ratings and Reviews */
 
-.ratings-reviews {
+.ratings-reviews-cont {
   background-color: rgb(159, 198, 172);
+  border: red solid 1px;
   min-height: 300px;
   margin: 10px;
+}
+
+.breakdown-cont {
+  border: red solid 1px;
+  background-color: white;
+  width: 25%;
+  padding: 3%;
+}
+
+.rating-and-stars {
+  border: red solid 1px;
+  display: flex;
+  flex-direction: row;
+}
+
+.review-cont {
+  border: red solid 1px;
+  width: 75%;
+}
+
+.ratings-reviews {
   display: flex;
   flex-direction: row;
 }
 
 .reviewList {
   max-height: 500px;
+  overflow: auto;
+}
+
+.scroll {
+  max-height: 600px;
   overflow: auto;
 }
 
