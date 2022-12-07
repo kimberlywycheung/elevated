@@ -11,7 +11,7 @@ class SelectSize extends React.Component {
 
       sku: props.sku,
       skus: props.skus,
-      size: props.skus[props.sku].size
+      quantity: 1
       // skusArr:
      };
 
