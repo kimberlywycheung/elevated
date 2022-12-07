@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Answer from './Answer.jsx';
+import $ from "jquery";
 
 const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist, list}) => {
   const [Alist, setAlist] = React.useState([]);
@@ -12,7 +13,6 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist, list}) => {
 
   const getAndSetAnswers = () => {
     //get answer
-    console.log('getting new answers');
     const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${q.question_id}/answers`;
     const auth = {'Authorization': process.env.GITHUB_TOKEN};
     axios({method: 'get', url, headers: auth})
@@ -24,7 +24,8 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist, list}) => {
       setAlist(sortedList);
     })
     .catch(err => {
-      console.log('err in getAns', err);
+      alert(`Error getting Answers\n\n` + err.response.data);
+      console.error(err);
     })
   }; //getSetAns DONE
 
@@ -52,6 +53,7 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist, list}) => {
 
   const loadMoreAns = () => {
     setAnsCount(ansCount + 2);
+    $(".a-box").animate({ scrollTop: $('.a-box')[0].scrollHeight}, 1000);
   };
   const collapseAns = () => {
     setAnsCount(2);
@@ -76,7 +78,8 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist, list}) => {
         getQlist();
       })
       .catch(err => {
-        console.log('err for PUT Q Helpful->', err);
+        alert(`Error Put request for Q Helpful\n\n` + err.response.data);
+        console.error(err);
       })
     }
 
@@ -94,18 +97,20 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist, list}) => {
           <span><a onClick={e => {e.preventDefault(); handleAddAns()}}>Add Answer</a></span>
         </div>
       </div>
-
-      <div className='a-box'>
-        {limitedAList.map((a) => {
-          return (
-            <Answer getAndSetAnswers={getAndSetAnswers} a={a} key={a.answer_id}/>
-          )
-        })}
-
+      <div className='ans-section'>
+        <div>A:</div>
+        <div>
+          <div className='a-box'>
+            {limitedAList.map((a) => {
+              return (
+                <Answer getAndSetAnswers={getAndSetAnswers} a={a} key={a.answer_id}/>
+              )
+            })}
+          </div>
+          <a style={loadView} onClick={e => {e.preventDefault(); loadMoreAns()}} className='load-ans'>load more answers</a>
+          <a style={collapseView} onClick={e => {e.preventDefault(); collapseAns()}} className='load-ans'>collapse answers</a>
+        </div>
       </div>
-
-    <a style={loadView} onClick={e => {e.preventDefault(); loadMoreAns()}} className='load-ans'>load more answers</a>
-    <a style={collapseView} onClick={e => {e.preventDefault(); collapseAns()}} className='load-ans'>collapse answers</a>
     <div className='q-meta q-meta2'>
       question from "{q.asker_name}"
     </div>

@@ -50,6 +50,12 @@ const QaList = ({list, setModalStyle, setFormType, setQid, searchTerm, getQlist,
       </div>
     )
   }
+  if(!list.length) {
+    return (
+      <div style={{fontSize: '2em', width: "100%"}} className='q-meta2 no-qs'>No Questions have been asked yet...be the first!</div>
+    )
+  }
+
   return (
     <div id='qa-list'>
       {newList.map(q => {
