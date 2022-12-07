@@ -84,7 +84,8 @@ const Card = function ({ type, currentProd, item, addToFavorites, deleteFromFavo
       <div className="card" id={type} onClick={changeCards}>
 
         <button className="card_button" onClick={buttonHandler}>
-          {type === 'related' ?  ' ⭐ ' : ' X '}
+          {type === 'related' ?
+            <img src="../../client/dist/images/star.png" width="20"/> : ' X '}
         </button>
 
         {type === 'related' &&

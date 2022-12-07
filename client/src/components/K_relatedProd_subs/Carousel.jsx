@@ -54,7 +54,10 @@ const Carousel = function ({ type, currentState, currentProd, addToFavorites, de
       <div className="carousel-container" id="flex-box">
 
         {showLeftButton &&
-          <button className="scroll_buttons" id="scroll-left" onClick={scrollLeft}>⬅️</button>}
+          // <button className="scroll_buttons" id="scroll-left" onClick={scrollLeft}>⬅️</button>}
+          <button className="scroll_buttons" id="scroll-left" onClick={scrollLeft}>
+            <img src="../../client/dist/images/left-scroll.png" width="20"/>
+          </button>}
 
         <div className="carousel" id={carouselId}>
           {type === 'outfits' &&
@@ -75,7 +78,10 @@ const Carousel = function ({ type, currentState, currentProd, addToFavorites, de
         </div>
 
         {showRightButton &&
-        <button className="scroll_buttons" value="scroll-right" onClick={scrollRight}>➡️</button> }
+        // <button className="scroll_buttons" value="scroll-right" onClick={scrollRight}>➡️</button> }
+        <button className="scroll_buttons" value="scroll-right" onClick={scrollRight}>
+          <img src="../../client/dist/images/right-scroll.png" width="20"/>
+        </button> }
 
       </div>
     </div>
