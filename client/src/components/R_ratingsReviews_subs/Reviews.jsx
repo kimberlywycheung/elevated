@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import SortReviews from './SortReviews.jsx'
 import ListReviews from './ListReviews.jsx'
-import MoreReviews from './MoreReviews.jsx'
 import AddReviews from './AddReviews.jsx'
 
 const Reviews = function Reviews({ productID, name }) {
