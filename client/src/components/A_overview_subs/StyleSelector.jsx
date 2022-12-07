@@ -5,12 +5,11 @@ const StyleSelector = ({ styles, style, setStyle }) => {
 //commented out for visibility
   if (style) {
     return (
-      <div className="current-style">
-        Style {'> ' + style.name}
-
-        <div className="style-selector">
-          Styles Placeholder
-          {/* {styles.map((oneStyle) => { return <Swatch oneStyle={oneStyle} className="swatch" /> })} */}
+      <div class="style-selector">
+        <div class="current-style">Style {'> ' + style.name}</div>
+        <div class="style-selector">
+          (images hidden)
+          {/* {styles.map((oneStyle) => { return <Swatch oneStyle={oneStyle} /> })} */}
         </div>
       </div>)
   }
