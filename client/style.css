@@ -121,7 +121,7 @@ h2 {
 }
 #qa-list {
   background-color: rgb(251, 251, 251);
-  max-height: 1200px;
+  max-height: 900px;
   overflow: scroll;
 }
 
