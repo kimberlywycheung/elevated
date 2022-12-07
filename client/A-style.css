@@ -1,0 +1,77 @@
+
+/* MAIN */
+.ov-section {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(138, 72, 231);
+}
+.ov-info {
+  background-color: rgb(216, 147, 57);
+  flex: 1 1 0;
+}
+.ov-img-container {
+  background-color: rgb(227, 191, 144);
+  flex: 2 1 0;
+}
+
+/* IMAGES */
+
+.ov-img {
+  background-color: rgb(196, 237, 123);
+  /* fill 100% */
+}
+.ov-img-select {
+  background-color: rgb(102, 170, 127);
+}
+
+/* HEADER */
+
+.ov-header {
+  background-color: rgb(123, 226, 171);
+}
+.ov-review {
+  background-color: rgb(164, 209, 128);
+}
+.ov-category {
+  background-color: rgb(103, 175, 168);
+}
+#prod-title {
+  background-color: rgb(77, 92, 186);
+}
+.ov-price {
+  background-color: rgb(138, 125, 202);
+}
+.ov-price-sale {
+  background-color: rgb(234, 107, 107);
+}
+
+/* STYLES SELECTOR */
+.ov-styles-selector {
+  background-color: rgb(55, 131, 236);
+}
+.ov-style-text {
+  background-color: rgb(218, 125, 228);
+}
+.ov-style-select {
+  background-color: rgb(178, 152, 182);
+  /* circle crop? */
+}
+
+
+/* ADD TO CART SECTION */
+
+.ov-add-to-cart {
+  background-color: rgb(217, 112, 225);
+}
+.ov-fave-btn {
+  background-color: rgb(213, 148, 63);
+}
+.ov-qty {
+  background-color: rgb(40, 166, 88);
+}
+.ov-add {
+  background-color: rgb(215, 106, 106);
+}
+.ov-size-pick {
+  background-color: rgb(217, 219, 108);
+}
