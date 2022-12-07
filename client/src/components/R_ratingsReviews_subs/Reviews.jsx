@@ -4,7 +4,7 @@ import SortReviews from './SortReviews.jsx'
 import ListReviews from './ListReviews.jsx'
 import AddReviews from './AddReviews.jsx'
 
-const Reviews = function Reviews({ productID, name }) {
+const Reviews = function Reviews({ productID, name, starFilter }) {
   const [reviews, setReviews] = useState({});
   const [displayCount, setDisplayCount] = useState(2);
   const [sort, setSort] = useState('relevant');
@@ -34,22 +34,17 @@ const Reviews = function Reviews({ productID, name }) {
   return (
     <div>
       <SortReviews reviews={reviews} setSort={setSort}/>
-      <ListReviews reviews={reviews} displayCount={displayCount} setRList={setReviewList}/>
+      <ListReviews reviews={reviews} displayCount={displayCount} setRList={setReviewList} starFilter={starFilter}/>
       <div>
         { (reviews.count - displayCount >= 2) &&
           <button onClick={() => setDisplayCount(displayCount + 2)}>
             More Reviews
           </button>
         }
-        {/* <MoreReviews reviews={reviews.count} displayCount={displayCount} setDisplayCount={setDisplayCount}/> */}
         <AddReviews id={productID} name={name}/>
       </div>
     </div>
   );
 };
-
-// Reviews.propTypes = {
-//   productID: PropTypes.number.isRequired,
-// };
 
 export default Reviews;

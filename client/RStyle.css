@@ -25,7 +25,7 @@
   position: relative;
   display: inline-block;
   height: 24px;
-  background-color: blue;
+  background-color: black;
 }
 
 .single-star-container {
@@ -36,7 +36,7 @@
 
 /* Progress Bar CSS */
 
-.containerStyles {
+.barContainerStyles {
   height: 20px;
   width: 120px;
   background-color: "#e0e0de";
@@ -45,15 +45,48 @@
   margin: 5px;
 }
 
-.fillerStyles {
-  height: '100%';
-  background-color: orange;
+.barFillerStyles {
+  height: 100%;
+  background-color: gray;
   border-radius: inherit;
-  text-align: 'right'
+  text-align: right;
 }
 
-.labelStyles {
+.barLabelStyles {
   padding: 5;
   color: white;
-  font-weight: 'bold'
+  font-weight: bold;
+  font-size: 10px;
+}
+
+/* Characteristics Display CSS */
+
+.charBarContainer {
+  width: 120px;
+  display: flex;
+  flex-direction: row;
+}
+
+.charWordContainer {
+  width: 120px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.charContainerStyles {
+  height: 5px;
+  width: 120px;
+}
+
+.charBarStyles {
+  height: 5px;
+  width: 40px;
+  background-color: gray;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.charFillerStyles {
+  height: 100%;
+  text-align: right;
 }

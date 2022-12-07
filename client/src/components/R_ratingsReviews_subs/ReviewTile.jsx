@@ -46,15 +46,24 @@ const ReviewTile = function ReviewTile({ review, setRList }) {
         <span>
           <span>{review.rating}</span>
           <span>
-              {starArray(review.rating).map((item, i) => {
-                  return (
-                      <div className="single-star-container" key={i}>
-                          <div className="single-star-fill" style={{"width" : `${parseInt(item*20.3)}px`}}>
-                              <img className="single-star-outline" src="../../client/dist/images/star2.png" alt="stars alt"></img>
-                          </div>
-                      </div>
-                  );
-              })}
+            {starArray(review.rating).map((item, i) => {
+              if (item > 0) {
+                return (
+                  <div className="single-star-container" key={i}>
+                    ★
+                  </div>
+                );
+              }
+            })}
+            {/* {starArray(review.rating).map((item, i) => {
+              return (
+                <div className="single-star-container" key={i}>
+                  <div className="single-star-fill" style={{"width" : `${parseInt(item*20.3)}px`}}>
+                    <img className="single-star-outline" src="../../client/dist/images/star2.png" alt="stars alt"></img>
+                  </div>
+                </div>
+              );
+            })} */}
           </span>
         </span>
         <span>{date.toLocaleDateString()}</span>
@@ -77,6 +86,7 @@ const ReviewTile = function ReviewTile({ review, setRList }) {
         </div>
       }
       <span>Helpful? <a onClick={handleVote}>Yes</a> ({review.helpfulness}) | <a onClick={handleReport}>Report</a></span>
+      <hr></hr>
     </div>
   )
 }
