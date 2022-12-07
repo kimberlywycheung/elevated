@@ -9,9 +9,9 @@ const AddToCart = ({ sku, skus }) => {
 
   return (<div className="ov-add-to-cart">PLACEHOLDER: Add to Cart
     <SelectSize sku={sku} skus={skus} />
-    <SelectQuantity />
+    {/* <SelectQuantity />
     <AddButton />
-    <FavoriteButton />
+    <FavoriteButton /> */}
   </div>)
 
 }
