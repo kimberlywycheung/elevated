@@ -9,6 +9,7 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist, list}) => {
   const [loadView, setloadView] = React.useState({'display': 'block'});
   const [collapseView, setCollapseView] = React.useState({'display': 'none'});
   const [ansCount, setAnsCount] = React.useState(2);
+  const [ansStyle, setAnsStyle] = React.useState({'display': 'block'});
   // console.log('OG ALIST->', Object.values(q.answers));
 
   const getAndSetAnswers = () => {
@@ -37,6 +38,10 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist, list}) => {
 
 
   React.useEffect(() => { //view toggle buttons
+    setAnsStyle({display: 'block'});
+    if(!Alist.length) {
+      setAnsStyle({display: 'none'});
+    }
     if(Alist.length <= 2) {
       setloadView({'display': 'none'});
       setCollapseView({'display': 'none'});
@@ -98,7 +103,7 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist, list}) => {
         </div>
       </div>
       <div className='ans-section'>
-        <div>A:</div>
+        <div style={ansStyle}>A:</div>
         <div>
           <div className='a-box'>
             {limitedAList.map((a) => {
