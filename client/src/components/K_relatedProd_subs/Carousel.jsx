@@ -13,12 +13,12 @@ const Carousel = function ({ type, currentState, currentProd, addToFavorites, de
   };
 
   const scrollLeft = () => {
-    console.log('scrolling left');
+    // console.log('scrolling left');
     document.getElementById(carouselId).scrollLeft -= 200;
   };
 
   const scrollRight = () => {
-    console.log('scrolling right');
+    // console.log('scrolling right');
     document.getElementById(carouselId).scrollLeft += 200;
   };
 

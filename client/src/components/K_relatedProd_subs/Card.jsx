@@ -52,10 +52,10 @@ const Card = function ({ type, currentProd, item, addToFavorites, deleteFromFavo
     e.stopPropagation();
     if (type === 'related') {
       //addToFavorites(itemInfo.id);
-      console.log('opening comparison modal'); // TODO: delete
+      // console.log('opening comparison modal'); // TODO: delete
       setIsModalOpen(true);
     } else {
-      console.log('delete from local storage faves'); // TODO: delete
+      // console.log('delete from local storage faves'); // TODO: delete
       deleteFromFavorites(itemInfo.id);
     }
   };
@@ -67,7 +67,7 @@ const Card = function ({ type, currentProd, item, addToFavorites, deleteFromFavo
         products.forEach((product) => {
           if (product.id === itemInfo.id) {
             setProduct(product);
-            console.log('updating to new product'); // TODO: delete
+            // console.log('updating to new product'); // TODO: delete
             return;
           }
         });
