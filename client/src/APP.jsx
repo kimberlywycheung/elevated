@@ -14,11 +14,11 @@ const App = () => {
     })
     .then((results) => {
       var randIndex = Math.floor(Math.random() * results.data.length);
-      // var randIndex = 0;
+      // var randIndex = 1;
       console.log(`Random Product from index ${randIndex}->\n`, results.data[randIndex]);
       setProduct(results.data[randIndex]);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.error(err));
   }
 
   React.useEffect( () => {
