@@ -12,7 +12,7 @@
 }
 
 .carousel::-webkit-scrollbar {
-  /* display: none; */
+  display: none;
 }
 
 .card {
@@ -41,8 +41,14 @@
   width: 90%;
   height: 75%;
   max-height: 250px;
+  min-height: 180px;
   object-fit: cover;
   border-radius: 5px;
+}
+
+.card_info {
+  padding: 0px;
+  margin: 2px;
 }
 
 .modal_compare {

@@ -6,7 +6,7 @@ const Carousel = function ({ type, currentState, currentProd, addToFavorites, de
   const title = type === 'outfits' ? 'Your Outfit' : 'Related Products';
   const carouselId = `carousel-${type}`;
 
-  const clickHandler = () => {
+  const addOutfit = () => {
     if (type === 'outfits') {
       addToFavorites(currentProd.id);
     }
@@ -28,12 +28,14 @@ const Carousel = function ({ type, currentState, currentProd, addToFavorites, de
 
       <div className="carousel-container" id="flex-box">
 
+        {/* {document.getElementById(carouselId).scrollLeft > 0 &&
+          <button className="scroll_buttons" id="scroll-left" onClick={scrollLeft}>⬅️</button>} */}
         <button className="scroll_buttons" id="scroll-left" onClick={scrollLeft}>⬅️</button>
 
         <div className="carousel" id={carouselId}>
           {type === 'outfits' &&
             <div className="card">
-              <button id="center" onClick={clickHandler}>
+              <button id="center" onClick={addOutfit}>
                 <p>
                   +
                   <br/>
@@ -48,8 +50,9 @@ const Carousel = function ({ type, currentState, currentProd, addToFavorites, de
           })}
         </div>
 
+        {/* {document.getElementById(carouselId).scrollLeft < document.getElementById(carouselId).scrollWidth &&
+        <button className="scroll_buttons" value="scroll-right" onClick={scrollRight}>➡️</button> } */}
         <button className="scroll_buttons" value="scroll-right" onClick={scrollRight}>➡️</button>
-
       </div>
     </div>
   );

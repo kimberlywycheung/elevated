@@ -83,7 +83,8 @@ const Card = function ({ type, currentProd, item, addToFavorites, deleteFromFavo
     }
   };
 
-  const handleClose = () => {
+  const handleClose = (e) => {
+    e.stopPropagation();
     setIsModalOpen(false);
   };
 
@@ -101,16 +102,18 @@ const Card = function ({ type, currentProd, item, addToFavorites, deleteFromFavo
 
         <img src={defaultImg} className="card_image"/>
 
-        <p>{itemInfo.category}</p>
-        <h4>{itemInfo.name}</h4>
+        <span className="card_info">
+          <p className="card_info">{itemInfo.category}</p>
+          <h4 className="card_info">{itemInfo.name}</h4>
 
-        {salePrice ?
-          <p>
-            <span className="sale_price">${salePrice}</span>
-            <strike>${originalPrice}</strike>
-          </p> : <p>${originalPrice}</p> }
+          {salePrice ?
+            <p className="card_info">
+              <span className="sale_price">${salePrice}</span>
+              <strike>${originalPrice}</strike>
+            </p> : <p className="card_info">${originalPrice}</p> }
 
-        <Stars id={itemInfo.id}/>
+          <Stars id={itemInfo.id}/>
+        </span>
       </div>
     );
   }
