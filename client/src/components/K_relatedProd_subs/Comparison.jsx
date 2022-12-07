@@ -1,29 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import axios from 'axios';
 import Characteristic from './Characteristic.jsx';
 
-const Comparison = function ({ itemInfo, currentProd, isModalOpen, onClose }) {
+const Comparison = function ({ itemInfo, currentProd, getProduct, isModalOpen, onClose }) {
   const [allFeatures, setAllFeatures] = useState({});
-
-  let featureObj = {};
+  const relatedProdFeatures = itemInfo.features;
   let currentProdFeatures = null;
-  let relatedProdFeatures = itemInfo.features;
 
   // initilizing all features from both products to pass down to characteristic modules
   useEffect(() => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${currentProd.id}`, {
-    headers: { Authorization: process.env.GITHUB_TOKEN },
-    })
-      .then(({ data }) => {
-        currentProdFeatures = data.features;
-        setAllFeatures(mapFeatures());
-      })
-      .catch((err) => console.log(err));
+    getProduct(currentProd.id, (data) => {
+      currentProdFeatures = data.features;
+      setAllFeatures(mapFeatures());
+    });
   }, []);
 
-  // helper func to create all feature object
+  // helper func to create all features object to pass down to Characteristic component
   const mapFeatures = () => {
+    const featureObj = {};
+
     relatedProdFeatures.forEach((feature) => {
       featureObj[feature.feature] = [null, null];
       featureObj[feature.feature][0] = feature.value;
@@ -35,15 +30,15 @@ const Comparison = function ({ itemInfo, currentProd, isModalOpen, onClose }) {
     });
 
     return featureObj;
-  }
+  };
 
   if (!isModalOpen) return null;
 
   return ReactDOM.createPortal(
     <>
       <div className="modal-bg-compare" />
-      <div className='modal_compare'>
-        <div id="flex-box">
+      <div className="modal_compare">
+        <div className="modal_content" id="flex-box">
           <h4 id="center">Comparing</h4>
           <button className="modal_button" id="right" onClick={onClose}>close</button>
         </div>
@@ -51,16 +46,16 @@ const Comparison = function ({ itemInfo, currentProd, isModalOpen, onClose }) {
           <span id="left">{itemInfo.name}</span>
           <span id="center"></span>
           <span id="right">{currentProd.name}</span>
-        </div >
-        <div className='modal_container'>
+        </div>
+        <div className="modal_container">
           {allFeatures &&
             Object.keys(allFeatures).map((feature) => {
-              return <Characteristic key={feature} feature={feature} items={allFeatures[feature]}/>;
+              return <Characteristic key={feature} items={allFeatures[feature]} />;
             })}
         </div>
       </div>
     </>,
-    document.getElementById('pop-up')
+    document.getElementById('pop-up'),
   );
 };
 

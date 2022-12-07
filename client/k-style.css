@@ -77,6 +77,12 @@
   width: 60%;
 }
 
+.modal_content {
+  /* display: flex;
+  flex-direction: column;
+  margin: auto; */
+}
+
 .modal_container {
   overflow-x: hidden;
   overflow-y: scroll;
