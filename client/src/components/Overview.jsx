@@ -55,7 +55,7 @@ const Overview = ({ product }) => {
       <div className="ov-section overview">
 
         <div className="ov-img-container">
-          <ImageGallery imageURL={product}/>
+          <ImageGallery style={style}/>
         </div>
 
         <div className="ov-info">

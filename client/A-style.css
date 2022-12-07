@@ -4,48 +4,50 @@
   display: flex;
   height: 500px;
   flex-direction: row;
-  background-color: rgb(138, 72, 231);
+  /* background-color: rgb(138, 72, 231); */
 }
 .ov-info {
   padding: 5px 0;
-  background-color: rgb(216, 147, 57);
+  /* background-color: rgb(216, 147, 57); */
   flex: 1 1 0;
 }
 .ov-img-container {
   height: 100%;
   /* padding: 15px 0; */
   margin-right: 3%;
-  background-color: rgb(227, 191, 144);
+  /* background-color: rgb(227, 191, 144); */
   flex: 1.8 1 0;
 }
 
 /* IMAGES */
 .image-gallery {
-  background-color: rgb(226, 43, 43);
-  padding: 3px;
+  background-color: rgb(146, 214, 78);
+  /* padding: 3px; */
   width: 100%;
-  height: 100%;
+  height: 600px;
 }
 .ov-img {
   /* padding: 10px; */
-  background-color: rgb(196, 237, 123);
-  height: 100%;
-  max-width: 100%;
+  /* background-color: rgb(196, 237, 123); */
+  /* height: 100%; */
+  width: 30%;
   object-fit: cover;
   overflow: hidden;
   /* fill 100% */
 }
 .ov-img-select {
-  /* position: fixed; */
-  top: -40%;
-  /* transform: translate(50% 0%); */
-  background-color: rgb(102, 170, 127);
+  position: relative;
+  top: -70px;
+  width: 70%;
+  height: 10%;
+  transform: translate(20%, 0%);
+  /* background-color: rgb(102, 170, 127); */
 }
 
 /* HEADER */
 
 .ov-header {
-  background-color: rgb(123, 226, 171);
+  /* background-color: rgb(123, 226, 171); */
 }
 .ov-review {
   margin: 0 0 10px 0;
@@ -76,13 +78,16 @@
   flex-direction: column;
   /* padding: 10px; */
   height: 200px;
-  background-color: rgb(55, 131, 236);
+  /* background-color: rgb(55, 131, 236); */
 }
 .ov-style-text {
-  background-color: rgb(218, 125, 228);
+  /* background-color: rgb(218, 125, 228); */
   margin-bottom: 20px;
 }
-
+/* .select-size-qty {
+  font-size: 4em;
+  padding: 10px 20px;
+} */
 .ov-style-container {
   /* background-color: rgb(191, 30, 216); */
     position: relative;
@@ -109,12 +114,13 @@
 .ov-form {
   display: flex;
   padding: 10px;
-  background-color: rgb(208, 184, 220);
+  /* background-color: rgb(208, 184, 220); */
 }
 .ov-form-1 {
   display: flex;
   height: 50%;
   flex-direction: row;
+  padding-left: 2%;
 }
 .ov-form-2 {
   display: flex;
@@ -128,22 +134,37 @@
   /* background-color: rgb(176, 212, 200); */
 }
 .ov-fave-btn {
-  background-color: rgb(213, 148, 63);
+  /* background-color: rgb(213, 148, 63); */
   flex: 1 1 0;
 }
 .quantity-drop {
+  position: relative;
   font-size: 1.6em;
-  background-color: rgb(40, 166, 88);
+  /* background-color: rgb(40, 166, 88); */
   flex: 1 1 0;
 }
 .size-drop {
-  background-color: rgb(155, 219, 179);
+  /* position: relative; */
+  /* background-color: rgb(155, 219, 179); */
   font-size: 1.6em;
   flex: 1 1 0;
+
+}
+.select-size-qty {
+  width: 90%;
+  height: 50px;
+  padding: 5px 35px 5px 5px;
+  font-size: 18px;
+  border: 2px solid #ccc;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url("https://i.pinimg.com/736x/59/e2/37/59e237615ce90d9693eca27fbe183351.jpg") 96% / 15% no-repeat #eee;
 }
 .ov-add {
-  background-color: rgb(215, 106, 106);
+  /* background-color: rgb(215, 106, 106); */
+  margin: 0;
 }
 .ov-size-pick {
-  background-color: rgb(217, 219, 108);
+  /* background-color: rgb(217, 219, 108); */
 }
