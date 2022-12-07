@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from './Card.jsx';
 
 const Carousel = function ({ type, currentState, currentProd, addToFavorites, deleteFromFavorites, setProduct }) {
+  const [showLeftButton, setShowLeft] = useState(false);
+  const [showRightButton, setShowRight] = useState(true);
+
   //dynamic title to be used in html header for the carousel
   const title = type === 'outfits' ? 'Your Outfit' : 'Related Products';
   const carouselId = `carousel-${type}`;
@@ -12,15 +15,37 @@ const Carousel = function ({ type, currentState, currentProd, addToFavorites, de
     }
   };
 
+  // carousel scrolling functions
   const scrollLeft = () => {
-    // console.log('scrolling left');
     document.getElementById(carouselId).scrollLeft -= 200;
+    updateScroll();
   };
 
   const scrollRight = () => {
-    // console.log('scrolling right');
     document.getElementById(carouselId).scrollLeft += 200;
+    updateScroll();
   };
+
+  const updateScroll = () => {
+    if (document.getElementById(carouselId)) {
+      let scrollLeft = document.getElementById(carouselId).scrollLeft;
+      let carouselWidth = document.getElementById(carouselId).scrollWidth;
+      let carouselOffsetWidth = document.getElementById(carouselId).offsetWidth;
+
+      if (scrollLeft === 0) {
+        setShowLeft(false);
+      }
+      if (scrollLeft > 0) {
+        setShowLeft(true);
+      }
+      if (scrollLeft + carouselOffsetWidth === carouselWidth) {
+        setShowRight(false);
+      }
+      if (scrollLeft < (carouselWidth - carouselOffsetWidth)) {
+        setShowRight(true);
+      }
+    }
+  }
 
   return (
     <div>
@@ -28,9 +53,8 @@ const Carousel = function ({ type, currentState, currentProd, addToFavorites, de
 
       <div className="carousel-container" id="flex-box">
 
-        {/* {document.getElementById(carouselId).scrollLeft > 0 &&
-          <button className="scroll_buttons" id="scroll-left" onClick={scrollLeft}>⬅️</button>} */}
-        <button className="scroll_buttons" id="scroll-left" onClick={scrollLeft}>⬅️</button>
+        {showLeftButton &&
+          <button className="scroll_buttons" id="scroll-left" onClick={scrollLeft}>⬅️</button>}
 
         <div className="carousel" id={carouselId}>
           {type === 'outfits' &&
@@ -50,9 +74,9 @@ const Carousel = function ({ type, currentState, currentProd, addToFavorites, de
           })}
         </div>
 
-        {/* {document.getElementById(carouselId).scrollLeft < document.getElementById(carouselId).scrollWidth &&
-        <button className="scroll_buttons" value="scroll-right" onClick={scrollRight}>➡️</button> } */}
-        <button className="scroll_buttons" value="scroll-right" onClick={scrollRight}>➡️</button>
+        {showRightButton &&
+        <button className="scroll_buttons" value="scroll-right" onClick={scrollRight}>➡️</button> }
+
       </div>
     </div>
   );

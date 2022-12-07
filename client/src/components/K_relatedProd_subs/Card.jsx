@@ -52,10 +52,8 @@ const Card = function ({ type, currentProd, item, addToFavorites, deleteFromFavo
     e.stopPropagation();
     if (type === 'related') {
       //addToFavorites(itemInfo.id);
-      // console.log('opening comparison modal'); // TODO: delete
       setIsModalOpen(true);
     } else {
-      // console.log('delete from local storage faves'); // TODO: delete
       deleteFromFavorites(itemInfo.id);
     }
   };

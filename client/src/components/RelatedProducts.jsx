@@ -30,35 +30,41 @@ const RelatedProducts = function ({ product, setProduct }) {
   }, [outfits]);
 
   // remove any duplicates from relatedIds
-const deduplicate = (ids) => {
-  ids = [...new Set(ids)];
-  return Array(ids)[0];
-};
+  const deduplicate = (ids) => {
+    ids = [...new Set(ids)];
+    return Array(ids)[0];
+  };
 
-// helper functions for editing outfit states
-const addToFavorites = (id) => {
-  id = JSON.stringify(id);
+  // helper functions for editing outfit states
+  const addToFavorites = (id) => {
+    id = JSON.stringify(id);
 
-  if (!outfits.includes(id)) {
-    let newOutfits = outfits.slice();
-    newOutfits.push(id);
-    setOutfits(newOutfits);
-  }
-};
-
-const deleteFromFavorites = (id) => {
-  id = JSON.stringify(id);
-
-  let newOutfits = outfits.slice();
-
-  for (let i = newOutfits.length - 1; i >= 0; i--) {
-    if (newOutfits[i] === id) {
-      newOutfits.splice(i, 1);
+    if (!outfits.includes(id)) {
+      let newOutfits = outfits.slice();
+      newOutfits.push(id);
       setOutfits(newOutfits);
-      return;
     }
+  };
+
+  const deleteFromFavorites = (id) => {
+    id = JSON.stringify(id);
+
+    let newOutfits = outfits.slice();
+
+    for (let i = newOutfits.length - 1; i >= 0; i--) {
+      if (newOutfits[i] === id) {
+        newOutfits.splice(i, 1);
+        setOutfits(newOutfits);
+        return;
+      }
+    }
+  };
+
+  if(!product) {
+    return (
+      <div>loading...</div>
+    )
   }
-};
 
   return (
     <div className="related-products">

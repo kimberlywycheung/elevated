@@ -41,13 +41,16 @@ const Comparison = function ({ itemInfo, currentProd, isModalOpen, onClose }) {
 
   return ReactDOM.createPortal(
     <>
-      <div className='modal-bg' />
+      <div className="modal-bg-compare" />
       <div className='modal_compare'>
-        <h4>Comparing</h4>
-        <button className='modal_button' id='flex-box' onClick={onClose}>Close</button>
-        <div>
-          <span id='left'>{itemInfo.name}</span>
-          <span id='right'>{currentProd.name}</span>
+        <div id="flex-box">
+          <h4 id="center">Comparing</h4>
+          <button className="modal_button" id="right" onClick={onClose}>close</button>
+        </div>
+        <div id="flex-box">
+          <span id="left">{itemInfo.name}</span>
+          <span id="center"></span>
+          <span id="right">{currentProd.name}</span>
         </div >
         <div className='modal_container'>
           {allFeatures &&
