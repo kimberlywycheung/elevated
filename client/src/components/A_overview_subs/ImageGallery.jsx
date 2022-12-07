@@ -2,8 +2,9 @@ import React from 'react';
 
 
 const ImageGallery = () => (
-  <div className="image-gallery">
+  <div className="ov-img image-gallery">
     Image Gallery
+    <div className='ov-img-select'>Carousel</div>
   </div>);
 
 
