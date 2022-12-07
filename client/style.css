@@ -3,6 +3,7 @@
   color: rgb(56, 56, 56);
   max-width: 1200px;
   margin: 20px auto;
+  padding: 0 50px;
 }
 button {
   padding: 20px;
@@ -32,6 +33,12 @@ a {
   min-height: 300px;
   margin: 10px;
 }
+
+
+
+
+/* SHARED */
+
 .modal-bg { /* pop up form BACKGROUND OVERLAY, use on div wrapper for <Moda/> component*/
   /*display: none;  Hidden by default */
   position: fixed; /* Stay in place */
@@ -40,7 +47,7 @@ a {
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
+  /* overflow: auto; Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
 }
@@ -51,13 +58,35 @@ a {
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
 }
+#img-view {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  height: 80%;
+  max-width: 90%;
+  /* background-color: rgb(215, 63, 29); */
+
+}
+#pop-up-exit {
+  cursor: pointer;
+  position: fixed;
+  top: 5%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+  color: rgb(255,255,255, .7);
+  font-family:  'Varela Round', sans-serif;
+  font-size: 3em;
+}
+
 form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   /* align-items: center; */
 }
-form input,textarea,#qa-model-text {
+form input,textarea,#qa-model-text,.label1 {
   font-family: 'Varela Round', sans-serif;
   width: 50%;
   padding: 10px;
@@ -117,11 +146,21 @@ h2 {
 .qa-body {
   padding-left: 20px;
 }
-
+.ans-body {
+  display: block;
+  /* background-color: aquamarine; */
+  margin-bottom: 15px;
+}
+.ans-section {
+  padding-left: 60px;
+  /* background-color: aquamarine; */
+  display: flex;
+  flex-direction: row;
+}
 .a-box {
-  /* background-color: rgb(167, 204, 237); */
-  padding-left: 40px;
-  max-height: 200px;
+  /* background-color: rgb(99, 157, 208); */
+  padding-left: 10px;
+  max-height: 320px;
   overflow: auto;
 }
 .ans {
@@ -129,9 +168,22 @@ h2 {
   padding-left: 20px;
   font-size: 1em;
 }
+.a-thumbnails {
+  max-width: 100px;
+  max-height: 100px;
+  border: solid rgb(229, 229, 229) .5px;
+}
+.photo-div {
+  /* background-color: rgb(56, 121, 179); */
+  padding-left: 20px;
+  width: 400px;
+  max-height: 100px;
+  overflow-x: visible;
+  overflow-y: hidden;
+}
 .load-ans {
   /* background-color: rgb(183, 205, 224); */
-  padding: 10px 60px;
+  padding: 10px 30px;
   font-size: .8em;
   width: 160px;
 }
@@ -143,6 +195,9 @@ h2 {
   font-size: .6em;
   color: grey;
   padding: 10px 0;
+}
+.no-qs {
+  margin: 50px;
 }
 .q-meta2 {
   width: 500px;
@@ -158,22 +213,6 @@ h2 {
   color: grey;
   padding: 10px 0;
 }
-.bold {
-  /* background-color: rgb(217, 191, 180); */
-  font-style: bold;
-}
 
-/* Ratings and Reviews */
 
-.ratings-reviews {
-  background-color: rgb(159, 198, 172);
-  min-height: 300px;
-  margin: 10px;
-  display: flex;
-  flex-direction: row;
-}
 
-.reviewList {
-  max-height: 500px;
-  overflow: auto;
-}
