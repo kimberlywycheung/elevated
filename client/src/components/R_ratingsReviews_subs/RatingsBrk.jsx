@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import starArray from '../../helperFunctions/starArray.js'
 
-const RatingsBrk = function RatingsBrk({ breakdown }) {
+const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray }) {
   const [stats, setStats] = useState({});
 
   const ratingStats = function avgRating() {
@@ -34,6 +34,11 @@ const RatingsBrk = function RatingsBrk({ breakdown }) {
     return result;
   }
 
+  const clickHandler = function(e, rating) {
+    e.preventDefault()
+    ratingsArray(rating)
+  }
+
   useEffect(() => {
     setStats(ratingStats())
   }, [breakdown])
@@ -50,13 +55,13 @@ const RatingsBrk = function RatingsBrk({ breakdown }) {
         <span>{stats.ratings.avg}</span>
         <span>
           {starArray(stats.ratings.avg).map((item, i) => {
-              return (
-                  <div className="single-star-container" key={i}>
-                      <div className="single-star-fill" style={{"width" : `${parseInt(item*20.3)}px`}}>
-                          <img className="single-star-outline" src="../../client/dist/images/star2.png" alt="stars alt"></img>
-                      </div>
-                  </div>
-              );
+            return (
+              <div className="single-star-container" key={i}>
+                <div className="single-star-fill" style={{"width" : `${parseInt(item*20.3)}px`}}>
+                  <img className="single-star-outline" src="../../client/dist/images/star2.png" alt="stars alt"></img>
+                </div>
+              </div>
+            );
           })}
         </span>
       </div>
@@ -64,43 +69,43 @@ const RatingsBrk = function RatingsBrk({ breakdown }) {
         {stats.recommended}% of reviews recommended this product
       </div>
       <div>
-        <div>
+        <div onClick={(e) => clickHandler(e, 5)}>
           <span>5 stars</span>
-          <div className="containerStyles">
-            <div className="fillerStyles" style={{"width": stats.ratings['5']/100*120}}>
-              <span className="labelStyles">{stats.ratings['5']}%</span>
+          <div className="barContainerStyles">
+            <div className="barFillerStyles" style={{"width": stats.ratings['5']/100*120}}>
+              <span className="barLabelStyles">{stats.ratings['5']}%</span>
             </div>
           </div>
         </div>
-        <div>
+        <div onClick={(e) => clickHandler(e, 4)}>
           <span>4 stars</span>
-          <div className="containerStyles">
-            <div className="fillerStyles" style={{"width": stats.ratings['4']/100*120}}>
-              <span className="labelStyles">{stats.ratings['4']}%</span>
+          <div className="barContainerStyles">
+            <div className="barFillerStyles" style={{"width": stats.ratings['4']/100*120}}>
+              <span className="barLabelStyles">{stats.ratings['4']}%</span>
             </div>
           </div>
         </div>
-        <div>
+        <div onClick={(e) => clickHandler(e, 3)}>
           <span>3 stars</span>
-          <div className="containerStyles">
-            <div className="fillerStyles"  style={{"width": stats.ratings['3']/100*120}}>
-              <span className="labelStyles">{stats.ratings['3']}%</span>
+          <div className="barContainerStyles">
+            <div className="barFillerStyles"  style={{"width": stats.ratings['3']/100*120}}>
+              <span className="barLabelStyles">{stats.ratings['3']}%</span>
             </div>
           </div>
         </div>
-        <div>
+        <div onClick={(e) => clickHandler(e, 2)}>
           <span>2 stars</span>
-          <div className="containerStyles">
-            <div className="fillerStyles"  style={{"width": stats.ratings['2']/100*120}}>
-              <span className="labelStyles">{stats.ratings['2']}%</span>
+          <div className="barContainerStyles">
+            <div className="barFillerStyles"  style={{"width": stats.ratings['2']/100*120}}>
+              <span className="barLabelStyles">{stats.ratings['2']}%</span>
             </div>
           </div>
         </div>
         <div>
-          <span>1 stars</span>
-          <div className="containerStyles">
-            <div className="fillerStyles"  style={{"width": stats.ratings['1']/100*120}}>
-              <span className="labelStyles">{stats.ratings['1']}%</span>
+          <span onClick={(e) => clickHandler(e, 1)}>1 stars</span>
+          <div className="barContainerStyles">
+            <div className="barFillerStyles"  style={{"width": stats.ratings['1']/100*120}}>
+              <span className="barLabelStyles">{stats.ratings['1']}%</span>
             </div>
           </div>
         </div>

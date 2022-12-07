@@ -3,7 +3,7 @@ import RatingsBrk from './RatingsBrk.jsx';
 import ProductBrk from './ProductBrk.jsx';
 import axios from "axios";
 
-const Breakdown = ({ productID }) => {
+const Breakdown = ({ productID, ratingsArray }) => {
   const [breakdown, setBreakdown] = useState({});
 
   useEffect(() => {
@@ -27,8 +27,12 @@ const Breakdown = ({ productID }) => {
   return (
     <div>
       <h3>Ratings and Reviews</h3>
-      <RatingsBrk breakdown={breakdown}/>
-      <ProductBrk breakdown={breakdown}/>
+      <RatingsBrk breakdown={breakdown} ratingsArray={ratingsArray}/>
+      <div>
+        {Object.keys(breakdown.characteristics).map((char) => {
+          return <ProductBrk key={breakdown.characteristics[char].id} char={char} breakdown={breakdown.characteristics} />
+        })}
+      </div>
     </div>
   )
 }

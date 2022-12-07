@@ -1,13 +1,27 @@
 import React from 'react';
-import IndProdBrk from './IndProdBrk.jsx';
 
-const ProductBrk = function ProductBrk({ breakdown }) {
+const ProductBrk = function ({ char, breakdown }) {
+  let indicator = Math.round(breakdown[char].value * 10)/10
 
   return (
     <div>
-      {Object.keys(breakdown.characteristics).map((char) => {
-        return <IndProdBrk key={breakdown.characteristics[char].id} char={char} breakdown={breakdown.characteristics}/>
-      })}
+      <span>{char}</span>
+      <div>
+        <div className="charContainerStyles">
+          <div className="charFillerStyles" style={{"width": indicator/5*120}}>
+            <span>▼</span>
+          </div>
+        </div>
+        <div className="charBarContainer">
+          <div className="charBarStyles"></div>
+          <div className="charBarStyles"></div>
+          <div className="charBarStyles"></div>
+        </div>
+        <div className="charWordContainer">
+          <span style={{"fontSize": "10px"}}>poor</span>
+          <span style={{"fontSize": "10px"}}>amazing</span>
+        </div>
+      </div>
     </div>
   )
 }
