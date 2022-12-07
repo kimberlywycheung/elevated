@@ -7,12 +7,12 @@
   background-color: rgb(138, 72, 231);
 }
 .ov-info {
-  padding: 15px;
+  padding: 5px 0;
   background-color: rgb(216, 147, 57);
   flex: 1 1 0;
 }
 .ov-img-container {
-  padding: 15px;
+  padding: 15px 0;
   background-color: rgb(227, 191, 144);
   flex: 1.3 1 0;
 }
@@ -20,54 +20,106 @@
 /* IMAGES */
 
 .ov-img {
+  padding: 10px;
   background-color: rgb(196, 237, 123);
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  overflow: hidden;
   /* fill 100% */
 }
 .ov-img-select {
+  /* position: fixed; */
+  top: -40%;
+  /* transform: translate(50% 0%); */
   background-color: rgb(102, 170, 127);
 }
 
 /* HEADER */
 
 .ov-header {
-  padding: 10px;
   background-color: rgb(123, 226, 171);
 }
 .ov-review {
-  background-color: rgb(164, 209, 128);
+  margin: 0 0 10px 0;
+  /* background-color: rgb(164, 209, 128); */
 }
 .ov-category {
-  background-color: rgb(103, 175, 168);
+  margin: 10px 0 0 0;
+  /* background-color: rgb(103, 175, 168); */
 }
 #prod-title {
-  background-color: rgb(77, 92, 186);
+  margin: 5px 0 0 0;
+  /* background-color: rgb(77, 92, 186); */
 }
 .ov-price {
-  background-color: rgb(138, 125, 202);
+  font-size: 1.2em;
+  margin: 10px 0;
+  /* background-color: rgb(138, 125, 202); */
 }
 .ov-price-sale {
-  background-color: rgb(234, 107, 107);
+  margin: 10px 0;
+  /* background-color: rgb(234, 107, 107); */
 }
 
 /* STYLES SELECTOR */
 .ov-styles-selector {
+  display: flex;
+  flex-direction: column;
   padding: 10px;
+  height: 300px;
   background-color: rgb(55, 131, 236);
 }
 .ov-style-text {
   background-color: rgb(218, 125, 228);
+  margin-bottom: 20px;
+}
+
+.ov-style-container {
+  /* background-color: rgb(191, 30, 216); */
+    position: relative;
+    width: 20%;
+    padding-bottom: 20%;
+    margin: 10px 2%;
+    float: left;
+    height: 0;
 }
 .ov-style-select {
-  background-color: rgb(178, 152, 182);
+  /* margin: 0 10px;
+  background-color: rgb(178, 152, 182); */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
   /* circle crop? */
 }
 
 
 /* ADD TO CART SECTION */
 
-.ov-add-to-cart {
+.ov-form {
+  display: flex;
   padding: 10px;
-  background-color: rgb(169, 152, 178);
+  background-color: rgb(208, 184, 220);
+}
+.add-cart-button {
+  position: relative;
+  display: inline-block;
+  /* background-color: rgb(176, 212, 200); */
+}
+.ov-form-1 {
+  display: flex;
+  height: 50%;
+  flex-direction: row;
+}
+.size-drop {
+  font-size: 1.6em;
+}
+.ov-form-2 {
+  display: flex;
+  height: 50%;
+  flex-direction: row;
 }
 .ov-fave-btn {
   background-color: rgb(213, 148, 63);
