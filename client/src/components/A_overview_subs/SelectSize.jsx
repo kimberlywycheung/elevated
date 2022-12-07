@@ -1,18 +1,18 @@
 import React from "react";
 
-git 
+// git
 
 class SelectSize extends React.Component {
-  
+
   constructor(props) {
     super(props);
     // this.skusArr = Object.keys(props.skus);
     this.state = {
-      
+
       sku: props.sku,
       skus: props.skus,
       size: props.skus[props.sku].size
-      // skusArr: 
+      // skusArr:
      };
 
     this.handleChange = this.handleChange.bind(this);
@@ -35,7 +35,7 @@ class SelectSize extends React.Component {
   }
 
 
-  
+
   render() {
   //  console.log()
     return (
