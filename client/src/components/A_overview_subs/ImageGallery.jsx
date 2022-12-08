@@ -17,11 +17,10 @@ const ImageGallery = ({style, styles}) => {
   return (
   <div className='image-gallery'>
     <img src={imageURL} className="ov-img"></img>
-    <div className='ov-img-select'>
+      <div className='ov-img-select'>
+        {style.photos.map((photo) => { return <span className='ov-mini-container'><img className='ov-mini-img' src={photo.thumbnail_url} /></span>})}
+      </div>
 
-      {style.photos.map((photo) => { return <img src={photo.thumbnail_url} />})}
-    
-    </div>
   </div>
   )
 }
