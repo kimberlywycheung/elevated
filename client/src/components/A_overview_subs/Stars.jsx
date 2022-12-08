@@ -48,10 +48,7 @@ const Stars = ({ id }) => {
 
 // BROKEN: how can I get width inside of the style tag?
   return (<div>{ratingPercentage ? <div className="ov-review">
-    <div className="fill-ratings" style={{ width: { ratingPercentage } }}>
-      <span>★★★★★</span>
-    </div>
-    <div className="empty-ratings">
+    <div className="fill-ratings" >
       <span>★★★★★</span>
     </div>
   </div> : null}</div>
