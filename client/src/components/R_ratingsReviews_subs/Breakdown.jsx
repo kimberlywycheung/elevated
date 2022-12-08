@@ -3,7 +3,7 @@ import RatingsBrk from './RatingsBrk.jsx';
 import ProductBrk from './ProductBrk.jsx';
 import axios from "axios";
 
-const Breakdown = ({ productID, ratingsArray }) => {
+const Breakdown = ({ productID, ratingsArray, setCharBreak }) => {
   const [breakdown, setBreakdown] = useState({});
 
   useEffect(() => {
@@ -13,6 +13,7 @@ const Breakdown = ({ productID, ratingsArray }) => {
       .then((result) => {
         // console.log("BREAKDOWN State", result.data)
         setBreakdown(result.data)
+        setCharBreak(result.data)
       })
       .catch((err) => {
         // console.log("Error fetching data in 'components/R_ratingsReviews_subs/Breakdown.jsx'", err)
@@ -25,8 +26,7 @@ const Breakdown = ({ productID, ratingsArray }) => {
   }
 
   return (
-    <div>
-      <h3>Ratings and Reviews</h3>
+    <div className="breakdown-cont">
       <RatingsBrk breakdown={breakdown} ratingsArray={ratingsArray}/>
       <div>
         {Object.keys(breakdown.characteristics).map((char) => {

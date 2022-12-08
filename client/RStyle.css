@@ -1,16 +1,131 @@
-/* Ratings and Reviews */
+/* * {
+  border: red solid 1px;
+} */
 
-.ratings-reviews {
-  background-color: rgb(159, 198, 172);
+/* Reviews */
+
+.ratings-reviews-cont {
+  /* background-color: rgb(159, 198, 172); */
+  background-color: white;
   min-height: 300px;
   margin: 80px 0 0 0;
+}
+
+span.rating-span {
+  font-size: 40px;
+}
+
+span.star-span {
+  height: 30px;
+}
+
+.review-cont {
+  width: 75%;
+  padding: 3%;
+}
+
+.ratings-reviews {
   display: flex;
   flex-direction: row;
 }
 
+/* sort form  */
+
+.sort-reviews-container {
+  margin-bottom: 15px;
+}
+
+form .sort-header {
+  font-size: 22px;
+}
+
+.sort-selector {
+  font-size: 22px;
+  border-bottom: solid black 3px;
+  background-color: transparent;
+}
+
+/* review list */
+
 .reviewList {
   max-height: 500px;
   overflow: auto;
+  padding: 5px;
+  background-color: rgb(251, 251, 251);
+}
+
+.scroll {
+  max-height: 600px;
+  overflow: auto;
+}
+
+/* review tile */
+
+.review-tile {
+  margin-bottom: 5px;
+  padding: 1px;
+  background-color: white;
+  max-height: 250px;
+}
+
+.review-tile-head {
+  display: flex;
+  justify-content: space-between;
+}
+
+.review-tile-content {
+  padding: 5px;
+}
+
+.review-tile-user {
+  /* background-color: yellow; */
+  font-size: 14px ;
+}
+
+#by {
+  font-size: 10px;
+}
+.review-tile-user > div {
+  font-size: 10px;
+  font-weight: bold;
+  padding-left: 5px;
+  margin-bottom: 5px;
+}
+
+.review-tile-body {
+  /* background-color: aqua; */
+  max-height: 100px;
+  max-width: 500px;
+  overflow: auto;
+}
+
+.review-tile-body-body {
+  font-size: 14px;
+  padding-left: 5px;
+}
+
+.review-tile-body > span {
+  font-size: 20px;
+}
+
+.review-tile-help {
+  font-size: 13px;
+  /* background-color: pink; */
+}
+
+/* breakdown */
+
+.breakdown-cont {
+  background-color: white;
+  width: 25%;
+  padding: 3%;
+}
+
+.rating-and-stars {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: 5px;
 }
 
 /* Quarter star CSS */
@@ -34,7 +149,21 @@
   display: inline-block;
 }
 
+.rec-statement {
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
 /* Progress Bar CSS */
+
+.barRatingsContainer {
+  margin-bottom: 5px;
+}
+
+.barRatingsContainer > div {
+  display: flex;
+  align-items: center;
+}
 
 .barContainerStyles {
   height: 20px;
@@ -54,7 +183,7 @@
 
 .barLabelStyles {
   padding: 5;
-  color: white;
+  color: black;
   font-weight: bold;
   font-size: 10px;
 }
@@ -62,25 +191,27 @@
 /* Characteristics Display CSS */
 
 .charBarContainer {
-  width: 120px;
+  width: 198px;
   display: flex;
   flex-direction: row;
 }
 
 .charWordContainer {
-  width: 120px;
+  width: 198px;
   display: flex;
   justify-content: space-between;
 }
 
 .charContainerStyles {
   height: 5px;
-  width: 120px;
+  width: 198px;
+  position: relative;
+  z-index: 1;
 }
 
 .charBarStyles {
   height: 5px;
-  width: 40px;
+  width: 66px;
   background-color: gray;
   border-radius: 5px;
   margin: 5px;

@@ -68,7 +68,7 @@ const QaModal = ({style, productID, formType, setModalStyle, qID, getQlist}) => 
       <span onClick={e => {e.preventDefault(); setModalStyle({display:'none'})}} id='pop-up-exit'>X</span>
       <div className='modal-content'>
         <span id='qa-model-text'>Add {type}</span>
-        <form id={formType} onSubmit={e => {e.preventDefault(); sendData(); setModalStyle({display: 'none'});}}>
+        <form class="evans-form" id={formType} onSubmit={e => {e.preventDefault(); sendData(); setModalStyle({display: 'none'});}}>
           {inputFields}
           <button type='submit'>Submit {type}</button>
         </form>
