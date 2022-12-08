@@ -34,10 +34,10 @@ const Stars = ({ id }) => {
       reviewTotal = 2
       avgStars = 3
       */
-  
+
       setRating(roundedAvgStars);
     }
-   
+
   }
   React.useEffect(() => {
     getRatings();
