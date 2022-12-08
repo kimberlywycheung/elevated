@@ -7,6 +7,7 @@ import axios from 'axios';
 
 const App = () => {
   const [product, setProduct] = React.useState({});
+  const ref = React.useRef();
 
   const get = () => {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products', {
@@ -34,12 +35,12 @@ const App = () => {
   }, [product]);
 
   return (
-    <div id='root'>
+    <div id='root' ref={ref}>
       <h1>Del Taco Product Page1</h1>
       <Overview product={product}/>
       <RatingsReviews product={product}/>
       <QuestionsAnswers productID={product.id}/>
-      <RelatedProducts product={product} setProduct={setProduct}/>
+      <RelatedProducts product={product} setProduct={setProduct} ref={ref}/>
     </div>
   )
 };

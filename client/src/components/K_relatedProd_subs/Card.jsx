@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Comparison from './Comparison.jsx';
-import Stars from '../A_overview_subs/Stars.jsx';
+import StarComponent from '../StarComponent.jsx';
 
-const Card = function ({ type, currentProd, item, deleteFromFavorites, setProduct }) {
+const Card = React.forwardRef(({ type, currentProd, item, deleteFromFavorites, setProduct }, ref ) => {
   const [itemInfo, setItemInfo] = useState(null);
   const [itemStyles, setItemStyles] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -71,6 +71,8 @@ const Card = function ({ type, currentProd, item, deleteFromFavorites, setProduc
       getProduct(itemInfo.id, (data) => {
         if (itemInfo.id !== currentProd.id) {
           setProduct(data);
+          console.log(ref);
+          ref.current?.scrollIntoView({behavior: 'smooth'});
         }
       });
     }
@@ -81,6 +83,15 @@ const Card = function ({ type, currentProd, item, deleteFromFavorites, setProduc
     setIsModalOpen(false);
   };
 
+  // handler for showing the right stars
+  const decideIfFavorited = () => {
+    if (window.localStorage.getItem('favorites').includes(itemInfo.id)) {
+      return <i class="fa-solid fa-star"></i>;
+    } else {
+      return <i class="far fa-star"></i>;
+    }
+  }
+
   // TODO: can refactor saleprice later
   if (itemInfo && itemStyles) {
     return (
@@ -88,7 +99,8 @@ const Card = function ({ type, currentProd, item, deleteFromFavorites, setProduc
 
         <button className="card_button" onClick={buttonHandler}>
           {type === 'related' ?
-            <img src="../../client/dist/images/star.png" width="20"/> : ' X '}
+            // <i class="far fa-star"></i> : <i class="fa-solid fa-xmark"></i>}
+            decideIfFavorited() : <i class="fa-solid fa-xmark"></i>}
         </button>
 
         {type === 'related' &&
@@ -99,36 +111,24 @@ const Card = function ({ type, currentProd, item, deleteFromFavorites, setProduc
 
 
         <span className="card_info">
-          <p className="card_info">{itemInfo.category}</p>
-          <h4 className="card_info">{itemInfo.name}</h4>
+          <p className="card_info" id="card-category">{itemInfo.category}</p>
+          <h4 className="card_info" id="card-name">{itemInfo.name}</h4>
 
           {salePrice ?
             <p className="card_info">
-              <span className="sale_price">${salePrice}</span>
-              <strike>${originalPrice}</strike>
-            </p> : <p className="card_info">${originalPrice}</p> }
+              <p className="sale_price" id="card-price">
+                ${salePrice}<strike>${originalPrice}</strike>
+              </p>
+            </p> : <p className="card_info" id="card-price">${originalPrice}</p> }
 
-          <Stars id={itemInfo.id}/>
-{/*
-          {axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${endpoint}/styles`, {
-                  headers: { Authorization: process.env.GITHUB_TOKEN },
-                })
-                  .then(({ data }) => cb(data.results))
-                  .catch((err) => console.log(err));
-          starArray(stats.ratings.avg).map((item, i) => {
-            return (
-              <div className="single-star-container" key={i}>
-                <div className="single-star-fill" style={{"width" : `${parseInt(item*20.3)}px`}}>
-                  <img className="single-star-outline" src="../../client/dist/images/star2.png" alt="stars alt"></img>
-                </div>
-              </div>
-            );
-          })} */}
+          <div className="card-stars-container">
+            <StarComponent productID={itemInfo.id}/>
+          </div>
 
         </span>
       </div>
     );
   }
-};
+});
 
 export default Card;

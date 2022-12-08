@@ -8,17 +8,25 @@ const Characteristic = function ({ items }) {
     <div>
       {relatedChar &&
         <div id="flex-box">
-          <p id="left">✔️</p>
+          <p id="left checkmark">
+            <i class="fa-solid fa-check"></i>
+          </p>
           <p id="center">{relatedChar}</p>
           {currentChar === relatedChar ?
-            <p id="right">✔️</p> : <p id="right"></p>}
+            <p id="right checkmark">
+              <i class="fa-solid fa-check"></i>
+            </p> : <p id="right"></p>}
         </div> }
       {currentChar && (relatedChar !== currentChar) &&
         <div id="flex-box">
           {relatedChar === currentChar ?
-            <p id="left">✔️</p> : <p id="left"></p>}
+            <p id="left checkmark">
+              <i class="fa-solid fa-check"></i>
+            </p> : <p id="left"></p>}
           <p id="center">{currentChar}</p>
-          <p id="right">✔️</p>
+          <p id="right checkmark">
+            <i class="fa-solid fa-check"></i>
+          </p>
         </div> }
     </div>
   );
