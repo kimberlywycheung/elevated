@@ -5,11 +5,10 @@ const StyleSelector = ({ styles, style, setStyle }) => {
 //commented out for visibility
   if (style) {
     return (
-      <div class="style-selector">
-        <div class="current-style">Style {'> ' + style.name}</div>
-        <div class="style-selector">
-          (images hidden)
-          {/* {styles.map((oneStyle) => { return <Swatch oneStyle={oneStyle} /> })} */}
+      <div className="ov-styles-selector">
+        <div className="ov-style-text">Style {'> ' + style.name}</div>
+        <div>
+          {styles.map((oneStyle, i) => { return <Swatch key={i} oneStyle={oneStyle} /> })}
         </div>
       </div>)
   }
