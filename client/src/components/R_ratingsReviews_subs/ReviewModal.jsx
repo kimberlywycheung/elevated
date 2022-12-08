@@ -2,10 +2,32 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBreak }) {
-  if (!isOpen) return null
 
-  const chars = Object.keys(charBreak.characteristics)
-  console.log('CharBreak ', charBreak)
+
+  console.log('CharBreak ', charBreak);
+  const chars = Object.keys(charBreak.characteristics);
+  const charObj = charBreak.characteristics;
+
+  const formSubmit = function(e) {
+    e.preventDefault()
+    // console.log("event ", e.target)
+    // const newReview = new FormData(e.target);
+
+    // var form = document.getElementById(formType);
+    // const formData = new FormData(form);
+    // const dataObj = {};
+
+    let addReview = document.getElementById('addReview');
+    console.log('HTML ELEMENT ', addReview);
+    let newReview = new FormData(addReview);
+    for (const [key, value] of newReview) {
+      console.log({[key]: value})
+    }
+    console.log("New Review", newReview)
+    setIsOpen(false);
+  }
+
+  if (!isOpen) return null
 
   return ReactDOM.createPortal(
     <div className='qa-modal modal-bg'>
@@ -13,19 +35,19 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
       <div className='modal-content scroll'>
         <h3>Write your review</h3>
         <h4>About the {name}</h4>
-        <form>
+        <form id="addReview" onSubmit={formSubmit}>
           <div>
             <label>* Overall Rating:</label>
             <div>
-              <input type="radio" name="starRating"></input>
+              <input type="radio" name="rating" required></input>
               <label>1</label>
-              <input type="radio" name="starRating"></input>
+              <input type="radio" name="rating"></input>
               <label>2</label>
-              <input type="radio" name="starRating"></input>
+              <input type="radio" name="rating"></input>
               <label>3</label>
-              <input type="radio" name="starRating"></input>
+              <input type="radio" name="rating"></input>
               <label>4</label>
-              <input type="radio" name="starRating"></input>
+              <input type="radio" name="rating"></input>
               <label>5</label>
             </div>
             <div>
@@ -41,9 +63,9 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
               <label>* Do you recommend this product?</label>
             </div>
             <div>
-              <input type="radio" id="yes" name="recommend" value="yes"></input>
+              <input type="radio" id="yes" name="recommend" value="true" required></input>
               <label htmlFor="yes">Yes</label>
-              <input type="radio" id="no" name="recommend" value="no"></input>
+              <input type="radio" id="no" name="recommend" value="false"></input>
               <label htmlFor="no">No</label>
             </div>
           </div>
@@ -56,15 +78,15 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
                   <div key={index}>
                     <label>{char}</label>
                     <div>
-                      <input type="radio" name="charRating"></input>
+                      <input type="radio" value={1} name={charObj[char].id} required></input>
                       <label>1</label>
-                      <input type="radio" name="charRating"></input>
+                      <input type="radio" value={2} name={charObj[char].id}></input>
                       <label>2</label>
-                      <input type="radio" name="charRating"></input>
+                      <input type="radio" value={3} name={charObj[char].id}></input>
                       <label>3</label>
-                      <input type="radio" name="charRating"></input>
+                      <input type="radio" name={charObj[char].id}></input>
                       <label>4</label>
-                      <input type="radio" name="charRating"></input>
+                      <input type="radio" name={charObj[char].id}></input>
                       <label>5</label>
                     </div>
                   </div>
@@ -74,14 +96,16 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
           </div>
           <div>
             <label>* Review Summary:</label>
-            <input type="text" placeholder="Best purchase ever!!!" maxLength="60"></input>
+            <input type="text" name="summary" placeholder="Best purchase ever!!!" maxLength="60" required></input>
           </div>
           <div>
             <label>* Review Body:</label>
             <textarea
+              name="body"
               minLength="50"
               maxLength="1000"
-              placeholder="Why did you like the product or not?">
+              placeholder="Why did you like the product or not?"
+              required>
             </textarea>
           </div>
           <div>
@@ -90,12 +114,12 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
           </div>
           <div>
             <label>* Nickname:</label>
-            <input type="text" placeholder="jackson11" maxLength="60"></input>
+            <input type="text" name="name" placeholder="jackson11" maxLength="60" required></input>
             <div>For privacy reasons do not use your real name or email.</div>
           </div>
           <div>
-            <label>* Review Summary:</label>
-            <input type="email" placeholder="jackson11@gmail.com" maxLength="60"></input>
+            <label>* email:</label>
+            <input type="email" name="email" placeholder="jackson11@gmail.com" maxLength="60" required></input>
             <div>For authentication reasons, you will not be emailed.</div>
           </div>
           <input type="submit" value="Submit"></input>
