@@ -17,7 +17,7 @@ const ListReviews =function ListReviews({ reviews, displayCount, setRList, starF
       {reviews.results.map((review, index) => {
         if (count < displayCount && filter(review.rating)) {
           count++
-          return <ReviewTile key={review.review_id} review={review} setRList={setRList}/>
+          return <ReviewTile key={review.review_id} review={review} setRList={setRList} productID={reviews.product}/>
         }
       })}
     </div>

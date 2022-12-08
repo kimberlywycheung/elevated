@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import starArray from '../../helperFunctions/starArray.js';
 import StarComponent from '../StarComponent.jsx';
 
 const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray }) {
@@ -50,26 +49,11 @@ const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray }) {
     )
   }
 
-  console.log("RArray ", ratingsArray)
-  console.log("Breakdown ", breakdown)
-  console.log("Stats ", stats);
-
   return (
     <div>
       <div className="rating-and-stars">
         <span className="rating-span">{stats.ratings.avg}</span>
         <StarComponent productID={breakdown.product_id} avg={stats.ratings.avg}/>
-        {/* <span className="star-span">
-          {starArray(stats.ratings.avg).map((item, i) => {
-            return (
-              <div className="single-star-container" key={i}>
-                <div className="single-star-fill" style={{"width" : `${parseInt(item*20.3)}px`}}>
-                  <img className="single-star-outline" src="../../client/dist/images/star2.png" alt="stars alt"></img>
-                </div>
-              </div>
-            );
-          })}
-        </span> */}
       </div>
       <div className="rec-statement">
         {stats.recommended}% of reviews recommended this product

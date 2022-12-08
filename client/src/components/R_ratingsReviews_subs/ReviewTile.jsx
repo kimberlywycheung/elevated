@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import starArray from '../../helperFunctions/starArray.js';
 import ImgView from '../E_qa_subs/ImgView.jsx';
+import StarComponent from '../StarComponent.jsx';
 
-const ReviewTile = function ReviewTile({ review, setRList }) {
+const ReviewTile = function ReviewTile({ review, setRList, productID }) {
   const [photosArr, setPhotosArr] = React.useState([]);
   const [imgViewStyle, setImgViewStyle] = React.useState({display: 'none'});
   const [imgUrl, setImgUrl] = React.useState('');
@@ -44,7 +44,6 @@ const ReviewTile = function ReviewTile({ review, setRList }) {
   }
 
   const openImg = (url) => {
-    console.log('opening image with url ', url);
     setImgUrl(url);
     setImgViewStyle({display: 'block'});
   };
@@ -75,8 +74,8 @@ const ReviewTile = function ReviewTile({ review, setRList }) {
     <div className="review-tile">
       <div className="review-tile-head">
         <span>
-          <span>{review.rating}-</span>
-          <span>
+          <StarComponent productID={productID} avg={review.rating}/>
+          {/* <span>
             {starArray(review.rating).map((item, i) => {
               if (item > 0) {
                 return (
@@ -86,7 +85,7 @@ const ReviewTile = function ReviewTile({ review, setRList }) {
                 );
               }
             })}
-          </span>
+          </span> */}
         </span>
         <span>{date.toLocaleDateString()}</span>
       </div>

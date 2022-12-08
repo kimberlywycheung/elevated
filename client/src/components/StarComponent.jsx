@@ -33,12 +33,6 @@ const StarComponent = ({ productID, avg }) => {
     return Math.round((overallRatings / totalRatings) * 10) / 10;
   }
 
-
-  console.log("Avg passed down ", avg)
-  console.log("Avg set", avgRating)
-
-  console.log('here');
-
   const starArray = function (starRating) {
     let rating = starRating || 0;
     let stars = [];
