@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import starArray from '../../helperFunctions/starArray.js';
-import ImgView from './ImgView.jsx';
+import ImgView from '../E_qa_subs/ImgView.jsx';
 
 const ReviewTile = function ReviewTile({ review, setRList }) {
   const [photosArr, setPhotosArr] = React.useState([]);

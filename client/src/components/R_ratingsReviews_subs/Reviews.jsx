@@ -10,7 +10,7 @@ const Reviews = function Reviews({ productID, name, starFilter, charBreak }) {
   const [sort, setSort] = useState('relevant');
 
   const setReviewList = function() {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${productID}&page=1&count=5&sort=${sort}`, {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${productID}&page=1&count=200&sort=${sort}`, {
       headers: { Authorization: process.env.GITHUB_TOKEN },
     })
       .then((result) => {
