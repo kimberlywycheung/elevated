@@ -205,6 +205,8 @@ form .sort-header {
 .charContainerStyles {
   height: 5px;
   width: 198px;
+  position: relative;
+  z-index: 1;
 }
 
 .charBarStyles {
