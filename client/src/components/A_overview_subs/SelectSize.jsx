@@ -1,6 +1,6 @@
 import React from "react";
 
-// git
+
 
 class SelectSize extends React.Component {
 
@@ -11,7 +11,7 @@ class SelectSize extends React.Component {
 
       sku: props.sku,
       skus: props.skus,
-      size: props.skus[props.sku].size
+      quantity: 1
       // skusArr:
      };
 
@@ -34,22 +34,49 @@ class SelectSize extends React.Component {
     event.preventDefault();
   }
 
+  
 
 
   render() {
+    let quantityArr = [];
+    for(let i = this.state.skus[this.state.sku].quantity; i > 0; i--) {
+      quantityArr.push(<option value={i+1} key={i}>{i}</option>)
+    }
   //  console.log()
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Select Size:
-          <select value={this.state.size} onChange={this.handleChange}>
-            {Object.keys(this.state.skus).map((sku) => { return <option>{this.state.skus[sku].size}</option> ; })}
-          </select>
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-    );
-  }
-}
+  return (
+    <form className='ov-form' onSubmit={this.handleSubmit}>
+      <div className='ov-form-1'>
 
+        <div className="size-drop">
+        {/* Size: */}
+        <select className='select-size-qty' value={this.state.size} onChange={this.handleChange}>
+
+      
+
+        <option value={0} key={99}>SELECT SIZE</option>
+
+          {Object.keys(this.state.skus).map((sku, i) => { return <option value={i+1} key={i}>{this.state.skus[sku].size}</option> })}
+        </select>
+        </div>
+
+        <div className="quantity-drop">
+        {/* Quantity: */}
+        <select className='select-size-qty' value={this.state.quantity} onChange={this.handleChange}>
+          <option>QTY</option>
+          {quantityArr}
+        </select>
+        </div>
+
+      </div>
+      <div className='ov-form-2'>
+        {/* <input type="submit" value="Add to Cart" /> */}
+        <button type='submit' className="add-cart-button">Add to Cart</button>
+        <button className="favorite-button">♡</button>
+      </div>
+
+    </form>
+  );
+}
+}
+//♡
 export default SelectSize;

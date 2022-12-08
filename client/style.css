@@ -18,8 +18,9 @@ a {
 }
 
 .overview {
-  background-color: rgb(176, 176, 215);
-  min-height: 300px;
+  /* background-color: rgb(28, 28, 238); */
+  padding: 5px;
+  height: 1500px;
   margin: 10px;
 }
 .questions-answers {

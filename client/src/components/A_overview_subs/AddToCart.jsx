@@ -7,11 +7,11 @@ import FavoriteButton from "./FavoriteButton.jsx";
 const AddToCart = ({ sku, skus }) => {
   // console.log(skus);
 
-  return (<div>PLACEHOLDER: Add to Cart
+  return (<div className="ov-add-to-cart">
     <SelectSize sku={sku} skus={skus} />
-    <SelectQuantity />
+    {/* <SelectQuantity />
     <AddButton />
-    <FavoriteButton />
+    <FavoriteButton /> */}
   </div>)
 
 }
