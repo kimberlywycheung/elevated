@@ -26,8 +26,6 @@ const ReviewTile = function ReviewTile({ review, setRList }) {
     }
   };
 
-  console.log(review);
-
   const handleReport = (e) => {
     e.preventDefault()
     if(window.localStorage.getItem(`reported${review.review_id}`) === null) {
