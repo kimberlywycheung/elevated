@@ -82,13 +82,14 @@ a {
   font-size: 3em;
 }
 
-form {
+.evans-form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   /* align-items: center; */
 }
-form input,textarea,#qa-model-text,.label1 {
+
+.evans-form input,textarea,#qa-model-text,.label1 {
   font-family: 'Varela Round', sans-serif;
   width: 50%;
   padding: 10px;
