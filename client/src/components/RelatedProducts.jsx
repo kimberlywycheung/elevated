@@ -9,18 +9,17 @@ const RelatedProducts = function ({ product, setProduct }) {
   // grabs any existing locally stored favorites
   useEffect(() => {
     let currentFavs = window.localStorage.getItem('favorites');
-    currentFavs = currentFavs.replace(/\r?\n|\r/g, '').split(','); //convert localstorage string to array
+    // converts localstorage string to array
+    currentFavs = currentFavs.replace(/\r?\n|\r/g, '').split(',');
     setOutfits(currentFavs);
   }, []);
 
   // inititlizes state for relatedIds whenever the product changes
   useEffect(() => {
-    const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${product.id}/related`;
-    const auth = {'Authorization': process.env.GITHUB_TOKEN};
     if (product.id) {
-      axios({method: 'get', url, headers: auth})
-        .then(({ data }) => setRelatedIds(deduplicate(data)))
-        .catch((err) => console.log(err));
+      getRelated(product.id, (data) => {
+        setRelatedIds(deduplicate(data));
+      });
     }
   }, [product]);
 
@@ -29,36 +28,36 @@ const RelatedProducts = function ({ product, setProduct }) {
     window.localStorage.setItem('favorites', outfits);
   }, [outfits]);
 
-  // remove any duplicates from relatedIds
-const deduplicate = (ids) => {
-  ids = [...new Set(ids)];
-  return Array(ids)[0];
-};
+  // helper functions for editing outfit states
+  const addToFavorites = (id) => {
+    id = JSON.stringify(id);
 
-// helper functions for editing outfit states
-const addToFavorites = (id) => {
-  id = JSON.stringify(id);
-
-  if (!outfits.includes(id)) {
-    let newOutfits = outfits.slice();
-    newOutfits.push(id);
-    setOutfits(newOutfits);
-  }
-};
-
-const deleteFromFavorites = (id) => {
-  id = JSON.stringify(id);
-
-  let newOutfits = outfits.slice();
-
-  for (let i = newOutfits.length - 1; i >= 0; i--) {
-    if (newOutfits[i] === id) {
-      newOutfits.splice(i, 1);
+    if (!outfits.includes(id)) {
+      const newOutfits = outfits.slice();
+      newOutfits.push(id);
       setOutfits(newOutfits);
-      return;
     }
+  };
+
+  const deleteFromFavorites = (id) => {
+    id = JSON.stringify(id);
+
+    const newOutfits = outfits.slice();
+
+    for (let i = newOutfits.length - 1; i >= 0; i--) {
+      if (newOutfits[i] === id) {
+        newOutfits.splice(i, 1);
+        setOutfits(newOutfits);
+        return;
+      }
+    }
+  };
+
+  if (!product) {
+    return (
+      <div>loading...</div>
+    );
   }
-};
 
   return (
     <div className="related-products">
@@ -66,6 +65,23 @@ const deleteFromFavorites = (id) => {
       <Carousel type="outfits" currentState={outfits} currentProd={product} addToFavorites={addToFavorites} deleteFromFavorites={deleteFromFavorites} setProduct={setProduct} />
     </div>
   );
+};
+
+// HELPER FUNCTIONS
+
+// gets related products for current product
+const getRelated = (endpoint, cb) => {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${endpoint}/related`, {
+    headers: { Authorization: process.env.GITHUB_TOKEN },
+  })
+    .then(({ data }) => cb(data))
+    .catch((err) => console.log(err));
+};
+
+// remove any duplicates from relatedIds
+const deduplicate = (ids) => {
+  ids = [...new Set(ids)];
+  return Array(ids)[0];
 };
 
 export default RelatedProducts;
