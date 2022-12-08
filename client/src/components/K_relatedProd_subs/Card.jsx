@@ -71,7 +71,6 @@ const Card = React.forwardRef(({ type, currentProd, item, deleteFromFavorites, s
       getProduct(itemInfo.id, (data) => {
         if (itemInfo.id !== currentProd.id) {
           setProduct(data);
-          console.log(ref);
           ref.current?.scrollIntoView({behavior: 'smooth'});
         }
       });
