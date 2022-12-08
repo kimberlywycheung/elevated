@@ -41,6 +41,7 @@ form .sort-header {
 
 .sort-selector {
   font-size: 22px;
+  font-family: 'Varela Round', sans-serif;
   border-bottom: solid black 3px;
   background-color: transparent;
 }
