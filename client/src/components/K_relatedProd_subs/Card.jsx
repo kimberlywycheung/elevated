@@ -109,6 +109,22 @@ const Card = function ({ type, currentProd, item, deleteFromFavorites, setProduc
             </p> : <p className="card_info">${originalPrice}</p> }
 
           <Stars id={itemInfo.id}/>
+{/*
+          {axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${endpoint}/styles`, {
+                  headers: { Authorization: process.env.GITHUB_TOKEN },
+                })
+                  .then(({ data }) => cb(data.results))
+                  .catch((err) => console.log(err));
+          starArray(stats.ratings.avg).map((item, i) => {
+            return (
+              <div className="single-star-container" key={i}>
+                <div className="single-star-fill" style={{"width" : `${parseInt(item*20.3)}px`}}>
+                  <img className="single-star-outline" src="../../client/dist/images/star2.png" alt="stars alt"></img>
+                </div>
+              </div>
+            );
+          })} */}
+
         </span>
       </div>
     );
