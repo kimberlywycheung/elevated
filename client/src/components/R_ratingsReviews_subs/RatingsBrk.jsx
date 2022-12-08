@@ -52,8 +52,8 @@ const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray }) {
   return (
     <div>
       <div className="rating-and-stars">
-        <h1>{stats.ratings.avg}</h1>
-        <span>
+        <span className="rating-span">{stats.ratings.avg}</span>
+        <span className="star-span">
           {starArray(stats.ratings.avg).map((item, i) => {
             return (
               <div className="single-star-container" key={i}>
@@ -65,10 +65,10 @@ const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray }) {
           })}
         </span>
       </div>
-      <div>
+      <div className="rec-statement">
         {stats.recommended}% of reviews recommended this product
       </div>
-      <div>
+      <div className="barRatingsContainer">
         <div onClick={(e) => clickHandler(e, 5)}>
           <span>5 stars</span>
           <div className="barContainerStyles">

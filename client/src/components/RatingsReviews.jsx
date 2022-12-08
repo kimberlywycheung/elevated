@@ -41,7 +41,7 @@ const RatingsReviews = ({product}) => {
 
   return (
     <div className='ratings-reviews-cont'>
-      <h2>Ratings and Reviews</h2>
+      <h2>Ratings & Reviews</h2>
       <div className='ratings-reviews'>
         <Breakdown productID={product.id} ratingsArray={ratingsArray} setCharBreak={setCharBreak}/>
         <Reviews productID={product.id} name={product.name} starFilter={starFilter} charBreak={charBreak}/>

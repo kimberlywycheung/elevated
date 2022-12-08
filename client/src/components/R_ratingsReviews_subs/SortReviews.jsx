@@ -7,10 +7,10 @@ const SortReviews =function SortReviews({ setSort, reviews }) {
   }
 
   return (
-    <div>
+    <div className="sort-reviews-container">
       <form>
-        <label>{reviews.results.length} reviews, sorted by</label>
-        <select onChange={handleChange}>
+        <label className="sort-header">{reviews.results.length} reviews, sorted by</label>
+        <select className="sort-selector" onChange={handleChange}>
           <option
             value="relevant"
             defaultValue>

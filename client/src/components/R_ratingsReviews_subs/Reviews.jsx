@@ -36,7 +36,7 @@ const Reviews = function Reviews({ productID, name, starFilter, charBreak }) {
       <SortReviews reviews={reviews} setSort={setSort}/>
       <ListReviews reviews={reviews} displayCount={displayCount} setRList={setReviewList} starFilter={starFilter}/>
       <div>
-        { (reviews.count - displayCount >= 2) &&
+        { (reviews.count - displayCount >= 1) &&
           <button onClick={() => setDisplayCount(displayCount + 2)}>
             More Reviews
           </button>
