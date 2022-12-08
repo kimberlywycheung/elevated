@@ -37,9 +37,9 @@ const App = () => {
     <div id='root'>
       <h1>Del Taco Product Page1</h1>
       <Overview product={product}/>
-      {/* <RatingsReviews product={product}/>
+      <RatingsReviews product={product}/>
       <QuestionsAnswers productID={product.id}/>
-      <RelatedProducts product={product} setProduct={setProduct}/> */}
+      <RelatedProducts product={product} setProduct={setProduct}/>
     </div>
   )
 };

@@ -112,7 +112,7 @@
   min-height: 200px;
   height: fit-content;
   block-size: fit-content;
-  background-color: rgb(131, 183, 254);
+  /* background-color: rgb(131, 183, 254); */
 }
 .ov-style-text {
   /* background-color: rgb(218, 125, 228); */
