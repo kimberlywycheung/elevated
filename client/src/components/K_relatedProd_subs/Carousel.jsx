@@ -22,9 +22,9 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
     if (carouselElement) {
       let { scrollLeft, scrollWidth, offsetWidth } = carouselElement;
 
-      console.log('scrollLeft: ', scrollLeft);
-      console.log('scrollWidth: ', scrollWidth);
-      console.log('offsetWidth: ', offsetWidth);
+      // console.log('scrollLeft: ', scrollLeft);
+      // console.log('scrollWidth: ', scrollWidth);
+      // console.log('offsetWidth: ', offsetWidth);
 
       if (scrollLeft === 0) setShowLeft(false);
       if (scrollLeft > 0) setShowLeft(true);
