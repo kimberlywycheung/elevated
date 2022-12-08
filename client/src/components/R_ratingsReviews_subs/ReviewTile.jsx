@@ -104,7 +104,7 @@ const ReviewTile = function ReviewTile({ review, setRList }) {
         <div className="review-tile-body">
           <span>{review.summary}</span>
           <div>
-            <div class="review-tile-body-body">{review.body}</div>
+            <div className="review-tile-body-body">{review.body}</div>
             <div className='photo-div'>{photosArr}</div> {/* photo THUMBNAILS HERE */}
           </div>
         </div>
