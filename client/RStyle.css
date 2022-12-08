@@ -156,6 +156,10 @@ form .sort-header {
 
 /* Progress Bar CSS */
 
+.barRatingsContainer {
+  margin-bottom: 5px;
+}
+
 .barRatingsContainer > div {
   display: flex;
   align-items: center;

@@ -22,6 +22,7 @@ const ProductBrk = function ({ char, breakdown }) {
           <span style={{"fontSize": "10px"}}>amazing</span>
         </div>
       </div>
+      <hr></hr>
     </div>
   )
 }
