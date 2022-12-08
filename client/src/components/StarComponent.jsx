@@ -13,7 +13,7 @@ const StarComponent = ({ productID, avg }) => {
         })
           .then((result) => {
             console.log("please work ", result.data.ratings)
-            setAvgRating(result.data.ratings)
+            setAvgRating(starRating(result.data.ratings))
           })
           .catch((err) => {
             // console.log("Error fetching data")
@@ -77,7 +77,7 @@ const StarComponent = ({ productID, avg }) => {
 
   return (
     <span className="star-span">
-      {starArray(avg || starRating(avgRating)).map((item, i) => {
+      {starArray(avgRating).map((item, i) => {
         return (
           <div className="single-star-container" key={i}>
             <div className="single-star-fill" style={{"width" : `${parseInt(item*20.3)}px`}}>
