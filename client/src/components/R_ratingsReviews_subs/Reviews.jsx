@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import SortReviews from './SortReviews.jsx'
-import ListReviews from './ListReviews.jsx'
-import AddReviews from './AddReviews.jsx'
+import SortReviews from './SortReviews.jsx';
+import ListReviews from './ListReviews.jsx';
+import AddReviews from './AddReviews.jsx';
+import $ from 'jquery';
 
 const Reviews = function Reviews({ productID, name, starFilter, charBreak }) {
   const [reviews, setReviews] = useState({});
@@ -27,6 +28,12 @@ const Reviews = function Reviews({ productID, name, starFilter, charBreak }) {
     setReviewList();
   }, [productID, sort]);
 
+  const addMoreReviews = function(e) {
+    e.preventDefault();
+    setDisplayCount(displayCount + 2);
+    $(".reviewList").animate({ scrollTop: $('.reviewList')[0].scrollHeight}, 1000);
+  }
+
   if (!reviews.product) {
     return <div>loading...</div>
   }
@@ -37,7 +44,7 @@ const Reviews = function Reviews({ productID, name, starFilter, charBreak }) {
       <ListReviews reviews={reviews} displayCount={displayCount} setRList={setReviewList} starFilter={starFilter}/>
       <div>
         { (reviews.count - displayCount >= 1) &&
-          <button onClick={() => setDisplayCount(displayCount + 2)}>
+          <button onClick={addMoreReviews}>
             More Reviews
           </button>
         }
