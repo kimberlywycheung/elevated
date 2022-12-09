@@ -48,7 +48,7 @@ const Reviews = function Reviews({ productID, name, starFilter, charBreak }) {
             More Reviews
           </button>
         }
-        <AddReviews id={productID} name={name} charBreak={charBreak}/>
+        <AddReviews id={productID} name={name} charBreak={charBreak} setRList={setReviewList}/>
       </div>
     </div>
   );

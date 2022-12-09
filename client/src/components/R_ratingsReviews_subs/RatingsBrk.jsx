@@ -62,7 +62,7 @@ const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray }) {
         <div onClick={(e) => clickHandler(e, 5)}>
           <span>5 stars</span>
           <div className="barContainerStyles">
-            <div className="barFillerStyles" style={{"width": stats.ratings['5']/100*120}}>
+            <div className="barFillerStyles" style={{"width": `${stats.ratings['5']/100*120}%`}}>
               <span className="barLabelStyles">{stats.ratings['5']}%</span>
             </div>
           </div>
@@ -70,7 +70,7 @@ const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray }) {
         <div onClick={(e) => clickHandler(e, 4)}>
           <span>4 stars</span>
           <div className="barContainerStyles">
-            <div className="barFillerStyles" style={{"width": stats.ratings['4']/100*120}}>
+            <div className="barFillerStyles" style={{"width": `${stats.ratings['4']/100*120}%`}}>
               <span className="barLabelStyles">{stats.ratings['4']}%</span>
             </div>
           </div>
@@ -78,7 +78,7 @@ const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray }) {
         <div onClick={(e) => clickHandler(e, 3)}>
           <span>3 stars</span>
           <div className="barContainerStyles">
-            <div className="barFillerStyles"  style={{"width": stats.ratings['3']/100*120}}>
+            <div className="barFillerStyles"  style={{"width": `${stats.ratings['3']/100*120}%`}}>
               <span className="barLabelStyles">{stats.ratings['3']}%</span>
             </div>
           </div>
@@ -86,7 +86,7 @@ const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray }) {
         <div onClick={(e) => clickHandler(e, 2)}>
           <span>2 stars</span>
           <div className="barContainerStyles">
-            <div className="barFillerStyles"  style={{"width": stats.ratings['2']/100*120}}>
+            <div className="barFillerStyles"  style={{"width": `${stats.ratings['2']/100*120}%`}}>
               <span className="barLabelStyles">{stats.ratings['2']}%</span>
             </div>
           </div>
@@ -94,7 +94,7 @@ const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray }) {
         <div>
           <span onClick={(e) => clickHandler(e, 1)}>1 stars</span>
           <div className="barContainerStyles">
-            <div className="barFillerStyles"  style={{"width": stats.ratings['1']/100*120}}>
+            <div className="barFillerStyles"  style={{"width": `${stats.ratings['1']/100*120}%`}}>
               <span className="barLabelStyles">{stats.ratings['1']}%</span>
             </div>
           </div>
