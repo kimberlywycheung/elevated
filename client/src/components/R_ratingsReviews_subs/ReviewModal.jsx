@@ -18,7 +18,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
     Fit: 0
   })
 
-  if (!charBreak) {
+  if (!charBreak.characteristics) {
     return null;
   }
 
