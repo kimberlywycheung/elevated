@@ -38,20 +38,32 @@ const Comparison = function ({ itemInfo, currentProd, getProduct, isModalOpen, o
     <>
       <div className="modal-bg-compare" />
       <div className="modal_compare">
-        <div className="modal_content" id="flex-box">
-          <h4 id="center">Comparing</h4>
-          <button className="modal_button" id="right" onClick={onClose}>close</button>
-        </div>
-        <div id="flex-box">
-          <span id="left">{itemInfo.name}</span>
-          <span id="center"></span>
-          <span id="right">{currentProd.name}</span>
-        </div>
-        <div className="modal_container">
-          {allFeatures &&
-            Object.keys(allFeatures).map((feature) => {
-              return <Characteristic key={feature} items={allFeatures[feature]} />;
-            })}
+        <div className="modal_content">
+          <div className="modal-header" id="flex-box">
+            <h4 id="center">Comparing</h4>
+            <button className="modal_button" id="right" onClick={onClose}>
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <div className="modal-products" id="flex-box">
+            <span id="left">{itemInfo.name}</span>
+            <span id="center"></span>
+            <span id="right">{currentProd.name}</span>
+          </div>
+          <div className="modal_container">
+            {allFeatures &&
+              Object.keys(allFeatures).map((feature) => {
+                const relatedChar = allFeatures[feature][0];
+                const currentChar = allFeatures[feature][1];
+                if (relatedChar || currentChar) {
+                  return (
+                    <div className="compare-characteristics" key={feature}>
+                      <Characteristic key={feature} relatedChar={relatedChar} currentChar={currentChar}/>
+                    </div>
+                  );
+                }
+              })}
+          </div>
         </div>
       </div>
     </>,

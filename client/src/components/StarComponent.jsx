@@ -12,7 +12,7 @@ const StarComponent = ({ productID, avg }) => {
           headers: { 'Authorization': process.env.GITHUB_TOKEN }
         })
           .then((result) => {
-            console.log("please work ", result.data.ratings)
+            //console.log("please work ", result.data.ratings)
             setAvgRating(starRating(result.data.ratings))
           })
           .catch((err) => {
