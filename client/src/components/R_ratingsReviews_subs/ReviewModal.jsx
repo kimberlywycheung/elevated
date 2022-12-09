@@ -4,8 +4,16 @@ import axios from 'axios';
 import $ from 'jquery';
 
 const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBreak, setRList }) {
-  const [image, setImage] = useState('')
-  const [images, setImages] = useState([])
+  const [image, setImage] = useState('');
+  const [images, setImages] = useState([]);
+  const [currentSelection, setCurrentSelection] = useState({
+    Size: 0,
+    Width: 0,
+    Comfort: 0,
+    Quality: 0,
+    Length: 0,
+    Fit: 0
+  })
 
   if (!charBreak) {
     return null;
@@ -15,12 +23,18 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
   const chars = Object.keys(charBreak.characteristics);
   const charObj = charBreak.characteristics;
   const charChart = {
-    Size: ['A size too small', '½ a size too small', 'Perfect', '½ a size too big', 'A size too wide'],
-    Width: ['Too narrow', 'Slightly Narrow', 'Perfect', 'Slightly wide', 'Too wide'],
-    Comfort: ['Uncomfortable', 'Slightyly uncomfortable', 'Ok', 'Comfortable', 'Perfect'],
-    Quality: ['Poor', 'Below average', 'What I expected', 'Pretty Great', 'Perfect'],
-    Length: ['Runs Short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'],
-    Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly loose', 'Runs loose']
+    Size: ['None selected', 'A size too small', '½ a size too small', 'Perfect', '½ a size too big', 'A size too wide'],
+    Width: ['None selected', 'Too narrow', 'Slightly Narrow', 'Perfect', 'Slightly wide', 'Too wide'],
+    Comfort: ['None selected', 'Uncomfortable', 'Slightyly uncomfortable', 'Ok', 'Comfortable', 'Perfect'],
+    Quality: ['None selected', 'Poor', 'Below average', 'What I expected', 'Pretty Great', 'Perfect'],
+    Length: ['None selected', 'Runs Short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'],
+    Fit: ['None selected', 'Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly loose', 'Runs loose']
+  }
+
+  const handleSelect = function(e, currentChar) {
+    const newCurrentSelection = {...currentSelection};
+    newCurrentSelection[currentChar] = parseInt(e.target.value);
+    setCurrentSelection(newCurrentSelection);
   }
 
   const formSubmit = function(e) {
@@ -42,6 +56,14 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
     }
     setIsOpen(false);
     setImages([]);
+    setCurrentSelection({
+      Size: 0,
+      Width: 0,
+      Comfort: 0,
+      Quality: 0,
+      Length: 0,
+      Fit: 0
+    })
   }
 
   const createParameters = function(formData) {
@@ -128,17 +150,48 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
               chars.map((char, index) => {
                 return (
                   <div key={index}>
-                    <label>{char}: </label>
+                    <label>{char}: {charChart[char][currentSelection[char]]}</label>
                     <div>
-                      <input type="radio" value="1" name={charObj[char].id} required></input>
+                      <input
+                        type="radio"
+                        value="1"
+                        defaultChecked={currentSelection[char] === 1}
+                        onChange={(e) => handleSelect(e, char)}
+                        name={charObj[char].id}
+                        required>
+                      </input>
                       <label>1</label>
-                      <input type="radio" value="2" name={charObj[char].id}></input>
+                      <input
+                        type="radio"
+                        value="2"
+                        defaultChecked={currentSelection[char] === 2}
+                        onChange={(e) => handleSelect(e, char)}
+                        name={charObj[char].id}>
+                      </input>
                       <label>2</label>
-                      <input type="radio" value="3" name={charObj[char].id}></input>
+                      <input
+                        type="radio"
+                        value="3"
+                        defaultChecked={currentSelection[char] === 3}
+                        onChange={(e) => handleSelect(e, char)}
+                        name={charObj[char].id}>
+                      </input>
                       <label>3</label>
-                      <input type="radio" value="4" name={charObj[char].id}></input>
+                      <input
+                        type="radio"
+                        value="4"
+                        defaultChecked={currentSelection[char] === 4}
+                        onChange={(e) => handleSelect(e, char)}
+                        name={charObj[char].id}>
+                      </input>
                       <label>4</label>
-                      <input type="radio" value="5" name={charObj[char].id}></input>
+                      <input
+                        type="radio"
+                        value="5"
+                        defaultChecked={currentSelection[char] === 5}
+                        onChange={(e) => handleSelect(e, char)}
+                        name={charObj[char].id}>
+                      </input>
                       <label>5</label>
                     </div>
                     <div>
@@ -200,7 +253,6 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
       </div>
     </div>,
     document.getElementById('pop-up')
-
   )
 }
 
