@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Card from './Card.jsx';
+import styled from 'styled-components';
+import Card, { CardDiv } from './Card.jsx';
 
 const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavorites, deleteFromFavorites, setProduct }, ref ) => {
   const [showLeftButton, setShowLeft] = useState(false);
@@ -8,6 +9,25 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
   // dynamic title to be used in html header for the carousel
   const title = type === 'outfits' ? 'Your Outfit' : 'Related Products';
   const carouselId = `carousel-${type}`;
+
+  // useEffect(() => {
+  //   console.log('type', type);
+  //   if (currentState) {
+  //     const initialScrollWidth = (currentState.length * 200) + (type === 'outfits'? 200 : 0);
+  //     let initialOffsetWidth = initialScrollWidth - (window.innerWidth * .95);
+
+  //     console.log('scroll', initialScrollWidth);
+  //     console.log('off', initialOffsetWidth);
+
+  //     if (initialOffsetWidth < 0) {
+  //       setShowRight(false);
+  //     } else {
+  //       setShowRight(true);
+  //     }
+  //   }
+
+  //   console.log(showRightButton);
+  // }, [currentState])
 
   const addOutfit = () => {
     if (type === 'outfits') {
@@ -20,18 +40,18 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
     const carouselElement = document.getElementById(carouselId);
 
     if (carouselElement) {
-      let { scrollLeft, scrollWidth, offsetWidth } = carouselElement;
-
-      // console.log('scrollLeft: ', scrollLeft);
-      // console.log('scrollWidth: ', scrollWidth);
-      // console.log('offsetWidth: ', offsetWidth);
-
-      if (scrollLeft === 0) setShowLeft(false);
-      if (scrollLeft > 0) setShowLeft(true);
-      if (scrollLeft + offsetWidth === scrollWidth) setShowRight(false);
-      if (scrollLeft < (scrollWidth - offsetWidth)) setShowRight(true);
+      setScroll(carouselElement);
     }
   };
+
+  const setScroll = (carouselElement) => {
+    const { scrollLeft, scrollWidth, offsetWidth } = carouselElement;
+
+    if (scrollLeft === 0) setShowLeft(false);
+    if (scrollLeft > 0) setShowLeft(true);
+    if (scrollLeft + offsetWidth === scrollWidth) setShowRight(false);
+    if (scrollLeft + offsetWidth < scrollWidth) setShowRight(true);
+  }
 
   const scrollLeft = () => {
     document.getElementById(carouselId).scrollLeft -= 200;
@@ -47,52 +67,95 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
     return (
       <div>
         <h2 id={type}>{title}</h2>
-{/*
-        {showLeftButton &&
-            <button className="scroll_buttons" id="scroll-left" onClick={scrollLeft}>
-              <i class="fa-solid fa-angle-left"></i>
-            </button>} */}
 
-        <div className="carousel-container" id="flex-box">
+        <div id="flex-box">
 
-          {showLeftButton ?
-            <button className="scroll_buttons" id="scroll-left" onClick={scrollLeft}>
-              <i class="fa-solid fa-angle-left"></i>
-            </button> : <span className="scroll_buttons"></span>}
+          {showLeftButton &&
+            <ScrollButton id="scroll-left" onClick={scrollLeft}>
+              <ScrollIcon><i className="fa-solid fa-angle-left"></i></ScrollIcon>
+            </ScrollButton>}
 
-          <div className="carousel" id={carouselId}>
+          <CarouselDiv id={carouselId}>
+
             {type === 'outfits' &&
-              <div className="card" >
-                <button id="center add-to-outfit" onClick={addOutfit}>
-                  <p>
-                    +
-                    <br/>
-                    Add to Outfit
-                  </p>
-                </button>
-              </div> }
+              <CardDiv>
+                <AddToOutfitCard>
+                  <AddToOutfitButton onClick={addOutfit}>
+                      +<br/>Add to Outfit
+                  </AddToOutfitButton>
+                </AddToOutfitCard>
+              </CardDiv> }
 
-          {currentState.length > 0 &&
-            currentState.map((item) => {
-              return <Card key={item} type={type} item={item} currentProd={currentProd} deleteFromFavorites={deleteFromFavorites} setProduct={setProduct} ref={ref}/>
-            })}
-          </div>
+            {currentState.length > 0 &&
+              currentState.map((item) => {
+                return <Card key={item} type={type} item={item} currentProd={currentProd} deleteFromFavorites={deleteFromFavorites} setProduct={setProduct} ref={ref}/>
+              })}
 
-          {showRightButton ?
-          <button className="scroll_buttons" value="scroll-right" onClick={scrollRight}>
-            <i class="fa-solid fa-angle-right"></i>
-          </button> : <span className="scroll_buttons"></span>}
+          </CarouselDiv>
+
+          {showRightButton &&
+            <ScrollButton value="scroll-right" onClick={scrollRight}>
+              <ScrollIcon><i className="fa-solid fa-angle-right"></i></ScrollIcon>
+            </ScrollButton>}
 
         </div>
-
-        {/* {showRightButton &&
-          <button className="scroll_buttons" value="scroll-right" onClick={scrollRight}>
-            <i class="fa-solid fa-angle-right"></i>
-          </button>} */}
-
       </div>
     );
   }
 });
+
+// STYLING
+const ScrollButton = styled.div`
+  border-width: 0px;
+  width: 30px;
+  margin: 10px;
+  padding: 10px;
+  font-size: 1em;
+  background-color: transparent;
+`;
+
+const ScrollIcon = styled.div`
+  position: relative;
+  top: 50%;
+`;
+
+const CarouselDiv = styled.div`
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  padding: 30px, 0px, 0px;
+  height: 350px;
+  width: 95% auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const AddToOutfitCard = styled.div`
+  position: relative;
+  margin-bottom: 0px;
+  bottom: 0;
+  width: 100%;
+  height: 75%;
+  max-height: 250px;
+  min-height: 180px;
+  background-color: rgb(211,211,211);
+  border-radius: 5px;
+  &:hover {
+    opacity: 80%;
+  }
+`;
+
+const AddToOutfitButton = styled.button`
+  vertical-align: middle;
+  text-align: center;
+  background-color: transparent;
+  border: 0px;
+  position: relative;
+  top: 25%;
+  left: 9%;
+`;
 
 export default Carousel;

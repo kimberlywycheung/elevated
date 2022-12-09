@@ -15,7 +15,7 @@ const App = () => {
     })
     .then((results) => {
       var randIndex = Math.floor(Math.random() * results.data.length);
-      // var randIndex = 3;
+      // var randIndex = 2;
       console.log(`Random Product from index ${randIndex}->\n`, results.data[randIndex]);
       setProduct(results.data[randIndex]);
     })
@@ -37,10 +37,10 @@ const App = () => {
   return (
     <div id='root' ref={ref}>
       <h1>Del Taco Product Page1</h1>
-      {/* <Overview product={product}/> */}
+      <Overview product={product}/>
       <RatingsReviews product={product}/>
-      {/* <QuestionsAnswers productID={product.id}/>
-      <RelatedProducts product={product} setProduct={setProduct} ref={ref}/> */}
+      <QuestionsAnswers productID={product.id}/>
+      <RelatedProducts product={product} setProduct={setProduct} ref={ref}/>
     </div>
   )
 };

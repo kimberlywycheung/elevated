@@ -36,7 +36,7 @@ const Comparison = function ({ itemInfo, currentProd, getProduct, isModalOpen, o
 
   return ReactDOM.createPortal(
     <>
-      <div className="modal-bg-compare" />
+      <div className="modal-bg-compare" onClick={onClose} />
       <div className="modal_compare">
         <div className="modal_content">
           <div className="modal-header" id="flex-box">

@@ -27,8 +27,10 @@
 
 /* IMAGES */
 .image-gallery {
+  position: relative;
   background-color: rgb(249, 249, 249);
-  /* padding: 3px; */
+  /* background-color: rgb(217, 34, 34); */
+  padding: 3px;
   width: 100%;
   max-width: 100%;
   height: 600px;
@@ -47,9 +49,10 @@
 
 
 .ov-img-select {
-  position: relative;
-  top: -25%;
+  position: absolute;
+  top: 95%;
   left: 15%;
+  transform: translate(0, -100%);
   width: 70%;
   height: 90px;
   /* max-height: 100px; */
@@ -109,11 +112,13 @@
 /* STYLES SELECTOR */
 .ov-styles-selector {
   width: 100%;
+  flex-wrap: wrap;
   display: block;
   flex-direction: column;
   margin: 30px 0;
   min-height: 200px;
-  height: fit-content;
+  max-height: 250px;
+  overflow-y: auto;
   block-size: fit-content;
   /* background-color: rgb(131, 183, 254); */
 }
@@ -126,16 +131,17 @@
 .ov-style-container {
   /* background-color: rgb(191, 30, 216); */
   position: relative;
-  width: 18%;
-  padding-bottom: 18%;
+  width: 60px;
+  /* min-width: 50px; */
+  padding-bottom: 60px;
   margin: 5px 3%;
   float: left;
   height: 0;
 }
 
 .ov-style-select {
-  /* margin: 0 10px;
-  background-color: rgb(178, 152, 182); */
+   margin: 0 10px;
+  /* background-color: rgb(178, 152, 182); */
   position: absolute;
   width: 100%;
   height: 100%;
@@ -152,11 +158,14 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 10px;
+  overflow-y: auto;
+  max-height: 200px;
   /* background-color: rgb(208, 184, 220); */
 }
 
 .ov-form-1 {
   display: flex;
+  flex-wrap: wrap;
   height: 50%;
   flex-direction: row;
   padding-left: 2%;
@@ -164,6 +173,7 @@
 
 .ov-form-2 {
   display: flex;
+  flex-wrap: wrap;
   height: 50%;
   flex-direction: row;
 }
@@ -188,13 +198,15 @@
 }
 
 .size-drop {
+  min-width: fit-content;
   /* position: relative; */
   /* background-color: rgb(155, 219, 179); */
-  font-size: 1.6em;
+  font-size: 1em;
   flex: 1 1 0;
 }
 
 .select-size-qty {
+  min-width: 90px;
   width: 90%;
   height: 50px;
   padding: 5px 35px 5px 5px;
@@ -206,9 +218,11 @@
   background: url("https://i.pinimg.com/736x/59/e2/37/59e237615ce90d9693eca27fbe183351.jpg") 96% / 15% no-repeat #eee;
 }
 
-.ov-add {
+.add-cart-button {
+  min-width: fit-content;
   /* background-color: rgb(215, 106, 106); */
-  margin: 0;
+  /* margin: 0; */
+  /* padding: 10px; */
 }
 
 .ov-size-pick {

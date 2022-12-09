@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import Carousel from './K_relatedProd_subs/Carousel.jsx';
 
 const RelatedProducts = React.forwardRef(({ product, setProduct }, ref) => {
@@ -20,7 +21,7 @@ const RelatedProducts = React.forwardRef(({ product, setProduct }, ref) => {
 
   // inititlizes state for relatedIds whenever the product changes
   useEffect(() => {
-    if (product) {
+    if (product.id) {
       getRelated(product.id, (data) => {
         setRelatedIds(deduplicate(data, product.id));
       });
@@ -61,6 +62,7 @@ const RelatedProducts = React.forwardRef(({ product, setProduct }, ref) => {
     }
   };
 
+  // returns loading state if no product has been passed down
   if (!product) {
     return (
       <div>loading...</div>
@@ -68,13 +70,20 @@ const RelatedProducts = React.forwardRef(({ product, setProduct }, ref) => {
   }
 
   return (
-    <div className="related-products" id="related-products">
+    <RelatedProductsDiv>
       {relatedIds.length > 0 &&
         <Carousel type="related" currentState={relatedIds} currentProd={product} addToFavorites={addToFavorites} setProduct={setProduct} ref={ref} />}
-      <Carousel type="outfits" currentState={outfits} currentProd={product} addToFavorites={addToFavorites} deleteFromFavorites={deleteFromFavorites} setProduct={setProduct} ref={ref}/>
-    </div>
+        <Carousel type="outfits" currentState={outfits} currentProd={product} addToFavorites={addToFavorites} deleteFromFavorites={deleteFromFavorites} setProduct={setProduct} ref={ref}/>
+    </RelatedProductsDiv>
   );
 });
+
+// STYLING
+const RelatedProductsDiv = styled.div`
+  background-color: white;
+  min-height: 300px;
+  margin: 10px;
+`;
 
 // HELPER FUNCTIONS
 
