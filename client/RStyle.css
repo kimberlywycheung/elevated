@@ -197,6 +197,12 @@ form .sort-header {
   flex-direction: row;
 }
 
+.charBarContainer > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .charWordContainer {
   width: 198px;
   display: flex;
