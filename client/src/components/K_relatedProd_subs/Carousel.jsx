@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from './Card.jsx';
 
-const Carousel = function ({ type, currentState, currentProd, addToFavorites, deleteFromFavorites, setProduct }) {
+const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavorites, deleteFromFavorites, setProduct }, ref ) => {
   const [showLeftButton, setShowLeft] = useState(false);
   const [showRightButton, setShowRight] = useState(true);
 
@@ -20,7 +20,11 @@ const Carousel = function ({ type, currentState, currentProd, addToFavorites, de
     const carouselElement = document.getElementById(carouselId);
 
     if (carouselElement) {
-      const { scrollLeft, scrollWidth, offsetWidth } = document.getElementById(carouselId);
+      let { scrollLeft, scrollWidth, offsetWidth } = carouselElement;
+
+      // console.log('scrollLeft: ', scrollLeft);
+      // console.log('scrollWidth: ', scrollWidth);
+      // console.log('offsetWidth: ', offsetWidth);
 
       if (scrollLeft === 0) setShowLeft(false);
       if (scrollLeft > 0) setShowLeft(true);
@@ -39,43 +43,56 @@ const Carousel = function ({ type, currentState, currentProd, addToFavorites, de
     updateScroll();
   };
 
-  return (
-    <div>
-      <h2 id={type}>{title}</h2>
-
-      <div className="carousel-container" id="flex-box">
-
+  if (currentState || type === "outfits") {
+    return (
+      <div>
+        <h2 id={type}>{title}</h2>
+{/*
         {showLeftButton &&
-          <button className="scroll_buttons" id="scroll-left" onClick={scrollLeft}>
-            <img src="../../client/dist/images/left-scroll.png" width="20"/>
-          </button>}
+            <button className="scroll_buttons" id="scroll-left" onClick={scrollLeft}>
+              <i class="fa-solid fa-angle-left"></i>
+            </button>} */}
 
-        <div className="carousel" id={carouselId}>
-          {type === 'outfits' &&
-            <div className="card">
-              <button id="center" onClick={addOutfit}>
-                <p>
-                  +
-                  <br/>
-                  Add to Outfit
-                </p>
-              </button>
-            </div> }
+        <div className="carousel-container" id="flex-box">
 
-        {currentState.length > 0 &&
-          currentState.map((item) => {
-            return <Card key={item} type={type} item={item} currentProd={currentProd} addToFavorites={addToFavorites} deleteFromFavorites={deleteFromFavorites} setProduct={setProduct}/>
-          })}
+          {showLeftButton ?
+            <button className="scroll_buttons" id="scroll-left" onClick={scrollLeft}>
+              <i class="fa-solid fa-angle-left"></i>
+            </button> : <span className="scroll_buttons"></span>}
+
+          <div className="carousel" id={carouselId}>
+            {type === 'outfits' &&
+              <div className="card" >
+                <button id="center add-to-outfit" onClick={addOutfit}>
+                  <p>
+                    +
+                    <br/>
+                    Add to Outfit
+                  </p>
+                </button>
+              </div> }
+
+          {currentState.length > 0 &&
+            currentState.map((item) => {
+              return <Card key={item} type={type} item={item} currentProd={currentProd} deleteFromFavorites={deleteFromFavorites} setProduct={setProduct} ref={ref}/>
+            })}
+          </div>
+
+          {showRightButton ?
+          <button className="scroll_buttons" value="scroll-right" onClick={scrollRight}>
+            <i class="fa-solid fa-angle-right"></i>
+          </button> : <span className="scroll_buttons"></span>}
+
         </div>
 
-        {showRightButton &&
-        <button className="scroll_buttons" value="scroll-right" onClick={scrollRight}>
-          <img src="../../client/dist/images/right-scroll.png" width="20"/>
-        </button> }
+        {/* {showRightButton &&
+          <button className="scroll_buttons" value="scroll-right" onClick={scrollRight}>
+            <i class="fa-solid fa-angle-right"></i>
+          </button>} */}
 
       </div>
-    </div>
-  );
-};
+    );
+  }
+});
 
 export default Carousel;
