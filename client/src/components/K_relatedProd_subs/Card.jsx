@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import Comparison from './Comparison.jsx';
 import StarComponent from '../StarComponent.jsx';
 
@@ -90,29 +91,26 @@ const Card = React.forwardRef(({ type, currentProd, item, deleteFromFavorites, s
   // handler for showing the right stars
   const decideIfFavorited = () => {
     if (window.localStorage.getItem('favorites').includes(itemInfo.id)) {
-      return <i class="fa-solid fa-star"></i>;
+      return <i className="fa-solid fa-star"></i>;
     } else {
-      return <i class="far fa-star"></i>;
+      return <i className="far fa-star"></i>;
     }
   }
 
   // TODO: can refactor saleprice later
   if (itemInfo && itemStyles) {
     return (
-      <div className="card" id={type} onClick={changeCards}>
+      <CardDiv id={type} onClick={changeCards}>
 
-        <button className="card_button" onClick={buttonHandler}>
-          {type === 'related' ?
-            // <i class="far fa-star"></i> : <i class="fa-solid fa-xmark"></i>}
-            decideIfFavorited() : <i class="fa-solid fa-xmark"></i>}
-        </button>
+        <CardButton onClick={buttonHandler}>
+          {type === 'related' ? decideIfFavorited() : <i className="fa-solid fa-xmark"></i>}
+        </CardButton>
 
         {type === 'related' &&
           <Comparison itemInfo={itemInfo} currentProd={currentProd} getProduct={getProduct} isModalOpen={isModalOpen} onClose={handleClose} />}
 
         { defaultImg ?
-          <img src={defaultImg} className="card_image"/> : <img src={"../../client/dist/images/no-image.png"} className="card_image"/>}
-
+          <CardImage src={defaultImg}/> : <CardImage src={"../../client/dist/images/no-image.png"}/>}
 
         <span className="card_info">
           <p className="card_info" id="card-category">{itemInfo.category}</p>
@@ -130,9 +128,52 @@ const Card = React.forwardRef(({ type, currentProd, item, deleteFromFavorites, s
           </div>
 
         </span>
-      </div>
+      </CardDiv>
     );
   }
 });
+
+export const CardDiv = styled.div`
+  background-color: white;
+  border-radius: 5px;
+  width: 180;
+  height: 95%;
+  min-width: 180px;
+  margin-top: 0;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  overflow: none;
+`;
+
+const CardButton = styled.button`
+  position: relative;
+  float: right;
+  z-index: 1;
+  padding: 5px;
+  margin: 0;
+  background-color: Transparent;
+  border: none;
+  color: black;
+  font-size: 1.2em;
+  &:hover {
+    color: white;
+  }
+`;
+
+const CardImage = styled.img`
+  position: relative;
+  margin-bottom: 0px;
+  bottom: 0;
+  width: 100%;
+  height: 75%;
+  max-height: 250px;
+  min-height: 180px;
+  object-fit: cover;
+  object-position: bottom;
+  border-radius: 5px;
+  &:hover {
+    opacity: 80%;
+  }
+`
 
 export default Card;

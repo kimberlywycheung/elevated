@@ -1,6 +1,6 @@
 /* Related Products / Components */
 
-.carousel {
+/* .carousel {
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
@@ -13,21 +13,25 @@
 
 .carousel::-webkit-scrollbar {
   display: none;
-}
+} */
 
-.scroll_buttons {
+/* .carousel-related {
+  overflow-x: scroll;
+} */
+
+/* .scroll_buttons {
   border-width: 0px;
   width: 30px;
   background-color: transparent;
-}
+} */
 
-#add-to-outfit {
+/* #add-to-outfit {
   vertical-align: middle;
   text-align: center;
   background-color: transparent;
-}
+} */
 
-.card {
+/* .card {
   background-color: white;
   border-radius: 5px;
   width: 18%;
@@ -37,9 +41,9 @@
   margin-left: 20px;
   margin-bottom: 10px;
   overflow: none;
-}
+} */
 
-.card_button {
+/* .card_button {
   position: relative;
   float: right;
   z-index: 1;
@@ -53,9 +57,9 @@
 
 .card_button:hover {
   color: white;
-}
+} */
 
-.card_image {
+/* .card_image {
   position: relative;
   margin-bottom: 0px;
   bottom: 0;
@@ -70,7 +74,7 @@
 
 .card_image:hover {
   opacity: 80%;
-}
+} */
 
 .card_info {
   padding: 0px;

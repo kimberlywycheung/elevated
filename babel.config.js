@@ -3,4 +3,11 @@ module.exports = {
     '@babel/preset-env',
     ['@babel/preset-react', {runtime: 'automatic'}],
   ],
+  plugins: [
+    ["babel-plugin-styled-components",
+      {
+        "displayName": false
+      }
+    ]
+  ]
 };
