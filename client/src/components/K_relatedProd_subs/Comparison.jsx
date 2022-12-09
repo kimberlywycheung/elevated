@@ -45,7 +45,7 @@ const Comparison = function ({ itemInfo, currentProd, getProduct, isModalOpen, o
               <i class="fa-solid fa-xmark"></i>
             </button>
           </div>
-          <div id="flex-box">
+          <div className="modal-products" id="flex-box">
             <span id="left">{itemInfo.name}</span>
             <span id="center"></span>
             <span id="right">{currentProd.name}</span>
@@ -53,7 +53,15 @@ const Comparison = function ({ itemInfo, currentProd, getProduct, isModalOpen, o
           <div className="modal_container">
             {allFeatures &&
               Object.keys(allFeatures).map((feature) => {
-                return <Characteristic key={feature} items={allFeatures[feature]} />;
+                const relatedChar = allFeatures[feature][0];
+                const currentChar = allFeatures[feature][1];
+                if (relatedChar || currentChar) {
+                  return (
+                    <div className="compare-characteristics" key={feature}>
+                      <Characteristic key={feature} relatedChar={relatedChar} currentChar={currentChar}/>
+                    </div>
+                  );
+                }
               })}
           </div>
         </div>

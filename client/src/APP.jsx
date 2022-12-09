@@ -37,9 +37,9 @@ const App = () => {
   return (
     <div id='root' ref={ref}>
       <h1>Del Taco Product Page1</h1>
-      <Overview product={product}/>
+      {/* <Overview product={product}/>
       <RatingsReviews product={product}/>
-      <QuestionsAnswers productID={product.id}/>
+      <QuestionsAnswers productID={product.id}/> */}
       <RelatedProducts product={product} setProduct={setProduct} ref={ref}/>
     </div>
   )

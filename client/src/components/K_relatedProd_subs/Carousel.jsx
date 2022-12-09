@@ -43,7 +43,7 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
     updateScroll();
   };
 
-  if (currentState) {
+  if (currentState || type === "outfits") {
     return (
       <div>
         <h2 id={type}>{title}</h2>

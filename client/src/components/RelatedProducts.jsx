@@ -10,10 +10,11 @@ const RelatedProducts = React.forwardRef(({ product, setProduct }, ref) => {
   useEffect(() => {
     let currentFavs = window.localStorage.getItem('favorites');
     // converts localstorage string to array
-    if (currentFavs) {
+    if (currentFavs === '') {
+      currentFavs = [];
+    } else if (currentFavs) {
       currentFavs = currentFavs.replace(/\r?\n|\r/g, '').split(',');
     }
-
     setOutfits(currentFavs);
   }, []);
 
@@ -34,12 +35,16 @@ const RelatedProducts = React.forwardRef(({ product, setProduct }, ref) => {
   // helper functions for editing outfit states
   const addToFavorites = (id) => {
     id = JSON.stringify(id);
+    console.log(outfits);
+    const newOutfits = outfits.slice();
 
-    if (!outfits.includes(id)) {
-      const newOutfits = outfits.slice();
+    if (outfits.length === 0) {
       newOutfits.push(id);
-      setOutfits(newOutfits);
+    } else if (!outfits.includes(id)) {
+      newOutfits.splice(0, 0, id);
     }
+
+    setOutfits(newOutfits);
   };
 
   const deleteFromFavorites = (id) => {

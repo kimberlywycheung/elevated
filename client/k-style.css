@@ -120,18 +120,18 @@
   left: 50%;
   transform: translate(-50%, -50%);
   border: 1px solid #888;
-  width: 60%;
+  width: 45%;
 }
 
 .modal_content {
-  /* display: flex;
-  flex-direction: column; */
-  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
 }
 
 .modal-products {
-  margin-left: 200px;
-  margin-right: 200px;
+  /* margin-left: 200px;
+  margin-right: 200px; */
 }
 
 .modal_container {
@@ -157,6 +157,11 @@
   align: right;
   border-width: 0px;
   background-color: transparent;
+}
+
+.compare-characteristics {
+  height: 30px;
+  justify-content: space-around;
 }
 
 

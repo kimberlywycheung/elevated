@@ -66,14 +66,15 @@ const Card = React.forwardRef(({ type, currentProd, item, deleteFromFavorites, s
   };
 
   // handler for changing current product page to product user has clicked
-  const changeCards = () => {
+  const changeCards = (e) => {
+    e.stopPropagation();
     if (itemInfo) {
       getProduct(itemInfo.id, (data) => {
         if (itemInfo.id !== currentProd.id) {
           setProduct(data);
-          ref.current?.scrollIntoView({behavior: 'smooth'});
         }
       });
+      ref.current?.scrollIntoView({behavior: 'smooth'});
     }
   };
 
