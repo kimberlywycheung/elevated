@@ -36,11 +36,6 @@ describe("Related Products Renders", () => {
       expect(root).toMatchSnapshot();
   });
 
-  // test('Related products with product renders subcomponents', async () => {
-  //   await render(<RelatedProducts product={getRandomProducts()}/>);
-  //   const app = screen.getByText('Related Products');
-  //   expect(app).toBeTruthy();
-  // });
 });
 
 // HELPER GET FUNCTION
