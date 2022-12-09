@@ -43,7 +43,7 @@ const RatingsReviews = ({product}) => {
     <div className='ratings-reviews-cont'>
       <h2>Ratings & Reviews</h2>
       <div className='ratings-reviews'>
-        <Breakdown productID={product.id} ratingsArray={ratingsArray} setCharBreak={setCharBreak}/>
+        <Breakdown productID={product.id} ratingsArray={ratingsArray} setCharBreak={setCharBreak} starFilter={starFilter}/>
         <Reviews productID={product.id} name={product.name} starFilter={starFilter} charBreak={charBreak}/>
       </div>
     </div>

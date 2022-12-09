@@ -42,7 +42,9 @@ form .sort-header {
 .sort-selector {
   font-size: 22px;
   font-family: 'Varela Round', sans-serif;
-  border-bottom: solid black 3px;
+  color: rgb(56, 56, 56);
+  text-decoration: underline;
+  border: none;
   background-color: transparent;
 }
 
