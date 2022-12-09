@@ -39,8 +39,12 @@ const Card = React.forwardRef(({ type, currentProd, item, deleteFromFavorites, s
 
   const updateImagePrice = (style) => {
     defaultImg = style.photos[0].thumbnail_url;
-    originalPrice = style.original_price;
+    originalPrice = JSON.stringify(style.original_price).replaceAll('"', '');
+
     salePrice = style.sale_price;
+    if (salePrice) {
+      salePrice = JSON.stringify(style.sale_price).replaceAll('"', '');
+    }
   };
 
   if (itemStyles) {

@@ -3,3 +3,4 @@ coverage
 .env
 
 client/dist/bundle.js
+package-lock.json

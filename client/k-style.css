@@ -68,6 +68,10 @@
   border-radius: 5px;
 }
 
+.card_image:hover {
+  opacity: 80%;
+}
+
 .card_info {
   padding: 0px;
   margin: 2px;
@@ -86,14 +90,15 @@
   font-size: .85em;
 }
 
-#sale_price {
+/* #sale_price {
   text-decoration: line-through;
   color: red;
-}
+} */
 
-.card-stars-container {
-  max-width: 50%;
-}
+/* .card-stars-container {
+  max-width: 10px;
+  overflow: hidden;
+} */
 
 /* .scroll_buttons {
   background-image: linear-gradient(white);
