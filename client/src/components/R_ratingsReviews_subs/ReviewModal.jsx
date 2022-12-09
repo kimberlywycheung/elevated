@@ -6,6 +6,9 @@ import $ from 'jquery';
 const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBreak, setRList }) {
   const [image, setImage] = useState('');
   const [images, setImages] = useState([]);
+  const [body, setBody] = useState('');
+  const [starArray, setStarArray] = useState([1, 0, 0, 0, 0]);
+  // const [starCount, setStarCount] = useState(1);
   const [currentSelection, setCurrentSelection] = useState({
     Size: 0,
     Width: 0,
@@ -37,10 +40,32 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
     setCurrentSelection(newCurrentSelection);
   }
 
+  const handleBody = function(e) {
+    e.preventDefault()
+    setBody(e.target.value)
+  }
+
+  const handleStars = function(e, position) {
+    let stars = parseInt(e.target.value);
+    // console.log('Stars ', stars);
+    let updatedStarArray = [...starArray].map((star) => {
+      if (stars > 0) {
+        stars--;
+        return 1;
+      } else {
+        return 0;
+      }
+    })
+    // console.log(updatedStarArray);
+    // setStarCount(parseInt(e.target.value));
+    setStarArray(updatedStarArray);
+  }
+
   const formSubmit = function(e) {
     e.preventDefault()
     let newReview = new FormData(e.target);
     let newObj = createParameters(newReview)
+    console.log(newObj);
     if (newObj) {
       const auth = {'Authorization': process.env.GITHUB_TOKEN}
       const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews`;
@@ -64,6 +89,8 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
       Length: 0,
       Fit: 0
     })
+    setBody('')
+    setStarArray([1, 0, 0, 0, 0])
   }
 
   const createParameters = function(formData) {
@@ -101,6 +128,8 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
     setImages(updatedImages);
   }
 
+  // console.log(starArray);
+
   if (!isOpen) return null
 
   return ReactDOM.createPortal(
@@ -110,19 +139,39 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
         <h3>Write your review</h3>
         <h4>About the {name}</h4>
         <form id="addReview" onSubmit={formSubmit}>
-          <div>
+          <div className="form-star-container">
             <label>* Overall Rating:</label>
             <div>
-              <input type="radio" value="1" name="rating" required></input>
-              <label>1</label>
-              <input type="radio" value="2" name="rating"></input>
-              <label>2</label>
-              <input type="radio" value="3" name="rating"></input>
-              <label>3</label>
-              <input type="radio" value="4" name="rating"></input>
-              <label>4</label>
-              <input type="radio" value="5" name="rating"></input>
-              <label>5</label>
+              {starArray.map((star, index) => {
+                // console.log(index, (index + 1) === starCount, starCount)
+                return (
+                  <span key={index}>
+                    <input
+                      type="radio"
+                      value={index + 1}
+                      id={`star-${index+1}`}
+                      name="rating"
+                      className="form-star-radio-button"
+                      // defaultChecked={(index + 1) === starCount}
+                      defaultChecked={index === 0}
+                      onChange={(e) => handleStars(e)}
+                      required>
+                    </input>
+                    <label htmlFor={`star-${index+1}`}>
+                      <div className="single-star-container">
+                        <div
+                          className="single-star-fill"
+                          style={{"width" : `${parseInt(star*20.3)}px`}}>
+                          <img
+                            className="single-star-outline"
+                            src="../../client/dist/images/star2.png" alt="stars alt">
+                          </img>
+                        </div>
+                      </div>
+                    </label>
+                  </span>
+                )
+              })}
             </div>
             <div>
               <span>5: Great</span>
@@ -155,44 +204,44 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
                       <input
                         type="radio"
                         value="1"
-                        defaultChecked={currentSelection[char] === 1}
+                        id={`${char}-1`}
                         onChange={(e) => handleSelect(e, char)}
                         name={charObj[char].id}
                         required>
                       </input>
-                      <label>1</label>
+                      <label htmlFor={`${char}-1`}>1</label>
                       <input
                         type="radio"
                         value="2"
-                        defaultChecked={currentSelection[char] === 2}
+                        id={`${char}-2`}
                         onChange={(e) => handleSelect(e, char)}
                         name={charObj[char].id}>
                       </input>
-                      <label>2</label>
+                      <label htmlFor={`${char}-2`}>2</label>
                       <input
                         type="radio"
                         value="3"
-                        defaultChecked={currentSelection[char] === 3}
+                        id={`${char}-3`}
                         onChange={(e) => handleSelect(e, char)}
                         name={charObj[char].id}>
                       </input>
-                      <label>3</label>
+                      <label htmlFor={`${char}-3`}>3</label>
                       <input
                         type="radio"
                         value="4"
-                        defaultChecked={currentSelection[char] === 4}
+                        id={`${char}-4`}
                         onChange={(e) => handleSelect(e, char)}
                         name={charObj[char].id}>
                       </input>
-                      <label>4</label>
+                      <label htmlFor={`${char}-4`}>4</label>
                       <input
                         type="radio"
                         value="5"
-                        defaultChecked={currentSelection[char] === 5}
+                        id={`${char}-5`}
                         onChange={(e) => handleSelect(e, char)}
                         name={charObj[char].id}>
                       </input>
-                      <label>5</label>
+                      <label htmlFor={`${char}-5`}>5</label>
                     </div>
                     <div>
                       <span>{charChart[char][0]}</span>
@@ -213,9 +262,17 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
               name="body"
               minLength="50"
               maxLength="1000"
+              value={body}
+              onChange={handleBody}
               placeholder="Why did you like the product or not?"
               required>
             </textarea>
+            { body.length < 50 &&
+              <span>Minimum required characters left: [{50-body.length}]</span>
+            }
+            { body.length > 50 &&
+              <span>Minimum Reached</span>
+            }
           </div>
           <div>
             <label>Upload Photos</label>
