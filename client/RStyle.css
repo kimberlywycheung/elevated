@@ -41,6 +41,7 @@ form .sort-header {
 
 .sort-selector {
   font-size: 22px;
+  font-family: 'Varela Round', sans-serif;
   border-bottom: solid black 3px;
   background-color: transparent;
 }
@@ -196,6 +197,12 @@ form .sort-header {
   flex-direction: row;
 }
 
+.charBarContainer > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .charWordContainer {
   width: 198px;
   display: flex;
@@ -220,4 +227,25 @@ form .sort-header {
 .charFillerStyles {
   height: 100%;
   text-align: right;
+}
+
+/* add review form css */
+
+/* .form-star-container {
+  border: solid red 1px;
+  margin: 2px
+}
+
+.form-star-container > div {
+  border: solid red 1px;
+  margin: 2px
+}
+
+.form-star-container > div > span {
+  border: solid red 1px;
+  margin: 2px
+} */
+
+.form-star-radio-button {
+  display: none;
 }
