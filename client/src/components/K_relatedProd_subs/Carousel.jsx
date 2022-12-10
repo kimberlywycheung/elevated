@@ -68,7 +68,7 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
       <div>
         <h2 id={type}>{title}</h2>
 
-        <div id="flex-box">
+        <CarouselContainer>
 
           {showLeftButton &&
             <ScrollButton id="scroll-left" onClick={scrollLeft}>
@@ -80,9 +80,7 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
             {type === 'outfits' &&
               <CardDiv>
                 <AddToOutfitCard>
-                  <AddToOutfitButton onClick={addOutfit}>
-                      +<br/>Add to Outfit
-                  </AddToOutfitButton>
+                  <AddToOutfitButton onClick={addOutfit}>+<br/>Add to Outfit</AddToOutfitButton>
                 </AddToOutfitCard>
               </CardDiv> }
 
@@ -98,7 +96,7 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
               <ScrollIcon><i className="fa-solid fa-angle-right"></i></ScrollIcon>
             </ScrollButton>}
 
-        </div>
+        </CarouselContainer>
       </div>
     );
   }
@@ -117,6 +115,11 @@ const ScrollButton = styled.div`
 const ScrollIcon = styled.div`
   position: relative;
   top: 50%;
+`;
+
+const CarouselContainer = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
 
 const CarouselDiv = styled.div`

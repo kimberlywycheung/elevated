@@ -1,32 +1,52 @@
 import React from 'react';
+import styled from 'styled-components';
 
-const Characteristic = function ({ relatedChar,  currentChar}) {
+const Characteristic = function ({ feature, relatedChar,  currentChar}) {
   return (
     <div>
       {relatedChar &&
-        <div id="flex-box">
-          <p id="left checkmark">
-            <i class="fa-solid fa-check"></i>
-          </p>
-          <p id="center" flex-glow="4">{relatedChar}</p>
-          {currentChar === relatedChar ?
-            <p id="right checkmark">
-              <i class="fa-solid fa-check"></i>
-            </p> : <p id="right"></p>}
-        </div> }
+        <Characteristics>
+              <CheckmarkContainer>
+                <i className="fa-solid fa-check"/>
+              </CheckmarkContainer>
+
+              <p>{relatedChar}</p>
+
+              {currentChar === relatedChar ?
+                <CheckmarkContainer>
+                  <i className="fa-solid fa-check" />
+                </CheckmarkContainer> : <CheckmarkContainer></CheckmarkContainer>}
+          </Characteristics>}
+
       {currentChar && (relatedChar !== currentChar) &&
-        <div className="compare-characteristics" id="flex-box">
+        <Characteristics>
           {relatedChar === currentChar ?
-            <p id="left checkmark">
-              <i class="fa-solid fa-check"></i>
-            </p> : <p id="left"></p>}
-          <p id="center">{currentChar}</p>
-          <p id="right checkmark">
-            <i class="fa-solid fa-check"></i>
-          </p>
-        </div> }
+            <CheckmarkContainer>
+              <i className="fa-solid fa-check" />
+            </CheckmarkContainer> : <CheckmarkContainer></CheckmarkContainer>}
+
+          <p>{currentChar}</p>
+
+          <CheckmarkContainer>
+            <i className="fa-solid fa-check" />
+          </CheckmarkContainer>
+        </Characteristics>}
     </div>
   );
 };
+
+const Characteristics = styled.div`
+  height: 30px;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+`;
+
+const CheckmarkContainer = styled.div`
+  width: 30px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+`;
 
 export default Characteristic;
