@@ -135,45 +135,48 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
   return ReactDOM.createPortal(
     <div className='qa-modal modal-bg'>
       <span onClick={(e) => {e.preventDefault(); setIsOpen(false)}} id='pop-up-exit'>X</span>
-      <div className='modal-content scroll'>
-        <h3>Write your review</h3>
-        <h4>About the {name}</h4>
-        <form id="addReview" onSubmit={formSubmit}>
+      <div className='modal-content review-modal-specs'>
+        <div className="form-header">
+          <span>Write your review about the <span className="form-product">{name}</span></span>
+        </div>
+        <form id="addReview" className="scroll" onSubmit={formSubmit}>
           <div className="form-star-container">
-            <label>* Overall Rating:</label>
-            <div>
-              {starArray.map((star, index) => {
-                // console.log(index, (index + 1) === starCount, starCount)
-                return (
-                  <span key={index}>
-                    <input
-                      type="radio"
-                      value={index + 1}
-                      id={`star-${index+1}`}
-                      name="rating"
-                      className="form-star-radio-button"
-                      // defaultChecked={(index + 1) === starCount}
-                      defaultChecked={index === 0}
-                      onChange={(e) => handleStars(e)}
-                      required>
-                    </input>
-                    <label htmlFor={`star-${index+1}`}>
-                      <div className="single-star-container">
-                        <div
-                          className="single-star-fill"
-                          style={{"width" : `${parseInt(star*20.3)}px`}}>
-                          <img
-                            className="single-star-outline"
-                            src="../../client/dist/images/star2.png" alt="stars alt">
-                          </img>
+            <div className="form-rating form-category-font">
+              <label>* Overall Rating:</label>
+              <div>
+                {starArray.map((star, index) => {
+                  // console.log(index, (index + 1) === starCount, starCount)
+                  return (
+                    <span key={index}>
+                      <input
+                        type="radio"
+                        value={index + 1}
+                        id={`star-${index+1}`}
+                        name="rating"
+                        className="form-star-radio-button"
+                        // defaultChecked={(index + 1) === starCount}
+                        defaultChecked={index === 0}
+                        onChange={(e) => handleStars(e)}
+                        required>
+                      </input>
+                      <label htmlFor={`star-${index+1}`}>
+                        <div className="single-star-container">
+                          <div
+                            className="single-star-fill"
+                            style={{"width" : `${parseInt(star*20.3)}px`}}>
+                            <img
+                              className="single-star-outline"
+                              src="../../client/dist/images/star2.png" alt="stars alt">
+                            </img>
+                          </div>
                         </div>
-                      </div>
-                    </label>
-                  </span>
-                )
-              })}
+                      </label>
+                    </span>
+                  )
+                })}
+              </div>
             </div>
-            <div>
+            <div className="form-star-def">
               <span>5: Great</span>
               <span>4: Good</span>
               <span>3: Average</span>
@@ -182,7 +185,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
             </div>
           </div>
           <div>
-            <div>
+            <div className="form-recommend form-category-font">
               <label>* Do you recommend this product?</label>
             </div>
             <div>
@@ -192,120 +195,165 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
               <label htmlFor="no">No</label>
             </div>
           </div>
-          <div>
-            <div>* Characteristics:</div>
-            {chars.length === 0 && <div>No characteristics at this time</div>}
-            {chars.length >= 1 &&
-              chars.map((char, index) => {
-                return (
-                  <div key={index}>
-                    <label>{char}: {charChart[char][currentSelection[char]]}</label>
-                    <div>
-                      <input
-                        type="radio"
-                        value="1"
-                        id={`${char}-1`}
-                        onChange={(e) => handleSelect(e, char)}
-                        name={charObj[char].id}
-                        required>
-                      </input>
-                      <label htmlFor={`${char}-1`}>1</label>
-                      <input
-                        type="radio"
-                        value="2"
-                        id={`${char}-2`}
-                        onChange={(e) => handleSelect(e, char)}
-                        name={charObj[char].id}>
-                      </input>
-                      <label htmlFor={`${char}-2`}>2</label>
-                      <input
-                        type="radio"
-                        value="3"
-                        id={`${char}-3`}
-                        onChange={(e) => handleSelect(e, char)}
-                        name={charObj[char].id}>
-                      </input>
-                      <label htmlFor={`${char}-3`}>3</label>
-                      <input
-                        type="radio"
-                        value="4"
-                        id={`${char}-4`}
-                        onChange={(e) => handleSelect(e, char)}
-                        name={charObj[char].id}>
-                      </input>
-                      <label htmlFor={`${char}-4`}>4</label>
-                      <input
-                        type="radio"
-                        value="5"
-                        id={`${char}-5`}
-                        onChange={(e) => handleSelect(e, char)}
-                        name={charObj[char].id}>
-                      </input>
-                      <label htmlFor={`${char}-5`}>5</label>
-                    </div>
-                    <div>
-                      <span>{charChart[char][0]}</span>
-                      <span>{charChart[char][4]}</span>
-                    </div>
-                  </div>
-                )
-              })
-            }
-          </div>
-          <div>
-            <label>* Review Summary:</label>
-            <input type="text" name="summary" placeholder="Best purchase ever!!!" maxLength="60" required></input>
-          </div>
-          <div>
-            <label>* Review Body:</label>
-            <textarea
-              name="body"
-              minLength="50"
-              maxLength="1000"
-              value={body}
-              onChange={handleBody}
-              placeholder="Why did you like the product or not?"
-              required>
-            </textarea>
-            { body.length < 50 &&
-              <span>Minimum required characters left: [{50-body.length}]</span>
-            }
-            { body.length > 50 &&
-              <span>Minimum Reached</span>
-            }
-          </div>
-          <div>
-            <label>Upload Photos</label>
-            <div>
-              <input
-                name="photos"
-                id="photos"
-                type="input"
-                value={image}
-                onChange={(e) => {setImage(e.target.value)}}
-                placeholder={`You can add ${5 - images.length} more images!`}>
-              </input>
+          <div className="form-char-cont">
+            <div
+              className="form-category-font">
+              * Characteristics:
             </div>
-            <div>
+            {chars.length === 0 && <div>No characteristics at this time</div>}
+            <div className="form-ind-char-cont">
+              {chars.length >= 1 &&
+                chars.map((char, index) => {
+                  return (
+                    <div className="form-ind-char" key={index}>
+                      <div style={{"marginRight": "20px"}}>
+                        <label>
+                          {char}:
+                          <span className="form-char-selected">
+                            {charChart[char][currentSelection[char]]}
+                          </span>
+                        </label>
+                        <div>
+                          <input
+                            type="radio"
+                            value="1"
+                            id={`${char}-1`}
+                            onChange={(e) => handleSelect(e, char)}
+                            name={charObj[char].id}
+                            required>
+                          </input>
+                          <label htmlFor={`${char}-1`}>1</label>
+                          <input
+                            type="radio"
+                            value="2"
+                            id={`${char}-2`}
+                            onChange={(e) => handleSelect(e, char)}
+                            name={charObj[char].id}>
+                          </input>
+                          <label htmlFor={`${char}-2`}>2</label>
+                          <input
+                            type="radio"
+                            value="3"
+                            id={`${char}-3`}
+                            onChange={(e) => handleSelect(e, char)}
+                            name={charObj[char].id}>
+                          </input>
+                          <label htmlFor={`${char}-3`}>3</label>
+                          <input
+                            type="radio"
+                            value="4"
+                            id={`${char}-4`}
+                            onChange={(e) => handleSelect(e, char)}
+                            name={charObj[char].id}>
+                          </input>
+                          <label htmlFor={`${char}-4`}>4</label>
+                          <input
+                            type="radio"
+                            value="5"
+                            id={`${char}-5`}
+                            onChange={(e) => handleSelect(e, char)}
+                            name={charObj[char].id}>
+                          </input>
+                          <label htmlFor={`${char}-5`}>5</label>
+                        </div>
+                      </div>
+                      <div className="form-char-def">
+                        <span>1: {charChart[char][1]}</span>
+                        <span>2: {charChart[char][3]}</span>
+                        <span>3: {charChart[char][5]}</span>
+                      </div>
+                    </div>
+                  )
+                })
+              }
+            </div>
+          </div>
+          <div className="single-line-input">
+            <label className="form-category-font">
+              * Review Summary:
+            </label>
+            <input className="form-input-width" type="text" name="summary" placeholder="Best purchase ever!!!" maxLength="60" required></input>
+          </div>
+          <div className="form-body-cont">
+            <label className="form-category-font">
+              * Review Body:
+            </label>
+            <div className="form-body-input">
+              <textarea
+                name="body"
+                minLength="50"
+                maxLength="1000"
+                value={body}
+                onChange={handleBody}
+                placeholder="Why did you like the product or not?"
+                required>
+              </textarea>
+              { body.length < 50 &&
+                <span>Minimum required characters left: [{50-body.length}]</span>
+              }
+              { body.length > 50 &&
+                <span>Minimum Reached</span>
+              }
+            </div>
+          </div>
+          <div className="form-photos-cont">
+            <label className="form-category-font">
+              Upload Photos:
+            </label>
+            <input
+              className="form-photos-input"
+              name="photos"
+              id="photos"
+              type="input"
+              value={image}
+              onChange={(e) => {setImage(e.target.value)}}
+              placeholder={`You can add ${5 - images.length} more images!`}>
+            </input>
+            <div className="form-buttons-container">
               {images.length < 5 &&
-                <span onClick={(e) => imagehandler(e, 'add')}>Add Image</span>
+                <span
+                  style={{"border": "green solid 3px"}}
+                  onClick={(e) => imagehandler(e, 'add')}>
+                  Add Image
+                </span>
               }
               {images.length > 0 &&
-                <span onClick={(e) => imagehandler(e, 'del')}>Remove Image {images.length}</span>
+                <span
+                  style={{"border": "red solid 3px"}}
+                  onClick={(e) => imagehandler(e, 'del')}>
+                  Remove Image {images.length}
+                </span>
               }
             </div>
           </div>
-          <div>
-            <label>* Nickname:</label>
-            <input type="text" name="name" placeholder="jackson11" maxLength="60" required></input>
-            <div>For privacy reasons do not use your real name or email.</div>
+          <div className="form-name-email-cont">
+            <div className="single-line-input">
+              <label className="form-category-font">
+                * Nickname:
+              </label>
+              <input className="form-input-width" type="text" name="name" placeholder="jackson11" maxLength="60" required></input>
+            </div>
+            <div className="form-warning">
+              For privacy reasons do not use your real name or email.
+            </div>
           </div>
-          <div>
-            <label>* email:</label>
-            <input type="email" name="email" placeholder="jackson11@gmail.com" maxLength="60" required></input>
-            <div>For authentication reasons, you will not be emailed.</div>
+          <div className="form-name-email-cont">
+            <div className="single-line-input">
+              <label className="form-category-font">
+                * email:
+              </label>
+              <input className="form-input-width" type="email" name="email" placeholder="jackson11@gmail.com" maxLength="60" required></input>
+            </div>
+            <div className="form-warning">
+              For authentication reasons, you will not be emailed.
+            </div>
           </div>
-          <input type="submit" value="Submit"></input>
+          <input
+            style={{"border": "gray solid 3px", "borderRadius": "5px"}}
+            className="form-buttons-container"
+            type="submit"
+            value="Submit">
+          </input>
         </form>
       </div>
     </div>,
