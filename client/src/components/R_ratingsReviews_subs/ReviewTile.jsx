@@ -75,17 +75,6 @@ const ReviewTile = function ReviewTile({ review, setRList, productID }) {
       <div className="review-tile-head">
         <span>
           <StarComponent productID={productID} avg={review.rating}/>
-          {/* <span>
-            {starArray(review.rating).map((item, i) => {
-              if (item > 0) {
-                return (
-                  <div className="single-star-container" key={i}>
-                    ★
-                  </div>
-                );
-              }
-            })}
-          </span> */}
         </span>
         <span>{date.toLocaleDateString()}</span>
       </div>
@@ -99,7 +88,10 @@ const ReviewTile = function ReviewTile({ review, setRList, productID }) {
           }
         </div>
         <div className="review-tile-body">
-          <span>{review.summary}</span>
+          <span
+          style={{"height": "30%"}}>
+            {review.summary}
+          </span>
           <div>
             <div className="review-tile-body-body">{review.body}</div>
             <div className='photo-div'>{photosArr}</div> {/* photo THUMBNAILS HERE */}
