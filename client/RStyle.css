@@ -208,6 +208,8 @@
   padding: 3px;
   font-size: 14px;
   margin: 5px 5px;
+  background-color: buttonface;
+  cursor: default;
 }
 
 .form-name-email-cont {

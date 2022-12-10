@@ -314,14 +314,14 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
             <div className="form-buttons-container">
               {images.length < 5 &&
                 <span
-                  style={{"border": "green solid 3px"}}
+                  style={{"border": "gray solid 3px"}}
                   onClick={(e) => imagehandler(e, 'add')}>
                   Add Image
                 </span>
               }
               {images.length > 0 &&
                 <span
-                  style={{"border": "red solid 3px"}}
+                  style={{"border": "gray solid 3px"}}
                   onClick={(e) => imagehandler(e, 'del')}>
                   Remove Image: [{images.length}]
                 </span>
