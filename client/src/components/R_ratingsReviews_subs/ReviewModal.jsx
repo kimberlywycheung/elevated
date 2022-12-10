@@ -140,10 +140,12 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
           <span>Write your review about the <span className="form-product">{name}</span></span>
         </div>
         <form id="addReview" className="scroll" onSubmit={formSubmit}>
-          <div className="form-star-container">
-            <div className="form-rating form-category-font">
-              <label>* Overall Rating:</label>
-              <div>
+        <div className="form-rating-container">
+            <label className="form-category-font">
+              * Overall Rating:
+            </label>
+            <div className="form-star-def-cont">
+              <div className="form-star-cont">
                 {starArray.map((star, index) => {
                   // console.log(index, (index + 1) === starCount, starCount)
                   return (
@@ -175,20 +177,20 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
                   )
                 })}
               </div>
-            </div>
-            <div className="form-star-def">
-              <span>5: Great</span>
-              <span>4: Good</span>
-              <span>3: Average</span>
-              <span>2: Fair</span>
-              <span>1: Poor</span>
+              <div className="form-star-def">
+                <span>5: Great</span>
+                <span>4: Good</span>
+                <span>3: Average</span>
+                <span>2: Fair</span>
+                <span>1: Poor</span>
+              </div>
             </div>
           </div>
           <div>
             <div className="form-recommend form-category-font">
               <label>* Do you recommend this product?</label>
             </div>
-            <div>
+            <div className="form-recommend-input font">
               <input type="radio" id="yes" name="recommend" value="true" required></input>
               <label htmlFor="yes">Yes</label>
               <input type="radio" id="no" name="recommend" value="false"></input>
@@ -205,12 +207,12 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
               {chars.length >= 1 &&
                 chars.map((char, index) => {
                   return (
-                    <div className="form-ind-char" key={index}>
-                      <div style={{"marginRight": "20px"}}>
+                    <div className="form-ind-char font" key={index}>
+                      <div style={{"marginRight": "60px"}}>
                         <label>
                           {char}:
-                          <span className="form-char-selected">
-                            {charChart[char][currentSelection[char]]}
+                          <span style={{"marginLeft": "5px"}} className="form-char-selected">
+                              {charChart[char][currentSelection[char]]}
                           </span>
                         </label>
                         <div>
@@ -272,7 +274,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
             <label className="form-category-font">
               * Review Summary:
             </label>
-            <input className="form-input-width" type="text" name="summary" placeholder="Best purchase ever!!!" maxLength="60" required></input>
+            <input className="single-line-input-specs" type="text" name="summary" placeholder="Best purchase ever!!!" maxLength="60" required></input>
           </div>
           <div className="form-body-cont">
             <label className="form-category-font">
@@ -289,10 +291,10 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
                 required>
               </textarea>
               { body.length < 50 &&
-                <span>Minimum required characters left: [{50-body.length}]</span>
+                <span className="font">Minimum required characters left: [{50-body.length}]</span>
               }
               { body.length > 50 &&
-                <span>Minimum Reached</span>
+                <span className="font">Minimum Reached</span>
               }
             </div>
           </div>
@@ -301,7 +303,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
               Upload Photos:
             </label>
             <input
-              className="form-photos-input"
+              className="single-line-input-specs"
               name="photos"
               id="photos"
               type="input"
@@ -321,7 +323,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
                 <span
                   style={{"border": "red solid 3px"}}
                   onClick={(e) => imagehandler(e, 'del')}>
-                  Remove Image {images.length}
+                  Remove Image: [{images.length}]
                 </span>
               }
             </div>
@@ -331,9 +333,9 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
               <label className="form-category-font">
                 * Nickname:
               </label>
-              <input className="form-input-width" type="text" name="name" placeholder="jackson11" maxLength="60" required></input>
+              <input className="single-line-input-specs" type="text" name="name" placeholder="jackson11" maxLength="60" required></input>
             </div>
-            <div className="form-warning">
+            <div className="form-warning font">
               For privacy reasons do not use your real name or email.
             </div>
           </div>
@@ -342,15 +344,15 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
               <label className="form-category-font">
                 * email:
               </label>
-              <input className="form-input-width" type="email" name="email" placeholder="jackson11@gmail.com" maxLength="60" required></input>
+              <input className="single-line-input-specs" type="email" name="email" placeholder="jackson11@gmail.com" maxLength="60" required></input>
             </div>
-            <div className="form-warning">
+            <div className="form-warning font">
               For authentication reasons, you will not be emailed.
             </div>
           </div>
           <input
             style={{"border": "gray solid 3px", "borderRadius": "5px"}}
-            className="form-buttons-container"
+            className="form-buttons-container font"
             type="submit"
             value="Submit">
           </input>
