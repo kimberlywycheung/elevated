@@ -88,21 +88,20 @@ const ReviewTile = function ReviewTile({ review, setRList, productID }) {
           }
         </div>
         <div className="review-tile-body">
-          <span
-          style={{"height": "30%"}}>
+          <span>
             {review.summary}
           </span>
           <div>
             <div className="review-tile-body-body">{review.body}</div>
             <div className='photo-div'>{photosArr}</div> {/* photo THUMBNAILS HERE */}
+            {review.response &&
+              <div className="review-tile-result">
+                <div className="respone-head">Response:</div>
+                <div className="response-body">{review.response}</div>
+              </div>
+            }
           </div>
         </div>
-        {review.response &&
-          <div style={{backgroundColor: "gray"}}>
-            <h3>Response</h3>
-            {review.response}
-          </div>
-        }
       </div>
       <span className="review-tile-help">Helpful? <a onClick={handleVote}>Yes</a> ({review.helpfulness}) | <a onClick={handleReport}>Report</a></span>
       <div>
