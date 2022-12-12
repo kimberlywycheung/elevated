@@ -6,7 +6,7 @@ const ProductBrk = function ({ char, breakdown }) {
   const charChart = {
     Size: ['A size too small', '½ a size too small', 'Perfect', '½ a size too big', 'A size too wide'],
     Width: ['Too narrow', 'Slightly Narrow', 'Perfect', 'Slightly wide', 'Too wide'],
-    Comfort: ['Uncomfortable', 'Slightyly uncomfortable', 'Ok', 'Comfortable', 'Perfect'],
+    Comfort: ['Poor', 'Slightyly uncomfortable', 'Ok', 'Comfortable', 'Perfect'],
     Quality: ['Poor', 'Below average', 'Ok', 'Pretty Great', 'Perfect'],
     Length: ['Runs Short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'],
     Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly loose', 'Runs loose']
