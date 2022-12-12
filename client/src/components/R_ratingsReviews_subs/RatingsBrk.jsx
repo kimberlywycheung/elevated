@@ -66,7 +66,7 @@ const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray, starFilter }) 
           <div className="barContainerStyles">
             <div
               className="barFillerStyles"
-              style={{"width": `${stats.ratings['5']/100*120}%`}}>
+              style={{"width": `${stats.ratings['5']}%`}}>
               <span className="barLabelStyles">{stats.ratings['5']}%</span>
             </div>
           </div>
@@ -76,7 +76,7 @@ const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray, starFilter }) 
             4 stars
           </span>
           <div className="barContainerStyles">
-            <div className="barFillerStyles" style={{"width": `${stats.ratings['4']/100*120}%`}}>
+            <div className="barFillerStyles" style={{"width": `${stats.ratings['4']}%`}}>
               <span className="barLabelStyles">{stats.ratings['4']}%</span>
             </div>
           </div>
@@ -86,7 +86,7 @@ const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray, starFilter }) 
             3 stars
           </span>
           <div className="barContainerStyles">
-            <div className="barFillerStyles"  style={{"width": `${stats.ratings['3']/100*120}%`}}>
+            <div className="barFillerStyles"  style={{"width": `${stats.ratings['3']}%`}}>
               <span className="barLabelStyles">{stats.ratings['3']}%</span>
             </div>
           </div>
@@ -96,7 +96,7 @@ const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray, starFilter }) 
             2 stars
           </span>
           <div className="barContainerStyles">
-            <div className="barFillerStyles"  style={{"width": `${stats.ratings['2']/100*120}%`}}>
+            <div className="barFillerStyles"  style={{"width": `${stats.ratings['2']}%`}}>
               <span className="barLabelStyles">{stats.ratings['2']}%</span>
             </div>
           </div>
@@ -106,7 +106,7 @@ const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray, starFilter }) 
             1 stars
           </span>
           <div className="barContainerStyles">
-            <div className="barFillerStyles"  style={{"width": `${stats.ratings['1']/100*120}%`}}>
+            <div className="barFillerStyles"  style={{"width": `${stats.ratings['1']}%`}}>
               <span className="barLabelStyles">{stats.ratings['1']}%</span>
             </div>
           </div>

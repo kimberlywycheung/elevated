@@ -17,7 +17,7 @@ const ProductBrk = function ({ char, breakdown }) {
       <span>{char}</span>
       <div>
         <div className="charContainerStyles">
-          <div className="charFillerStyles" style={{"width": indicator/5*198}}>
+          <div className="charFillerStyles" style={{"width": `${indicator/5*100}%`}}>
             <span>▼</span>
           </div>
         </div>
@@ -35,15 +35,6 @@ const ProductBrk = function ({ char, breakdown }) {
             <span style={{"fontSize": "10px"}}>{charChart[char][4]}</span>
           </div>
         </div>
-        {/* <div className="charBarContainer">
-          <div className="charBarStyles"></div>
-          <div className="charBarStyles"></div>
-          <div className="charBarStyles"></div>
-        </div>
-        <div className="charWordContainer">
-          <span style={{"fontSize": "10px"}}>{charChart[char][0]}</span>
-          <span style={{"fontSize": "10px"}}>{charChart[char][4]}</span>
-        </div> */}
       </div>
       <hr></hr>
     </div>
