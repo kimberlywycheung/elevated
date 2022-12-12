@@ -22,7 +22,7 @@ const QuestionsAnswers = ({productID}) => {
   },[productID]);
 
   const getQlist = () => {
-    var url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions?product_id=${productID}&count=150`;
+    var url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions?product_id=${productID}&count=50`;
     axios.get(url, {
       headers: { 'Authorization': process.env.GITHUB_TOKEN }
     })
