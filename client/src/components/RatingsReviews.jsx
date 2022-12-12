@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Breakdown from './R_ratingsReviews_subs/Breakdown.jsx';
 import Reviews from './R_ratingsReviews_subs/Reviews.jsx';
+import styled from 'styled-components';
 
 const RatingsReviews = ({product}) => {
   const [charBreak, setCharBreak] = useState({})
@@ -40,14 +41,27 @@ const RatingsReviews = ({product}) => {
   }
 
   return (
-    <div className='ratings-reviews-cont'>
+    <RRContainer>
       <h2>Ratings & Reviews</h2>
-      <div className='ratings-reviews'>
+      <RR>
         <Breakdown productID={product.id} ratingsArray={ratingsArray} setCharBreak={setCharBreak} starFilter={starFilter}/>
         <Reviews productID={product.id} name={product.name} starFilter={starFilter} charBreak={charBreak}/>
-      </div>
-    </div>
+      </RR>
+    </RRContainer>
   )
 }
 
 export default RatingsReviews;
+
+const RRContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  min-height: 300px;
+  margin: 130px 0 0 0;
+`
+
+const RR = styled.div`
+  display: flex;
+  flex-direction: row;
+`

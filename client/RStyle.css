@@ -236,14 +236,14 @@
 
 /* Reviews */
 
-.ratings-reviews-cont {
-  /* background-color: rgb(159, 198, 172); */
+/* renamed to rrContainer */
+/* .ratings-reviews-cont {
   display: flex;
   flex-direction: column;
   background-color: white;
   min-height: 300px;
   margin: 130px 0 0 0;
-}
+} */
 
 span.rating-span {
   font-size: 40px;
@@ -263,10 +263,11 @@ span.star-span {
   padding: 2%;
 }
 
-.ratings-reviews {
+/* renamed to rr */
+/* .ratings-reviews {
   display: flex;
   flex-direction: row;
-}
+} */
 
 /* sort form  */
 
