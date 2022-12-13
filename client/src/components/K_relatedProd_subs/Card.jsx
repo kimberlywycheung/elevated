@@ -9,11 +9,6 @@ const Card = React.forwardRef(({ type, currentProd, item, deleteFromFavorites, s
   const [itemStyles, setItemStyles] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // const size = {
-  //   height: 16.6,
-  //   width: 14
-  // };
-
   const getProduct = (endpoint, cb) => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${endpoint}`, {
       headers: { Authorization: process.env.GITHUB_TOKEN },
@@ -129,9 +124,7 @@ const Card = React.forwardRef(({ type, currentProd, item, deleteFromFavorites, s
               </CardSalePrice>
             </CardPrice> : <CardPrice>${originalPrice}</CardPrice> }
 
-          {/* <div className="card-stars-container"> */}
-            <StarComponent productID={itemInfo.id} /*size={size}*//>
-          {/* </div> */}
+            <StarComponent productID={itemInfo.id} size={{ height: 16.6, width: 14 }}/>
 
         </CardInfo>
       </CardDiv>
