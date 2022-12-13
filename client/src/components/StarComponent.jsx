@@ -2,8 +2,43 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
-const StarComponent = ({ productID, avg }) => {
+const StarSpan = styled.span`
+  display: flex;
+  flex-direction: row;
+  width: ${props => props.dimension.height * 6}px;
+  height: ${props => props.dimension.height + 5}px;
+`
+
+const SingleStarContainer = styled.div`
+  height: ${props => props.dimension.height}px;
+  width: ${props => props.dimension.width}px;
+  display: inline-block;
+`
+
+const SingleStarFill = styled.div`
+  position: relative;
+  display: inline-block;
+  height: ${props => props.dimension.height}px;
+  background-color: black;
+`
+
+const StarImg = styled.img`
+  height: ${props => props.dimension.height}px;
+  width: ${props => props.dimension.width}px;
+`
+
+const StarComponent = ({ productID, avg, size }) => {
   const [avgRating, setAvgRating] = useState(0)
+
+  let dimension = {
+    height: 24,
+    width: 20.3
+  };
+  if (size) {
+    dimension = size;
+  }
+
+  console.log(dimension);
 
   useEffect(() => {
     if (avg) {
@@ -77,13 +112,13 @@ const StarComponent = ({ productID, avg }) => {
   }
 
   return (
-    <StarSpan>
+    <StarSpan dimension={dimension}>
       {starArray(avgRating).map((item, i) => {
         return (
-          <SingleStarContainer key={i}>
-            <SingleStarFill
-              style={{"width" : `${parseInt(item*20.3)}px`}}>
-              <StarImg src="../../client/dist/images/star2.png" alt="stars alt"></StarImg>
+          <SingleStarContainer dimension={dimension} key={i}>
+            <SingleStarFill dimension={dimension}
+              style={{"width" : `${parseInt(item*dimension.width)}px`}}>
+              <StarImg dimension={dimension} src="../../client/dist/images/star2.png" alt="stars alt"></StarImg>
             </SingleStarFill>
           </SingleStarContainer>
         );
@@ -93,27 +128,3 @@ const StarComponent = ({ productID, avg }) => {
 };
 
 export default StarComponent;
-
-const StarSpan = styled.span`
-  display: flex;
-  flex-direction: row;
-  height: 30px;
-`
-
-const SingleStarContainer = styled.div`
-  height: 24px;
-  width: 20.3px;
-  display: inline-block;
-`
-
-const SingleStarFill = styled.div`
-  position: relative;
-  display: inline-block;
-  height: 24px;
-  background-color: black;
-`
-
-const StarImg = styled.img`
-  height: 24px;
-  width: 20.3px;
-`

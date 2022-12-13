@@ -59,11 +59,11 @@ const ReviewTile = function ReviewTile({ review, setRList, productID }) {
         var photoID = typeof photo === 'object' ? photo.id : Number((review.review_id + '')+i);
 
         photoInput.push(
-          <img onClick={e => {e.preventDefault(); openImg(photoUrl)}} className='a-thumbnails' key={photoID} src={photoUrl} onError={({ currentTarget }) => {
+          <Athumbnails onClick={e => {e.preventDefault(); openImg(photoUrl)}} key={photoID} src={photoUrl} onError={({ currentTarget }) => {
             currentTarget.onerror = null; // prevents looping
             currentTarget.style.display = 'none';
             currentTarget.src="https://climate.onep.go.th/wp-content/uploads/2020/01/default-image.jpg";
-          }}></img>
+          }}></Athumbnails>
         )
 //"this.onerror=null; this.src='https://placeimg.com/200/300/animals';"
       });
@@ -196,10 +196,15 @@ width: 400px;
 max-height: 100px;
 overflow-x: visible;
 overflow-y: hidden;
-`;
+`
 
 
 const RTHelpful = styled.span`
   font-size: 13px;
   color: grey;
 `
+const Athumbnails = styled.img`
+  max-width: 100px;
+  max-height: 100px;
+  border: solid rgb(229, 229, 229) .5px;
+`;
