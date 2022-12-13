@@ -2,6 +2,55 @@ import React from 'react';
 import axios from 'axios';
 import Answer from './Answer.jsx';
 import $ from "jquery";
+import styled from "styled-components";
+
+  //STYLED COMPONENTS
+  const StyledQaBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 30px;
+  font-size: 1.4em;
+  border-bottom: solid rgb(236, 233, 233) 1px;
+  `;
+  const StyledQBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  padding: 20px;
+  padding-bottom: 20px;
+  padding-left: 40px;
+  `;
+  const QaBody = styled.span`
+  padding-left: 20px;
+  `;
+  const AnsSection = styled.div`
+  padding-left: 60px;
+  display: flex;
+  flex-direction: row;
+  `;
+  const Abox = styled.div`
+  padding-left: 10px;
+  max-height: 320px;
+  overflow: auto;
+  `;
+  const LoadAns = styled.a`
+  padding: 10px 30px;
+  font-size: .8em;
+  width: 160px;
+  `;
+  const Qmeta1 = styled.div`
+  display: flex;
+  width: 200px;
+  justify-content: space-between;
+  font-size: .6em;
+  color: grey;
+  padding: 10px 0;
+  `;
+ export const Qmeta2 = styled(Qmeta1)`
+  width: 500px;
+  padding: 5px 40px;
+  font-size: .8em;
+  `;
 
 const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist, list}) => {
   const [Alist, setAlist] = React.useState([]);
@@ -92,34 +141,34 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist, list}) => {
 
 
   return (
-    <div className='qa-block'>
-      <div className='q-box'>
-        <span><span className='bold'>Q:</span><span className='qa-body'>{q.question_body}</span></span>
+    <StyledQaBlock>
+      <StyledQBox>
+        <span><span className='bold'>Q:</span><QaBody>{q.question_body}</QaBody></span>
 
-        <div className='q-meta'>
+        <Qmeta1>
           <span>Helpful? <a className='underline' style={{'paddingRight': '5px'}} onClick={e => {e.preventDefault(); handleHelpfulQ()}}>Yes</a>{q.question_helpfulness}</span>
           <span>|</span>
           <span><a onClick={e => {e.preventDefault(); handleAddAns()}}>Add Answer</a></span>
-        </div>
-      </div>
-      <div className='ans-section'>
+        </Qmeta1>
+      </StyledQBox>
+      <AnsSection>
         <div style={ansStyle}>A:</div>
         <div>
-          <div className='a-box'>
+          <Abox>
             {limitedAList.map((a) => {
               return (
                 <Answer getAndSetAnswers={getAndSetAnswers} a={a} key={a.answer_id}/>
               )
             })}
-          </div>
-          <a style={loadView} onClick={e => {e.preventDefault(); loadMoreAns()}} className='load-ans'>load more answers</a>
-          <a style={collapseView} onClick={e => {e.preventDefault(); collapseAns()}} className='load-ans'>collapse answers</a>
+          </Abox>
+          <LoadAns style={loadView} onClick={e => {e.preventDefault(); loadMoreAns()}}>load more answers</LoadAns>
+          <LoadAns style={collapseView} onClick={e => {e.preventDefault(); collapseAns()}}>collapse answers</LoadAns>
         </div>
-      </div>
-    <div className='q-meta q-meta2'>
+      </AnsSection>
+    <Qmeta2>
       question from "{q.asker_name}"
-    </div>
-    </div>
+    </Qmeta2>
+    </StyledQaBlock>
 
   )
 
