@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 
 const StarComponent = ({ productID, avg }) => {
   const [avgRating, setAvgRating] = useState(0)
@@ -76,18 +77,43 @@ const StarComponent = ({ productID, avg }) => {
   }
 
   return (
-    <span className="star-span">
+    <StarSpan>
       {starArray(avgRating).map((item, i) => {
         return (
-          <div className="single-star-container" key={i}>
-            <div className="single-star-fill" style={{"width" : `${parseInt(item*20.3)}px`}}>
-              <img className="single-star-outline" src="../../client/dist/images/star2.png" alt="stars alt"></img>
-            </div>
-          </div>
+          <SingleStarContainer key={i}>
+            <SingleStarFill
+              style={{"width" : `${parseInt(item*20.3)}px`}}>
+              <StarImg src="../../client/dist/images/star2.png" alt="stars alt"></StarImg>
+            </SingleStarFill>
+          </SingleStarContainer>
         );
       })}
-    </span>
+    </StarSpan>
   )
 };
 
 export default StarComponent;
+
+const StarSpan = styled.span`
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+`
+
+const SingleStarContainer = styled.div`
+  height: 24px;
+  width: 20.3px;
+  display: inline-block;
+`
+
+const SingleStarFill = styled.div`
+  position: relative;
+  display: inline-block;
+  height: 24px;
+  background-color: black;
+`
+
+const StarImg = styled.img`
+  height: 24px;
+  width: 20.3px;
+`

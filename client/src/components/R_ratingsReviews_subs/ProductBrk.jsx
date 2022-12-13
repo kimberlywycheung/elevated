@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 const ProductBrk = function ({ char, breakdown }) {
   let indicator = Math.round(breakdown[char].value * 10)/10

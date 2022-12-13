@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ImgView from '../E_qa_subs/ImgView.jsx';
 import StarComponent from '../StarComponent.jsx';
+import styled from 'styled-components';
 
 const ReviewTile = function ReviewTile({ review, setRList, productID }) {
   const [photosArr, setPhotosArr] = React.useState([]);

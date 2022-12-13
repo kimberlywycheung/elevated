@@ -4,6 +4,7 @@ import SortReviews from './SortReviews.jsx';
 import ListReviews from './ListReviews.jsx';
 import AddReviews from './AddReviews.jsx';
 import $ from 'jquery';
+import styled from 'styled-components';
 
 const Reviews = function Reviews({ productID, name, starFilter, charBreak }) {
   const [reviews, setReviews] = useState({});

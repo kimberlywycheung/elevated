@@ -42,7 +42,7 @@ const RatingsReviews = ({product}) => {
 
   return (
     <RRContainer>
-      <h2>Ratings & Reviews</h2>
+      <H2>Ratings & Reviews</H2>
       <RR>
         <Breakdown productID={product.id} ratingsArray={ratingsArray} setCharBreak={setCharBreak} starFilter={starFilter}/>
         <Reviews productID={product.id} name={product.name} starFilter={starFilter} charBreak={charBreak}/>
@@ -52,6 +52,10 @@ const RatingsReviews = ({product}) => {
 }
 
 export default RatingsReviews;
+
+const H2 = styled.div`
+  margin: 20px;
+`
 
 const RRContainer = styled.div`
   display: flex;

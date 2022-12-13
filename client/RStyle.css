@@ -245,15 +245,15 @@
   margin: 130px 0 0 0;
 } */
 
-span.rating-span {
+/* span.rating-span {
   font-size: 40px;
-}
+} */
 
-span.star-span {
+/* span.star-span {
   display: flex;
   flex-direction: row;
   height: 30px;
-}
+} */
 
 .review-cont {
   display: flex;
@@ -393,79 +393,81 @@ form .sort-header {
 
 /* breakdown */
 
-.breakdown-cont {
+/* BreakdownCont */
+/* .breakdown-cont {
   background-color: white;
   width: 25%;
   padding: 2%;
-}
+} */
 
-.rating-and-stars {
+/* RatingAndStars */
+/* .rating-and-stars {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   margin-bottom: 5px;
   overflow: auto;
-}
+} */
 
 /* Quarter star CSS */
 
 
-.single-star-outline {
+/* .single-star-outline {
   height: 24px;
   width: 20.3px;
-}
+} */
 
-.single-star-fill {
+/* .single-star-fill {
   position: relative;
   display: inline-block;
   height: 24px;
   background-color: black;
-}
+} */
 
-.single-star-container {
+/* .single-star-container {
   height: 24px;
   width: 20.3px;
   display: inline-block;
-}
+} */
 
-.rec-statement {
+/* .rec-statement {
   font-size: 15px;
   margin-bottom: 5px;
-}
+} */
 
 /* Progress Bar CSS */
 
-.barRatingsContainer {
+/* .barRatingsContainer {
   margin-bottom: 5px;
-}
+} */
 
-.barRatingsContainer > div {
+/* .barRatingsContainer > div {
   display: flex;
   align-items: center;
-}
+} */
 
-.barContainerStyles {
+/* .barContainerStyles {
   height: 20px;
   width: 120px;
   background-color: "#e0e0de";
   border-radius: 1px;
   border: solid black 1px;
   margin: 5px;
-}
+} */
 
-.barFillerStyles {
+/* .barFillerStyles {
   height: 100%;
   background-color: gray;
   border-radius: inherit;
   text-align: right;
-}
+} */
 
-.barLabelStyles {
+/* .barLabelStyles {
   padding: 5;
   color: black;
   font-weight: bold;
   font-size: 10px;
-}
+} */
 
 /* Characteristics Display CSS */
 
