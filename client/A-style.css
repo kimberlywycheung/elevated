@@ -27,8 +27,10 @@
 
 /* IMAGES */
 .image-gallery {
-  background-color: rgb(249, 249, 249);
-  /* padding: 3px; */
+  position: relative;
+  /* background-color: rgb(249, 249, 249); */
+  background-color: rgb(201, 39, 39);
+  padding: 3px;
   width: 100%;
   max-width: 100%;
   height: 600px;
@@ -46,19 +48,49 @@
 }
 
 
-.ov-img-select {
-  position: relative;
-  top: -25%;
-  left: 15%;
-  width: 70%;
+.ov-carousel {
+  position: absolute;
+  top: 90%;
+  left: 10%;
+  transform: translate(0, -100%);
+  width: 80%;
   height: 90px;
   /* max-height: 100px; */
 
   /* float: left; */
-  overflow-x: auto;
+   overflow-x: auto;
+  
   white-space: nowrap;
 
-  /* background-color: rgb(102, 170, 127); */
+  background-color: rgb(126, 155, 188);
+}
+.ov-image-select {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 50%;
+  height: 90px;
+
+  /* overflow-x: auto; */
+  /* white-space: nowrap; */
+
+  background-color: rgb(50, 218, 111);
+}
+.left-arrow {
+  position: absolute;
+  top: 80%;
+  left: 15%;
+  transform: translate(-100%, -50%);
+  z-index: 1;
+}
+
+.right-arrow {
+  position: absolute;
+  top: 80%;
+  left: 85%;
+  transform: translate(0%, -50%);
+  z-index: 1;
+
 }
 .ov-mini-container {
   display:inline-block;
@@ -134,8 +166,8 @@
 }
 
 .ov-style-select {
-  /* margin: 0 10px;
-  background-color: rgb(178, 152, 182); */
+  /* margin: 0 10px; */
+  background-color: rgb(97, 7, 111)
   position: absolute;
   width: 100%;
   height: 100%;
