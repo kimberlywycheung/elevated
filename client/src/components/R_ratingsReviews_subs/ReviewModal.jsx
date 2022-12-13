@@ -137,66 +137,64 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
     <div className='qa-modal modal-bg'>
       <span onClick={(e) => {e.preventDefault(); setIsOpen(false)}} id='pop-up-exit'>X</span>
       <div className='modal-content review-modal-specs'>
-        <div className="form-header">
-          <span>Write your review about the <span className="form-product">{name}</span></span>
-        </div>
-        <form id="addReview" className="scroll" onSubmit={formSubmit}>
-        <div className="form-rating-container">
-            <label className="form-category-font">
+        <FormHeader>
+          <span>
+            Write your review about the
+            <span>{name}</span>
+          </span>
+        </FormHeader>
+        <AddReview onSubmit={formSubmit}>
+          <FormRatingCont>
+            <label>
               * Overall Rating:
             </label>
-            <div className="form-star-def-cont">
-              <div className="form-star-cont">
+            <StarAndDefCont>
+              <div>
                 {starArray.map((star, index) => {
-                  // console.log(index, (index + 1) === starCount, starCount)
                   return (
                     <span key={index}>
-                      <input
+                      <NoRadioButton
                         type="radio"
                         value={index + 1}
                         id={`star-${index+1}`}
                         name="rating"
-                        className="form-star-radio-button"
-                        // defaultChecked={(index + 1) === starCount}
                         defaultChecked={index === 0}
                         onChange={(e) => handleStars(e)}
                         required>
-                      </input>
+                      </NoRadioButton>
                       <label htmlFor={`star-${index+1}`}>
-                        <div className="single-star-container">
-                          <div
-                            className="single-star-fill"
+                        <SingleStarContainer>
+                          <SingleStarFill
                             style={{"width" : `${parseInt(star*20.3)}px`}}>
-                            <img
-                              className="single-star-outline"
+                            <StarImg
                               src="../../client/dist/images/star2.png" alt="stars alt">
-                            </img>
-                          </div>
-                        </div>
+                            </StarImg>
+                          </SingleStarFill>
+                        </SingleStarContainer>
                       </label>
                     </span>
                   )
                 })}
               </div>
-              <div className="form-star-def">
+              <StarDef>
                 <span>5: Great</span>
                 <span>4: Good</span>
                 <span>3: Average</span>
                 <span>2: Fair</span>
                 <span>1: Poor</span>
-              </div>
-            </div>
-          </div>
+              </StarDef>
+            </StarAndDefCont>
+          </FormRatingCont>
           <div>
-            <div className="form-recommend form-category-font">
+            <FormRecommend>
               <label>* Do you recommend this product?</label>
-            </div>
-            <div className="form-recommend-input font">
+            </FormRecommend>
+            <FormRecommendInput>
               <input type="radio" id="yes" name="recommend" value="true" required></input>
               <label htmlFor="yes">Yes</label>
               <input type="radio" id="no" name="recommend" value="false"></input>
               <label htmlFor="no">No</label>
-            </div>
+            </FormRecommendInput>
           </div>
           <div className="form-char-cont">
             <div
@@ -357,7 +355,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
             type="submit"
             value="Submit">
           </input>
-        </form>
+        </AddReview>
       </div>
     </div>,
     document.getElementById('pop-up')
@@ -365,3 +363,90 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
 }
 
 export default ReviewModal;
+
+
+const FormHeader = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-size: 30px;
+  padding: 5px;
+   & > span > span {
+    text-decoration: underline;
+   }
+`
+
+const AddReview = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 75%;
+  max-height: 600px;
+  overflow: auto;
+  margin: 7% 0%;
+  padding: 5px;
+  width: 70%;
+  border-radius: 5px
+    & > div {
+      margin-bottom: 20px;
+    }
+`
+
+const FormRatingCont = styled.div`
+  display: flex;
+  flex-direction: column;
+    & > label {
+      font-size: 30px;
+    }
+`
+
+const StarAndDefCont = styled.div`
+  display: flex;
+  margin-top: 5px;
+    & > div {
+      margin-right: 60px;
+      margin-left: 20px;
+    }
+`
+
+const StarDef = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 14px;
+`
+
+const NoRadioButton = styled.input`
+  display: none;
+`
+
+const SingleStarContainer = styled.div`
+  height: 24px;
+  width: 20.3px;
+  display: inline-block;
+`
+
+const SingleStarFill = styled.div`
+  position: relative;
+  display: inline-block;
+  height: 24px;
+  background-color: black;
+`
+
+const StarImg = styled.img`
+  height: 24px;
+  width: 20.3px;
+`
+
+const FormRecommend = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 30px;
+`
+
+const FormRecommendInput = styled.div`
+  margin-left: 20px;
+  margin-top: 5px;
+  font-family: 'Varela Round', sans-serif;
+`
