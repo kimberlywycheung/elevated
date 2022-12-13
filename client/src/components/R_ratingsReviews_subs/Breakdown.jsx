@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import RatingsBrk from './RatingsBrk.jsx';
 import ProductBrk from './ProductBrk.jsx';
+import styled from 'styled-components';
 import axios from "axios";
 
 const Breakdown = ({ productID, ratingsArray, setCharBreak, starFilter }) => {
@@ -26,15 +27,20 @@ const Breakdown = ({ productID, ratingsArray, setCharBreak, starFilter }) => {
   }
 
   return (
-    <div className="breakdown-cont">
+    <BreakdownCont>
       <RatingsBrk breakdown={breakdown} ratingsArray={ratingsArray} starFilter={starFilter}/>
       <div>
         {Object.keys(breakdown.characteristics).map((char) => {
           return <ProductBrk key={breakdown.characteristics[char].id} char={char} breakdown={breakdown.characteristics} />
         })}
       </div>
-    </div>
+    </BreakdownCont>
   )
 }
 
 export default Breakdown;
+
+const BreakdownCont = styled.div`
+  width: 25%;
+  padding: 2%;
+`
