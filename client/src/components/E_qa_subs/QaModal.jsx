@@ -1,6 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import styled from "styled-components";
+
+  //STYLED COMPONENTS
+  const EvansForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  & > * {
+    font-family: 'Varela Round', sans-serif;
+    width: 50%;
+    padding: 10px;
+    margin: 10px auto;
+    }
+    & > textarea {
+      resize:none;
+    }
+`;
+  //END of styled components
 
 const QaModal = ({style, productID, formType, setModalStyle, qID, getQlist}) => {
   var type = formType === 'addQ' ? 'Question' : 'Answer';
@@ -14,7 +33,6 @@ const QaModal = ({style, productID, formType, setModalStyle, qID, getQlist}) => 
     inputFields.push(<div key={5768} className='label1'>Separate images by Comma-space</div>);
     inputFields.push(<textarea rows={4} name='photos' key={productID + addOnKey[3]} placeholder='url of photos, new line per photo'></textarea>)
   }
-
 
 
   const sendData = () => {
@@ -68,10 +86,10 @@ const QaModal = ({style, productID, formType, setModalStyle, qID, getQlist}) => 
       <span onClick={e => {e.preventDefault(); setModalStyle({display:'none'})}} id='pop-up-exit'>X</span>
       <div className='modal-content'>
         <span id='qa-model-text'>Add {type}</span>
-        <form class="evans-form" id={formType} onSubmit={e => {e.preventDefault(); sendData(); setModalStyle({display: 'none'});}}>
+        <EvansForm id={formType} onSubmit={e => {e.preventDefault(); sendData(); setModalStyle({display: 'none'});}}>
           {inputFields}
           <button type='submit'>Submit {type}</button>
-        </form>
+        </EvansForm>
       </div>
 
     </div>,

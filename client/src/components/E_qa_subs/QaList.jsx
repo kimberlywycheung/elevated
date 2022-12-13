@@ -1,6 +1,19 @@
 import React from 'react';
 import axios from 'axios';
 import QaBlock from './QaBlock.jsx';
+import styled from "styled-components";
+import {Qmeta2} from './QaBlock.jsx';
+
+  //STYLED COMPONENTS
+  const StyledList = styled.div`
+  background-color: rgb(251, 251, 251);
+  max-height: 900px;
+  overflow: scroll;
+  `;
+  const NoQs = styled(Qmeta2)`
+  margin: 50px;
+  `;
+
 
 const QaList = ({list, setModalStyle, setFormType, setQid, searchTerm, getQlist, qCount}) => {
  const [sortedList, setSortedList] = React.useState(list);
@@ -52,18 +65,18 @@ const QaList = ({list, setModalStyle, setFormType, setQid, searchTerm, getQlist,
   }
   if(!list.length) {
     return (
-      <div style={{fontSize: '2em', width: "100%"}} className='q-meta2 no-qs'>No Questions have been asked yet...be the first!</div>
+      <NoQs style={{fontSize: '2em', width: "100%"}}>No Questions have been asked yet...be the first!</NoQs>
     )
   }
 
   return (
-    <div id='qa-list'>
+    <StyledList id='qa-list'>
       {newList.map(q => {
         return (
           <QaBlock list={list} getQlist={getQlist} setQid={setQid} setFormType={setFormType} setModalStyle={setModalStyle} q={q} key={q.question_id}/>
         )
       })}
-    </div>
+    </StyledList>
   )
 
 };
