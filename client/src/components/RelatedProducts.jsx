@@ -36,10 +36,9 @@ const RelatedProducts = React.forwardRef(({ product, setProduct }, ref) => {
   // helper functions for editing outfit states
   const addToFavorites = (id) => {
     id = JSON.stringify(id);
-    console.log(outfits);
-    const newOutfits = outfits.slice();
+    const newOutfits = outfits ? outfits.slice() : [];
 
-    if (outfits.length === 0) {
+    if (newOutfits.length === 0) {
       newOutfits.push(id);
     } else if (!outfits.includes(id)) {
       newOutfits.splice(0, 0, id);

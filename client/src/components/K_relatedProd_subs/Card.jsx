@@ -112,22 +112,23 @@ const Card = React.forwardRef(({ type, currentProd, item, deleteFromFavorites, s
         { defaultImg ?
           <CardImage src={defaultImg}/> : <CardImage src={"../../client/dist/images/no-image.png"}/>}
 
-        <span className="card_info">
-          <p className="card_info" id="card-category">{itemInfo.category}</p>
-          <h4 className="card_info" id="card-name">{itemInfo.name}</h4>
+        <CardInfo>
+          <CardCategory>{itemInfo.category}</CardCategory>
+          <CardName>{itemInfo.name}</CardName>
 
           {salePrice ?
-            <p className="card_info">
-              <p className="sale_price" id="card-price">
-                ${salePrice}<strike>${originalPrice}</strike>
-              </p>
-            </p> : <p className="card_info" id="card-price">${originalPrice}</p> }
+            <CardPrice>
+              ${salePrice}
+              <CardSalePrice>
+                ${originalPrice}
+              </CardSalePrice>
+            </CardPrice> : <CardPrice>${originalPrice}</CardPrice> }
 
-          <div className="card-stars-container">
+          {/* <div className="card-stars-container"> */}
             <StarComponent productID={itemInfo.id}/>
-          </div>
+          {/* </div> */}
 
-        </span>
+        </CardInfo>
       </CardDiv>
     );
   }
@@ -143,6 +144,9 @@ export const CardDiv = styled.div`
   margin-left: 20px;
   margin-bottom: 10px;
   overflow: none;
+  &:hover {
+    opacity: 50%;
+  }
 `;
 
 const CardButton = styled.button`
@@ -171,9 +175,35 @@ const CardImage = styled.img`
   object-fit: cover;
   object-position: bottom;
   border-radius: 5px;
-  &:hover {
-    opacity: 80%;
-  }
 `
+
+const CardInfo = styled.span`
+  padding: 0px;
+  margin: 2px;
+`;
+
+const CardCategory = styled.p`
+  font-size: 0.7em;
+  color: gray;
+  padding: 0px;
+  margin: 2px;
+`;
+
+const CardName = styled.h4`
+  font-size: .85em;
+  padding: 0px;
+  margin: 2px;
+`;
+
+const CardPrice = styled.p`
+  font-size: .85em;
+  padding: 0px;
+  margin: 2px;
+`;
+
+const CardSalePrice = styled.p`
+  text-decoration: line-through;
+  color: red;
+`;
 
 export default Card;
