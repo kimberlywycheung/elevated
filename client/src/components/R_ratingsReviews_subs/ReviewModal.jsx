@@ -196,23 +196,22 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
               <label htmlFor="no">No</label>
             </FormRecommendInput>
           </div>
-          <div className="form-char-cont">
-            <div
-              className="form-category-font">
+          <FormCharCont>
+            <FormCategory>
               * Characteristics:
-            </div>
+            </FormCategory>
             {chars.length === 0 && <div>No characteristics at this time</div>}
-            <div className="form-ind-char-cont">
+            <IndCharCont>
               {chars.length >= 1 &&
                 chars.map((char, index) => {
                   return (
-                    <div className="form-ind-char font" key={index}>
+                    <IndChar key={index}>
                       <div style={{"marginRight": "60px"}}>
                         <label>
                           {char}:
-                          <span style={{"marginLeft": "5px"}} className="form-char-selected">
+                          <CharSelected>
                               {charChart[char][currentSelection[char]]}
-                          </span>
+                          </CharSelected>
                         </label>
                         <div>
                           <input
@@ -258,28 +257,28 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
                           <label htmlFor={`${char}-5`}>5</label>
                         </div>
                       </div>
-                      <div className="form-char-def">
+                      <CharDefinition>
                         <span>1: {charChart[char][1]}</span>
                         <span>2: {charChart[char][3]}</span>
                         <span>3: {charChart[char][5]}</span>
-                      </div>
-                    </div>
+                      </CharDefinition>
+                    </IndChar>
                   )
                 })
               }
-            </div>
-          </div>
-          <div className="single-line-input">
-            <label className="form-category-font">
+            </IndCharCont>
+          </FormCharCont>
+          <SingleLineInput>
+            <FormCategory>
               * Review Summary:
-            </label>
-            <input className="single-line-input-specs" type="text" name="summary" placeholder="Best purchase ever!!!" maxLength="60" required></input>
-          </div>
-          <div className="form-body-cont">
-            <label className="form-category-font">
+            </FormCategory>
+            <SingleLineInputSpec type="text" name="summary" placeholder="Best purchase ever!!!" maxLength="60" required></SingleLineInputSpec>
+          </SingleLineInput>
+          <FormBodyCont>
+            <FormCategory>
               * Review Body:
-            </label>
-            <div className="form-body-input">
+            </FormCategory>
+            <FormBodyInput>
               <textarea
                 name="body"
                 minLength="50"
@@ -290,27 +289,26 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
                 required>
               </textarea>
               { body.length < 50 &&
-                <span className="font">Minimum required characters left: [{50-body.length}]</span>
+                <span>Minimum required characters left: [{50-body.length}]</span>
               }
               { body.length > 50 &&
-                <span className="font">Minimum Reached</span>
+                <span>Minimum Reached</span>
               }
-            </div>
-          </div>
-          <div className="form-photos-cont">
-            <label className="form-category-font">
+            </FormBodyInput>
+          </FormBodyCont>
+          <PhotosCont>
+            <FormCategory>
               Upload Photos:
-            </label>
-            <input
-              className="single-line-input-specs"
+            </FormCategory>
+            <SingleLineInputSpec
               name="photos"
               id="photos"
               type="input"
               value={image}
               onChange={(e) => {setImage(e.target.value)}}
               placeholder={`You can add ${5 - images.length} more images!`}>
-            </input>
-            <div className="form-buttons-container">
+            </SingleLineInputSpec>
+            <ButtonsCont>
               {images.length < 5 &&
                 <span
                   style={{"border": "gray solid 3px"}}
@@ -325,36 +323,34 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
                   Remove Image: [{images.length}]
                 </span>
               }
-            </div>
-          </div>
-          <div className="form-name-email-cont">
-            <div className="single-line-input">
-              <label className="form-category-font">
+            </ButtonsCont>
+          </PhotosCont>
+          <UserInfo>
+            <SingleLineInput>
+              <FormCategory>
                 * Nickname:
-              </label>
-              <input className="single-line-input-specs" type="text" name="name" placeholder="jackson11" maxLength="60" required></input>
-            </div>
-            <div className="form-warning font">
+              </FormCategory>
+              <SingleLineInputSpec type="text" name="name" placeholder="jackson11" maxLength="60" required></SingleLineInputSpec>
+            </SingleLineInput>
+            <Warning>
               For privacy reasons do not use your real name or email.
-            </div>
-          </div>
-          <div className="form-name-email-cont">
-            <div className="single-line-input">
-              <label className="form-category-font">
+            </Warning>
+          </UserInfo>
+          <UserInfo>
+            <SingleLineInput>
+              <FormCategory>
                 * email:
-              </label>
-              <input className="single-line-input-specs" type="email" name="email" placeholder="jackson11@gmail.com" maxLength="60" required></input>
-            </div>
-            <div className="form-warning font">
+              </FormCategory>
+              <SingleLineInputSpec type="email" name="email" placeholder="jackson11@gmail.com" maxLength="60" required></SingleLineInputSpec>
+            </SingleLineInput>
+            <Warning>
               For authentication reasons, you will not be emailed.
-            </div>
-          </div>
-          <input
-            style={{"border": "gray solid 3px", "borderRadius": "5px"}}
-            className="form-buttons-container font"
+            </Warning>
+          </UserInfo>
+          <SubmitButton
             type="submit"
             value="Submit">
-          </input>
+          </SubmitButton>
         </AddReview>
       </div>
     </div>,
@@ -449,4 +445,134 @@ const FormRecommendInput = styled.div`
   margin-left: 20px;
   margin-top: 5px;
   font-family: 'Varela Round', sans-serif;
+`
+
+const FormCharCont = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`
+
+const IndCharCont = styled.div`
+  padding-left: 20px;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+`
+
+const IndChar = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: 5px;
+  font-family: 'Varela Round', sans-serif;
+    & > div > label {
+      flex-direction: row;
+      display: flex;
+      align-items: center;
+    }
+`
+
+const CharSelected = styled.span`
+  font-size: 12px
+  margin-left: 5px
+`
+
+const CharDefinition = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 14px;
+`
+
+const FormCategory = styled.label`
+  font-size: 30px;
+`
+
+const SingleLineInput = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+`
+
+const SingleLineInputSpec = styled.input`
+  width: 90%;
+  padding: 1px 10px;
+  margin: 1px auto;
+  font-family: 'Varela Round', sans-serif;
+  padding: 10px;
+  margin: 5px auto 1px auto;
+`
+
+const Warning = styled.div`
+  font-size: 10px;
+  font-family: 'Varela Round', sans-serif;
+  color: red;
+  text-align: left;
+  width: 90%;
+  padding: 1px 10px;
+  margin: 1px auto;
+`
+
+const FormBodyCont = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const FormBodyInput = styled.div`
+  display: flex;
+  margin-top: 5px;
+  flex-direction: column;
+  font-family: 'Varela Round', sans-serif;
+    & > textarea {
+      width: 90%;
+      height: 60px;
+      margin: 1px auto;
+      font-family: 'Varela Round', sans-serif;
+    }
+    & > span {
+      text-align: right;
+      font-size: 10px;
+      width: 90%;
+      margin: 1px auto;
+    }
+`
+
+const PhotosCont = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`
+
+const ButtonsCont = styled.div`
+  margin: 0px auto;
+  display: flex;
+  justify-content: space-around;
+  width: 35%;
+  font-family: 'Varela Round', sans-serif;
+    & > span {
+      border-radius: 5px;
+      padding: 3px;
+      font-size: 14px;
+      margin: 5px 5px;
+      background-color: buttonface;
+      cursor: default;
+    }
+`
+
+const UserInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`
+
+const SubmitButton = styled.input`
+  margin: 0px auto;
+  display: flex;
+  justify-content: space-around;
+  width: 35%;
+  font-family: 'Varela Round', sans-serif;
+  border: gray solid 3px;
+  border-radius: 5px;
 `

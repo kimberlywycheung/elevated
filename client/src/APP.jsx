@@ -52,8 +52,8 @@ const App = () => {
       headers: { 'Authorization': process.env.GITHUB_TOKEN }
     })
     .then((results) => {
-      // var randIndex = Math.floor(Math.random() * results.data.length);
-      var randIndex = 3;
+      var randIndex = Math.floor(Math.random() * results.data.length);
+      // var randIndex = 3;
       console.log(`Random Product from index ${randIndex}->\n`, results.data[randIndex]);
       setProduct(results.data[randIndex]);
     })

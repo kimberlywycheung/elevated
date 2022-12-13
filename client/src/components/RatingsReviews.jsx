@@ -53,7 +53,7 @@ const RatingsReviews = ({product}) => {
 
 export default RatingsReviews;
 
-const H2 = styled.div`
+const H2 = styled.h2`
   margin: 20px;
 `
 

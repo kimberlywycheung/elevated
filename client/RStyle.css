@@ -18,9 +18,9 @@
   align-items: center;
 }
 
-.font {
+/* .font {
   font-family: 'Varela Round', sans-serif;
-}
+} */
 /*
 .modal-content > * {
   background-color: bisque;
@@ -69,17 +69,17 @@
   margin-bottom: 20px;
 } */
 
-.form-category-font {
+/* .form-category-font {
   font-size: 30px;
-}
+} */
 
-.form-rating {
+/* .form-rating {
   flex-direction: column;
   display: flex;
   align-items: center;
   margin-right: 60px;
   font-size: 20px;
-}
+} */
 
 /* .form-rating-container {
   display: flex;
@@ -118,112 +118,112 @@
   margin-top: 5px;
 } */
 
-.form-char-cont {
+/* .form-char-cont {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-}
+} */
 
-.form-ind-char-cont {
+/* .form-ind-char-cont {
   padding-left: 20px;
   margin-top: 5px;
   display: flex;
   flex-direction: column;
-}
+} */
 
-.form-ind-char {
+/* .form-ind-char {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   margin-bottom: 5px;
-}
+} */
 
-.form-ind-char > div > label {
+/* .form-ind-char > div > label {
   flex-direction: row;
   display: flex;
   align-items: center;
-}
+} */
 
-.form-char-selected {
+/* .form-char-selected {
   font-size: 12px;
-}
+} */
 
-.form-char-def {
+/* .form-char-def {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   font-size: 14px;
-}
+} */
 
-.single-line-input {
+/* .single-line-input {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-}
+} */
 
-.single-line-input-specs {
+/* .single-line-input-specs {
   width: 90%;
   padding: 1px 10px;
   margin: 1px auto;
   font-family: 'Varela Round', sans-serif;
   padding: 10px;
   margin: 5px auto 1px auto;
-}
+} */
 
-.form-body-cont {
+/* .form-body-cont {
   display: flex;
   flex-direction: column;
-}
+} */
 
-.form-body-input {
+/* .form-body-input {
   display: flex;
   margin-top: 5px;
   flex-direction: column;
-}
+} */
 
-.form-body-input > textarea {
+/* .form-body-input > textarea {
   width: 90%;
   height: 60px;
   margin: 1px auto;
-}
+} */
 
-.form-body-input > span {
+/* .form-body-input > span {
   text-align: right;
   font-size: 10px;
   width: 90%;
   margin: 1px auto;
-}
+} */
 
-.form-photos-cont {
+/* .form-photos-cont {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-}
+} */
 
-.form-buttons-container {
+/* .form-buttons-container {
   margin: 0px auto;
   display: flex;
   justify-content: space-around;
   width: 35%;
-}
+} */
 
-.form-buttons-container > span {
+/* .form-buttons-container > span {
   border-radius: 5px;
   padding: 3px;
   font-size: 14px;
   margin: 5px 5px;
   background-color: buttonface;
   cursor: default;
-}
+} */
 
-.form-name-email-cont {
+/* .form-name-email-cont {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-}
+} */
 
-.form-warning {
+/* .form-warning {
   font-size: 10px;
   color: red;
   text-align: left;
@@ -231,7 +231,7 @@
   padding: 1px 10px;
   margin: 1px auto;
   font-family: 'Varela Round', sans-serif;
-}
+} */
 
 
 /* Reviews */
