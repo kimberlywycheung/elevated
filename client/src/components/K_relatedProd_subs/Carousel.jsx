@@ -10,24 +10,21 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
   const title = type === 'outfits' ? 'Your Outfit' : 'Related Products';
   const carouselId = `carousel-${type}`;
 
-  // useEffect(() => {
-  //   console.log('type', type);
-  //   if (currentState) {
-  //     const initialScrollWidth = (currentState.length * 200) + (type === 'outfits'? 200 : 0);
-  //     let initialOffsetWidth = initialScrollWidth - (window.innerWidth * .95);
+  useEffect(() => {
+    // if (type === 'related') {
+      const initialScrollWidth = (currentState.length * 200) + (type === 'outfits'? 200 : 0);
+      const windowCarouselWidth = (window.innerWidth * .95)
+      let initialOffsetWidth = initialScrollWidth < windowCarouselWidth ? 0 : initialScrollWidth - windowCarouselWidth;
 
-  //     console.log('scroll', initialScrollWidth);
-  //     console.log('off', initialOffsetWidth);
+      const initialWidths = {
+        scrollLeft: 0,
+        scrollWidth: initialScrollWidth,
+        offsetWidth: initialOffsetWidth
+      };
 
-  //     if (initialOffsetWidth < 0) {
-  //       setShowRight(false);
-  //     } else {
-  //       setShowRight(true);
-  //     }
-  //   }
-
-  //   console.log(showRightButton);
-  // }, [currentState])
+      setScroll(initialWidths);
+    // }
+  }, [currentState]);
 
   const addOutfit = () => {
     if (type === 'outfits') {
@@ -47,10 +44,34 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
   const setScroll = (carouselElement) => {
     const { scrollLeft, scrollWidth, offsetWidth } = carouselElement;
 
-    if (scrollLeft === 0) setShowLeft(false);
-    if (scrollLeft > 0) setShowLeft(true);
-    if (scrollLeft + offsetWidth === scrollWidth) setShowRight(false);
-    if (scrollLeft + offsetWidth < scrollWidth) setShowRight(true);
+    console.log('window inner width', window.innerWidth);
+    if (scrollWidth > (window.innerWidth * .95)) {
+      console.log('scrollLeft', scrollLeft);
+      console.log('scrollWidth', scrollWidth);
+      console.log('offsetWidth', offsetWidth);
+
+      // set left states
+      if (scrollLeft === 0) {
+        console.log('setting left false');
+        setShowLeft(false);
+      }
+      if (scrollLeft > 0) {
+        console.log('setting left true');
+        setShowLeft(true);
+      }
+      // set right states
+      if (scrollLeft + offsetWidth === scrollWidth) {
+        console.log('setting right false');
+        setShowRight(false);
+      }
+      if (scrollLeft + offsetWidth < scrollWidth) {
+        console.log('setting right true');
+        setShowRight(true);
+      }
+    } else {
+      setShowLeft(false);
+      setShowRight(false);
+    }
   }
 
   const scrollLeft = () => {
@@ -86,7 +107,8 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
 
             {currentState && currentState.length > 0 &&
               currentState.map((item) => {
-                return <Card key={item} type={type} item={item} currentProd={currentProd} deleteFromFavorites={deleteFromFavorites} setProduct={setProduct} ref={ref}/>
+                return <Card key={item} type={type} item={item} currentProd={currentProd}
+                  deleteFromFavorites={deleteFromFavorites} setProduct={setProduct} ref={ref}/>
               })}
 
           </CarouselDiv>
@@ -128,7 +150,6 @@ const CarouselDiv = styled.div`
   white-space: nowrap;
   display: flex;
   flex-direction: row;
-  padding: 30px, 0px, 0px;
   height: 350px;
   width: 95% auto;
   &::-webkit-scrollbar {
