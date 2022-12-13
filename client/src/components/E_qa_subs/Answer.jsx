@@ -1,6 +1,41 @@
 import React from 'react';
 import axios from 'axios';
 import ImgView from './ImgView.jsx';
+import styled from "styled-components";
+
+  //STYLED COMPONENTS
+  const AnsBody = styled.span`
+  padding-left: 20px;
+  display: block;
+  margin-bottom: 15px;
+  `;
+  const Ans = styled.div`
+  padding-left: 20px;
+  font-size: 1em;
+  `;
+  const Athumbnails = styled.img`
+  max-width: 100px;
+  max-height: 100px;
+  border: solid rgb(229, 229, 229) .5px;
+  `;
+  const PhotoDiv = styled.div`
+  padding-left: 20px;
+  width: 400px;
+  max-height: 100px;
+  overflow-x: visible;
+  overflow-y: hidden;
+  `;
+  const Ameta = styled.div`
+  display: flex;
+  width: 450px;
+  justify-content: space-between;
+  font-size: .6em;
+  color: grey;
+  padding: 10px 0;
+  `;
+
+
+  //end styled components
 
 const Answer = ({a, getAndSetAnswers}) => {
   const [photosArr, setPhotosArr] = React.useState([]);
@@ -42,11 +77,11 @@ const Answer = ({a, getAndSetAnswers}) => {
         var photoID = typeof photo === 'object' ? photo.id : Number((a.answer_id + '')+i);
 
         photoInput.push(
-          <img onClick={e => {e.preventDefault(); openImg(photoUrl)}} className='a-thumbnails' key={photoID} src={photoUrl} onError={({ currentTarget }) => {
+          <Athumbnails onClick={e => {e.preventDefault(); openImg(photoUrl)}} key={photoID} src={photoUrl} onError={({ currentTarget }) => {
             currentTarget.onerror = null; // prevents looping
             currentTarget.style.display = 'none';
             currentTarget.src="https://climate.onep.go.th/wp-content/uploads/2020/01/default-image.jpg";
-          }}></img>
+          }}></Athumbnails>
         )
 //"this.onerror=null; this.src='https://placeimg.com/200/300/animals';"
       });
@@ -56,23 +91,23 @@ const Answer = ({a, getAndSetAnswers}) => {
 
 
   return (
-    <div className='ans'>
+    <Ans>
       <div>
-        <span><span className='qa-body ans-body'>{a.body}</span></span>
-         <div className='photo-div'>{photosArr}</div> {/* photo THUMBNAILS HERE */}
+        <span><AnsBody>{a.body}</AnsBody></span>
+         <PhotoDiv>{photosArr}</PhotoDiv> {/* photo THUMBNAILS HERE */}
       </div>
-      <div className='a-meta'>
+      <Ameta>
         <span>by {a.answerer_name}</span>
         <span>{a.date.slice(0,10)}</span>
         <span>|</span>
         <span>Helpful? <a onClick={e => {e.preventDefault(); handleAnsMeta('helpful');}} style={{'paddingRight': '5px'}} className='underline'>Yes</a>{a.helpfulness}</span>
         <span>|</span>
         <a onClick={e => {e.preventDefault(); handleAnsMeta('report')}} >Report</a>
-      </div>
+      </Ameta>
       <div>
         <ImgView style={imgViewStyle} setStyle={setImgViewStyle} url={imgUrl}/>
       </div>
-    </div>
+    </Ans>
 
   )
 

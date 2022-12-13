@@ -4,6 +4,17 @@ import Search from './E_qa_subs/Search.jsx';
 import QaList from './E_qa_subs/QaList.jsx';
 import QaModal from './E_qa_subs/QaModal.jsx';
 import $ from "jquery";
+import styled from "styled-components";
+
+//STYLED COMPONENTS
+const StyledQA = styled.div`
+border-top: solid rgb(189, 184, 184) 2px;
+border-bottom: solid rgb(191, 189, 189) 2px;
+`;
+const StyledH2 = styled.h2`
+  margin: 20px;
+`;
+//END of styled components
 
 
 const QuestionsAnswers = ({productID}) => {
@@ -13,6 +24,7 @@ const QuestionsAnswers = ({productID}) => {
   const [qCount, setQCount] = React.useState(4);
   const [Qid, setQid] = React.useState(undefined);
   const [searchTerm, setSearchTerm] = React.useState(undefined);
+
 
   React.useEffect(() => {
     if(productID) {
@@ -48,9 +60,11 @@ const QuestionsAnswers = ({productID}) => {
     )
   }
 
+
+
   return (
-    <div id='questions-answers'>
-      <h2>Questions & Answers</h2>
+    <StyledQA>
+      <StyledH2>Questions & Answers</StyledH2>
       <Search setSearchTerm={setSearchTerm} setQlist={setQlist}/>
       <QaList qCount={qCount} getQlist={getQlist} searchTerm={searchTerm} setQid={setQid} setFormType={setFormType} setModalStyle={setModalStyle} list={Qlist}/>
       <div className='qa-btns'>
@@ -60,7 +74,7 @@ const QuestionsAnswers = ({productID}) => {
       <div className='click-modal' onClick={e => {e.preventDefault(); console.log('bgclicked2')}}>
         <QaModal getQlist={getQlist} qID={Qid} setModalStyle={setModalStyle} formType={formType} productID={productID} style={modalStyle}/>
       </div>
-    </div>
+    </StyledQA>
   )
 }
 

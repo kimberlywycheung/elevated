@@ -1,7 +1,7 @@
 /* MAIN */
 .ov-section {
   display: flex;
-  height: 500px;
+  /* height: 500px; */
   /* flex-direction: row; */
   /* background-color: rgb(138, 72, 231); */
 }
