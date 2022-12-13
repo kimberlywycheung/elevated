@@ -1,45 +1,3 @@
-/* #root {
-  border: solid rgba(244, 244, 244, 0.552) 14px;
-  font-family: 'Varela Round', sans-serif;
-  color: rgb(56, 56, 56);
-  max-width: 1200px;
-  margin: 20px auto;
-  padding: 0 50px;
-} */
-/* button {
-  padding: 20px;
-  font-size: 1em;
-  margin: 10px;
-}
-a {
-  cursor: pointer;
-}
-.underline {
-  text-decoration: underline;
-}
-
-.overview {
-  padding: 5px;
-  height: 1500px;
-  margin: 10px;
-}
-.questions-answers {
-  background-color: rgb(216, 190, 183);
-  color: white;
-  min-height: 300px;
-  margin: 10px;
-} */
-/* .related-products {
-  background-color: rgb(183, 156, 168);
-  background-color: white;
-  min-height: 300px;
-  margin: 10px;
-} */
-
-
-
-
-/* SHARED */
 
 .modal-bg { /* pop up form BACKGROUND OVERLAY, use on div wrapper for <Moda/> component*/
   /*display: none;  Hidden by default */
@@ -82,19 +40,51 @@ a {
   font-size: 3em;
 }
 
+/* REFACTORED TO STYLE COMPONENTS (BELOW) */
+
+
+/* #root {
+  border: solid rgba(244, 244, 244, 0.552) 14px;
+  font-family: 'Varela Round', sans-serif;
+  color: rgb(56, 56, 56);
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 50px;
+} */
+/* button {
+  padding: 20px;
+  font-size: 1em;
+  margin: 10px;
+}
+a {
+  cursor: pointer;
+}
+.underline {
+  text-decoration: underline;
+}
+
+.overview {
+  padding: 5px;
+  height: 1500px;
+  margin: 10px;
+}
+.questions-answers {
+  background-color: rgb(216, 190, 183);
+  color: white;
+  min-height: 300px;
+  margin: 10px;
+} */
+/* .related-products {
+  background-color: rgb(183, 156, 168);
+  background-color: white;
+  min-height: 300px;
+  margin: 10px;
+} */
 
 
 
 
-
-
-
-
-
-
-
-
-
+/* SHARED CSS*/
 /* START TO REFACTOR to styled-components FROM HERE*/
 
 /* .evans-form {
