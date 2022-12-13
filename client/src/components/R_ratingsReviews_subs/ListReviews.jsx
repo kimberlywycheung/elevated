@@ -14,15 +14,22 @@ const ListReviews =function ListReviews({ reviews, displayCount, setRList, starF
   }
 
   return (
-    <div className="reviewList">
+    <ReviewList>
       {reviews.results.map((review, index) => {
         if (count < displayCount && filter(review.rating)) {
           count++
           return <ReviewTile key={review.review_id} review={review} setRList={setRList} productID={reviews.product}/>
         }
       })}
-    </div>
+    </ReviewList>
   )
 }
 
 export default ListReviews;
+
+const ReviewList = styled.div`
+  height: 75%;
+  overflow: auto;
+  padding: 5px;
+  background-color: rgb(251, 251, 251);
+`

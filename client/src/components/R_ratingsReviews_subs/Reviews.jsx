@@ -40,7 +40,7 @@ const Reviews = function Reviews({ productID, name, starFilter, charBreak }) {
   }
 
   return (
-    <div  className="review-cont">
+    <ReviewCont>
       <SortReviews reviews={reviews} setSort={setSort}/>
       <ListReviews reviews={reviews} displayCount={displayCount} setRList={setReviewList} starFilter={starFilter}/>
       <div>
@@ -51,8 +51,16 @@ const Reviews = function Reviews({ productID, name, starFilter, charBreak }) {
         }
         <AddReviews id={productID} name={name} charBreak={charBreak} setRList={setReviewList}/>
       </div>
-    </div>
+    </ReviewCont>
   );
 };
 
 export default Reviews;
+
+const ReviewCont = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 75%;
+  padding: 2%;
+`
