@@ -84,7 +84,7 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
                 </AddToOutfitCard>
               </CardDiv> }
 
-            {currentState.length > 0 &&
+            {currentState && currentState.length > 0 &&
               currentState.map((item) => {
                 return <Card key={item} type={type} item={item} currentProd={currentProd} deleteFromFavorites={deleteFromFavorites} setProduct={setProduct} ref={ref}/>
               })}
