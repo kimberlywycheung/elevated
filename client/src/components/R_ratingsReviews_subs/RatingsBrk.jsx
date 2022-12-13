@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import StarComponent from '../StarComponent.jsx';
 
-const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray }) {
+const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray, starFilter }) {
   const [stats, setStats] = useState({});
 
   const ratingStats = function avgRating() {
@@ -60,15 +60,21 @@ const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray }) {
       </div>
       <div className="barRatingsContainer">
         <div onClick={(e) => clickHandler(e, 5)}>
-          <span>5 stars</span>
+          <span style={{"textDecoration": `${starFilter[5] ? 'underline': 'none'}`}}>
+            5 stars
+          </span>
           <div className="barContainerStyles">
-            <div className="barFillerStyles" style={{"width": `${stats.ratings['5']/100*120}%`}}>
+            <div
+              className="barFillerStyles"
+              style={{"width": `${stats.ratings['5']/100*120}%`}}>
               <span className="barLabelStyles">{stats.ratings['5']}%</span>
             </div>
           </div>
         </div>
         <div onClick={(e) => clickHandler(e, 4)}>
-          <span>4 stars</span>
+          <span style={{"textDecoration": `${starFilter[4] ? 'underline': 'none'}`}}>
+            4 stars
+          </span>
           <div className="barContainerStyles">
             <div className="barFillerStyles" style={{"width": `${stats.ratings['4']/100*120}%`}}>
               <span className="barLabelStyles">{stats.ratings['4']}%</span>
@@ -76,7 +82,9 @@ const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray }) {
           </div>
         </div>
         <div onClick={(e) => clickHandler(e, 3)}>
-          <span>3 stars</span>
+          <span style={{"textDecoration": `${starFilter[3] ? 'underline': 'none'}`}}>
+            3 stars
+          </span>
           <div className="barContainerStyles">
             <div className="barFillerStyles"  style={{"width": `${stats.ratings['3']/100*120}%`}}>
               <span className="barLabelStyles">{stats.ratings['3']}%</span>
@@ -84,15 +92,19 @@ const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray }) {
           </div>
         </div>
         <div onClick={(e) => clickHandler(e, 2)}>
-          <span>2 stars</span>
+          <span style={{"textDecoration": `${starFilter[2] ? 'underline': 'none'}`}}>
+            2 stars
+          </span>
           <div className="barContainerStyles">
             <div className="barFillerStyles"  style={{"width": `${stats.ratings['2']/100*120}%`}}>
               <span className="barLabelStyles">{stats.ratings['2']}%</span>
             </div>
           </div>
         </div>
-        <div>
-          <span onClick={(e) => clickHandler(e, 1)}>1 stars</span>
+        <div  onClick={(e) => clickHandler(e, 1)}>
+          <span style={{"textDecoration": `${starFilter[1] ? 'underline': 'none'}`}}>
+            1 stars
+          </span>
           <div className="barContainerStyles">
             <div className="barFillerStyles"  style={{"width": `${stats.ratings['1']/100*120}%`}}>
               <span className="barLabelStyles">{stats.ratings['1']}%</span>

@@ -1,6 +1,233 @@
-/* * {
+/* .modal-content > *,
+.modal-content > * > *,
+.modal-content > * > * > *,
+.modal-content > * > * > * > * {
   border: red solid 1px;
 } */
+
+.review-modal-specs {
+  height: 70%;
+  font-family: 'Varela Round', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.font {
+  font-family: 'Varela Round', sans-serif;
+}
+/*
+.modal-content > * {
+  background-color: bisque;
+}
+
+.modal-content > form {
+  background-color: pink;
+}
+
+.modal-content > * > * {
+  background-color: brown;
+}
+
+.modal-content > * > * > * {
+  background-color: green;
+}
+
+.modal-content > * > * > * > *  {
+  background-color: yellowgreen;
+} */
+
+.form-header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-size: 30px;
+  padding: 5px;
+}
+
+.form-product {
+  text-decoration: underline;
+}
+
+#addReview {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 75%;
+  margin: 7% 0%;
+  padding: 5px;
+  width: 70%;
+  border-radius: 5px
+}
+
+#addReview > div {
+  margin-bottom: 20px;
+}
+
+.form-category-font {
+  font-size: 30px;
+}
+
+.form-rating {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  margin-right: 60px;
+  font-size: 20px;
+}
+
+.form-rating-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-star-def-cont {
+  display: flex;
+  margin-top: 5px;
+}
+
+.form-star-cont {
+  margin-right: 60px;
+  margin-left: 20px;
+}
+
+.form-star-def {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 14px;
+}
+
+.form-star-radio-button {
+  display: none;
+}
+
+.form-recommend {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.form-recommend-input {
+  margin-left: 20px;
+  margin-top: 5px;
+}
+
+.form-char-cont {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.form-ind-char-cont {
+  padding-left: 20px;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-ind-char {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: 5px;
+}
+
+.form-ind-char > div > label {
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+}
+
+.form-char-selected {
+  font-size: 12px;
+}
+
+.form-char-def {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 14px;
+}
+
+.single-line-input {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.single-line-input-specs {
+  width: 90%;
+  padding: 1px 10px;
+  margin: 1px auto;
+  font-family: 'Varela Round', sans-serif;
+  padding: 10px;
+  margin: 5px auto 1px auto;
+}
+
+.form-body-cont {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-body-input {
+  display: flex;
+  margin-top: 5px;
+  flex-direction: column;
+}
+
+.form-body-input > textarea {
+  width: 90%;
+  height: 60px;
+  margin: 1px auto;
+}
+
+.form-body-input > span {
+  text-align: right;
+  font-size: 10px;
+  width: 90%;
+  margin: 1px auto;
+}
+
+.form-photos-cont {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.form-buttons-container {
+  margin: 0px auto;
+  display: flex;
+  justify-content: space-around;
+  width: 35%;
+}
+
+.form-buttons-container > span {
+  border-radius: 5px;
+  padding: 3px;
+  font-size: 14px;
+  margin: 5px 5px;
+  background-color: buttonface;
+  cursor: default;
+}
+
+.form-name-email-cont {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.form-warning {
+  font-size: 10px;
+  color: red;
+  text-align: left;
+  width: 90%;
+  padding: 1px 10px;
+  margin: 1px auto;
+  font-family: 'Varela Round', sans-serif;
+}
+
 
 /* Reviews */
 
@@ -42,7 +269,9 @@ form .sort-header {
 .sort-selector {
   font-size: 22px;
   font-family: 'Varela Round', sans-serif;
-  border-bottom: solid black 3px;
+  color: rgb(56, 56, 56);
+  text-decoration: underline;
+  border: none;
   background-color: transparent;
 }
 
@@ -246,6 +475,4 @@ form .sort-header {
   margin: 2px
 } */
 
-.form-star-radio-button {
-  display: none;
-}
+
