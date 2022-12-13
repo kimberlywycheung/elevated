@@ -14,7 +14,7 @@ const ListReviews =function ListReviews({ reviews, displayCount, setRList, starF
   }
 
   return (
-    <ReviewList>
+    <ReviewList className="reviewList">
       {reviews.results.map((review, index) => {
         if (count < displayCount && filter(review.rating)) {
           count++
@@ -29,6 +29,7 @@ export default ListReviews;
 
 const ReviewList = styled.div`
   height: 75%;
+  max-height: 600px;
   overflow: auto;
   padding: 5px;
   background-color: rgb(251, 251, 251);
