@@ -80,7 +80,7 @@ const App = () => {
   return (
     <RootDiv id='root' ref={ref}>
       <GlobalStyles />
-      <h1>Clueless Co.</h1>
+      <h1>Clued Co.</h1>
       <Overview product={product}/>
       <RelatedProducts product={product} setProduct={setProduct} ref={ref}/>
       <QuestionsAnswers productID={product.id}/>
