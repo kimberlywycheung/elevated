@@ -1,5 +1,6 @@
 import React from 'react';
 import ReviewTile from './ReviewTile.jsx';
+import styled from 'styled-components';
 
 const ListReviews =function ListReviews({ reviews, displayCount, setRList, starFilter }) {
   let count = 0
@@ -13,15 +14,23 @@ const ListReviews =function ListReviews({ reviews, displayCount, setRList, starF
   }
 
   return (
-    <div className="reviewList">
+    <ReviewList className="reviewList">
       {reviews.results.map((review, index) => {
         if (count < displayCount && filter(review.rating)) {
           count++
-          return <ReviewTile key={review.review_id} review={review} setRList={setRList}/>
+          return <ReviewTile key={review.review_id} review={review} setRList={setRList} productID={reviews.product}/>
         }
       })}
-    </div>
+    </ReviewList>
   )
 }
 
 export default ListReviews;
+
+const ReviewList = styled.div`
+  height: 75%;
+  max-height: 600px;
+  overflow: auto;
+  padding: 5px;
+  background-color: rgb(251, 251, 251);
+`

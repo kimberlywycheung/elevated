@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import Carousel from './K_relatedProd_subs/Carousel.jsx';
 
-const RelatedProducts = function ({ product, setProduct }) {
+const RelatedProducts = React.forwardRef(({ product, setProduct }, ref) => {
   const [outfits, setOutfits] = useState([]);
   const [relatedIds, setRelatedIds] = useState([]);
 
@@ -10,7 +11,11 @@ const RelatedProducts = function ({ product, setProduct }) {
   useEffect(() => {
     let currentFavs = window.localStorage.getItem('favorites');
     // converts localstorage string to array
-    currentFavs = currentFavs.replace(/\r?\n|\r/g, '').split(',');
+    if (currentFavs === '') {
+      currentFavs = [];
+    } else if (currentFavs) {
+      currentFavs = currentFavs.replace(/\r?\n|\r/g, '').split(',');
+    }
     setOutfits(currentFavs);
   }, []);
 
@@ -18,7 +23,7 @@ const RelatedProducts = function ({ product, setProduct }) {
   useEffect(() => {
     if (product.id) {
       getRelated(product.id, (data) => {
-        setRelatedIds(deduplicate(data));
+        setRelatedIds(deduplicate(data, product.id));
       });
     }
   }, [product]);
@@ -32,12 +37,15 @@ const RelatedProducts = function ({ product, setProduct }) {
   // helper functions for editing outfit states
   const addToFavorites = (id) => {
     id = JSON.stringify(id);
+    const newOutfits = outfits ? outfits.slice() : [];
 
-    if (!outfits.includes(id)) {
-      const newOutfits = outfits.slice();
+    if (newOutfits.length === 0) {
       newOutfits.push(id);
-      setOutfits(newOutfits);
+    } else if (!outfits.includes(id)) {
+      newOutfits.splice(0, 0, id);
     }
+
+    setOutfits(newOutfits);
   };
 
   const deleteFromFavorites = (id) => {
@@ -54,6 +62,7 @@ const RelatedProducts = function ({ product, setProduct }) {
     }
   };
 
+  // returns loading state if no product has been passed down
   if (!product) {
     return (
       <div>loading...</div>
@@ -61,12 +70,20 @@ const RelatedProducts = function ({ product, setProduct }) {
   }
 
   return (
-    <div className="related-products">
-      <Carousel type="related" currentState={relatedIds} currentProd={product} addToFavorites={addToFavorites} setProduct={setProduct} />
-      <Carousel type="outfits" currentState={outfits} currentProd={product} addToFavorites={addToFavorites} deleteFromFavorites={deleteFromFavorites} setProduct={setProduct} />
-    </div>
+    <RelatedProductsDiv>
+      {relatedIds.length > 0 &&
+        <Carousel type="related" currentState={relatedIds} currentProd={product} addToFavorites={addToFavorites} setProduct={setProduct} ref={ref} />}
+        <Carousel type="outfits" currentState={outfits} currentProd={product} addToFavorites={addToFavorites} deleteFromFavorites={deleteFromFavorites} setProduct={setProduct} ref={ref}/>
+    </RelatedProductsDiv>
   );
-};
+});
+
+// STYLING
+const RelatedProductsDiv = styled.div`
+  background-color: white;
+  min-height: 300px;
+  margin: 10px;
+`;
 
 // HELPER FUNCTIONS
 
@@ -79,8 +96,15 @@ const getRelated = (endpoint, cb) => {
     .catch((err) => console.log(err));
 };
 
-// remove any duplicates from relatedIds
-const deduplicate = (ids) => {
+// remove any duplicates
+const deduplicate = (ids, currentProdId) => {
+  // check if related has current prod id
+  const indexOfCurrentProduct = ids.indexOf(currentProdId);
+  if (indexOfCurrentProduct > -1) {
+    ids.splice(indexOfCurrentProduct, 1);
+  }
+
+  // dedupe relatedIds
   ids = [...new Set(ids)];
   return Array(ids)[0];
 };

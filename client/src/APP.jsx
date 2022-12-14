@@ -4,9 +4,48 @@ import RatingsReviews from './components/RatingsReviews.jsx';
 import QuestionsAnswers from './components/QA.jsx';
 import RelatedProducts from './components/RelatedProducts.jsx';
 import axios from 'axios';
+import styled, {createGlobalStyle} from 'styled-components';
+
+//STYLE ROOT
+const RootDiv = styled.div`
+border: solid rgba(244, 244, 244, 0.552) 18px;
+  font-family: 'Varela Round', sans-serif;
+  color: rgb(56, 56, 56);
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 50px;
+  `;
+//GLOBAL STYLE
+const GlobalStyles = createGlobalStyle`
+button {
+  padding: 20px;
+  font-size: 1em;
+  margin: 10px;
+}
+a {
+  cursor: pointer;
+}
+.underline {
+  text-decoration: underline;
+}
+
+.overview {
+  padding: 5px;
+  margin: 10px;
+}
+.questions-answers {
+  background-color: rgb(216, 190, 183);
+  color: white;
+  min-height: 300px;
+  margin: 10px;
+}
+`;
+
+
 
 const App = () => {
   const [product, setProduct] = React.useState({});
+  const ref = React.useRef();
 
   const get = () => {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products', {
@@ -35,13 +74,14 @@ const App = () => {
   }, [product]);
 
   return (
-    <div id='root'>
+    <RootDiv id='root' ref={ref}>
+      <GlobalStyles />
       <h1>Del Taco Product Page1</h1>
-      <Overview product={product} />
-      <RatingsReviews product={product} />
-      <QuestionsAnswers productID={product.id} />
-      <RelatedProducts product={product} setProduct={setProduct} />
-    </div>
+      <Overview product={product}/>
+      <RatingsReviews product={product}/>
+      <QuestionsAnswers productID={product.id}/>
+      <RelatedProducts product={product} setProduct={setProduct} ref={ref}/>
+    </RootDiv>
   )
 };
 

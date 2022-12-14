@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import starArray from '../../helperFunctions/starArray.js'
+import StarComponent from '../StarComponent.jsx';
+import styled from 'styled-components';
 
-const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray }) {
+const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray, starFilter }) {
   const [stats, setStats] = useState({});
 
   const ratingStats = function avgRating() {
@@ -51,67 +52,78 @@ const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray }) {
 
   return (
     <div>
-      <div className="rating-and-stars">
-        <span className="rating-span">{stats.ratings.avg}</span>
-        <span className="star-span">
-          {starArray(stats.ratings.avg).map((item, i) => {
-            return (
-              <div className="single-star-container" key={i}>
-                <div className="single-star-fill" style={{"width" : `${parseInt(item*20.3)}px`}}>
-                  <img className="single-star-outline" src="../../client/dist/images/star2.png" alt="stars alt"></img>
-                </div>
-              </div>
-            );
-          })}
-        </span>
-      </div>
-      <div className="rec-statement">
+      <RatingAndStars>
+        <RatingSpan>{stats.ratings.avg}</RatingSpan>
+        <StarComponent productID={breakdown.product_id} avg={stats.ratings.avg}/>
+      </RatingAndStars>
+      <RecommendStatement>
         {stats.recommended}% of reviews recommended this product
-      </div>
-      <div className="barRatingsContainer">
-        <div onClick={(e) => clickHandler(e, 5)}>
-          <span>5 stars</span>
-          <div className="barContainerStyles">
-            <div className="barFillerStyles" style={{"width": stats.ratings['5']/100*120}}>
-              <span className="barLabelStyles">{stats.ratings['5']}%</span>
+      </RecommendStatement>
+      <RatingsBarContainer>
+        {Object.keys(breakdown.ratings).reverse().map((rating, index) => {
+          return (
+            <div key={index} onClick={(e) => clickHandler(e, rating)}>
+              <span style={{"textDecoration": `${starFilter[rating] ? 'underline': 'none'}`}}>
+                {rating} stars
+              </span>
+              <BarContainerStyles>
+                <BarFiller
+                  style={{"width": `${stats.ratings[rating]}%`}}>
+                  <span>{stats.ratings[rating]}%</span>
+                </BarFiller>
+              </BarContainerStyles>
             </div>
-          </div>
-        </div>
-        <div onClick={(e) => clickHandler(e, 4)}>
-          <span>4 stars</span>
-          <div className="barContainerStyles">
-            <div className="barFillerStyles" style={{"width": stats.ratings['4']/100*120}}>
-              <span className="barLabelStyles">{stats.ratings['4']}%</span>
-            </div>
-          </div>
-        </div>
-        <div onClick={(e) => clickHandler(e, 3)}>
-          <span>3 stars</span>
-          <div className="barContainerStyles">
-            <div className="barFillerStyles"  style={{"width": stats.ratings['3']/100*120}}>
-              <span className="barLabelStyles">{stats.ratings['3']}%</span>
-            </div>
-          </div>
-        </div>
-        <div onClick={(e) => clickHandler(e, 2)}>
-          <span>2 stars</span>
-          <div className="barContainerStyles">
-            <div className="barFillerStyles"  style={{"width": stats.ratings['2']/100*120}}>
-              <span className="barLabelStyles">{stats.ratings['2']}%</span>
-            </div>
-          </div>
-        </div>
-        <div>
-          <span onClick={(e) => clickHandler(e, 1)}>1 stars</span>
-          <div className="barContainerStyles">
-            <div className="barFillerStyles"  style={{"width": stats.ratings['1']/100*120}}>
-              <span className="barLabelStyles">{stats.ratings['1']}%</span>
-            </div>
-          </div>
-        </div>
-      </div>
+          )
+        })}
+      </RatingsBarContainer>
     </div>
   )
 }
 
 export default RatingsBrk;
+
+const RatingAndStars = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: 5px;
+  overflow: auto;
+`
+
+const RatingSpan = styled.span`
+  font-size: 40px;
+`
+
+const RecommendStatement = styled.div`
+  font-family: 'Varela Round', sans-serif;
+  font-size: 15px;
+  margin-bottom: 5px;
+`
+
+const RatingsBarContainer = styled.div`
+  margin-bottom: 5px;
+    & > div {
+      display: flex;
+      align-items: center;
+    }
+`
+const BarContainerStyles = styled.div`
+  height: 20px;
+  width: 120px;
+  background-color: "#e0e0de";
+  border-radius: 1px;
+  border: solid black 1px;
+  margin: 5px;
+`
+
+const BarFiller = styled.div`
+  height: 100%;
+  background-color: gray;
+  border-radius: inherit;
+  text-align: right;
+  & > span {
+    padding: 5;
+    color: black;
+    font-size: 10px;
+  }
+`

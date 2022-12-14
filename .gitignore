@@ -1,5 +1,8 @@
-
-
+client/src/components/K_relatedProd_subs/__snapshots__
+coverage
 .env
 
 client/dist/bundle.js
+package-lock.json
+
+node_modules/

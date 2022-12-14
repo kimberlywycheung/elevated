@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import Comparison from './Comparison.jsx';
-import Stars from '../A_overview_subs/Stars.jsx';
+import StarComponent from '../StarComponent.jsx';
 
-const Card = function ({ type, currentProd, item, deleteFromFavorites, setProduct }) {
+const Card = React.forwardRef(({ type, currentProd, item, deleteFromFavorites, setProduct }, ref ) => {
   const [itemInfo, setItemInfo] = useState(null);
   const [itemStyles, setItemStyles] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,8 +40,12 @@ const Card = function ({ type, currentProd, item, deleteFromFavorites, setProduc
 
   const updateImagePrice = (style) => {
     defaultImg = style.photos[0].thumbnail_url;
-    originalPrice = style.original_price;
+    originalPrice = JSON.stringify(style.original_price).replaceAll('"', '');
+
     salePrice = style.sale_price;
+    if (salePrice) {
+      salePrice = JSON.stringify(style.sale_price).replaceAll('"', '');
+    }
   };
 
   if (itemStyles) {
@@ -66,13 +71,15 @@ const Card = function ({ type, currentProd, item, deleteFromFavorites, setProduc
   };
 
   // handler for changing current product page to product user has clicked
-  const changeCards = () => {
+  const changeCards = (e) => {
+    e.stopPropagation();
     if (itemInfo) {
       getProduct(itemInfo.id, (data) => {
         if (itemInfo.id !== currentProd.id) {
           setProduct(data);
         }
       });
+      ref.current?.scrollIntoView({behavior: 'smooth'});
     }
   };
 
@@ -81,54 +88,120 @@ const Card = function ({ type, currentProd, item, deleteFromFavorites, setProduc
     setIsModalOpen(false);
   };
 
+  // handler for showing the right stars
+  const decideIfFavorited = () => {
+    if (window.localStorage.getItem('favorites').includes(itemInfo.id)) {
+      return <i className="fa-solid fa-star"></i>;
+    } else {
+      return <i className="far fa-star"></i>;
+    }
+  }
+
   // TODO: can refactor saleprice later
   if (itemInfo && itemStyles) {
     return (
-      <div className="card" id={type} onClick={changeCards}>
+      <CardDiv id={type} onClick={changeCards}>
 
-        <button className="card_button" onClick={buttonHandler}>
-          {type === 'related' ?
-            <img src="../../client/dist/images/star.png" width="20"/> : ' X '}
-        </button>
+        <CardButton onClick={buttonHandler}>
+          {type === 'related' ? decideIfFavorited() : <i className="fa-solid fa-xmark"></i>}
+        </CardButton>
 
         {type === 'related' &&
           <Comparison itemInfo={itemInfo} currentProd={currentProd} getProduct={getProduct} isModalOpen={isModalOpen} onClose={handleClose} />}
 
         { defaultImg ?
-          <img src={defaultImg} className="card_image"/> : <img src={"../../client/dist/images/no-image.png"} className="card_image"/>}
+          <CardImage src={defaultImg}/> : <CardImage src={"../../client/dist/images/no-image.png"}/>}
 
-
-        <span className="card_info">
-          <p className="card_info">{itemInfo.category}</p>
-          <h4 className="card_info">{itemInfo.name}</h4>
+        <CardInfo>
+          <CardCategory>{itemInfo.category}</CardCategory>
+          <CardName>{itemInfo.name}</CardName>
 
           {salePrice ?
-            <p className="card_info">
-              <span className="sale_price">${salePrice}</span>
-              <strike>${originalPrice}</strike>
-            </p> : <p className="card_info">${originalPrice}</p> }
+            <CardPrice>
+              ${salePrice}
+              <CardSalePrice>
+                ${originalPrice}
+              </CardSalePrice>
+            </CardPrice> : <CardPrice>${originalPrice}</CardPrice> }
 
-          <Stars id={itemInfo.id}/>
-{/*
-          {axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${endpoint}/styles`, {
-                  headers: { Authorization: process.env.GITHUB_TOKEN },
-                })
-                  .then(({ data }) => cb(data.results))
-                  .catch((err) => console.log(err));
-          starArray(stats.ratings.avg).map((item, i) => {
-            return (
-              <div className="single-star-container" key={i}>
-                <div className="single-star-fill" style={{"width" : `${parseInt(item*20.3)}px`}}>
-                  <img className="single-star-outline" src="../../client/dist/images/star2.png" alt="stars alt"></img>
-                </div>
-              </div>
-            );
-          })} */}
+            <StarComponent productID={itemInfo.id} size={{ height: 16.6, width: 14 }}/>
 
-        </span>
-      </div>
+        </CardInfo>
+      </CardDiv>
     );
   }
-};
+});
+
+export const CardDiv = styled.div`
+  background-color: white;
+  border-radius: 5px;
+  width: 180px;
+  height: 95%;
+  min-width: 180px;
+  margin-top: 0;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  overflow: none;
+  &:hover {
+    opacity: 50%;
+  }
+`;
+
+const CardButton = styled.button`
+  position: relative;
+  float: right;
+  z-index: 1;
+  padding: 5px;
+  margin: 0;
+  background-color: Transparent;
+  border: none;
+  color: black;
+  font-size: 1.2em;
+  &:hover {
+    color: white;
+  }
+`;
+
+const CardImage = styled.img`
+  position: relative;
+  margin-bottom: 0px;
+  bottom: 0;
+  width: 100%;
+  height: 75%;
+  max-height: 250px;
+  min-height: 180px;
+  object-fit: cover;
+  object-position: bottom;
+  border-radius: 5px;
+`
+
+const CardInfo = styled.span`
+  padding: 0px;
+  margin: 2px;
+`;
+
+const CardCategory = styled.p`
+  font-size: 0.7em;
+  color: gray;
+  padding: 0px;
+  margin: 2px;
+`;
+
+const CardName = styled.h4`
+  font-size: .85em;
+  padding: 0px;
+  margin: 2px;
+`;
+
+const CardPrice = styled.p`
+  font-size: .85em;
+  padding: 0px;
+  margin: 2px;
+`;
+
+const CardSalePrice = styled.p`
+  text-decoration: line-through;
+  color: red;
+`;
 
 export default Card;

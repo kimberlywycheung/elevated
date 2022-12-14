@@ -1,27 +1,52 @@
 import React from 'react';
+import styled from 'styled-components';
 
-const Characteristic = function ({ items }) {
-  const relatedChar = items[0];
-  const currentChar = items[1];
-
+const Characteristic = function ({ feature, relatedChar,  currentChar}) {
   return (
     <div>
       {relatedChar &&
-        <div id="flex-box">
-          <p id="left">✔️</p>
-          <p id="center">{relatedChar}</p>
-          {currentChar === relatedChar ?
-            <p id="right">✔️</p> : <p id="right"></p>}
-        </div> }
+        <Characteristics>
+              <CheckmarkContainer>
+                <i className="fa-solid fa-check"/>
+              </CheckmarkContainer>
+
+              <p>{relatedChar}</p>
+
+              {currentChar === relatedChar ?
+                <CheckmarkContainer>
+                  <i className="fa-solid fa-check" />
+                </CheckmarkContainer> : <CheckmarkContainer></CheckmarkContainer>}
+          </Characteristics>}
+
       {currentChar && (relatedChar !== currentChar) &&
-        <div id="flex-box">
+        <Characteristics>
           {relatedChar === currentChar ?
-            <p id="left">✔️</p> : <p id="left"></p>}
-          <p id="center">{currentChar}</p>
-          <p id="right">✔️</p>
-        </div> }
+            <CheckmarkContainer>
+              <i className="fa-solid fa-check" />
+            </CheckmarkContainer> : <CheckmarkContainer></CheckmarkContainer>}
+
+          <p>{currentChar}</p>
+
+          <CheckmarkContainer>
+            <i className="fa-solid fa-check" />
+          </CheckmarkContainer>
+        </Characteristics>}
     </div>
   );
 };
+
+const Characteristics = styled.div`
+  height: 30px;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+`;
+
+const CheckmarkContainer = styled.div`
+  width: 30px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+`;
 
 export default Characteristic;
