@@ -2,6 +2,7 @@ describe("My Outfits", () => {
   it('User can add to and see their outfit', () => {
     // user visits page
     cy.visit('/client/dist/index.html');
+    cy.wait(500);
     // user sees "your outfit" section on page
     cy.findByRole('heading', { name: "Your Outfit" });
     // user can add current product to outfit
@@ -11,7 +12,6 @@ describe("My Outfits", () => {
       cy.get('[id = "carousel-related"]').should('exist');
     });
     // user can delete product
-
     // user will see it removed from My Outfit
 
   });

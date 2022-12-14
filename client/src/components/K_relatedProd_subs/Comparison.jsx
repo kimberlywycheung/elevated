@@ -39,7 +39,7 @@ const Comparison = function ({ itemInfo, currentProd, getProduct, isModalOpen, o
     <>
       <ComparisonModalBackground onClick={onClose} />
 
-      <ComparisonModal>
+      <ComparisonModal onClick={(e) => e.stopPropagation()}>
 
           <ModalHeader>
             <h3 id="center">Comparing</h3>
@@ -53,7 +53,6 @@ const Comparison = function ({ itemInfo, currentProd, getProduct, isModalOpen, o
             <span id="center"></span>
             <span id="right">{currentProd.name}</span>
           </ModalProducts>
-
 
           <ModalComparison>
 
@@ -69,6 +68,7 @@ const Comparison = function ({ itemInfo, currentProd, getProduct, isModalOpen, o
               })}
 
           </ModalComparison>
+
       </ComparisonModal>
     </>,
     document.getElementById('pop-up'),
@@ -87,6 +87,7 @@ const ComparisonModalBackground = styled.div`
 `;
 
 const ComparisonModal = styled.div`
+  font-family: 'Varela Round', sans-serif;
   position: fixed;
   z-index: 10;
   background-color: #fefefe;
