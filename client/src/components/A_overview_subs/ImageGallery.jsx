@@ -6,6 +6,10 @@ const ImageGallery = ({ style, styles }) => {
   const [imageURL, setImageURL] = React.useState('https://climate.onep.go.th/wp-content/uploads/2020/01/default-image.jpg');
   const [thumbnailURLs, setThumnailURLs] = React.useState();
   const [isOpen, setIsOpen] = React.useState(false);
+  const [imageArr, setImageArr] = React.useState([]);
+  const [imageRange, setImageRange] = React.useState([0,5])
+  const [upView, setUpView] = React.useState({display: 'none'})
+  const [downView, setDownView] = React.useState({display: 'none'})
   const [render, setRender] = React.useState(true);
 
 
@@ -16,6 +20,25 @@ const ImageGallery = ({ style, styles }) => {
     }
   }, [style]);
 
+  React.useEffect(() => {
+
+    if(style && imageRange) {
+      setImageArr(style.photos.slice(imageRange[0],imageRange[1]));
+      if(imageRange[1] < style.photos.length - 1) {
+        setDownView({display: 'inline'});
+      } else {
+        setDownView({color: 'rgba(0,0,0,0)', backgroundColor: 'rgba(0,0,0,0)', cursor: 'default'});
+      }
+      if(imageRange[0]) {
+        setUpView({display: 'inline'});
+      } else {
+        setUpView({color: 'rgba(0,0,0,0)', backgroundColor: 'rgba(0,0,0,0)', cursor: 'default'});
+      }
+
+
+    }
+  }, [imageRange])
+
   const expandClickHandler = (event) => {
     setIsOpen(!isOpen);
   }
@@ -23,6 +46,17 @@ const ImageGallery = ({ style, styles }) => {
   const thumbClickHandler = (event, url) => {
     setImageURL(url);
 
+  }
+  const clickArrow = (direction) => {
+    if(direction === 'up') {
+      if(imageRange[0] !== 0) {
+        setImageRange([imageRange[0] - 1, imageRange[1] - 1]);
+      }
+    } else {
+      if(imageRange[1] !== style.photos.length - 1) {
+        setImageRange([imageRange[0] + 1, imageRange[1] + 1]);
+      }
+    }
   }
 
 
@@ -42,13 +76,15 @@ const ImageGallery = ({ style, styles }) => {
             onClick={expandClickHandler}
           />
         </dialog>}
-      <div className='ov-carousel'>
-        <button className="left-arrow" />
+      {/* <div className='ov-carousel'> */}
+        {/* <button className="left-arrow" /> */}
+        <i class="fa-solid fa-arrow-up" style={upView} onClick={e => {e.preventDefault(); clickArrow('up')}}></i>
         <div className='ov-img-select'>
-          {style.photos.map((photo) => { return <ImageCarousel render={render} thumbClickHandler={thumbClickHandler} photo={photo} /> })}
+          {imageArr.map((photo) => { return <ImageCarousel render={render} thumbClickHandler={thumbClickHandler} photo={photo} /> })}
         </div>
-        <button className="right-arrow" />
-      </div>
+        <i class="fa-solid fa-arrow-down" style={downView} onClick={e => {e.preventDefault(); clickArrow('down')}}></i>
+        {/* <button className="right-arrow" /> */}
+      {/* </div> */}
 
 
     </div>
