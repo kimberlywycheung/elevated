@@ -39,7 +39,7 @@ const Comparison = function ({ itemInfo, currentProd, getProduct, isModalOpen, o
     <>
       <ComparisonModalBackground onClick={onClose} />
 
-      <ComparisonModal>
+      <ComparisonModal onClick={(e) => e.stopPropagation()}>
 
           <ModalHeader>
             <h3 id="center">Comparing</h3>
@@ -54,7 +54,6 @@ const Comparison = function ({ itemInfo, currentProd, getProduct, isModalOpen, o
             <span id="right">{currentProd.name}</span>
           </ModalProducts>
 
-
           <ModalComparison>
 
             {allFeatures &&
@@ -63,12 +62,13 @@ const Comparison = function ({ itemInfo, currentProd, getProduct, isModalOpen, o
                 const currentChar = allFeatures[feature][1];
                 if (relatedChar || currentChar) {
                   return (
-                    <Characteristic key={feature} relatedChar={relatedChar} currentChar={currentChar}/>
+                    <Characteristic key={feature} feature={feature} relatedChar={relatedChar} currentChar={currentChar}/>
                   );
                 }
               })}
 
           </ModalComparison>
+
       </ComparisonModal>
     </>,
     document.getElementById('pop-up'),
@@ -87,6 +87,7 @@ const ComparisonModalBackground = styled.div`
 `;
 
 const ComparisonModal = styled.div`
+  font-family: 'Varela Round', sans-serif;
   position: fixed;
   z-index: 10;
   background-color: #fefefe;
@@ -129,9 +130,9 @@ const ModalComparison = styled.div`
   overflow-y: scroll;
   white-space: nowrap;
   height: 60%;
-  margin-left: 80px;
-  margin-right: 80px;
-  margin-top: 8px;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 25px;
   &::-webkit-scrollbar {
     display: none;
   }

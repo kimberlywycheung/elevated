@@ -38,6 +38,8 @@ describe("Related Products Renders", () => {
 
 });
 
+
+
 // HELPER GET FUNCTION
 const getRandomProducts = async () => {
   await axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products', {
