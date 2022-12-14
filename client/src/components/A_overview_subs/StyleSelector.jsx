@@ -8,7 +8,7 @@ const StyleSelector = ({ styles, style, setStyle }) => {
     <div className="ov-styles-selector">
       <div className="ov-style-text">Style {'> ' + style.name}</div>
       <div>
-        {styles.map((oneStyle, i) => { return <Swatch key={i} oneStyle={oneStyle} setStyle={setStyle} /> })}
+        {styles.map((oneStyle, i) => { return <Swatch key={i} oneStyle={oneStyle} setStyle={setStyle} style={style} /> })}
       </div>
     </div>)
 }
