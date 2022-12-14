@@ -77,11 +77,16 @@ const App = () => {
   return (
     <RootDiv id='root' ref={ref}>
       <GlobalStyles />
-      <h1>Del Taco Product Page1</h1>
+      <div id='header-img'>
+        <span style={{display: 'inline-block'}}>Del</span>
+        <img className='taco-img' src='../dist/images/TacoHeader2.png'></img>
+        <span style={{display: 'inline-block'}}>Taco</span>
+      </div>
       <Overview product={product}/>
-      <RatingsReviews product={product}/>
-      <QuestionsAnswers productID={product.id}/>
       <RelatedProducts product={product} setProduct={setProduct} ref={ref}/>
+      <QuestionsAnswers productID={product.id}/>
+      <RatingsReviews product={product}/>
+
     </RootDiv>
   )
 };
