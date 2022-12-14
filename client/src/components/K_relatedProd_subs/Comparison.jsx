@@ -62,7 +62,7 @@ const Comparison = function ({ itemInfo, currentProd, getProduct, isModalOpen, o
                 const currentChar = allFeatures[feature][1];
                 if (relatedChar || currentChar) {
                   return (
-                    <Characteristic key={feature} relatedChar={relatedChar} currentChar={currentChar}/>
+                    <Characteristic key={feature} feature={feature} relatedChar={relatedChar} currentChar={currentChar}/>
                   );
                 }
               })}
@@ -130,9 +130,9 @@ const ModalComparison = styled.div`
   overflow-y: scroll;
   white-space: nowrap;
   height: 60%;
-  margin-left: 80px;
-  margin-right: 80px;
-  margin-top: 8px;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 25px;
   &::-webkit-scrollbar {
     display: none;
   }

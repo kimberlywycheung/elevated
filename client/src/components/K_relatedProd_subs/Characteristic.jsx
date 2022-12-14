@@ -2,72 +2,25 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Characteristic = function ({ feature, relatedChar,  currentChar}) {
-  // const relatedChar = allFeatures[feature][0];
-  // const currentChar = allFeatures[feature][1];
+  relatedChar = relatedChar || <i class="fa-solid fa-xmark"></i>;
+  currentChar = currentChar || <i class="fa-solid fa-xmark"></i>;
 
   return (
     <div>
-      {relatedChar &&
-        <Characteristics>
-              <CheckmarkContainer>
-                <i className="fa-solid fa-check"/>
-              </CheckmarkContainer>
+      <Characteristics>
+          <CharacteristicName>
+            <Feature>{relatedChar}</Feature>
+          </CharacteristicName>
 
-              <CharacteristicName>{relatedChar}</CharacteristicName>
+          <Feature>{feature}</Feature>
 
-              {currentChar === relatedChar ?
-                <CheckmarkContainer>
-                  <i className="fa-solid fa-check" />
-                </CheckmarkContainer> : <CheckmarkContainer></CheckmarkContainer>}
-          </Characteristics>}
-
-      {currentChar && (relatedChar !== currentChar) &&
-        <Characteristics>
-          {relatedChar === currentChar ?
-            <CheckmarkContainer>
-              <i className="fa-solid fa-check" />
-            </CheckmarkContainer> : <CheckmarkContainer></CheckmarkContainer>}
-
-          <CharacteristicName>{currentChar}</CharacteristicName>
-
-          <CheckmarkContainer>
-            <i className="fa-solid fa-check" />
-          </CheckmarkContainer>
-        </Characteristics>}
+          <CharacteristicName>
+            <Feature>{currentChar}</Feature>
+          </CharacteristicName>
+        </Characteristics>
     </div>
   );
 
-  // return (
-  //   <div>
-  //     {relatedChar &&
-  //       <Characteristics>
-  //             <CheckmarkContainer>
-  //               <i className="fa-solid fa-check"/>
-  //             </CheckmarkContainer>
-
-  //             <CharacteristicName>{relatedChar}</CharacteristicName>
-
-  //             {currentChar === relatedChar ?
-  //               <CheckmarkContainer>
-  //                 <i className="fa-solid fa-check" />
-  //               </CheckmarkContainer> : <CheckmarkContainer></CheckmarkContainer>}
-  //         </Characteristics>}
-
-  //     {currentChar && (relatedChar !== currentChar) &&
-  //       <Characteristics>
-  //         {relatedChar === currentChar ?
-  //           <CheckmarkContainer>
-  //             <i className="fa-solid fa-check" />
-  //           </CheckmarkContainer> : <CheckmarkContainer></CheckmarkContainer>}
-
-  //         <CharacteristicName>{currentChar}</CharacteristicName>
-
-  //         <CheckmarkContainer>
-  //           <i className="fa-solid fa-check" />
-  //         </CheckmarkContainer>
-  //       </Characteristics>}
-  //   </div>
-  // );
 };
 
 const Characteristics = styled.div`
@@ -75,17 +28,21 @@ const Characteristics = styled.div`
   justify-content: space-between;
   display: flex;
   flex-direction: row;
+  align-items: flex-end;
 `;
 
-const CharacteristicName = styled.p`
+const Feature = styled.p`
   font-size: 0.85em;
+  min-width: 80px;
+  text-align: center;
 `;
 
-const CheckmarkContainer = styled.div`
-  width: 30px;
+const CharacteristicName = styled.div`
+  min-width: 180px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  overflow-wrap: break-word;
 `;
 
 export default Characteristic;
