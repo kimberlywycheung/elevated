@@ -8,12 +8,15 @@ import styled, {createGlobalStyle} from 'styled-components';
 
 //STYLE ROOT
 const RootDiv = styled.div`
-border: solid rgba(244, 244, 244, 0.552) 18px;
+  border: solid rgba(244, 244, 244, 0.552) 18px;
   font-family: 'Varela Round', sans-serif;
   color: rgb(56, 56, 56);
   max-width: 1200px;
   margin: 20px auto;
   padding: 0 50px;
+    & > h1 {
+      color: rgb(97, 7, 111)
+    }
   `;
 //GLOBAL STYLE
 const GlobalStyles = createGlobalStyle`
@@ -76,11 +79,11 @@ const App = () => {
   return (
     <RootDiv id='root' ref={ref}>
       <GlobalStyles />
-      <h1>Del Taco Product Page1</h1>
+      <h1>Clueless Co.</h1>
       <Overview product={product}/>
-      <RatingsReviews product={product}/>
-      <QuestionsAnswers productID={product.id}/>
       <RelatedProducts product={product} setProduct={setProduct} ref={ref}/>
+      <QuestionsAnswers productID={product.id}/>
+      <RatingsReviews product={product}/>
     </RootDiv>
   )
 };

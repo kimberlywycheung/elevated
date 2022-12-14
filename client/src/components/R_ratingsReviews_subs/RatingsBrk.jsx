@@ -63,9 +63,12 @@ const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray, starFilter }) 
         {Object.keys(breakdown.ratings).reverse().map((rating, index) => {
           return (
             <div key={index} onClick={(e) => clickHandler(e, rating)}>
-              <span style={{"textDecoration": `${starFilter[rating] ? 'underline': 'none'}`}}>
+              {/* <span style={{"textDecoration": `${starFilter[rating] ? 'underline': 'none'}`}}>
                 {rating} stars
-              </span>
+              </span> */}
+              <RatingSelector style={{"textDecoration": `${starFilter[rating] ? 'underline': 'none'}`}}>
+                {rating} stars
+              </RatingSelector>
               <BarContainerStyles>
                 <BarFiller
                   style={{"width": `${stats.ratings[rating]}%`}}>
@@ -126,4 +129,11 @@ const BarFiller = styled.div`
     color: black;
     font-size: 10px;
   }
+`
+
+const RatingSelector = styled.span`
+  cursor: pointer;
+    &:hover {
+      color: gray;
+    }
 `
