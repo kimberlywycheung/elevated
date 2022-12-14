@@ -14,9 +14,11 @@ const ImageGallery = ({ style, styles }) => {
 
 
   React.useEffect(() => {
+    console.log('style changing')
     if (style) {
       setImageURL(style.photos[0].url);
       setRender(!render);
+      setImageRange([0,5]);
     }
   }, [style]);
 
