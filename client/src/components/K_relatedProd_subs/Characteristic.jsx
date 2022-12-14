@@ -2,37 +2,25 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Characteristic = function ({ feature, relatedChar,  currentChar}) {
+  relatedChar = relatedChar || <i class="fa-solid fa-xmark"></i>;
+  currentChar = currentChar || <i class="fa-solid fa-xmark"></i>;
+
   return (
     <div>
-      {relatedChar &&
-        <Characteristics>
-              <CheckmarkContainer>
-                <i className="fa-solid fa-check"/>
-              </CheckmarkContainer>
+      <Characteristics>
+          <CharacteristicName>
+            <Feature>{relatedChar}</Feature>
+          </CharacteristicName>
 
-              <p>{relatedChar}</p>
+          <Feature>{feature}</Feature>
 
-              {currentChar === relatedChar ?
-                <CheckmarkContainer>
-                  <i className="fa-solid fa-check" />
-                </CheckmarkContainer> : <CheckmarkContainer></CheckmarkContainer>}
-          </Characteristics>}
-
-      {currentChar && (relatedChar !== currentChar) &&
-        <Characteristics>
-          {relatedChar === currentChar ?
-            <CheckmarkContainer>
-              <i className="fa-solid fa-check" />
-            </CheckmarkContainer> : <CheckmarkContainer></CheckmarkContainer>}
-
-          <p>{currentChar}</p>
-
-          <CheckmarkContainer>
-            <i className="fa-solid fa-check" />
-          </CheckmarkContainer>
-        </Characteristics>}
+          <CharacteristicName>
+            <Feature>{currentChar}</Feature>
+          </CharacteristicName>
+        </Characteristics>
     </div>
   );
+
 };
 
 const Characteristics = styled.div`
@@ -40,13 +28,21 @@ const Characteristics = styled.div`
   justify-content: space-between;
   display: flex;
   flex-direction: row;
+  align-items: flex-end;
 `;
 
-const CheckmarkContainer = styled.div`
-  width: 30px;
+const Feature = styled.p`
+  font-size: 0.85em;
+  min-width: 80px;
+  text-align: center;
+`;
+
+const CharacteristicName = styled.div`
+  min-width: 180px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  overflow-wrap: break-word;
 `;
 
 export default Characteristic;

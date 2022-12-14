@@ -30,10 +30,7 @@
     "babel-jest": "^29.3.1",
     "babel-loader": "^9.1.0",
     "babel-plugin-styled-components": "^2.0.7",
-<<<<<<< HEAD
-=======
     "cypress": "^12.1.0",
->>>>>>> f5b80df9eaf2a00d33d1c86207389942f525c11b
     "dotenv-webpack": "^8.0.1",
     "eslint": "^8.29.0",
     "eslint-config-airbnb": "^19.0.4",
