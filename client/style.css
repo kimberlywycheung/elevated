@@ -1,3 +1,17 @@
+#header-img {
+  font-size: 5rem;
+  /* font-family: 'Rubik Vinyl', cursive; */
+  font-family: 'Anton', sans-serif;
+  margin: 40px 0 0 0;
+  display: flex;
+  justify-content: center;
+}
+
+.taco-img {
+  /* background-color: rgb(104, 159, 216); */
+  height: 140px;
+  transform: translate(0, -10%);
+}
 
 .modal-bg { /* pop up form BACKGROUND OVERLAY, use on div wrapper for <Moda/> component*/
   /*display: none;  Hidden by default */
