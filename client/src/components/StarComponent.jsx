@@ -55,8 +55,6 @@ const StarComponent = ({ productID, avg, size }) => {
     dimension = size;
   }
 
-  console.log(dimension);
-
   useEffect(() => {
     if (avg) {
       setAvgRating(avg)
