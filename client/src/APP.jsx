@@ -55,8 +55,8 @@ const App = () => {
       headers: { 'Authorization': process.env.GITHUB_TOKEN }
     })
       .then((results) => {
-        var randIndex = Math.floor(Math.random() * results.data.length);
-        // var randIndex = 4;
+        // var randIndex = Math.floor(Math.random() * results.data.length);
+        var randIndex = 4;
 
         console.log(`Random Product from index ${randIndex}->\n`, results.data[randIndex]);
         setProduct(results.data[randIndex]);
@@ -77,7 +77,7 @@ const App = () => {
     console.log('product has been changed to: ', product);
   }, [product]);
 
-  return (
+  return ( product &&
     <RootDiv id='root' ref={ref}>
       <GlobalStyles />
       <div id='header-img'>

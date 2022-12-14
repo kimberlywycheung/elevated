@@ -108,9 +108,9 @@
 
 /* HEADER */
 
-.ov-header {
-  /* background-color: rgb(123, 226, 171); */
-}
+/* .ov-header {
+  /* background-color: rgb(123, 226, 171);
+} */
 
 .ov-review {
   margin: 0 0 10px 0;
@@ -119,11 +119,17 @@
 
 .ov-category {
   margin: 10px 0 0 0;
+  font-size: 16px; 
+  color: rgb(171, 169, 169);
+  
   /* background-color: rgb(103, 175, 168); */
 }
 
 #prod-title {
   margin: 5px 0 0 0;
+  font-family: Ubuntu, sans-serif;
+  font-size: 30px;  
+  color: rgb(67, 66, 66);
   /* background-color: rgb(77, 92, 186); */
 }
 
@@ -189,6 +195,10 @@
   transition: .2s ease;
 }
 
+#on {
+  box-shadow: 0 0 0 5px rgb(182, 172, 255);
+  transition: .5s ease;
+}
 
 /* ADD TO CART SECTION */
 
@@ -236,12 +246,50 @@
   flex: 1 1 0;
 }
 
+.quantity-drop select {
+  /* background: transparent; */
+  background-color: rgb(182, 172, 255);
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+  background-size: auto 50%;
+  border-radius: 2px;
+  border: none;
+  color: #ffffff;
+  padding: 10px 30px 10px 10px;
+  outline: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+
+.size-drop select {
+  background-color: rgb(182, 172, 255);
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+  background-size: auto 50%;
+  border-radius: 2px;
+  border: none;
+  color: #ffffff;
+  padding: 10px 30px 10px 10px;
+  outline: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.size-drop select::-ms-expand {
+  display: none;
+}
+
 .size-drop {
   min-width: fit-content;
-  /* position: relative; */
+  position: relative;
   /* background-color: rgb(155, 219, 179); */
   font-size: 1em;
   flex: 1 1 0;
+
+
 }
 
 .select-size-qty {
@@ -264,6 +312,6 @@
   /* padding: 10px; */
 }
 
-.ov-size-pick {
-  /* background-color: rgb(217, 219, 108); */
-}
+/* .ov-size-pick {
+  /* background-color: rgb(217, 219, 108);
+} */
