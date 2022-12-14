@@ -47,68 +47,64 @@
   /* fill 100% */
 }
 
-
-.ov-carousel {
+/* NEW CODE for Carousel*/
+.ov-img-select {
   position: absolute;
-  top: 90%;
-  left: 10%;
-  transform: translate(0, -100%);
-  width: 80%;
-  height: 90px;
-  /* max-height: 100px; */
-
-  /* float: left; */
-  overflow-x: auto;
-
-  white-space: nowrap;
-
-  /* background-color: rgb(126, 155, 188); */
-}
-
-.ov-image-select {
-  position: relative;
-  left: 50%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  top: 25%;
+  left: 8%;
   transform: translate(-50%, 0);
-  width: 50%;
-  height: 90px;
-
-  /* overflow-x: auto; */
-  /* white-space: nowrap; */
-
-  /* background-color: rgb(50, 218, 111); */
-}
-
-.left-arrow {
-  position: absolute;
-  top: 80%;
-  left: 15%;
-  transform: translate(-100%, -50%);
-  z-index: 1;
-}
-
-.right-arrow {
-  position: absolute;
-  top: 80%;
-  left: 85%;
-  transform: translate(0%, -50%);
-  z-index: 1;
-
+  width: 80px;
+  height: 50%;
+  padding: 0 4px;
+  /* background-color:rgb(182, 172, 255); */
 }
 
 .ov-mini-container {
-  display: inline-block;
+  /* background-color: rgb(79, 194, 169); */
   position: relative;
-  width: 80px;
-  height: 80px;
-  margin: 0 2px;
+  display: inline-block;
+  /* width: 100%; */
+  height: 18%;
+  aspect-ratio: 1/1;
+  margin: 0;
+  padding: 0;
 }
-
 .ov-mini-img {
   position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+.fa-arrow-up {
+  background-color: rgba(103, 103, 103, 0.3);
+  position: absolute;
+  top: 20%;
+  left: 8%;
+  transform: translate(-50%, 0);
+  color: rgb(254, 254, 254);
+  font-size: 1.2rem;
+}
+
+.fa-arrow-down {
+  background-color: rgba(103, 103, 103, 0.3);
+  position: absolute;
+  top: 80%;
+  left: 8%;
+  transform: translate(-50%, -100%);
+  color: rgb(254, 254, 254);
+  font-size: 1.2rem;
+}
+.fa-arrow-down:hover, .fa-arrow-up:hover {
+ background-color: rgb(49, 49, 49);
+ cursor: pointer;
+}
+/* END NEW CODE */
+
+
 
 /* HEADER */
 
