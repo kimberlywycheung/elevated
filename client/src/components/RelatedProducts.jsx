@@ -31,6 +31,7 @@ const RelatedProducts = React.forwardRef(({ product, setProduct }, ref) => {
   // updates local storage whenever outfits state is updated
   useEffect(() => {
     window.localStorage.setItem('favorites', outfits);
+    console.log(window.localStorage);
   }, [outfits]);
 
   // helper functions for editing outfit states
