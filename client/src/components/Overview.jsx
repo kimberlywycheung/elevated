@@ -44,6 +44,10 @@ const Overview = ({ product }) => {
       // setSku(Object.keys(results[0].skus)[0]);
     }
 
+    React.useEffect(() => {
+      getStyles();
+    }, [product])
+
 
     React.useEffect(() => {
       if (!styles) {

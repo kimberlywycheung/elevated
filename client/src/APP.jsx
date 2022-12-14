@@ -74,7 +74,7 @@ const App = () => {
     console.log('product has been changed to: ', product);
   }, [product]);
 
-  return (
+  return ( product &&
     <RootDiv id='root' ref={ref}>
       <GlobalStyles />
       <div id='header-img'>
