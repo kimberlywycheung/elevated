@@ -29,7 +29,7 @@
 .image-gallery {
   position: relative;
   /* background-color: rgb(249, 249, 249); */
-  background-color: rgb(201, 39, 39);
+  /* background-color: rgb(201, 39, 39); */
   padding: 3px;
   width: 100%;
   max-width: 100%;
@@ -58,12 +58,13 @@
   /* max-height: 100px; */
 
   /* float: left; */
-   overflow-x: auto;
-  
+  overflow-x: auto;
+
   white-space: nowrap;
 
-  background-color: rgb(126, 155, 188);
+  /* background-color: rgb(126, 155, 188); */
 }
+
 .ov-image-select {
   position: relative;
   left: 50%;
@@ -74,8 +75,9 @@
   /* overflow-x: auto; */
   /* white-space: nowrap; */
 
-  background-color: rgb(50, 218, 111);
+  /* background-color: rgb(50, 218, 111); */
 }
+
 .left-arrow {
   position: absolute;
   top: 80%;
@@ -92,13 +94,15 @@
   z-index: 1;
 
 }
+
 .ov-mini-container {
-  display:inline-block;
+  display: inline-block;
   position: relative;
   width: 80px;
   height: 80px;
   margin: 0 2px;
 }
+
 .ov-mini-img {
   position: absolute;
   width: 100%;
@@ -167,13 +171,23 @@
 
 .ov-style-select {
   /* margin: 0 10px; */
-  background-color: rgb(97, 7, 111)
+  /* background-color: rgb(97, 7, 111); */
   position: absolute;
   width: 100%;
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
+  transition: .5s ease;
   /* circle crop? */
+}
+
+
+
+.ov-style-select:hover {
+
+  box-shadow: 0 0 5px 7px rgb(182, 172, 255);
+ 
+  transition: .2s ease;
 }
 
 
@@ -246,4 +260,3 @@
 .ov-size-pick {
   /* background-color: rgb(217, 219, 108); */
 }
-
