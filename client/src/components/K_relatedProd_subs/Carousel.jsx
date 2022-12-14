@@ -11,9 +11,9 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
   const carouselId = `carousel-${type}`;
 
   useEffect(() => {
-    // if (type === 'related') {
+    if(currentState) {
       const initialScrollWidth = (currentState.length * 200) + (type === 'outfits'? 200 : 0);
-      const windowCarouselWidth = (window.innerWidth * .95)
+      const windowCarouselWidth = (window.innerWidth * .95);
       let initialOffsetWidth = initialScrollWidth < windowCarouselWidth ? 0 : initialScrollWidth - windowCarouselWidth;
 
       const initialWidths = {
@@ -23,7 +23,7 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
       };
 
       setScroll(initialWidths);
-    // }
+    }
   }, [currentState]);
 
   const addOutfit = () => {
@@ -46,26 +46,26 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
 
     console.log('window inner width', window.innerWidth);
     if (scrollWidth > (window.innerWidth * .95)) {
-      console.log('scrollLeft', scrollLeft);
-      console.log('scrollWidth', scrollWidth);
-      console.log('offsetWidth', offsetWidth);
+      // console.log('scrollLeft', scrollLeft);
+      // console.log('scrollWidth', scrollWidth);
+      // console.log('offsetWidth', offsetWidth);
 
       // set left states
       if (scrollLeft === 0) {
-        console.log('setting left false');
+        // console.log('setting left false');
         setShowLeft(false);
       }
       if (scrollLeft > 0) {
-        console.log('setting left true');
+        // console.log('setting left true');
         setShowLeft(true);
       }
       // set right states
       if (scrollLeft + offsetWidth === scrollWidth) {
-        console.log('setting right false');
+        // console.log('setting right false');
         setShowRight(false);
       }
       if (scrollLeft + offsetWidth < scrollWidth) {
-        console.log('setting right true');
+        // console.log('setting right true');
         setShowRight(true);
       }
     } else {
