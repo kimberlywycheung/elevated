@@ -10,7 +10,7 @@ class SelectSize extends React.Component {
       style: props.style.style_id,
       sku: props.sku,
       skus: props.skus,
-      quantity: '1'
+      quantity: 'QUANTITY'
       // skusArr:
     };
 
@@ -72,7 +72,7 @@ class SelectSize extends React.Component {
 
 
 
-              <option value={0} key={99}>SELECT SIZE</option>
+              <option value={0} key={99}>SIZE</option>
 
               {Object.keys(this.state.skus).map((sku, i) => { return <option value={sku} key={i}>{this.state.skus[sku].size}</option> })}
             </select>
@@ -80,6 +80,7 @@ class SelectSize extends React.Component {
 
           <div className="quantity-drop">
             <select name="quantity" className='select-size-qty' value={this.state.quantity} onChange={this.handleChange}>
+            <option value={0} key={99}>QUANTITY</option>
               {quantityArr}
             </select>
           </div>
