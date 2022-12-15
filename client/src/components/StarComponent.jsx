@@ -134,7 +134,7 @@ const StarComponent = ({ productID, avg, size }) => {
             {/* <StarIcon className="far fa-star" dimension={item*100}></StarIcon> */}
             <SingleStarFill dimension={dimension}
               style={{"width" : `${parseInt(item*dimension.width)}px`}}>
-              <StarImg dimension={dimension} src="../../client/dist/images/star2.png" alt="stars alt"></StarImg>
+              <StarImg dimension={dimension} src="./images/star2.png" alt="stars alt"></StarImg>
             </SingleStarFill>
           </SingleStarContainer>
         );

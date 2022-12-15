@@ -82,7 +82,7 @@ const App = () => {
       <GlobalStyles />
       <div id='header-img'>
         <span style={{display: 'inline-block'}}>Del</span>
-        <img className='taco-img' src='../dist/images/TacoHeader2.png'></img>
+        <img className='taco-img' src='./images/TacoHeader2.png'></img>
         <span style={{display: 'inline-block'}}>Taco</span>
       </div>
       <Overview product={product}/>

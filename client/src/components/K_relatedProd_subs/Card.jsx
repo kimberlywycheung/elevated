@@ -110,7 +110,7 @@ const Card = React.forwardRef(({ type, currentProd, item, deleteFromFavorites, s
           <Comparison itemInfo={itemInfo} currentProd={currentProd} getProduct={getProduct} isModalOpen={isModalOpen} onClose={handleClose} />}
 
         { defaultImg ?
-          <CardImage src={defaultImg}/> : <CardImage src={"../../client/dist/images/no-image.png"}/>}
+          <CardImage src={defaultImg}/> : <CardImage src={"./images/no-image.png"}/>}
 
         <CardInfo>
           <CardCategory>{itemInfo.category}</CardCategory>
