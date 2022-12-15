@@ -165,7 +165,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
                       <label htmlFor={`star-${index+1}`}>
                         <SingleStarContainer>
                           <SingleStarFill
-                            style={{"width" : `${parseInt(star*20.3)}px`}}>
+                            style={{"width" : `${parseInt(star*40)}px`}}>
                             <StarImg
                               src="../../client/dist/images/star2.png" alt="stars alt">
                             </StarImg>
@@ -304,6 +304,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
               name="photos"
               id="photos"
               type="input"
+              minLength="3"
               value={image}
               onChange={(e) => {setImage(e.target.value)}}
               placeholder={`You can add ${5 - images.length} more images!`}>
@@ -382,7 +383,7 @@ const AddReview = styled.form`
   margin: 7% 0%;
   padding: 5px;
   width: 70%;
-  border-radius: 5px
+  border-radius: 5px;
     & > div {
       margin-bottom: 20px;
     }
@@ -417,21 +418,21 @@ const NoRadioButton = styled.input`
 `
 
 const SingleStarContainer = styled.div`
-  height: 24px;
-  width: 20.3px;
+  height: 47.3px;
+  width: 40px;
   display: inline-block;
 `
 
 const SingleStarFill = styled.div`
   position: relative;
   display: inline-block;
-  height: 24px;
+  height: 47.3px;
   background-color: black;
 `
 
 const StarImg = styled.img`
-  height: 24px;
-  width: 20.3px;
+  height: 47.3px;
+  width: 40px;
 `
 
 const FormRecommend = styled.div`
@@ -527,9 +528,11 @@ const FormBodyInput = styled.div`
   font-family: 'Varela Round', sans-serif;
     & > textarea {
       width: 90%;
-      height: 60px;
+      height: 100px;
       margin: 1px auto;
       font-family: 'Varela Round', sans-serif;
+      padding: 10px;
+      margin: 5px auto 1px auto;
     }
     & > span {
       text-align: right;
