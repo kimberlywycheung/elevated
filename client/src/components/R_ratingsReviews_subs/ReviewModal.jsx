@@ -140,7 +140,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
         <FormHeader>
           <span>
             Write your review about the
-            <span>{name}</span>
+            <span> {name}</span>
           </span>
         </FormHeader>
         <AddReview onSubmit={formSubmit}>
@@ -474,8 +474,8 @@ const IndChar = styled.div`
 `
 
 const CharSelected = styled.span`
-  font-size: 12px
-  margin-left: 5px
+  font-size: 12px;
+  margin-left: 5px;
 `
 
 const CharDefinition = styled.div`

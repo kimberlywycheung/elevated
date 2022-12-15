@@ -5,6 +5,11 @@ import styled from 'styled-components';
 const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray, starFilter }) {
   const [stats, setStats] = useState({});
 
+  let dimensions = {
+    height: 32.4,
+    width: 27
+  };
+
   const ratingStats = function avgRating() {
     const statsObj = {};
     statsObj.recommended = recommendedPercent(breakdown.recommended);
@@ -54,7 +59,7 @@ const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray, starFilter }) 
     <div>
       <RatingAndStars>
         <RatingSpan>{stats.ratings.avg}</RatingSpan>
-        <StarComponent productID={breakdown.product_id} avg={stats.ratings.avg}/>
+        <StarComponent productID={breakdown.product_id} avg={stats.ratings.avg} size={dimensions}/>
       </RatingAndStars>
       <RecommendStatement>
         {stats.recommended}% of reviews recommended this product
@@ -99,7 +104,8 @@ const RatingSpan = styled.span`
 
 const RecommendStatement = styled.div`
   font-family: 'Varela Round', sans-serif;
-  font-size: 15px;
+  font-size: 12px;
+  color: gray;
   margin-bottom: 5px;
 `
 
@@ -112,7 +118,7 @@ const RatingsBarContainer = styled.div`
 `
 const BarContainerStyles = styled.div`
   height: 20px;
-  width: 120px;
+  width: 70%;
   background-color: "#e0e0de";
   border-radius: 1px;
   border: solid black 1px;

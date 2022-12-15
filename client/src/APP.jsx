@@ -85,9 +85,9 @@ const App = () => {
         <img className='taco-img' src='../dist/images/TacoHeader2.png'></img>
         <span style={{display: 'inline-block'}}>Taco</span>
       </div>
-      <Overview product={product}/>
+      {/* <Overview product={product}/>
       <RelatedProducts product={product} setProduct={setProduct} ref={ref}/>
-      <QuestionsAnswers productID={product.id}/>
+      <QuestionsAnswers productID={product.id}/> */}
       <RatingsReviews product={product}/>
 
     </RootDiv>
