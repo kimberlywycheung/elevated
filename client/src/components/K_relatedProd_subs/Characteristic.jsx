@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Characteristic = function ({ feature, relatedChar,  currentChar}) {
-  relatedChar = relatedChar || <i class="fa-solid fa-xmark"></i>;
-  currentChar = currentChar || <i class="fa-solid fa-xmark"></i>;
+  relatedChar = relatedChar || <i className="fa-solid fa-xmark"></i>;
+  currentChar = currentChar || <i className="fa-solid fa-xmark"></i>;
 
   return (
     <div>
