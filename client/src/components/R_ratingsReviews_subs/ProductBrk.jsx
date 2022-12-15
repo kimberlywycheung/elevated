@@ -62,6 +62,7 @@ const CharBarContainer = styled.div`
   display: flex;
   flex-direction: row;
     & > div {
+      color: gray;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -74,7 +75,7 @@ const CharBar = styled.div`
   width: 95%;
   background-color: gray;
   border-radius: 5px;
-  margin: 5px;
+  margin: 5px 5px 2px 5px;
     & + span {
       font-size: 10px;
     }
