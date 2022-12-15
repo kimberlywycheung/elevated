@@ -30,6 +30,7 @@ module.exports = {
     static: {
       directory: path.join(__dirname, 'client/dist')
     },
+    allowedHosts: ['.amazonaws.com'],
     compress: true,
     port: 3000
   }
