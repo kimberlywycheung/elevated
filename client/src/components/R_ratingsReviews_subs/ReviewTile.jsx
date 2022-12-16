@@ -81,7 +81,7 @@ const ReviewTile = function ReviewTile({ review, setRList, productID }) {
     <Tile>
       <User>
         <div>
-          <UserIcon>{review.reviewer_name.slice(0,1).toUpperCase()}</UserIcon>
+          <UserIcon><span>{review.reviewer_name.slice(0,1).toUpperCase()}</span></UserIcon>
           <span>{review.reviewer_name}</span>
         </div>
         <span>{date.toLocaleDateString()}</span>
