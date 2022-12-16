@@ -4,12 +4,15 @@ import StarComponent from '../StarComponent.jsx';
 
 
 
-const ProductInfo = ({ product, style }) => (
+const ProductInfo = ({ product, style }) => (style &&
   <div className="ov-header">
-    <StarComponent productID={product.id}/>
-    <h4 className='ov-category'>{product.category}</h4>
+    <Stars id={product.id} />
+    <h4 className='ov-category'>{product.category.toUpperCase()}</h4>
     <h1 id='prod-title'>{product.name}</h1>
-    {style ? <div className='ov-price'>{style.original_price}</div> : null}
+    <div className='ov-price'>
+      {style.sale_price && <div className='ov-sale'>${style.sale_price}</div>}
+      <div className='ov-og' id={style.sale_price ? 'sale' : null}>${style.original_price}</div>
+    </div>
 
   </div>);
 

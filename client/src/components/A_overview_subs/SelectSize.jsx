@@ -45,8 +45,8 @@ class SelectSize extends React.Component {
     if (!window.localStorage.getItem('cart')) {
       window.localStorage.setItem('cart', JSON.stringify(selection));
     }
-    
-
+    alert('Added ' + this.props.style.name + ', Size: ' + this.state.skus[this.state.sku].size + ', Quantity: ' + this.state.quantity + ' to cart');
+ 
     event.preventDefault();
   }
   
@@ -88,8 +88,8 @@ class SelectSize extends React.Component {
         </div>
         <div className='ov-form-2'>
           {/* <input type="submit" value="Add to Cart" /> */}
-          <button type='submit' className="add-cart-button">Add to Cart</button>
-          <button className="favorite-button">♡</button>
+          <button type='submit' className="add-cart-button">ADD TO CART</button>
+          <button className="favorite-button"></button>
         </div>
 
       </form>
