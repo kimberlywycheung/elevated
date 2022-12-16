@@ -8,6 +8,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
   const [image, setImage] = useState('');
   const [images, setImages] = useState([]);
   const [body, setBody] = useState('');
+  const [rec, setRec] = useState('');
   const [starArray, setStarArray] = useState([1, 0, 0, 0, 0]);
   const [storedStarArray, setStoredStarArray] = useState([1,0,0,0,0])
   const [photosArr, setPhotosArr] = React.useState([]);
@@ -64,6 +65,17 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
     Length: ['None selected', 'Runs Short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'],
     Fit: ['None selected', 'Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly loose', 'Runs loose']
   }
+
+  const handleBool = function(e) {
+    console.log(e.target.value);
+    if (e.target.value === 'true') {
+      setRec('yes')
+    } else if (e.target.value === 'false') {
+      setRec('no')
+    }
+  }
+
+  console.log(rec);
 
   const handleSelect = function(e, currentChar) {
     const newCurrentSelection = {...currentSelection};
@@ -234,10 +246,26 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
               <label>I recommend this product*</label>
             </FormRecommend>
             <FormRecommendInput>
-              <input type="radio" id="yes" name="recommend" value="true" required></input>
-              <label htmlFor="yes">Yes</label>
-              <input type="radio" id="no" name="recommend" value="false"></input>
-              <label htmlFor="no">No</label>
+              <NoRadioButton type="radio" id="yes" name="recommend" value="true" required
+              onChange={(e) => handleBool(e)}></NoRadioButton>
+              <label htmlFor="yes">
+                {rec === 'yes' &&
+                  <SelectButton style={{"border": "#63e463c9 solid 3px", "color": "green"}}>Yes</SelectButton>
+                }
+                {rec !== 'yes' &&
+                  <SelectButton style={{"border": "black solid 2px"}}>Yes</SelectButton>
+                }
+              </label>
+              <NoRadioButton type="radio" id="no" name="recommend" value="false"
+              onChange={(e) => handleBool(e)}></NoRadioButton>
+              <label htmlFor="no">
+                {rec === 'no' &&
+                  <SelectButton style={{"border": "#63e463c9 solid 3px", "color": "green"}}>No</SelectButton>
+                }
+                {rec !== 'no' &&
+                  <SelectButton style={{"border": "black solid 2px"}}>No</SelectButton>
+                }
+              </label>
             </FormRecommendInput>
           </div>
           <FormCharCont>
@@ -666,4 +694,17 @@ const AllowPhotoDelete = styled.div`
     text-align: center;
     cursor: pointer;
    }
+`
+
+const SelectButton = styled.span`
+  display: inline-block;
+  border: black solid 2px;
+  margin: 5px;
+  padding: 1px 3px;
+  border-radius: 5px;
+  width: 30px;
+  text-align: center;
+    &:hover {
+      background-color: #c3f0cb;
+    }
 `
