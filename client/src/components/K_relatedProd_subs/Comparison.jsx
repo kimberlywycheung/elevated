@@ -95,7 +95,7 @@ const ComparisonModal = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   border: 1px solid #888;
-  width: 45%;
+  width: 55%;
   height: 35%
 `;
 

@@ -12,8 +12,8 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
 
   useEffect(() => {
     if(currentState) {
-      const initialScrollWidth = (currentState.length * 200) + (type === 'outfits'? 200 : 0);
-      const windowCarouselWidth = (window.innerWidth * .95);
+      const initialScrollWidth = (currentState.length * 220) + (type === 'outfits'? 200 : 0);
+      const windowCarouselWidth = ((window.innerWidth - 100) * .95);
       let initialOffsetWidth = initialScrollWidth < windowCarouselWidth ? 0 : initialScrollWidth - windowCarouselWidth;
 
       const initialWidths = {
@@ -44,28 +44,24 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
   const setScroll = (carouselElement) => {
     const { scrollLeft, scrollWidth, offsetWidth } = carouselElement;
 
-    console.log('window inner width', window.innerWidth);
-    if (scrollWidth > (window.innerWidth * .95)) {
-      // console.log('scrollLeft', scrollLeft);
-      // console.log('scrollWidth', scrollWidth);
-      // console.log('offsetWidth', offsetWidth);
+    console.log('window.innerWidth', window.innerWidth);
+    console.log('scrollleft', scrollLeft);
+    console.log('scrollWidth', scrollWidth);
+    console.log('offsetWidth', offsetWidth);
 
+    if (scrollWidth > ((window.innerWidth - 100) * .95)) {
       // set left states
       if (scrollLeft === 0) {
-        // console.log('setting left false');
         setShowLeft(false);
       }
       if (scrollLeft > 0) {
-        // console.log('setting left true');
         setShowLeft(true);
       }
       // set right states
       if (scrollLeft + offsetWidth === scrollWidth) {
-        // console.log('setting right false');
         setShowRight(false);
       }
       if (scrollLeft + offsetWidth < scrollWidth) {
-        // console.log('setting right true');
         setShowRight(true);
       }
     } else {
@@ -127,9 +123,9 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
 // STYLING
 const ScrollButton = styled.div`
   border-width: 0px;
-  width: 30px;
-  margin: 10px;
-  padding: 10px;
+  width: 10px;
+  margin: 8px;
+  padding: 0px;
   font-size: 1em;
   background-color: transparent;
 `;

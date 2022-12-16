@@ -135,7 +135,7 @@ const Card = React.forwardRef(({ type, currentProd, item, deleteFromFavorites, s
 export const CardDiv = styled.div`
   background-color: white;
   border-radius: 5px;
-  width: 180px;
+  width: 200px;
   height: 95%;
   min-width: 180px;
   margin-top: 0;
