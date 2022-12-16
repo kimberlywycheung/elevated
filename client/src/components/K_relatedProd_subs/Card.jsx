@@ -138,7 +138,8 @@ export const CardDiv = styled.div`
   height: 95%;
   min-width: 180px;
   margin-top: 0;
-  margin-left: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
   margin-bottom: 10px;
   overflow: none;
   &:hover {

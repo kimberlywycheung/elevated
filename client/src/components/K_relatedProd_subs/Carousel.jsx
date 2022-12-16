@@ -13,8 +13,8 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
   useEffect(() => {
     // determines initial scroll state
     if (currentState) {
-      const initialScrollWidth = (currentState.length * 220) + (type === 'outfits' ? 200 : 0);
-      const carouselWidth = ((window.innerWidth - 100) * 0.95);
+      const initialScrollWidth = (currentState.length * 260) + (type === 'outfits' ? 220 : 0);
+      const carouselWidth = ((window.innerWidth - 122) * 0.95);
       const initialOffsetWidth = initialScrollWidth < carouselWidth ? 0 : initialScrollWidth - carouselWidth;
 
       const initialWidths = {
@@ -46,7 +46,7 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
   const setScroll = (carouselElement) => {
     const { scrollLeft, scrollWidth, offsetWidth } = carouselElement;
 
-    if (scrollWidth > ((window.innerWidth - 100) * .95)) {
+    if (scrollWidth > ((window.innerWidth - 122) * .95)) {
       // set left states
       if (scrollLeft === 0) {
         setShowLeft(false);
@@ -80,14 +80,14 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
   if (currentState || type === 'outfits') {
     return (
       <div>
-        <h2 id={type}>{title}</h2>
+        <CarouselHeader id={type}>{title}</CarouselHeader>
 
         <CarouselContainer>
 
-          {showLeftButton &&
+            {showLeftButton ?
             <ScrollButton id="scroll-left" onClick={scrollLeft}>
               <ScrollIcon><i className="fa-solid fa-angle-left"></i></ScrollIcon>
-            </ScrollButton>}
+            </ScrollButton> : <ScrollButton/>}
 
           <CarouselDiv id={carouselId}>
 
@@ -106,10 +106,10 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
 
           </CarouselDiv>
 
-          {showRightButton &&
+          {showRightButton ?
             <ScrollButton value="scroll-right" onClick={scrollRight}>
               <ScrollIcon><i className="fa-solid fa-angle-right"></i></ScrollIcon>
-            </ScrollButton>}
+            </ScrollButton> : <ScrollButton/>}
 
         </CarouselContainer>
       </div>
@@ -118,6 +118,15 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
 });
 
 // STYLING
+const CarouselHeader = styled.h2`
+  padding-left: 22px;
+`;
+
+const CarouselContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
 const ScrollButton = styled.div`
   border-width: 0px;
   width: 10px;
@@ -130,11 +139,6 @@ const ScrollButton = styled.div`
 const ScrollIcon = styled.div`
   position: relative;
   top: 50%;
-`;
-
-const CarouselContainer = styled.div`
-  display: flex;
-  flex-direction: row;
 `;
 
 const CarouselDiv = styled.div`
@@ -152,6 +156,8 @@ const CarouselDiv = styled.div`
 
 const AddToOutfitCard = styled.div`
   position: relative;
+  margin-left: 10px;
+  margin-right: 10px;
   margin-bottom: 0px;
   bottom: 0;
   width: 100%;
