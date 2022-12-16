@@ -98,10 +98,10 @@ const ReviewTile = function ReviewTile({ review, setRList, productID }) {
         </PhotoCont>
       }
       {review.response &&
-        <div>
+        <Response>
           <span>Response:</span>
           <div>{review.response}</div>
-        </div>
+        </Response>
       }
       <Vote style={{"marginBottom": "0px"}}>
         Helpful? <a onClick={handleVote}>Yes</a> ({review.helpfulness}) | <a onClick={handleReport}>Report</a>
@@ -186,6 +186,13 @@ const PhotoCont = styled.div`
 const Vote = styled.div`
   color: gray;
   font-size: 12px;
+`
+
+const Response = styled.div`
+  background-color: lightgray;
+  margin: 0px 20px 10px 20px;
+  font-size: 15px;
+  color: #5e5e5e;
 `
 
 // const RT = styled.div`
