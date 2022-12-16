@@ -6,6 +6,7 @@ import styled from 'styled-components';
 
 const ReviewTile = function ReviewTile({ review, setRList, productID }) {
   const [photosArr, setPhotosArr] = React.useState([]);
+  const [more, setMore] = React.useState(false);
   const [imgViewStyle, setImgViewStyle] = React.useState({display: 'none'});
   const [imgUrl, setImgUrl] = React.useState('');
   let date = new Date(review.date)
@@ -26,6 +27,11 @@ const ReviewTile = function ReviewTile({ review, setRList, productID }) {
         })
     }
   };
+
+  const handleMore = function() {
+    let bool = !more
+    setMore(bool);
+  }
 
   const handleReport = (e) => {
     e.preventDefault()
@@ -91,7 +97,28 @@ const ReviewTile = function ReviewTile({ review, setRList, productID }) {
       <Sum>
         {review.summary}
       </Sum>
-      <Body>{review.body}</Body>
+      <Body>
+        {review.body.slice(0, 249)}
+        {review.body.length > 250 && more === false &&
+          <div
+            onClick={handleMore}
+            style={{"color": "gray", "cursor": "pointer"}}>
+            ...more
+          </div>
+        }
+        { more &&
+          <span>
+            {review.body.slice(249)}
+          </span>
+        }
+        {more === true &&
+          <div
+          onClick={handleMore}
+            style={{"color": "gray", "cursor": "pointer"}}>
+            ...less
+          </div>
+        }
+      </Body>
       {photosArr.length > 0 &&
         <PhotoCont>
           {photosArr}
