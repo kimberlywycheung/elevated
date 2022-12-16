@@ -6,13 +6,8 @@ import StarComponent from '../StarComponent.jsx';
 
 const ProductInfo = ({ product, style }) => (style &&
   <div className="ov-header">
-<<<<<<< HEAD
     <Stars id={product.id} />
     <h4 className='ov-category'>{product.category.toUpperCase()}</h4>
-=======
-    <StarComponent productID={product.id}/>
-    <h4 className='ov-category'>{product.category}</h4>
->>>>>>> main
     <h1 id='prod-title'>{product.name}</h1>
     <div className='ov-price'>
       {style.sale_price && <div className='ov-sale'>${style.sale_price}</div>}
