@@ -27,6 +27,23 @@ const StarImg = styled.img`
   width: ${props => props.dimension.width}px;
 `
 
+// const StarIcon = styled.i`
+//   display: inline-block;
+//   position: relative;
+//   // font-size: 100px;
+//   color: #ddd;
+//     &:after {
+//       font-family: FontAwesome;
+//       content: "\f005";
+//       position: absolute;
+//       left: 0;
+//       top: 0;
+//       width: ${props => props.dimension}%;
+//       overflow: hidden;
+//       color: black;
+//     }
+// `
+
 const StarComponent = ({ productID, avg, size }) => {
   const [avgRating, setAvgRating] = useState(0)
 
@@ -37,8 +54,6 @@ const StarComponent = ({ productID, avg, size }) => {
   if (size) {
     dimension = size;
   }
-
-  console.log(dimension);
 
   useEffect(() => {
     if (avg) {
@@ -116,9 +131,10 @@ const StarComponent = ({ productID, avg, size }) => {
       {starArray(avgRating).map((item, i) => {
         return (
           <SingleStarContainer dimension={dimension} key={i}>
+            {/* <StarIcon className="far fa-star" dimension={item*100}></StarIcon> */}
             <SingleStarFill dimension={dimension}
               style={{"width" : `${parseInt(item*dimension.width)}px`}}>
-              <StarImg dimension={dimension} src="../../client/dist/images/star2.png" alt="stars alt"></StarImg>
+              <StarImg dimension={dimension} src="./images/star2.png" alt="stars alt"></StarImg>
             </SingleStarFill>
           </SingleStarContainer>
         );

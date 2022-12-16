@@ -8,12 +8,15 @@ import styled, {createGlobalStyle} from 'styled-components';
 
 //STYLE ROOT
 const RootDiv = styled.div`
-border: solid rgba(244, 244, 244, 0.552) 18px;
+  border: solid rgba(244, 244, 244, 0.552) 18px;
   font-family: 'Varela Round', sans-serif;
   color: rgb(56, 56, 56);
   max-width: 1200px;
   margin: 20px auto;
   padding: 0 50px;
+    & > h1 {
+      color: rgb(97, 7, 111)
+    }
   `;
 //GLOBAL STYLE
 const GlobalStyles = createGlobalStyle`
@@ -79,7 +82,7 @@ const App = () => {
       <GlobalStyles />
       <div id='header-img'>
         <span style={{display: 'inline-block'}}>Del</span>
-        <img className='taco-img' src='../dist/images/TacoHeader2.png'></img>
+        <img className='taco-img' src='./images/TacoHeader2.png'></img>
         <span style={{display: 'inline-block'}}>Taco</span>
       </div>
       <Overview product={product}/>

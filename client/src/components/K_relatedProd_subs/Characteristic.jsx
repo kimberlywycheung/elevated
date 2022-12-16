@@ -1,28 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Characteristic = function ({ feature, relatedChar,  currentChar}) {
-  relatedChar = relatedChar || <i class="fa-solid fa-xmark"></i>;
-  currentChar = currentChar || <i class="fa-solid fa-xmark"></i>;
+const Characteristic = function ({ feature, relatedChar, currentChar }) {
+  relatedChar = relatedChar || <i className="fa-solid fa-xmark"></i>;
+  currentChar = currentChar || <i className="fa-solid fa-xmark"></i>;
 
   return (
     <div>
       <Characteristics>
-          <CharacteristicName>
-            <Feature>{relatedChar}</Feature>
-          </CharacteristicName>
+        <CharacteristicName>
+          <Feature>{relatedChar}</Feature>
+        </CharacteristicName>
 
-          <Feature>{feature}</Feature>
+        <Feature>{feature}</Feature>
 
-          <CharacteristicName>
-            <Feature>{currentChar}</Feature>
-          </CharacteristicName>
-        </Characteristics>
+        <CharacteristicName>
+          <Feature>{currentChar}</Feature>
+        </CharacteristicName>
+      </Characteristics>
     </div>
   );
-
 };
 
+// STYLING
 const Characteristics = styled.div`
   height: 30px;
   justify-content: space-between;

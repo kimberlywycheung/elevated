@@ -24,5 +24,14 @@ module.exports = {
         }
       }
     ]
+  },
+  devtool: "eval-cheap-module-source-map",
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'client/dist')
+    },
+    allowedHosts: ['.amazonaws.com'],
+    compress: true,
+    port: 3000
   }
 }

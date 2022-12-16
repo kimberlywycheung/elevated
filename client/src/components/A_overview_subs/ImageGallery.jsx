@@ -80,11 +80,11 @@ const ImageGallery = ({ style, styles }) => {
         </dialog>}
       {/* <div className='ov-carousel'> */}
         {/* <button className="left-arrow" /> */}
-        <i class="fa-solid fa-arrow-up" style={upView} onClick={e => {e.preventDefault(); clickArrow('up')}}></i>
+        <i className="fa-solid fa-arrow-up" style={upView} onClick={e => {e.preventDefault(); clickArrow('up')}}></i>
         <div className='ov-img-select'>
           {imageArr.map((photo) => { return <ImageCarousel imageURL={imageURL} render={render} thumbClickHandler={thumbClickHandler} photo={photo}  /> })}
         </div>
-        <i class="fa-solid fa-arrow-down" style={downView} onClick={e => {e.preventDefault(); clickArrow('down')}}></i>
+        <i className="fa-solid fa-arrow-down" style={downView} onClick={e => {e.preventDefault(); clickArrow('down')}}></i>
         {/* <button className="right-arrow" /> */}
       {/* </div> */}
 

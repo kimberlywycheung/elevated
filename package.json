@@ -8,7 +8,8 @@
     "testrelated": "jest client/src/components/K_relatedProd_subs/relatedprod.test.js --env=jsdom --setupFiles dotenv/config",
     "cypress:open": "cypress open",
     "coverage": "jest --env=jsdom --watchAll=false --coverage",
-    "build": "webpack --config webpack.config.js -w"
+    "build": "webpack --config webpack.config.js -w",
+    "dev": "webpack serve --open"
   },
   "repository": {
     "type": "git",
@@ -49,7 +50,8 @@
     "jquery": "^3.6.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.6",
+    "webpack-dev-server": "^4.11.1"
   },
   "resolutions": {
     "styled-components": "^5"
