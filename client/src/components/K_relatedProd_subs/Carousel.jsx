@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Card, { CardDiv } from './Card.jsx';
 
-const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavorites, deleteFromFavorites, setProduct }, ref ) => {
+const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavorites, deleteFromFavorites, setProduct }, ref) => {
   const [showLeftButton, setShowLeft] = useState(false);
   const [showRightButton, setShowRight] = useState(true);
 
@@ -11,10 +11,11 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
   const carouselId = `carousel-${type}`;
 
   useEffect(() => {
-    if(currentState) {
-      const initialScrollWidth = (currentState.length * 220) + (type === 'outfits'? 200 : 0);
-      const windowCarouselWidth = ((window.innerWidth - 100) * .95);
-      let initialOffsetWidth = initialScrollWidth < windowCarouselWidth ? 0 : initialScrollWidth - windowCarouselWidth;
+    // determines initial scroll state
+    if (currentState) {
+      const initialScrollWidth = (currentState.length * 220) + (type === 'outfits' ? 200 : 0);
+      const carouselWidth = ((window.innerWidth - 100) * 0.95);
+      const initialOffsetWidth = initialScrollWidth < carouselWidth ? 0 : initialScrollWidth - carouselWidth;
 
       const initialWidths = {
         scrollLeft: 0,
@@ -26,6 +27,7 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
     }
   }, [currentState]);
 
+  // adds current viewed product to favorites/my outfit
   const addOutfit = () => {
     if (type === 'outfits') {
       addToFavorites(currentProd.id);
@@ -63,7 +65,7 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
       setShowLeft(false);
       setShowRight(false);
     }
-  }
+  };
 
   const scrollLeft = () => {
     document.getElementById(carouselId).scrollLeft -= 200;
@@ -75,7 +77,7 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
     updateScroll();
   };
 
-  if (currentState || type === "outfits") {
+  if (currentState || type === 'outfits') {
     return (
       <div>
         <h2 id={type}>{title}</h2>
