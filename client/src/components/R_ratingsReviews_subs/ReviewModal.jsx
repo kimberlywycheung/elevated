@@ -49,11 +49,8 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
 
   const handleStars = function(e, position, event) {
     let stars = parseInt(e.target.value) || position;
-    console.log(e.target.value, position, event, stars)
-    console.log('array', starArray);
-    console.log('stored', storedStarArray)
     let updatedStarArray = [];
-    if (event === 'change') {
+    if (event !== 'leave') {
       updatedStarArray = [...starArray].map((star) => {
         if (stars > 0) {
           stars--;
@@ -62,33 +59,14 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
           return 0;
         }
       })
-      setStoredStarArray(updatedStarArray);
-    } else if (event === 'enter') {
-      updatedStarArray = [...starArray].map((star) => {
-        if (stars > 0) {
-          stars--;
-          return 1;
-        } else {
-          return 0;
-        }
-      })
+      if (event === 'change') {
+        setStoredStarArray(updatedStarArray);
+      }
     } else if (event === 'leave') {
-      console.log('left')
       setStarArray(storedStarArray);
       return;
     }
     setStarArray(updatedStarArray);
-    // let stars = parseInt(e.target.value);
-    // console.log(e.target.value, position, event)
-    // let updatedStarArray = [...starArray].map((star) => {
-    //   if (stars > 0) {
-    //     stars--;
-    //     return 1;
-    //   } else {
-    //     return 0;
-    //   }
-    // })
-    // setStarArray(updatedStarArray);
   }
 
   const formSubmit = function(e) {
