@@ -116,13 +116,17 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
     return parameters;
   }
 
-  const imagehandler = function(e, action) {
+  const imageHandler = function(e, action) {
     e.preventDefault();
-    let imgUrl = $('#photos').val();
+    // let imgUrl = $('#photos').val();
     const updatedImages = [...images]
-    if (action === 'add') {
-      updatedImages.push(imgUrl)
-    } else if (action === 'del') {
+    if (image.length >= 3 && action === 'add') {
+      // updatedImages.push(imgUrl)
+      updatedImages.push(image);
+    } else if (image.length < 3 && action === 'add') {
+      alert('Add a proper image URL');
+    }
+    if (action === 'del') {
       updatedImages.pop()
     }
     setImage('');
@@ -304,7 +308,6 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
               name="photos"
               id="photos"
               type="input"
-              minLength="3"
               value={image}
               onChange={(e) => {setImage(e.target.value)}}
               placeholder={`You can add ${5 - images.length} more images!`}>
@@ -313,14 +316,14 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
               {images.length < 5 &&
                 <span
                   style={{"border": "gray solid 3px"}}
-                  onClick={(e) => imagehandler(e, 'add')}>
+                  onClick={(e) => imageHandler(e, 'add')}>
                   Add Image
                 </span>
               }
               {images.length > 0 &&
                 <span
                   style={{"border": "gray solid 3px"}}
-                  onClick={(e) => imagehandler(e, 'del')}>
+                  onClick={(e) => imageHandler(e, 'del')}>
                   Remove Image: [{images.length}]
                 </span>
               }

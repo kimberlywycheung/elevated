@@ -277,7 +277,9 @@ const Vote = styled.div`
 //   color: grey;
 // `
 const Athumbnails = styled.img`
-  max-width: 100px;
-  max-height: 100px;
   border: solid rgb(229, 229, 229) .5px;
+  position: relative;
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
 `;
