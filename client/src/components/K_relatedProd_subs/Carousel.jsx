@@ -13,8 +13,8 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
   useEffect(() => {
     // determines initial scroll state
     if (currentState) {
-      const initialScrollWidth = (currentState.length * 260) + (type === 'outfits' ? 220 : 0);
-      const carouselWidth = ((window.innerWidth - 122) * 0.95);
+      const initialScrollWidth = (currentState.length * 260) + 22 + (type === 'outfits' ? 200 : 0);
+      const carouselWidth = ((window.innerWidth - 120) * 0.95) - 22;
       const initialOffsetWidth = initialScrollWidth < carouselWidth ? 0 : initialScrollWidth - carouselWidth;
 
       const initialWidths = {
@@ -46,7 +46,7 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
   const setScroll = (carouselElement) => {
     const { scrollLeft, scrollWidth, offsetWidth } = carouselElement;
 
-    if (scrollWidth > ((window.innerWidth - 122) * .95)) {
+    if (scrollWidth > ((window.innerWidth - 120) * .95) - 22) {
       // set left states
       if (scrollLeft === 0) {
         setShowLeft(false);
@@ -68,12 +68,12 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
   };
 
   const scrollLeft = () => {
-    document.getElementById(carouselId).scrollLeft -= 200;
+    document.getElementById(carouselId).scrollLeft -= 220;
     updateScroll();
   };
 
   const scrollRight = () => {
-    document.getElementById(carouselId).scrollLeft += 200;
+    document.getElementById(carouselId).scrollLeft += 220;
     updateScroll();
   };
 
