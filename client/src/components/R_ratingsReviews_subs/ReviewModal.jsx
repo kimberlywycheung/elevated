@@ -9,6 +9,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
   const [images, setImages] = useState([]);
   const [body, setBody] = useState('');
   const [starArray, setStarArray] = useState([1, 0, 0, 0, 0]);
+  const [storedStarArray, setStoredStarArray] = useState([1,0,0,0,0])
   // const [starCount, setStarCount] = useState(1);
   const [currentSelection, setCurrentSelection] = useState({
     Size: 0,
@@ -46,20 +47,48 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
     setBody(e.target.value)
   }
 
-  const handleStars = function(e, position) {
-    let stars = parseInt(e.target.value);
-    // console.log('Stars ', stars);
-    let updatedStarArray = [...starArray].map((star) => {
-      if (stars > 0) {
-        stars--;
-        return 1;
-      } else {
-        return 0;
-      }
-    })
-    // console.log(updatedStarArray);
-    // setStarCount(parseInt(e.target.value));
+  const handleStars = function(e, position, event) {
+    let stars = parseInt(e.target.value) || position;
+    console.log(e.target.value, position, event, stars)
+    console.log('array', starArray);
+    console.log('stored', storedStarArray)
+    let updatedStarArray = [];
+    if (event === 'change') {
+      updatedStarArray = [...starArray].map((star) => {
+        if (stars > 0) {
+          stars--;
+          return 1;
+        } else {
+          return 0;
+        }
+      })
+      setStoredStarArray(updatedStarArray);
+    } else if (event === 'enter') {
+      updatedStarArray = [...starArray].map((star) => {
+        if (stars > 0) {
+          stars--;
+          return 1;
+        } else {
+          return 0;
+        }
+      })
+    } else if (event === 'leave') {
+      console.log('left')
+      setStarArray(storedStarArray);
+      return;
+    }
     setStarArray(updatedStarArray);
+    // let stars = parseInt(e.target.value);
+    // console.log(e.target.value, position, event)
+    // let updatedStarArray = [...starArray].map((star) => {
+    //   if (stars > 0) {
+    //     stars--;
+    //     return 1;
+    //   } else {
+    //     return 0;
+    //   }
+    // })
+    // setStarArray(updatedStarArray);
   }
 
   const formSubmit = function(e) {
@@ -153,7 +182,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
               Overall Rating*
             </label>
             <StarAndDefCont>
-              <div>
+              <StarCont>
                 {starArray.map((star, index) => {
                   return (
                     <span key={index}>
@@ -163,11 +192,13 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
                         id={`star-${index+1}`}
                         name="rating"
                         defaultChecked={index === 0}
-                        onChange={(e) => handleStars(e)}
+                        onChange={(e) => handleStars(e, index + 1, 'change')}
                         required>
                       </NoRadioButton>
                       <label htmlFor={`star-${index+1}`}>
-                        <SingleStarContainer>
+                        <SingleStarContainer
+                        onMouseEnter={(e) => handleStars(e, index + 1, 'enter')}
+                        onMouseLeave={(e) => handleStars(e, index + 1, 'leave')}>
                           <SingleStarFill
                             style={{"width" : `${parseInt(star*40)}px`}}>
                             <StarImg
@@ -179,7 +210,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
                     </span>
                   )
                 })}
-              </div>
+              </StarCont>
               <StarDef>
                 <span>5: Great</span>
                 <span>4: Good</span>
@@ -210,7 +241,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
                 chars.map((char, index) => {
                   return (
                     <IndChar key={index}>
-                      <div style={{"marginRight": "60px"}}>
+                      <div style={{"marginRight": "60px", "width": "250px"}}>
                         <label>
                           {char}:
                           <CharSelected>
@@ -293,10 +324,10 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
                 required>
               </textarea>
               { body.length < 50 &&
-                <span>Minimum required characters left: [{50-body.length}]</span>
+                <span style={{"color": "red"}}>Minimum required characters left: [{50-body.length}]</span>
               }
               { body.length > 50 &&
-                <span>Minimum Reached</span>
+                <span style={{"color": "gray"}}>Minimum Reached</span>
               }
             </FormBodyInput>
           </FormBodyCont>
@@ -403,10 +434,12 @@ const FormRatingCont = styled.div`
 const StarAndDefCont = styled.div`
   display: flex;
   margin-top: 5px;
-    & > div {
-      margin-right: 60px;
-      margin-left: 20px;
-    }
+`
+
+const StarCont = styled.div`
+  margin-right: 60px;
+  margin-left: 20px;
+  width: 250px
 `
 
 const StarDef = styled.div`
