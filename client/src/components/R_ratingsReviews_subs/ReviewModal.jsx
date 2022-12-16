@@ -75,8 +75,6 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
     }
   }
 
-  console.log(rec);
-
   const handleSelect = function(e, currentChar) {
     const newCurrentSelection = {...currentSelection};
     newCurrentSelection[currentChar] = parseInt(e.target.value);
@@ -114,7 +112,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
     e.preventDefault()
     let newReview = new FormData(e.target);
     let newObj = createParameters(newReview)
-    console.log(newObj);
+    // console.log(newObj);
     if (newObj) {
       const auth = {'Authorization': process.env.GITHUB_TOKEN}
       const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews`;
@@ -139,6 +137,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
       Fit: 0
     })
     setBody('')
+    setRec('')
     setStarArray([1, 0, 0, 0, 0])
   }
 
@@ -183,8 +182,6 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
     setImage('');
     setImages(updatedImages);
   }
-
-  // console.log(starArray);
 
   if (!isOpen) return null
 
@@ -286,47 +283,92 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
                           </CharSelected>
                         </label>
                         <div>
-                          <input
+                          <NoRadioButton
                             type="radio"
                             value="1"
                             id={`${char}-1`}
                             onChange={(e) => handleSelect(e, char)}
                             name={charObj[char].id}
                             required>
-                          </input>
-                          <label htmlFor={`${char}-1`}>1</label>
-                          <input
+                          </NoRadioButton>
+                          <label htmlFor={`${char}-1`}>
+                            { currentSelection[char] === 1 &&
+                              <SelectButton style={{"border": "#63e463c9 solid 3px", "color": "green"}}>
+                                1
+                              </SelectButton>
+                            }
+                            { currentSelection[char] !==1 &&
+                              <SelectButton style={{"border": "black solid 2px"}}>1</SelectButton>
+                            }
+                          </label>
+                          <NoRadioButton
                             type="radio"
                             value="2"
                             id={`${char}-2`}
                             onChange={(e) => handleSelect(e, char)}
                             name={charObj[char].id}>
-                          </input>
-                          <label htmlFor={`${char}-2`}>2</label>
-                          <input
+                          </NoRadioButton>
+                          <label htmlFor={`${char}-2`}>
+                            { currentSelection[char] ===2 &&
+                              <SelectButton style={{"border": "#63e463c9 solid 3px", "color": "green"}}>
+                                2
+                              </SelectButton>
+                            }
+                            { currentSelection[char] !==2 &&
+                              <SelectButton style={{"border": "black solid 2px"}}>2</SelectButton>
+                            }
+                          </label>
+                          <NoRadioButton
                             type="radio"
                             value="3"
                             id={`${char}-3`}
                             onChange={(e) => handleSelect(e, char)}
                             name={charObj[char].id}>
-                          </input>
-                          <label htmlFor={`${char}-3`}>3</label>
-                          <input
+                          </NoRadioButton>
+                          <label htmlFor={`${char}-3`}>
+                            { currentSelection[char] ===3 &&
+                              <SelectButton style={{"border": "#63e463c9 solid 3px", "color": "green"}}>
+                                3
+                              </SelectButton>
+                            }
+                            { currentSelection[char] !==3 &&
+                              <SelectButton style={{"border": "black solid 2px"}}>3</SelectButton>
+                            }
+                          </label>
+                          <NoRadioButton
                             type="radio"
                             value="4"
                             id={`${char}-4`}
                             onChange={(e) => handleSelect(e, char)}
                             name={charObj[char].id}>
-                          </input>
-                          <label htmlFor={`${char}-4`}>4</label>
-                          <input
+                          </NoRadioButton>
+                          <label htmlFor={`${char}-4`}>
+                            { currentSelection[char] ===4 &&
+                              <SelectButton style={{"border": "#63e463c9 solid 3px", "color": "green"}}>
+                                4
+                              </SelectButton>
+                            }
+                            { currentSelection[char] !==4 &&
+                              <SelectButton style={{"border": "black solid 2px"}}>4</SelectButton>
+                            }
+                          </label>
+                          <NoRadioButton
                             type="radio"
                             value="5"
                             id={`${char}-5`}
                             onChange={(e) => handleSelect(e, char)}
                             name={charObj[char].id}>
-                          </input>
-                          <label htmlFor={`${char}-5`}>5</label>
+                          </NoRadioButton>
+                          <label htmlFor={`${char}-5`}>
+                            { currentSelection[char] ===5 &&
+                              <SelectButton style={{"border": "#63e463c9 solid 3px", "color": "green"}}>
+                                5
+                              </SelectButton>
+                            }
+                            { currentSelection[char] !==5 &&
+                              <SelectButton style={{"border": "black solid 2px"}}>5</SelectButton>
+                            }
+                          </label>
                         </div>
                       </div>
                       <CharDefinition>
@@ -702,7 +744,7 @@ const SelectButton = styled.span`
   margin: 5px;
   padding: 1px 3px;
   border-radius: 5px;
-  width: 30px;
+  width: 28px;
   text-align: center;
     &:hover {
       background-color: #c3f0cb;
