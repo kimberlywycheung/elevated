@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import $ from 'jquery';
@@ -8,7 +8,10 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
   const [image, setImage] = useState('');
   const [images, setImages] = useState([]);
   const [body, setBody] = useState('');
+  const [rec, setRec] = useState('');
   const [starArray, setStarArray] = useState([1, 0, 0, 0, 0]);
+  const [storedStarArray, setStoredStarArray] = useState([1,0,0,0,0])
+  const [photosArr, setPhotosArr] = React.useState([]);
   // const [starCount, setStarCount] = useState(1);
   const [currentSelection, setCurrentSelection] = useState({
     Size: 0,
@@ -18,6 +21,34 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
     Length: 0,
     Fit: 0
   })
+
+  useEffect(() => {
+    if (images.length) {
+      var photoInput = [];
+      images.forEach((photo, i) => {
+        var photoUrl = typeof photo === 'object' ? photo.url : photo;
+        console.log('url ', photoUrl)
+
+        photoInput.push(
+          <AllowPhotoDelete key={i}>
+            <Athumbnails
+              onClick={e => {/*e.preventDefault(); openImg(photoUrl)*/}} key={i} src={photoUrl} onError={({ currentTarget }) => {
+                currentTarget.onerror = null; // prevents looping
+                currentTarget.style.display = 'none';
+                currentTarget.src="https://climate.onep.go.th/wp-content/uploads/2020/01/default-image.jpg";
+              }}>
+            </Athumbnails>
+            <span
+              onClick={(e) => imageHandler(e, 'del', i)}
+              >
+              X
+            </span>
+          </AllowPhotoDelete>
+        )
+      });
+      setPhotosArr(photoInput);
+    }
+  }, [images])
 
   if (!charBreak.characteristics) {
     return null;
@@ -35,6 +66,15 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
     Fit: ['None selected', 'Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly loose', 'Runs loose']
   }
 
+  const handleBool = function(e) {
+    console.log(e.target.value);
+    if (e.target.value === 'true') {
+      setRec('yes')
+    } else if (e.target.value === 'false') {
+      setRec('no')
+    }
+  }
+
   const handleSelect = function(e, currentChar) {
     const newCurrentSelection = {...currentSelection};
     newCurrentSelection[currentChar] = parseInt(e.target.value);
@@ -46,19 +86,25 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
     setBody(e.target.value)
   }
 
-  const handleStars = function(e, position) {
-    let stars = parseInt(e.target.value);
-    // console.log('Stars ', stars);
-    let updatedStarArray = [...starArray].map((star) => {
-      if (stars > 0) {
-        stars--;
-        return 1;
-      } else {
-        return 0;
+  const handleStars = function(e, position, event) {
+    let stars = parseInt(e.target.value) || position;
+    let updatedStarArray = [];
+    if (event !== 'leave') {
+      updatedStarArray = [...starArray].map((star) => {
+        if (stars > 0) {
+          stars--;
+          return 1;
+        } else {
+          return 0;
+        }
+      })
+      if (event === 'change') {
+        setStoredStarArray(updatedStarArray);
       }
-    })
-    // console.log(updatedStarArray);
-    // setStarCount(parseInt(e.target.value));
+    } else if (event === 'leave') {
+      setStarArray(storedStarArray);
+      return;
+    }
     setStarArray(updatedStarArray);
   }
 
@@ -66,7 +112,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
     e.preventDefault()
     let newReview = new FormData(e.target);
     let newObj = createParameters(newReview)
-    console.log(newObj);
+    // console.log(newObj);
     if (newObj) {
       const auth = {'Authorization': process.env.GITHUB_TOKEN}
       const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews`;
@@ -91,6 +137,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
       Fit: 0
     })
     setBody('')
+    setRec('')
     setStarArray([1, 0, 0, 0, 0])
   }
 
@@ -116,20 +163,25 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
     return parameters;
   }
 
-  const imagehandler = function(e, action) {
+  const imageHandler = function(e, action, remove) {
     e.preventDefault();
-    let imgUrl = $('#photos').val();
+    // let imgUrl = $('#photos').val();
     const updatedImages = [...images]
-    if (action === 'add') {
-      updatedImages.push(imgUrl)
-    } else if (action === 'del') {
-      updatedImages.pop()
+    if (image.length >= 3 && action === 'add') {
+      // updatedImages.push(imgUrl)
+      if (image.length === 5) {
+        alert("You can only add 5 photos");
+      }
+      updatedImages.push(image);
+    } else if (image.length < 3 && action === 'add') {
+      alert('Add a proper image URL');
+    }
+    if (action === 'del') {
+      updatedImages.splice(remove, 1);
     }
     setImage('');
     setImages(updatedImages);
   }
-
-  // console.log(starArray);
 
   if (!isOpen) return null
 
@@ -139,17 +191,16 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
       <div className='modal-content review-modal-specs'>
         <FormHeader>
           <span>
-            Write your review about the
-            <span> {name}</span>
+            Write your review about the <span>{name}</span>
           </span>
         </FormHeader>
         <AddReview onSubmit={formSubmit}>
           <FormRatingCont>
             <label>
-              * Overall Rating:
+              Overall Rating*
             </label>
             <StarAndDefCont>
-              <div>
+              <StarCont>
                 {starArray.map((star, index) => {
                   return (
                     <span key={index}>
@@ -159,15 +210,17 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
                         id={`star-${index+1}`}
                         name="rating"
                         defaultChecked={index === 0}
-                        onChange={(e) => handleStars(e)}
+                        onChange={(e) => handleStars(e, index + 1, 'change')}
                         required>
                       </NoRadioButton>
                       <label htmlFor={`star-${index+1}`}>
-                        <SingleStarContainer>
+                        <SingleStarContainer
+                        onMouseEnter={(e) => handleStars(e, index + 1, 'enter')}
+                        onMouseLeave={(e) => handleStars(e, index + 1, 'leave')}>
                           <SingleStarFill
                             style={{"width" : `${parseInt(star*40)}px`}}>
                             <StarImg
-                              src="../../client/dist/images/star2.png" alt="stars alt">
+                              src="./images/star2.png" alt="stars alt">
                             </StarImg>
                           </SingleStarFill>
                         </SingleStarContainer>
@@ -175,7 +228,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
                     </span>
                   )
                 })}
-              </div>
+              </StarCont>
               <StarDef>
                 <span>5: Great</span>
                 <span>4: Good</span>
@@ -187,18 +240,34 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
           </FormRatingCont>
           <div>
             <FormRecommend>
-              <label>* Do you recommend this product?</label>
+              <label>Recommend this product*</label>
             </FormRecommend>
             <FormRecommendInput>
-              <input type="radio" id="yes" name="recommend" value="true" required></input>
-              <label htmlFor="yes">Yes</label>
-              <input type="radio" id="no" name="recommend" value="false"></input>
-              <label htmlFor="no">No</label>
+              <NoRadioButton type="radio" id="yes" name="recommend" value="true" required
+              onChange={(e) => handleBool(e)}></NoRadioButton>
+              <label htmlFor="yes">
+                {rec === 'yes' &&
+                  <SelectButton style={{"border": "#63e463c9 solid 3px", "color": "green"}}>Yes</SelectButton>
+                }
+                {rec !== 'yes' &&
+                  <SelectButton style={{"border": "black solid 2px"}}>Yes</SelectButton>
+                }
+              </label>
+              <NoRadioButton type="radio" id="no" name="recommend" value="false"
+              onChange={(e) => handleBool(e)}></NoRadioButton>
+              <label htmlFor="no">
+                {rec === 'no' &&
+                  <SelectButton style={{"border": "#63e463c9 solid 3px", "color": "green"}}>No</SelectButton>
+                }
+                {rec !== 'no' &&
+                  <SelectButton style={{"border": "black solid 2px"}}>No</SelectButton>
+                }
+              </label>
             </FormRecommendInput>
           </div>
           <FormCharCont>
             <FormCategory>
-              * Characteristics:
+              Characteristics*
             </FormCategory>
             {chars.length === 0 && <div>No characteristics at this time</div>}
             <IndCharCont>
@@ -206,7 +275,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
                 chars.map((char, index) => {
                   return (
                     <IndChar key={index}>
-                      <div style={{"marginRight": "60px"}}>
+                      <div style={{"marginRight": "60px", "width": "250px"}}>
                         <label>
                           {char}:
                           <CharSelected>
@@ -214,47 +283,92 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
                           </CharSelected>
                         </label>
                         <div>
-                          <input
+                          <NoRadioButton
                             type="radio"
                             value="1"
                             id={`${char}-1`}
                             onChange={(e) => handleSelect(e, char)}
                             name={charObj[char].id}
                             required>
-                          </input>
-                          <label htmlFor={`${char}-1`}>1</label>
-                          <input
+                          </NoRadioButton>
+                          <label htmlFor={`${char}-1`}>
+                            { currentSelection[char] === 1 &&
+                              <SelectButton style={{"border": "#63e463c9 solid 3px", "color": "green"}}>
+                                1
+                              </SelectButton>
+                            }
+                            { currentSelection[char] !==1 &&
+                              <SelectButton style={{"border": "black solid 2px"}}>1</SelectButton>
+                            }
+                          </label>
+                          <NoRadioButton
                             type="radio"
                             value="2"
                             id={`${char}-2`}
                             onChange={(e) => handleSelect(e, char)}
                             name={charObj[char].id}>
-                          </input>
-                          <label htmlFor={`${char}-2`}>2</label>
-                          <input
+                          </NoRadioButton>
+                          <label htmlFor={`${char}-2`}>
+                            { currentSelection[char] ===2 &&
+                              <SelectButton style={{"border": "#63e463c9 solid 3px", "color": "green"}}>
+                                2
+                              </SelectButton>
+                            }
+                            { currentSelection[char] !==2 &&
+                              <SelectButton style={{"border": "black solid 2px"}}>2</SelectButton>
+                            }
+                          </label>
+                          <NoRadioButton
                             type="radio"
                             value="3"
                             id={`${char}-3`}
                             onChange={(e) => handleSelect(e, char)}
                             name={charObj[char].id}>
-                          </input>
-                          <label htmlFor={`${char}-3`}>3</label>
-                          <input
+                          </NoRadioButton>
+                          <label htmlFor={`${char}-3`}>
+                            { currentSelection[char] ===3 &&
+                              <SelectButton style={{"border": "#63e463c9 solid 3px", "color": "green"}}>
+                                3
+                              </SelectButton>
+                            }
+                            { currentSelection[char] !==3 &&
+                              <SelectButton style={{"border": "black solid 2px"}}>3</SelectButton>
+                            }
+                          </label>
+                          <NoRadioButton
                             type="radio"
                             value="4"
                             id={`${char}-4`}
                             onChange={(e) => handleSelect(e, char)}
                             name={charObj[char].id}>
-                          </input>
-                          <label htmlFor={`${char}-4`}>4</label>
-                          <input
+                          </NoRadioButton>
+                          <label htmlFor={`${char}-4`}>
+                            { currentSelection[char] ===4 &&
+                              <SelectButton style={{"border": "#63e463c9 solid 3px", "color": "green"}}>
+                                4
+                              </SelectButton>
+                            }
+                            { currentSelection[char] !==4 &&
+                              <SelectButton style={{"border": "black solid 2px"}}>4</SelectButton>
+                            }
+                          </label>
+                          <NoRadioButton
                             type="radio"
                             value="5"
                             id={`${char}-5`}
                             onChange={(e) => handleSelect(e, char)}
                             name={charObj[char].id}>
-                          </input>
-                          <label htmlFor={`${char}-5`}>5</label>
+                          </NoRadioButton>
+                          <label htmlFor={`${char}-5`}>
+                            { currentSelection[char] ===5 &&
+                              <SelectButton style={{"border": "#63e463c9 solid 3px", "color": "green"}}>
+                                5
+                              </SelectButton>
+                            }
+                            { currentSelection[char] !==5 &&
+                              <SelectButton style={{"border": "black solid 2px"}}>5</SelectButton>
+                            }
+                          </label>
                         </div>
                       </div>
                       <CharDefinition>
@@ -270,13 +384,13 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
           </FormCharCont>
           <SingleLineInput>
             <FormCategory>
-              * Review Summary:
+              Review Summary*
             </FormCategory>
             <SingleLineInputSpec type="text" name="summary" placeholder="Best purchase ever!!!" maxLength="60" required></SingleLineInputSpec>
           </SingleLineInput>
           <FormBodyCont>
             <FormCategory>
-              * Review Body:
+              Review Body*
             </FormCategory>
             <FormBodyInput>
               <textarea
@@ -289,47 +403,44 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
                 required>
               </textarea>
               { body.length < 50 &&
-                <span>Minimum required characters left: [{50-body.length}]</span>
+                <span style={{"color": "red"}}>Minimum required characters left: [{50-body.length}]</span>
               }
               { body.length > 50 &&
-                <span>Minimum Reached</span>
+                <span style={{"color": "gray"}}>Minimum Reached</span>
               }
             </FormBodyInput>
           </FormBodyCont>
           <PhotosCont>
             <FormCategory>
-              Upload Photos:
+              Upload Photos
             </FormCategory>
             <SingleLineInputSpec
               name="photos"
               id="photos"
               type="input"
-              minLength="3"
               value={image}
               onChange={(e) => {setImage(e.target.value)}}
               placeholder={`You can add ${5 - images.length} more images!`}>
             </SingleLineInputSpec>
             <ButtonsCont>
-              {images.length < 5 &&
+              {images.length < 6 &&
                 <span
-                  style={{"border": "gray solid 3px"}}
-                  onClick={(e) => imagehandler(e, 'add')}>
+                  // style={{"border": "gray solid 3px"}}
+                  onClick={(e) => imageHandler(e, 'add')}>
                   Add Image
                 </span>
               }
               {images.length > 0 &&
-                <span
-                  style={{"border": "gray solid 3px"}}
-                  onClick={(e) => imagehandler(e, 'del')}>
-                  Remove Image: [{images.length}]
-                </span>
+                <PhotoCont>
+                  {photosArr}
+                </PhotoCont>
               }
             </ButtonsCont>
           </PhotosCont>
           <UserInfo>
             <SingleLineInput>
               <FormCategory>
-                * Nickname:
+                Nickname*
               </FormCategory>
               <SingleLineInputSpec type="text" name="name" placeholder="jackson11" maxLength="60" required></SingleLineInputSpec>
             </SingleLineInput>
@@ -340,7 +451,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
           <UserInfo>
             <SingleLineInput>
               <FormCategory>
-                * email:
+                email*
               </FormCategory>
               <SingleLineInputSpec type="email" name="email" placeholder="jackson11@gmail.com" maxLength="60" required></SingleLineInputSpec>
             </SingleLineInput>
@@ -400,10 +511,12 @@ const FormRatingCont = styled.div`
 const StarAndDefCont = styled.div`
   display: flex;
   margin-top: 5px;
-    & > div {
-      margin-right: 60px;
-      margin-left: 20px;
-    }
+`
+
+const StarCont = styled.div`
+  margin-right: 60px;
+  margin-left: 20px;
+  width: 250px
 `
 
 const StarDef = styled.div`
@@ -551,11 +664,13 @@ const PhotosCont = styled.div`
 const ButtonsCont = styled.div`
   margin: 0px auto;
   display: flex;
-  justify-content: space-around;
-  width: 35%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 90%;
   font-family: 'Varela Round', sans-serif;
     & > span {
       border-radius: 5px;
+      border: gray solid 3px;
       padding: 3px;
       font-size: 14px;
       margin: 5px 5px;
@@ -578,4 +693,60 @@ const SubmitButton = styled.input`
   font-family: 'Varela Round', sans-serif;
   border: gray solid 3px;
   border-radius: 5px;
+`
+
+const PhotoCont = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+   & div {
+    margin-rigth: 3px;
+   }
+`
+
+const Athumbnails = styled.img`
+  border: solid rgb(229, 229, 229) .5px;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: #63e463c9 solid 3px;
+`;
+
+const AllowPhotoDelete = styled.div`
+  position: relative;
+  height: 50px;
+  width: 50px;
+  margin: 4px;
+   & > span {
+    position: absolute;
+    top: 3.5px;
+    right: 3px;
+    background-color: white;
+    border: red solid 1px;
+    border-radius: 50%;
+    height: 12px;
+    width: 12px;
+    color: red;
+    font-size: 10px;
+    text-align: center;
+    cursor: pointer;
+   }
+`
+
+const SelectButton = styled.span`
+  display: inline-block;
+  border: black solid 2px;
+  margin: 5px;
+  padding: 1px 3px;
+  border-radius: 5px;
+  width: 28px;
+  text-align: center;
+    &:hover {
+      background-color: #c3f0cb;
+    }
 `
