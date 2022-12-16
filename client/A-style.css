@@ -8,6 +8,7 @@
 
 .ov-info {
   padding: 5px 0;
+  padding-left: 10px;
   display: inline-block;
   width: 33%;
   /* background-color: rgb(216, 147, 57); */
@@ -28,9 +29,13 @@
 /* IMAGES */
 .image-gallery {
   position: relative;
+  border-right-color:rgb(84, 82, 82);
+  border-right-style: solid;
+  border-right-width: .5em;
   /* background-color: rgb(249, 249, 249); */
   /* background-color: rgb(201, 39, 39); */
   padding: 3px;
+  padding-right: 20px;
   width: 100%;
   max-width: 100%;
   height: 600px;
@@ -73,12 +78,23 @@
   margin: 0;
   padding: 0;
 }
+
 .ov-mini-img {
+  transition: transform .4s;
   position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
+
 }
+
+.ov-mini-img:hover {
+  transform: scale(1.1);
+  z-index: 1;
+  box-shadow: 0 0 2px 2px rgb(182, 172, 255);
+  transition: .2s ease;
+}
+
 .fa-arrow-up {
   background-color: rgba(103, 103, 103, 0.3);
   position: absolute;
@@ -98,10 +114,13 @@
   color: rgb(254, 254, 254);
   font-size: 1.2rem;
 }
-.fa-arrow-down:hover, .fa-arrow-up:hover {
- background-color: rgb(49, 49, 49);
- cursor: pointer;
+
+.fa-arrow-down:hover,
+.fa-arrow-up:hover {
+  background-color: rgb(49, 49, 49);
+  cursor: pointer;
 }
+
 /* END NEW CODE */
 
 
@@ -118,29 +137,42 @@
 }
 
 .ov-category {
+  letter-spacing: 3px;
   margin: 10px 0 0 0;
-  font-size: 16px; 
-  color: rgb(171, 169, 169);
-  
+  font-size: 16px;
+  color: rgb(125, 120, 161);
+
   /* background-color: rgb(103, 175, 168); */
 }
 
 #prod-title {
   margin: 5px 0 0 0;
-  font-family: Ubuntu, sans-serif;
-  font-size: 30px;  
+  margin-top: -4px;
+  font-family: 'PT Sans Caption', sans-serif;
+  font-weight: bold;
+  font-size: 35px;
   color: rgb(67, 66, 66);
   /* background-color: rgb(77, 92, 186); */
 }
 
 .ov-price {
-  font-size: 1.2em;
+  color:rgb(125, 120, 161);
+  display: flex;
+  flex-direction: row;
+  font-size: 1em;
   margin: 10px 0;
   /* background-color: rgb(138, 125, 202); */
 }
 
-.ov-price-sale {
-  margin: 10px 0;
+.ov-og {}
+
+#sale {
+  text-decoration: line-through;
+  padding-left: 15px;
+}
+
+.ov-sale {
+  color: red;
   /* background-color: rgb(234, 107, 107); */
 }
 
@@ -159,8 +191,23 @@
 }
 
 .ov-style-text {
+  letter-spacing: 3px;
+  font-family: 'PT Sans Caption', sans-serif;
+  font-weight: bolder;
+  font-size: 15px;
+  color: rgb(67, 66, 66);
+  display: inline-block;
   /* background-color: rgb(218, 125, 228); */
   margin-bottom: 20px;
+}
+
+.ov-style-current {
+  letter-spacing: 3px;
+  display: inline-block;
+  font-family: 'PT Sans Caption', sans-serif;
+  font-size: 15px;
+  color: rgb(125, 120, 161);
+
 }
 
 .ov-style-container {
@@ -191,12 +238,16 @@
 .ov-style-select:hover {
 
   box-shadow: 0 0 5px 7px rgb(182, 172, 255);
-
   transition: .2s ease;
 }
 
 #on {
   box-shadow: 0 0 0 5px rgb(182, 172, 255);
+  transition: .5s ease;
+}
+
+#thumb-on {
+  box-shadow: 0 0 0 2px rgb(182, 172, 255);
   transition: .5s ease;
 }
 
@@ -206,7 +257,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 10px;
+  /* padding: 10px; */
   overflow-y: auto;
   max-height: 200px;
   /* background-color: rgb(208, 184, 220); */
@@ -217,7 +268,7 @@
   flex-wrap: wrap;
   height: 50%;
   flex-direction: row;
-  padding-left: 2%;
+  padding-left: 3%;
 }
 
 .ov-form-2 {
@@ -225,57 +276,79 @@
   flex-wrap: wrap;
   height: 50%;
   flex-direction: row;
+  /* padding-left: 1px; */
 }
 
 .add-cart-button {
+  text-align: left;
   position: relative;
   display: inline-block;
-  flex: 1 1 0;
+  flex: 10 1 0;
+  
   /* background-color: rgb(176, 212, 200); */
 }
 
-.ov-fave-btn {
-  /* background-color: rgb(213, 148, 63); */
+.favorite-button {
+  border: 0 !important;
+  color: white;
+  min-width: fit-content;
+  background-image: url("data:image/svg+xml,%3Csvg style='color: white' xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-star' viewBox='0 0 16 16'%3E%3Cpath d='M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z' fill='white'%3E%3C/path%3E%3C/svg%3E%0A");  background-size: 1.5em;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgb(101, 101, 101);
   flex: 1 1 0;
 }
 
 .quantity-drop {
+
   position: relative;
-  font-size: 1.6em;
+  font-size: 1em;
   /* background-color: rgb(40, 166, 88); */
   flex: 1 1 0;
 }
 
 .quantity-drop select {
   /* background: transparent; */
-  background-color: rgb(182, 172, 255);
-  background-position: right 10px center;
+  background-position: calc(100% - 1.3em) center;
+  background-color: rgb(101, 101, 101);
   background-repeat: no-repeat;
-  background-size: auto 50%;
-  border-radius: 2px;
-  border: none;
-  color: #ffffff;
-  padding: 10px 30px 10px 10px;
+  background-size: .6em;
+  /* border-radius: 2px; */
+  color: rgb(255, 255, 255);
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Ctitle%3Edown-arrow%3C%2Ftitle%3E%3Cg%20fill%3D%22%23000000%22%3E%3Cpath%20d%3D%22M10.293%2C3.293%2C6%2C7.586%2C1.707%2C3.293A1%2C1%2C0%2C0%2C0%2C.293%2C4.707l5%2C5a1%2C1%2C0%2C0%2C0%2C1.414%2C0l5-5a1%2C1%2C0%2C1%2C0-1.414-1.414Z%22%20fill%3D%22%23ffffff%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  padding: 10px 0px 10px 10px;
   outline: none;
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
+  width: 150px;
+  border: 0 !important;
+
 }
 
 
 .size-drop select {
-  background-color: rgb(182, 172, 255);
   background-position: right 10px center;
   background-repeat: no-repeat;
-  background-size: auto 50%;
-  border-radius: 2px;
+  /* border-radius: 2px; */
   border: none;
-  color: #ffffff;
+  color: rgb(255, 255, 255);
   padding: 10px 30px 10px 10px;
   outline: none;
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
+
+  width: 150px;
+  border: 0 !important;
+  background-color: rgb(101, 101, 101);
+  /* needed */
+
+  /* SVG background image */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Ctitle%3Edown-arrow%3C%2Ftitle%3E%3Cg%20fill%3D%22%23000000%22%3E%3Cpath%20d%3D%22M10.293%2C3.293%2C6%2C7.586%2C1.707%2C3.293A1%2C1%2C0%2C0%2C0%2C.293%2C4.707l5%2C5a1%2C1%2C0%2C0%2C0%2C1.414%2C0l5-5a1%2C1%2C0%2C1%2C0-1.414-1.414Z%22%20fill%3D%22%23ffffff%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  background-size: .6em;
+  background-position: calc(100% - 1.3em) center;
+  background-repeat: no-repeat;
 }
 
 .size-drop select::-ms-expand {
@@ -289,29 +362,15 @@
   font-size: 1em;
   flex: 1 1 0;
 
-
-}
-
-.select-size-qty {
-  min-width: 90px;
-  width: 90%;
-  height: 50px;
-  padding: 5px 35px 5px 5px;
-  font-size: 18px;
-  border: 2px solid #ccc;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background: url("https://i.pinimg.com/736x/59/e2/37/59e237615ce90d9693eca27fbe183351.jpg") 96% / 15% no-repeat #eee;
 }
 
 .add-cart-button {
+  border: 0 !important;
+  color: white;
   min-width: fit-content;
-  /* background-color: rgb(215, 106, 106); */
-  /* margin: 0; */
-  /* padding: 10px; */
+  background-image: url("data:image/svg+xml,%3Csvg style='color: white' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-shopping-cart'%3E%3Ccircle cx='9' cy='21' r='1'%3E%3C/circle%3E%3Ccircle cx='20' cy='21' r='1'%3E%3C/circle%3E%3Cpath d='M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6' fill='white'%3E%3C/path%3E%3C/svg%3E%0A");
+  background-size: 1.5em;
+  background-position: calc(100% - 1.3em) center;
+  background-repeat: no-repeat;
+  background-color: rgb(101, 101, 101);
 }
-
-/* .ov-size-pick {
-  /* background-color: rgb(217, 219, 108);
-} */

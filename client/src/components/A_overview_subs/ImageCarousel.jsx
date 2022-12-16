@@ -1,11 +1,11 @@
 import React from "react";
 
-const ImageCarousel = ({ photo, thumbClickHandler }) => {
+const ImageCarousel = ({ photo, thumbClickHandler, imageURL }) => {
 
 
   return  (
     <span onClick={(e) => thumbClickHandler(e, photo.url)} className='ov-mini-container'>
-      {<img className='ov-mini-img' src={photo.thumbnail_url} /> }
+      {<img id={photo.url === imageURL ? "thumb-on" : "off"} className='ov-mini-img' src={photo.thumbnail_url} /> }
     </span>
   )
 
