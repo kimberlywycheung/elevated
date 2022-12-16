@@ -182,8 +182,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
       <div className='modal-content review-modal-specs'>
         <FormHeader>
           <span>
-            Write your review about the
-            <span>{name}</span>
+            Write your review about the <span>{name}</span>
           </span>
         </FormHeader>
         <AddReview onSubmit={formSubmit}>
