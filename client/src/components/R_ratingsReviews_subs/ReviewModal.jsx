@@ -240,7 +240,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
           </FormRatingCont>
           <div>
             <FormRecommend>
-              <label>I recommend this product*</label>
+              <label>Recommend this product*</label>
             </FormRecommend>
             <FormRecommendInput>
               <NoRadioButton type="radio" id="yes" name="recommend" value="true" required
