@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import $ from 'jquery';
@@ -10,6 +10,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
   const [body, setBody] = useState('');
   const [starArray, setStarArray] = useState([1, 0, 0, 0, 0]);
   const [storedStarArray, setStoredStarArray] = useState([1,0,0,0,0])
+  const [photosArr, setPhotosArr] = React.useState([]);
   // const [starCount, setStarCount] = useState(1);
   const [currentSelection, setCurrentSelection] = useState({
     Size: 0,
@@ -19,6 +20,34 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
     Length: 0,
     Fit: 0
   })
+
+  useEffect(() => {
+    if (images.length) {
+      var photoInput = [];
+      images.forEach((photo, i) => {
+        var photoUrl = typeof photo === 'object' ? photo.url : photo;
+        console.log('url ', photoUrl)
+
+        photoInput.push(
+          <AllowPhotoDelete key={i}>
+            <Athumbnails
+              onClick={e => {/*e.preventDefault(); openImg(photoUrl)*/}} key={i} src={photoUrl} onError={({ currentTarget }) => {
+                currentTarget.onerror = null; // prevents looping
+                currentTarget.style.display = 'none';
+                currentTarget.src="https://climate.onep.go.th/wp-content/uploads/2020/01/default-image.jpg";
+              }}>
+            </Athumbnails>
+            <span
+              onClick={(e) => imageHandler(e, 'del', i)}
+              >
+              X
+            </span>
+          </AllowPhotoDelete>
+        )
+      });
+      setPhotosArr(photoInput);
+    }
+  }, [images])
 
   if (!charBreak.characteristics) {
     return null;
@@ -123,18 +152,21 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
     return parameters;
   }
 
-  const imageHandler = function(e, action) {
+  const imageHandler = function(e, action, remove) {
     e.preventDefault();
     // let imgUrl = $('#photos').val();
     const updatedImages = [...images]
     if (image.length >= 3 && action === 'add') {
       // updatedImages.push(imgUrl)
+      if (image.length === 5) {
+        alert("You can only add 5 photos");
+      }
       updatedImages.push(image);
     } else if (image.length < 3 && action === 'add') {
       alert('Add a proper image URL');
     }
     if (action === 'del') {
-      updatedImages.pop()
+      updatedImages.splice(remove, 1);
     }
     setImage('');
     setImages(updatedImages);
@@ -322,19 +354,17 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
               placeholder={`You can add ${5 - images.length} more images!`}>
             </SingleLineInputSpec>
             <ButtonsCont>
-              {images.length < 5 &&
+              {images.length < 6 &&
                 <span
-                  style={{"border": "gray solid 3px"}}
+                  // style={{"border": "gray solid 3px"}}
                   onClick={(e) => imageHandler(e, 'add')}>
                   Add Image
                 </span>
               }
               {images.length > 0 &&
-                <span
-                  style={{"border": "gray solid 3px"}}
-                  onClick={(e) => imageHandler(e, 'del')}>
-                  Remove Image: [{images.length}]
-                </span>
+                <PhotoCont>
+                  {photosArr}
+                </PhotoCont>
               }
             </ButtonsCont>
           </PhotosCont>
@@ -565,11 +595,13 @@ const PhotosCont = styled.div`
 const ButtonsCont = styled.div`
   margin: 0px auto;
   display: flex;
-  justify-content: space-around;
-  width: 35%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 90%;
   font-family: 'Varela Round', sans-serif;
     & > span {
       border-radius: 5px;
+      border: gray solid 3px;
       padding: 3px;
       font-size: 14px;
       margin: 5px 5px;
@@ -592,4 +624,47 @@ const SubmitButton = styled.input`
   font-family: 'Varela Round', sans-serif;
   border: gray solid 3px;
   border-radius: 5px;
+`
+
+const PhotoCont = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+   & div {
+    margin-rigth: 3px;
+   }
+`
+
+const Athumbnails = styled.img`
+  border: solid rgb(229, 229, 229) .5px;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: #63e463c9 solid 3px;
+`;
+
+const AllowPhotoDelete = styled.div`
+  position: relative;
+  height: 50px;
+  width: 50px;
+  margin: 4px;
+   & > span {
+    position: absolute;
+    top: 3.5px;
+    right: 3px;
+    background-color: white;
+    border: red solid 1px;
+    border-radius: 50%;
+    height: 12px;
+    width: 12px;
+    color: red;
+    font-size: 10px;
+    text-align: center;
+    cursor: pointer;
+   }
 `
