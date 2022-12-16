@@ -38,6 +38,7 @@ const Card = React.forwardRef(({ type, currentProd, item, deleteFromFavorites, s
   let originalPrice = null;
   let salePrice = null;
 
+  // helper function for grabbing the image and price to be shown in product card
   const updateImagePrice = (style) => {
     defaultImg = style.photos[0].thumbnail_url;
     originalPrice = JSON.stringify(style.original_price).replaceAll('"', '');
@@ -83,6 +84,7 @@ const Card = React.forwardRef(({ type, currentProd, item, deleteFromFavorites, s
     }
   };
 
+  // handler for closing the comparison modal
   const handleClose = (e) => {
     e.stopPropagation();
     setIsModalOpen(false);
@@ -97,7 +99,6 @@ const Card = React.forwardRef(({ type, currentProd, item, deleteFromFavorites, s
     }
   }
 
-  // TODO: can refactor saleprice later
   if (itemInfo && itemStyles) {
     return (
       <CardDiv id={type} onClick={changeCards}>
@@ -118,10 +119,7 @@ const Card = React.forwardRef(({ type, currentProd, item, deleteFromFavorites, s
 
           {salePrice ?
             <CardPrice>
-              ${salePrice}
-              <CardSalePrice>
-                ${originalPrice}
-              </CardSalePrice>
+              ${salePrice}<CardSalePrice>${originalPrice}</CardSalePrice>
             </CardPrice> : <CardPrice>${originalPrice}</CardPrice> }
 
             <StarComponent productID={itemInfo.id} size={{ height: 16.6, width: 14 }}/>
@@ -132,14 +130,16 @@ const Card = React.forwardRef(({ type, currentProd, item, deleteFromFavorites, s
   }
 });
 
+// STYLING
 export const CardDiv = styled.div`
   background-color: white;
   border-radius: 5px;
-  width: 180px;
+  width: 200px;
   height: 95%;
   min-width: 180px;
   margin-top: 0;
-  margin-left: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
   margin-bottom: 10px;
   overflow: none;
   &:hover {

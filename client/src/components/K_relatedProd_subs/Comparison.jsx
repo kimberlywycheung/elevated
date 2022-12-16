@@ -41,33 +41,33 @@ const Comparison = function ({ itemInfo, currentProd, getProduct, isModalOpen, o
 
       <ComparisonModal onClick={(e) => e.stopPropagation()}>
 
-          <ModalHeader>
-            <h3 id="center">Comparing</h3>
-            <ModalCloseButton onClick={onClose}>
-              <i className="fa-solid fa-xmark"></i>
-            </ModalCloseButton>
-          </ModalHeader>
+        <ModalHeader>
+          <h3 id="center">Comparing</h3>
+          <ModalCloseButton onClick={onClose}>
+            <i className="fa-solid fa-xmark"></i>
+          </ModalCloseButton>
+        </ModalHeader>
 
-          <ModalProducts>
-            <span id="left">{itemInfo.name}</span>
-            <span id="center"></span>
-            <span id="right">{currentProd.name}</span>
-          </ModalProducts>
+        <ModalProducts>
+          <span id="left">{itemInfo.name}</span>
+          <span id="center"></span>
+          <span id="right">{currentProd.name}</span>
+        </ModalProducts>
 
-          <ModalComparison>
+        <ModalComparison>
 
-            {allFeatures &&
-              Object.keys(allFeatures).map((feature) => {
-                const relatedChar = allFeatures[feature][0];
-                const currentChar = allFeatures[feature][1];
-                if (relatedChar || currentChar) {
-                  return (
-                    <Characteristic key={feature} feature={feature} relatedChar={relatedChar} currentChar={currentChar}/>
-                  );
-                }
-              })}
+          {allFeatures &&
+            Object.keys(allFeatures).map((feature) => {
+              const relatedChar = allFeatures[feature][0];
+              const currentChar = allFeatures[feature][1];
+              if (relatedChar || currentChar) {
+                return (
+                  <Characteristic key={feature} feature={feature} relatedChar={relatedChar} currentChar={currentChar} />
+                );
+              }
+            })}
 
-          </ModalComparison>
+        </ModalComparison>
 
       </ComparisonModal>
     </>,
@@ -95,7 +95,7 @@ const ComparisonModal = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   border: 1px solid #888;
-  width: 45%;
+  width: 55%;
   height: 35%
 `;
 
@@ -113,7 +113,7 @@ const ModalProducts = styled.div`
   justify-content: space-between;
   padding-left: 30px;
   padding-right: 30px;
-`
+`;
 
 const ModalCloseButton = styled.button`
   z-index: 10;
