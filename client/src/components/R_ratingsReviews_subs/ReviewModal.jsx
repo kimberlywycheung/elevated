@@ -140,13 +140,13 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
         <FormHeader>
           <span>
             Write your review about the
-            <span> {name}</span>
+            <span>{name}</span>
           </span>
         </FormHeader>
         <AddReview onSubmit={formSubmit}>
           <FormRatingCont>
             <label>
-              * Overall Rating:
+              Overall Rating*
             </label>
             <StarAndDefCont>
               <div>
@@ -167,7 +167,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
                           <SingleStarFill
                             style={{"width" : `${parseInt(star*40)}px`}}>
                             <StarImg
-                              src="../../client/dist/images/star2.png" alt="stars alt">
+                              src="./images/star2.png" alt="stars alt">
                             </StarImg>
                           </SingleStarFill>
                         </SingleStarContainer>
@@ -187,7 +187,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
           </FormRatingCont>
           <div>
             <FormRecommend>
-              <label>* Do you recommend this product?</label>
+              <label>I recommend this product*</label>
             </FormRecommend>
             <FormRecommendInput>
               <input type="radio" id="yes" name="recommend" value="true" required></input>
@@ -198,7 +198,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
           </div>
           <FormCharCont>
             <FormCategory>
-              * Characteristics:
+              Characteristics*
             </FormCategory>
             {chars.length === 0 && <div>No characteristics at this time</div>}
             <IndCharCont>
@@ -270,13 +270,13 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
           </FormCharCont>
           <SingleLineInput>
             <FormCategory>
-              * Review Summary:
+              Review Summary*
             </FormCategory>
             <SingleLineInputSpec type="text" name="summary" placeholder="Best purchase ever!!!" maxLength="60" required></SingleLineInputSpec>
           </SingleLineInput>
           <FormBodyCont>
             <FormCategory>
-              * Review Body:
+              Review Body*
             </FormCategory>
             <FormBodyInput>
               <textarea
@@ -298,7 +298,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
           </FormBodyCont>
           <PhotosCont>
             <FormCategory>
-              Upload Photos:
+              Upload Photos
             </FormCategory>
             <SingleLineInputSpec
               name="photos"
@@ -329,7 +329,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
           <UserInfo>
             <SingleLineInput>
               <FormCategory>
-                * Nickname:
+                Nickname*
               </FormCategory>
               <SingleLineInputSpec type="text" name="name" placeholder="jackson11" maxLength="60" required></SingleLineInputSpec>
             </SingleLineInput>
@@ -340,7 +340,7 @@ const ReviewModal = function ReviewModal({ isOpen, name, id, setIsOpen, charBrea
           <UserInfo>
             <SingleLineInput>
               <FormCategory>
-                * email:
+                email*
               </FormCategory>
               <SingleLineInputSpec type="email" name="email" placeholder="jackson11@gmail.com" maxLength="60" required></SingleLineInputSpec>
             </SingleLineInput>

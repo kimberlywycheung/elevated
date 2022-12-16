@@ -72,137 +72,210 @@ const ReviewTile = function ReviewTile({ review, setRList, productID }) {
   },[review]);
 
   return (
-    <RT>
-      <RTHead>
-        <span>
-          <StarComponent productID={productID} avg={review.rating}/>
-        </span>
+    <Tile>
+      <User>
+        <div>
+          <UserIcon>{review.reviewer_name.slice(0,1).toUpperCase()}</UserIcon>
+          <span>{review.reviewer_name}</span>
+        </div>
         <span>{date.toLocaleDateString()}</span>
-      </RTHead>
-      <RTContent>
-        <RTUser>
-          <span><By>by</By> {review.reviewer_name}</span>
-          {review.recommend === true &&
-            <div>
-              ✔ I recommended this product
-            </div>
-          }
-        </RTUser>
-        <RTBody>
-          <span>
-            {review.summary}
-          </span>
+      </User>
+      <Rating>
+        <StarComponent productID={productID} avg={review.rating}/>
+        {review.recommend === true &&
           <div>
-            <RTBodyBody>{review.body}</RTBodyBody>
-            <PhotoDiv>{photosArr}</PhotoDiv>
-            {review.response &&
-              <RTResponse>
-                <span>Response:</span>
-                <div>{review.response}</div>
-              </RTResponse>
-            }
+            ✔ I recommend this
           </div>
-        </RTBody>
-      </RTContent>
-      <RTHelpful>Helpful? <a onClick={handleVote}>Yes</a> ({review.helpfulness}) | <a onClick={handleReport}>Report</a></RTHelpful>
-      <div>
+        }
+      </Rating>
+      <Sum>
+        {review.summary}
+      </Sum>
+      <Body>{review.body}</Body>
+      {photosArr.length > 0 &&
+        <PhotoCont>
+          {photosArr}
+        </PhotoCont>
+      }
+      {review.response &&
+        <div>
+          <span>Response:</span>
+          <div>{review.response}</div>
+        </div>
+      }
+      <Vote style={{"marginBottom": "0px"}}>
+        Helpful? <a onClick={handleVote}>Yes</a> ({review.helpfulness}) | <a onClick={handleReport}>Report</a>
+      </Vote>
+      <div style={{"marginBottom": "0px"}}>
         <ImgView style={imgViewStyle} setStyle={setImgViewStyle} url={imgUrl}/>
       </div>
-    </RT>
+    </Tile>
   )
 }
 
 export default ReviewTile;
 
-
-const RT = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 45%;
-  justify-content: space-between;
-  margin-bottom: 5px;
-  padding: 1px;
+const Tile = styled.div`
+  // height: 50%;
   background-color: white;
-  max-height: 250px;
-`
-
-const RTHead = styled.div`
+  padding: 10px;
+  margin-bottom: 5px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-`
-
-const RTContent = styled.div`
-  padding: 5px;
-  height: 60%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-`
-
-const RTUser = styled.div`
-  font-size: 14px ;
-    & > {
-      font-size: 10px;
-      font-weight: bold;
-      padding-left: 5px;
-      margin-bottom: 5px;
-      color: grey;
+    & > div {
+      margin-bottom: 10px;
     }
 `
 
-const By = styled.span`
-  font-size: 10px;
-`
-
-const RTBody = styled.div`
-  height: 80%;
-  padding: 5px;
-  overflow: auto;
+const User = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
     & > div {
-      margin: 5px 0px;
-      height: 65%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
     }
     & > span {
-      font-size: 20px;
-      height: 30%;
-      text-decoration: underline;
+      color: gray;
     }
 `
 
-const RTBodyBody = styled.div`
-  display: flex;
-  flex-direction: column;
-  font-size: 14px;
-`
-
-const RTResponse = styled.div`
+const UserIcon = styled.div`
+  border: 1px solid;
   background-color: gray;
+  color: white;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 30px;
+  margin-right: 5px;
+`
+
+const Rating = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 5px;
-  padding-left: 10px;
-    & > span {
-      font-size: 20px;
-    }
+  align-items: flex-start;
     & > div {
-      font-size: 14px;
-      margin-top: 5px;
+      font-size: 12px;
+      color: gray
     }
 `
-
-const PhotoDiv = styled.div`
-padding-left: 20px;
-width: 400px;
-max-height: 100px;
-overflow-x: visible;
-overflow-y: hidden;
+const Sum = styled.div`
+  font-size: 25px;
+  word-wrap: break-word
 `
 
-
-const RTHelpful = styled.span`
-  font-size: 13px;
-  color: grey;
+const Body = styled.div`
+  font-size: 15px;
+  word-wrap: break-word
 `
+const PhotoCont = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+   & div {
+    margin-rigth: 3px;
+   }
+`
+
+const Vote = styled.div`
+  color: gray;
+  font-size: 12px;
+`
+
+// const RT = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   height: 45%;
+//   justify-content: space-between;
+//   margin-bottom: 5px;
+//   padding: 1px;
+//   background-color: white;
+//   max-height: 250px;
+// `
+
+// const RTHead = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+// `
+
+// const RTContent = styled.div`
+//   padding: 5px;
+//   height: 60%;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: flex-start;
+// `
+
+// const RTUser = styled.div`
+//   font-size: 14px ;
+//     & > {
+//       font-size: 10px;
+//       font-weight: bold;
+//       padding-left: 5px;
+//       margin-bottom: 5px;
+//       color: grey;
+//     }
+// `
+
+// const By = styled.span`
+//   font-size: 10px;
+// `
+
+// const RTBody = styled.div`
+//   height: 80%;
+//   padding: 5px;
+//   overflow: auto;
+//     & > div {
+//       margin: 5px 0px;
+//       height: 65%;
+//     }
+//     & > span {
+//       font-size: 20px;
+//       height: 30%;
+//       text-decoration: underline;
+//     }
+// `
+
+// const RTBodyBody = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   font-size: 14px;
+// `
+
+// const RTResponse = styled.div`
+//   background-color: gray;
+//   display: flex;
+//   flex-direction: column;
+//   margin-top: 5px;
+//   padding-left: 10px;
+//     & > span {
+//       font-size: 20px;
+//     }
+//     & > div {
+//       font-size: 14px;
+//       margin-top: 5px;
+//     }
+// `
+
+// const PhotoDiv = styled.div`
+// padding-left: 20px;
+// width: 400px;
+// max-height: 100px;
+// overflow-x: visible;
+// overflow-y: hidden;
+// `
+
+
+// const RTHelpful = styled.span`
+//   font-size: 13px;
+//   color: grey;
+// `
 const Athumbnails = styled.img`
   max-width: 100px;
   max-height: 100px;
