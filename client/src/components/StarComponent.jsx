@@ -5,48 +5,50 @@ import styled from 'styled-components';
 const StarSpan = styled.span`
   display: flex;
   flex-direction: row;
-  width: ${props => props.dimension.height * 6}px;
-  height: ${props => props.dimension.height + 5}px;
+  // width: ${props => props.dimension.height * 6}px;
+  // height: ${props => props.dimension.height + 5}px;
 `
 
 const SingleStarContainer = styled.div`
-  height: ${props => props.dimension.height}px;
-  width: ${props => props.dimension.width}px;
+  // height: ${props => props.dimension.height}px;
+  // width: ${props => props.dimension.width}px;
   display: inline-block;
 `
 
-const SingleStarFill = styled.div`
-  position: relative;
-  display: inline-block;
-  height: ${props => props.dimension.height}px;
-  background-color: black;
-`
-
-const StarImg = styled.img`
-  height: ${props => props.dimension.height}px;
-  width: ${props => props.dimension.width}px;
-`
-
-// const StarIcon = styled.i`
-//   display: inline-block;
+// const SingleStarFill = styled.div`
 //   position: relative;
-//   // font-size: 100px;
-//   color: #ddd;
-//     &:after {
-//       font-family: FontAwesome;
-//       content: "\f005";
-//       position: absolute;
-//       left: 0;
-//       top: 0;
-//       width: ${props => props.dimension}%;
-//       overflow: hidden;
-//       color: black;
-//     }
+//   display: inline-block;
+//   height: ${props => props.dimension.height}px;
+//   background-color: black;
 // `
 
-const StarComponent = ({ productID, avg, size }) => {
-  const [avgRating, setAvgRating] = useState(0)
+// const StarImg = styled.img`
+//   height: ${props => props.dimension.height}px;
+//   width: ${props => props.dimension.width}px;
+// `
 
+const StarIcon = styled.i`
+  display: inline-block;
+  position: relative;
+  font-size: ${props => props.font}px;
+  color: black;
+    &:after {
+      font-family: FontAwesome;
+      content: "\f005";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: ${props => props.percent}%;
+      overflow: hidden;
+      color: black;
+    }
+`
+
+const StarComponent = ({ productID, avg, size, font }) => {
+  const [avgRating, setAvgRating] = useState(0)
+  console.log(font);
+  const font_size = font || 14;
+  console.log(font_size);
   let dimension = {
     height: 24,
     width: 20.3
@@ -130,13 +132,13 @@ const StarComponent = ({ productID, avg, size }) => {
     <StarSpan dimension={dimension}>
       {starArray(avgRating).map((item, i) => {
         return (
-          <SingleStarContainer dimension={dimension} key={i}>
-            {/* <StarIcon className="far fa-star" dimension={item*100}></StarIcon> */}
-            <SingleStarFill dimension={dimension}
-              style={{"width" : `${parseInt(item*dimension.width)}px`}}>
-              <StarImg dimension={dimension} src="./images/star2.png" alt="stars alt"></StarImg>
-            </SingleStarFill>
-          </SingleStarContainer>
+          // <SingleStarContainer dimension={dimension} key={i}>
+            <StarIcon className="far fa-star" font={font_size} percent={item*100}></StarIcon>
+          //   {/* <SingleStarFill dimension={dimension}
+          //     style={{"width" : `${parseInt(item*dimension.width)}px`}}>
+          //     <StarImg dimension={dimension} src="./images/star2.png" alt="stars alt"></StarImg>
+          //   </SingleStarFill>
+          // </SingleStarContainer> */}
         );
       })}
     </StarSpan>
