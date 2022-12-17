@@ -59,7 +59,8 @@ const RatingsBrk = function RatingsBrk({ breakdown, ratingsArray, starFilter }) 
     <div>
       <RatingAndStars>
         <RatingSpan>{stats.ratings.avg}</RatingSpan>
-        <StarComponent productID={breakdown.product_id} avg={stats.ratings.avg} size={dimensions}/>
+        <StarComponent productID={breakdown.product_id} avg={stats.ratings.avg} size={dimensions}
+        font={28}/>
       </RatingAndStars>
       <RecommendStatement>
         {stats.recommended}% of reviews recommended this product
