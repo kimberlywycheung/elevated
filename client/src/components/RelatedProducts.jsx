@@ -79,6 +79,7 @@ const RelatedProducts = React.forwardRef(({ product, setProduct }, ref) => {
 
 // STYLING
 const RelatedProductsDiv = styled.div`
+  font-family: 'PT Sans Caption', sans-serif;
   background-color: white;
   min-height: 300px;
   margin: 10px;

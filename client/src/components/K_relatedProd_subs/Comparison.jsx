@@ -8,7 +8,10 @@ const Comparison = function ({ itemInfo, currentProd, getProduct, isModalOpen, o
   const relatedProdFeatures = itemInfo.features;
   let currentProdFeatures = null;
 
-  // initilizing all features from both products to pass down to characteristic modules
+  const [showTopGradient, setShowTop] = useState(false);
+  const [showBottomGradient, setShowBottom] = useState(true);
+
+  // initilizing all states for products/styles and gradient states
   useEffect(() => {
     getProduct(currentProd.id, (data) => {
       currentProdFeatures = data.features;
@@ -33,6 +36,36 @@ const Comparison = function ({ itemInfo, currentProd, getProduct, isModalOpen, o
     return featureObj;
   };
 
+  const handleScroll = () => {
+    const compareElement = document.getElementById('feature-comparison');
+
+    setScroll(compareElement);
+  };
+
+  const setScroll = (element) => {
+    const { scrollTop, scrollHeight, offsetHeight } = element;
+
+    if (scrollHeight > 173) {
+      // set top states
+      if (scrollTop === 0) {
+        setShowTop(false);
+      }
+      if (scrollTop > 0) {
+        setShowTop(true);
+      }
+      // set bottom states
+      if (scrollTop + offsetHeight === scrollHeight) {
+        setShowBottom(false);
+      }
+      if (scrollTop + offsetHeight < scrollHeight) {
+        setShowBottom(true);
+      }
+    } else {
+      setShowTop(false);
+      setShowBottom(false);
+    }
+  };
+
   if (!isModalOpen) return null;
 
   return ReactDOM.createPortal(
@@ -54,7 +87,10 @@ const Comparison = function ({ itemInfo, currentProd, getProduct, isModalOpen, o
           <span id="right">{currentProd.name}</span>
         </ModalProducts>
 
-        <ModalComparison>
+        <ModalComparison id="feature-comparison" onScroll={handleScroll}>
+
+          {showTopGradient &&
+            <ModalTopGradient id="top-gradient"></ModalTopGradient>}
 
           {allFeatures &&
             Object.keys(allFeatures).map((feature) => {
@@ -66,6 +102,9 @@ const Comparison = function ({ itemInfo, currentProd, getProduct, isModalOpen, o
                 );
               }
             })}
+
+          {showBottomGradient &&
+            <ModalBottomGradient id="bottom-gradient"></ModalBottomGradient>}
 
         </ModalComparison>
 
@@ -96,7 +135,7 @@ const ComparisonModal = styled.div`
   transform: translate(-50%, -50%);
   border: 1px solid #888;
   width: 55%;
-  height: 35%
+  height: 32%
 `;
 
 const ModalHeader = styled.div`
@@ -129,13 +168,31 @@ const ModalComparison = styled.div`
   overflow-x: hidden;
   overflow-y: scroll;
   white-space: nowrap;
-  height: 60%;
+  height: 135px;
   margin-left: 40px;
   margin-right: 40px;
   margin-top: 25px;
   &::-webkit-scrollbar {
     display: none;
   }
+`;
+
+const ModalTopGradient = styled.div`
+  background-image: linear-gradient(white, transparent);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100px;
+  height: 30px;
+`;
+
+const ModalBottomGradient = styled.div`
+  background-image: linear-gradient(180deg, transparent, white);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 22px;
+  height: 30px;
 `;
 
 export default Comparison;
