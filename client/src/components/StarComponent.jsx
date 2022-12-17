@@ -31,7 +31,7 @@ const StarIcon = styled.i`
   display: inline-block;
   position: relative;
   font-size: ${props => props.font}px;
-  color: black;
+  color: ${props => props.theme.h2};
     &:after {
       font-family: FontAwesome;
       content: "\f005";
@@ -40,11 +40,11 @@ const StarIcon = styled.i`
       top: 0;
       width: ${props => props.percent}%;
       overflow: hidden;
-      color: black;
+      color: ${props => props.theme.fontColor};
     }
 `
 
-const StarComponent = ({ productID, avg, size, font }) => {
+const StarComponent = ({ theme, productID, avg, size, font }) => {
   const [avgRating, setAvgRating] = useState(0)
   console.log(font);
   const font_size = font || 14;
@@ -133,7 +133,7 @@ const StarComponent = ({ productID, avg, size, font }) => {
       {starArray(avgRating).map((item, i) => {
         return (
           // <SingleStarContainer dimension={dimension} key={i}>
-            <StarIcon className="far fa-star" font={font_size} percent={item*100}></StarIcon>
+            <StarIcon theme={theme} className="far fa-star" font={font_size} percent={item*100}></StarIcon>
           //   {/* <SingleStarFill dimension={dimension}
           //     style={{"width" : `${parseInt(item*dimension.width)}px`}}>
           //     <StarImg dimension={dimension} src="./images/star2.png" alt="stars alt"></StarImg>

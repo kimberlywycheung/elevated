@@ -122,9 +122,9 @@ const App = () => {
     <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme} >
       <RootDiv id='root' ref={ref}>
 
-           <label class="switch1">
-            <input class='toggleTheme' type="checkbox"></input>
-            <span class="slider1 round1"></span>
+           <label className="switch1">
+            <input className='toggleTheme' type="checkbox"></input>
+            <span className="slider1 round1"></span>
           </label>
 
         {/* <ThemeToggle onClick={e => {e.preventDefault(); setDarkTheme(!isDarkTheme)}}>THEME</ThemeToggle> */}

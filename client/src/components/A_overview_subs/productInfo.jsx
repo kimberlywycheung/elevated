@@ -4,9 +4,9 @@ import StarComponent from '../StarComponent.jsx';
 
 
 
-const ProductInfo = ({ product, style }) => (style &&
+const ProductInfo = ({ theme, product, style }) => (style &&
   <div className="ov-header">
-    <StarComponent productID={product.id} />
+    <StarComponent theme={theme} productID={product.id} />
     <h4 className='ov-category'>{product.category.toUpperCase()}</h4>
     <h1 id='prod-title'>{product.name}</h1>
     <div className='ov-price'>
