@@ -62,7 +62,7 @@ const RRContainer = styled.div`
   flex-direction: column;
   background-color: white;
   min-height: 300px;
-  margin: 130px 0 0 0;
+  margin: 50px 0 0 0;
 `
 
 const RR = styled.div`

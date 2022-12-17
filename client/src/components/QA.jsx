@@ -7,9 +7,13 @@ import $ from "jquery";
 import styled from "styled-components";
 
 //STYLED COMPONENTS
+// border-top: solid rgb(189, 184, 184) 2px;
+// border-bottom: solid rgb(191, 189, 189) 2px;
 const StyledQA = styled.div`
-border-top: solid rgb(189, 184, 184) 2px;
-border-bottom: solid rgb(191, 189, 189) 2px;
+
+width: 85vw;
+margin: 0 auto;
+font-size: 15px;
 `;
 const StyledH2 = styled.h2`
   margin: 20px;

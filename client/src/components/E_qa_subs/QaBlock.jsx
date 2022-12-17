@@ -133,6 +133,7 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist, list}) => {
 };
 
   //STYLED COMPONENTS
+
   const StyledQaBlock = styled.div`
   display: flex;
   flex-direction: column;

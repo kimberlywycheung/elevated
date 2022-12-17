@@ -28,6 +28,10 @@ button {
 a {
   cursor: pointer;
 }
+h2 {
+  font-size: 1.7rem;
+  font-family: 'PT Sans Caption', sans-serif;
+}
 .underline {
   text-decoration: underline;
 }
