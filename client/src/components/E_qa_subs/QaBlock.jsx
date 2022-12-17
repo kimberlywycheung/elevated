@@ -106,6 +106,9 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist, list}) => {
           <span><a onClick={e => {e.preventDefault(); handleAddAns()}}>Add Answer</a></span>
         </Qmeta1>
       </StyledQBox>
+      <Qmeta2>
+      question from "{q.asker_name}"
+    </Qmeta2>
       <AnsSection>
         <div style={ansStyle}>A:</div>
         <div>
@@ -120,9 +123,9 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist, list}) => {
           <LoadAns style={collapseView} onClick={e => {e.preventDefault(); collapseAns()}}>collapse answers</LoadAns>
         </div>
       </AnsSection>
-    <Qmeta2>
+    {/* <Qmeta2>
       question from "{q.asker_name}"
-    </Qmeta2>
+    </Qmeta2> */}
     </StyledQaBlock>
 
   )
@@ -133,7 +136,7 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist, list}) => {
   const StyledQaBlock = styled.div`
   display: flex;
   flex-direction: column;
-  padding-bottom: 30px;
+  padding-bottom: 10px;
   font-size: 1.4em;
   border-bottom: solid rgb(236, 233, 233) 1px;
   `;
@@ -142,7 +145,7 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist, list}) => {
   justify-content: space-between;
   width: 95%;
   padding: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   padding-left: 40px;
   `;
   const QaBody = styled.span`
@@ -173,7 +176,7 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist, list}) => {
   `;
  export const Qmeta2 = styled(Qmeta1)`
   width: 500px;
-  padding: 5px 40px;
+  padding: 0 40px 20px 40px;
   font-size: .8em;
   `;
   export const A = styled.a`
