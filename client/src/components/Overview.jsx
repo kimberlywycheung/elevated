@@ -48,7 +48,6 @@ const Overview = ({ product }) => {
       getStyles();
     }, [product])
 
-
     React.useEffect(() => {
       if (!styles) {
         getStyles();
