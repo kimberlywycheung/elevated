@@ -14,8 +14,9 @@ import styled from "styled-components";
   font-size: 1em;
   `;
   const Athumbnails = styled.img`
-  max-width: 100px;
-  max-height: 100px;
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
   border: solid rgb(229, 229, 229) .5px;
   `;
   const PhotoDiv = styled.div`

@@ -78,6 +78,7 @@ const RelatedProducts = React.forwardRef(({ theme, product, setProduct }, ref) =
 });
 
 // STYLING
+//font-family: 'PT Sans Caption', sans-serif; (should still work via Global styling)
 const RelatedProductsDiv = styled.div`
   background-color: ${props => props.theme.bg};
   min-height: 300px;

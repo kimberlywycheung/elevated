@@ -310,7 +310,7 @@ const Response = styled.div`
 //   font-size: 13px;
 //   color: grey;
 // `
-const Athumbnails = styled.img`
+export const Athumbnails = styled.img`
   border: solid rgb(229, 229, 229) .5px;
   position: relative;
   width: 75px;
