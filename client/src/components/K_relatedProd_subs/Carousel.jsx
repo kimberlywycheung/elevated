@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Card, { CardDiv } from './Card.jsx';
 
-const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavorites, deleteFromFavorites, setProduct }, ref) => {
+const Carousel = React.forwardRef(({ theme, type, currentState, currentProd, addToFavorites, deleteFromFavorites, setProduct }, ref) => {
   const [showLeftButton, setShowLeft] = useState(false);
   const [showRightButton, setShowRight] = useState(true);
 
@@ -92,7 +92,7 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
           <CarouselDiv id={carouselId}>
 
             {type === 'outfits' &&
-              <CardDiv>
+              <CardDiv theme={theme}>
                 <AddToOutfitCard>
                   {currentState.includes(currentProd) ?
                     <AddToOutfitButton onClick={addOutfit}>+<br/>Add to Outfit</AddToOutfitButton> :

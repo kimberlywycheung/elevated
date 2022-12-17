@@ -4,7 +4,7 @@ import ImgView from '../E_qa_subs/ImgView.jsx';
 import StarComponent from '../StarComponent.jsx';
 import styled from 'styled-components';
 
-const ReviewTile = function ReviewTile({ review, setRList, productID }) {
+const ReviewTile = function ReviewTile({ theme, review, setRList, productID }) {
   const [photosArr, setPhotosArr] = React.useState([]);
   const [more, setMore] = React.useState(false);
   const [imgViewStyle, setImgViewStyle] = React.useState({display: 'none'});
@@ -78,7 +78,7 @@ const ReviewTile = function ReviewTile({ review, setRList, productID }) {
   },[review]);
 
   return (
-    <Tile>
+    <Tile theme={theme}>
       <User>
         <div>
           <UserIcon><span>{review.reviewer_name.slice(0,1).toUpperCase()}</span></UserIcon>
@@ -144,7 +144,7 @@ export default ReviewTile;
 
 const Tile = styled.div`
   // height: 50%;
-  background-color: white;
+  background-color: ${props => props.theme.bg};
   padding: 10px;
   margin-bottom: 5px;
   display: flex;

@@ -7,9 +7,13 @@ import $ from "jquery";
 import styled from "styled-components";
 
 //STYLED COMPONENTS
+// border-top: solid rgb(189, 184, 184) 2px;
+// border-bottom: solid rgb(191, 189, 189) 2px;
 const StyledQA = styled.div`
-border-top: solid rgb(189, 184, 184) 2px;
-border-bottom: solid rgb(191, 189, 189) 2px;
+
+width: 85vw;
+margin: 0 auto;
+font-size: 15px;
 `;
 const StyledH2 = styled.h2`
   margin: 20px;
@@ -17,7 +21,7 @@ const StyledH2 = styled.h2`
 //END of styled components
 
 
-const QuestionsAnswers = ({productID}) => {
+const QuestionsAnswers = ({theme, productID}) => {
   const [modalStyle, setModalStyle] = React.useState({display:"none"});
   const [formType, setFormType] = React.useState('addQ');
   const [Qlist, setQlist] = React.useState([]);
@@ -66,7 +70,7 @@ const QuestionsAnswers = ({productID}) => {
     <StyledQA>
       <StyledH2>Questions & Answers</StyledH2>
       <Search setSearchTerm={setSearchTerm} setQlist={setQlist}/>
-      <QaList qCount={qCount} getQlist={getQlist} searchTerm={searchTerm} setQid={setQid} setFormType={setFormType} setModalStyle={setModalStyle} list={Qlist}/>
+      <QaList theme={theme} qCount={qCount} getQlist={getQlist} searchTerm={searchTerm} setQid={setQid} setFormType={setFormType} setModalStyle={setModalStyle} list={Qlist}/>
       <div className='qa-btns'>
         <button onClick={e => {e.preventDefault(); moreQs()}}>more questions</button>
         <button onClick={e => {e.preventDefault(); setFormType('addQ'); setModalStyle({display: 'block'})}}>Add question</button>

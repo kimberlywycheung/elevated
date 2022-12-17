@@ -151,7 +151,7 @@
   font-family: 'PT Sans Caption', sans-serif;
   font-weight: bold;
   font-size: 35px;
-  color: rgb(67, 66, 66);
+  /* color: rgb(67, 66, 66); */
   /* background-color: rgb(77, 92, 186); */
 }
 
@@ -195,7 +195,7 @@
   font-family: 'PT Sans Caption', sans-serif;
   font-weight: bolder;
   font-size: 15px;
-  color: rgb(67, 66, 66);
+  /* color: rgb(67, 66, 66); */
   display: inline-block;
   /* background-color: rgb(218, 125, 228); */
   margin-bottom: 20px;
@@ -284,7 +284,7 @@
   position: relative;
   display: inline-block;
   flex: 10 1 0;
-  
+
   /* background-color: rgb(176, 212, 200); */
 }
 

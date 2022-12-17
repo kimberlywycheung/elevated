@@ -4,53 +4,6 @@ import Answer from './Answer.jsx';
 import $ from "jquery";
 import styled from "styled-components";
 
-  //STYLED COMPONENTS
-  const StyledQaBlock = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 30px;
-  font-size: 1.4em;
-  border-bottom: solid rgb(236, 233, 233) 1px;
-  `;
-  const StyledQBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 95%;
-  padding: 20px;
-  padding-bottom: 20px;
-  padding-left: 40px;
-  `;
-  const QaBody = styled.span`
-  padding-left: 20px;
-  `;
-  const AnsSection = styled.div`
-  padding-left: 60px;
-  display: flex;
-  flex-direction: row;
-  `;
-  const Abox = styled.div`
-  padding-left: 10px;
-  max-height: 320px;
-  overflow: auto;
-  `;
-  const LoadAns = styled.a`
-  padding: 10px 30px;
-  font-size: .8em;
-  width: 160px;
-  `;
-  const Qmeta1 = styled.div`
-  display: flex;
-  width: 200px;
-  justify-content: space-between;
-  font-size: .6em;
-  color: grey;
-  padding: 10px 0;
-  `;
- export const Qmeta2 = styled(Qmeta1)`
-  width: 500px;
-  padding: 5px 40px;
-  font-size: .8em;
-  `;
 
 const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist, list}) => {
   const [Alist, setAlist] = React.useState([]);
@@ -59,6 +12,7 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist, list}) => {
   const [collapseView, setCollapseView] = React.useState({'display': 'none'});
   const [ansCount, setAnsCount] = React.useState(2);
   const [ansStyle, setAnsStyle] = React.useState({'display': 'block'});
+  const [helpfulClicked, setHelpfulClicked] = React.useState(['pointer','underline']);
   // console.log('OG ALIST->', Object.values(q.answers));
 
   const getAndSetAnswers = () => {
@@ -121,6 +75,7 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist, list}) => {
     setQid(q.question_id);
   };
   const handleHelpfulQ = () => {
+    setHelpfulClicked(['default', 'none']);
     console.log('local', window.localStorage.getItem(`QHelpful${q.question_id}`));
     if(window.localStorage.getItem(`QHelpful${q.question_id}`) === null) {
       window.localStorage.setItem(`QHelpful${q.question_id}`, true);
@@ -146,11 +101,14 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist, list}) => {
         <span><span className='bold'>Q:</span><QaBody>{q.question_body}</QaBody></span>
 
         <Qmeta1>
-          <span>Helpful? <a className='underline' style={{'paddingRight': '5px'}} onClick={e => {e.preventDefault(); handleHelpfulQ()}}>Yes</a>{q.question_helpfulness}</span>
+          <span>Helpful? <a style={{'paddingRight': '5px', cursor: helpfulClicked[0], textDecoration: helpfulClicked[1]}} onClick={e => {e.preventDefault(); handleHelpfulQ()}}>Yes</a>{q.question_helpfulness}</span>
           <span>|</span>
           <span><a onClick={e => {e.preventDefault(); handleAddAns()}}>Add Answer</a></span>
         </Qmeta1>
       </StyledQBox>
+      <Qmeta2>
+      question from "{q.asker_name}"
+    </Qmeta2>
       <AnsSection>
         <div style={ansStyle}>A:</div>
         <div>
@@ -165,13 +123,67 @@ const QaBlock = ({q, setModalStyle, setFormType, setQid, getQlist, list}) => {
           <LoadAns style={collapseView} onClick={e => {e.preventDefault(); collapseAns()}}>collapse answers</LoadAns>
         </div>
       </AnsSection>
-    <Qmeta2>
+    {/* <Qmeta2>
       question from "{q.asker_name}"
-    </Qmeta2>
+    </Qmeta2> */}
     </StyledQaBlock>
 
   )
 
 };
+
+  //STYLED COMPONENTS
+
+  const StyledQaBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+  font-size: 1.4em;
+  border-bottom: solid rgb(236, 233, 233) 1px;
+  `;
+  const StyledQBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  padding: 20px;
+  padding-bottom: 10px;
+  padding-left: 40px;
+  `;
+  const QaBody = styled.span`
+  padding-left: 20px;
+  `;
+  const AnsSection = styled.div`
+  padding-left: 60px;
+  display: flex;
+  flex-direction: row;
+  `;
+  const Abox = styled.div`
+  padding-left: 10px;
+  max-height: 320px;
+  overflow: auto;
+  `;
+  const LoadAns = styled.a`
+  padding: 10px 30px;
+  font-size: .8em;
+  width: 160px;
+  `;
+  const Qmeta1 = styled.div`
+  display: flex;
+  width: 200px;
+  justify-content: space-between;
+  font-size: .6em;
+  color: grey;
+  padding: 10px 0;
+  `;
+ export const Qmeta2 = styled(Qmeta1)`
+  width: 500px;
+  padding: 0 40px 20px 40px;
+  font-size: .8em;
+  `;
+  export const A = styled.a`
+    cursor: default;
+  `;
+
+
 
 export default QaBlock;

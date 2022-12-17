@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Comparison from './Comparison.jsx';
 import StarComponent from '../StarComponent.jsx';
 
-const Card = React.forwardRef(({ type, currentProd, item, deleteFromFavorites, setProduct }, ref ) => {
+const Card = React.forwardRef(({ theme, type, currentProd, item, deleteFromFavorites, setProduct }, ref ) => {
   const [itemInfo, setItemInfo] = useState(null);
   const [itemStyles, setItemStyles] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -101,7 +101,7 @@ const Card = React.forwardRef(({ type, currentProd, item, deleteFromFavorites, s
 
   if (itemInfo && itemStyles) {
     return (
-      <CardDiv id={type} onClick={changeCards}>
+      <CardDiv theme={theme} id={type} onClick={changeCards}>
 
         <CardButton onClick={buttonHandler}>
           {type === 'related' ? decideIfFavorited() : <CardButtonIcon className="fa-solid fa-xmark"></CardButtonIcon>}
@@ -132,7 +132,7 @@ const Card = React.forwardRef(({ type, currentProd, item, deleteFromFavorites, s
 
 // STYLING
 export const CardDiv = styled.div`
-  background-color: white;
+  background-color: ${props => props.theme.bg};
   border-radius: 5px;
   width: 180px;
   min-width: 180px;

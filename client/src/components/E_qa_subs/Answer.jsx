@@ -42,10 +42,13 @@ const Answer = ({a, getAndSetAnswers}) => {
   const [photosArr, setPhotosArr] = React.useState([]);
   const [imgViewStyle, setImgViewStyle] = React.useState({display: 'none'});
   const [imgUrl, setImgUrl] = React.useState('');
+  const [helpfulClicked, setHelpfulClicked] = React.useState(['pointer','underline']);
+
 
   // console.log('a', a);
 
   const handleAnsMeta = (type) => { //type == helpful / report
+    if(type === 'helpful') {setHelpfulClicked(['default','none'])}
     console.log('local', window.localStorage.getItem(`A${type}${a.answer_id}`));
     if(window.localStorage.getItem(`A${type}${a.answer_id}`) === null) {
       window.localStorage.setItem(`A${type}${a.answer_id}`, true);
@@ -101,7 +104,7 @@ const Answer = ({a, getAndSetAnswers}) => {
         <span>by {a.answerer_name}</span>
         <span>{a.date.slice(0,10)}</span>
         <span>|</span>
-        <span>Helpful? <a onClick={e => {e.preventDefault(); handleAnsMeta('helpful');}} style={{'paddingRight': '5px'}} className='underline'>Yes</a>{a.helpfulness}</span>
+        <span>Helpful? <a onClick={e => {e.preventDefault(); handleAnsMeta('helpful');}} style={{'paddingRight': '5px', cursor: helpfulClicked[0], textDecoration: helpfulClicked[1]}}>Yes</a>{a.helpfulness}</span>
         <span>|</span>
         <a onClick={e => {e.preventDefault(); handleAnsMeta('report')}} >Report</a>
       </Ameta>

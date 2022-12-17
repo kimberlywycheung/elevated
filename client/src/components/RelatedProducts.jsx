@@ -3,7 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import Carousel from './K_relatedProd_subs/Carousel.jsx';
 
-const RelatedProducts = React.forwardRef(({ product, setProduct }, ref) => {
+const RelatedProducts = React.forwardRef(({ theme, product, setProduct }, ref) => {
   const [outfits, setOutfits] = useState([]);
   const [relatedIds, setRelatedIds] = useState([]);
 
@@ -69,18 +69,18 @@ const RelatedProducts = React.forwardRef(({ product, setProduct }, ref) => {
   }
 
   return (
-    <RelatedProductsDiv>
+    <RelatedProductsDiv theme={theme}>
       {relatedIds.length > 0 &&
-      <Carousel type="related" currentState={relatedIds} currentProd={product} addToFavorites={addToFavorites} setProduct={setProduct} ref={ref} />}
+      <Carousel theme={theme} type="related" currentState={relatedIds} currentProd={product} addToFavorites={addToFavorites} setProduct={setProduct} ref={ref} />}
       <Carousel type="outfits" currentState={outfits} currentProd={product} addToFavorites={addToFavorites} deleteFromFavorites={deleteFromFavorites} setProduct={setProduct} ref={ref}/>
     </RelatedProductsDiv>
   );
 });
 
 // STYLING
+//font-family: 'PT Sans Caption', sans-serif; (should still work via Global styling)
 const RelatedProductsDiv = styled.div`
-  font-family: 'PT Sans Caption', sans-serif;
-  background-color: white;
+  background-color: ${props => props.theme.bg};
   min-height: 300px;
   margin: 10px;
 `;

@@ -4,6 +4,11 @@ import axios from 'axios';
 import styled from "styled-components";
 
   //STYLED COMPONENTS
+  const ModalHeader = styled.h2`
+    font-family: 'Varela Round', sans-serif;
+    text-align: center;
+  `;
+
   const EvansForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -85,7 +90,7 @@ const QaModal = ({style, productID, formType, setModalStyle, qID, getQlist}) => 
     <div onClick={e => {e.stopPropagation(); console.log('modal clicked')}} style={style} className='qa-modal modal-bg'>
       <span onClick={e => {e.preventDefault(); setModalStyle({display:'none'})}} id='pop-up-exit'>X</span>
       <div className='modal-content'>
-        <span id='qa-model-text'>Add {type}</span>
+        <ModalHeader>Add {type}</ModalHeader>
         <EvansForm id={formType} onSubmit={e => {e.preventDefault(); sendData(); setModalStyle({display: 'none'});}}>
           {inputFields}
           <button type='submit'>Submit {type}</button>

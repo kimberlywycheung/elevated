@@ -6,7 +6,7 @@ import StyleSelector from './A_overview_subs/StyleSelector.jsx';
 import AddToCart from './A_overview_subs/AddToCart.jsx';
 //testing
 
-const Overview = ({ product }) => {
+const Overview = ({ theme, product }) => {
 
   if (product.id) {
     const [style, setStyle] = useState(undefined);
@@ -48,7 +48,6 @@ const Overview = ({ product }) => {
       getStyles();
     }, [product])
 
-
     React.useEffect(() => {
       if (!styles) {
         getStyles();
@@ -70,7 +69,7 @@ const Overview = ({ product }) => {
         </div>
 
         <div className="ov-info">
-          <ProductInfo product={product} style={style} />
+          <ProductInfo theme={theme} product={product} style={style} />
           <StyleSelector styles={styles} style={style} setStyle={setStyle} />
           <AddToCart sku={sku} skus={skus} style={style} />
         </div>

@@ -6,7 +6,7 @@ import AddReviews from './AddReviews.jsx';
 import $ from 'jquery';
 import styled from 'styled-components';
 
-const Reviews = function Reviews({ productID, name, starFilter, charBreak }) {
+const Reviews = function Reviews({ theme, productID, name, starFilter, charBreak }) {
   const [reviews, setReviews] = useState({});
   const [displayCount, setDisplayCount] = useState(2);
   const [sort, setSort] = useState('relevant');
@@ -42,7 +42,7 @@ const Reviews = function Reviews({ productID, name, starFilter, charBreak }) {
   return (
     <ReviewCont>
       <SortReviews reviews={reviews} setSort={setSort}/>
-      <ListReviews reviews={reviews} displayCount={displayCount} setRList={setReviewList} starFilter={starFilter}/>
+      <ListReviews theme={theme} reviews={reviews} displayCount={displayCount} setRList={setReviewList} starFilter={starFilter}/>
       <div>
         { (reviews.count - displayCount >= 1) &&
           <button onClick={addMoreReviews}>
