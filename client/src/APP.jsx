@@ -75,13 +75,15 @@ const App = () => {
     bg: 'white',
     h2: 'black',
     fontColor: 'rgb(56, 56, 56)',
-    border: 'rgba(244, 244, 244, 0.552)'
+    border: 'rgba(244, 244, 244, 0.552)',
+    searchBG: 'white'
   }
   const darkTheme = {
     bg: 'rgb(56, 56, 56)',
     h2: 'white',
     fontColor: 'white',
-    border: 'rgba(72, 72, 72, 0.3)'
+    border: 'rgba(72, 72, 72, 0.3)',
+    searchBG: 'rgb(56, 56, 56)'
 
   }
 
