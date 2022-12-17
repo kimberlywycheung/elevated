@@ -21,7 +21,7 @@ const StyledH2 = styled.h2`
 //END of styled components
 
 
-const QuestionsAnswers = ({productID}) => {
+const QuestionsAnswers = ({theme, productID}) => {
   const [modalStyle, setModalStyle] = React.useState({display:"none"});
   const [formType, setFormType] = React.useState('addQ');
   const [Qlist, setQlist] = React.useState([]);
@@ -70,7 +70,7 @@ const QuestionsAnswers = ({productID}) => {
     <StyledQA>
       <StyledH2>Questions & Answers</StyledH2>
       <Search setSearchTerm={setSearchTerm} setQlist={setQlist}/>
-      <QaList qCount={qCount} getQlist={getQlist} searchTerm={searchTerm} setQid={setQid} setFormType={setFormType} setModalStyle={setModalStyle} list={Qlist}/>
+      <QaList theme={theme} qCount={qCount} getQlist={getQlist} searchTerm={searchTerm} setQid={setQid} setFormType={setFormType} setModalStyle={setModalStyle} list={Qlist}/>
       <div className='qa-btns'>
         <button onClick={e => {e.preventDefault(); moreQs()}}>more questions</button>
         <button onClick={e => {e.preventDefault(); setFormType('addQ'); setModalStyle({display: 'block'})}}>Add question</button>

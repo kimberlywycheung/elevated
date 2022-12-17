@@ -6,7 +6,7 @@ import {Qmeta2} from './QaBlock.jsx';
 
   //STYLED COMPONENTS
   const StyledList = styled.div`
-  background-color: rgb(251, 251, 251);
+  background-color: ${props => props.theme.bg};
   max-height: 900px;
   overflow: scroll;
   `;
@@ -15,7 +15,7 @@ import {Qmeta2} from './QaBlock.jsx';
   `;
 
 
-const QaList = ({list, setModalStyle, setFormType, setQid, searchTerm, getQlist, qCount}) => {
+const QaList = ({theme, list, setModalStyle, setFormType, setQid, searchTerm, getQlist, qCount}) => {
  const [sortedList, setSortedList] = React.useState(list);
  const [limitedList, setLimitedList] = React.useState(list);
  const [newList, setNewList] = React.useState(list);
@@ -70,7 +70,7 @@ const QaList = ({list, setModalStyle, setFormType, setQid, searchTerm, getQlist,
   }
 
   return (
-    <StyledList id='qa-list'>
+    <StyledList theme={theme} id='qa-list'>
       {newList.map(q => {
         return (
           <QaBlock list={list} getQlist={getQlist} setQid={setQid} setFormType={setFormType} setModalStyle={setModalStyle} q={q} key={q.question_id}/>

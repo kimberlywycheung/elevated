@@ -4,7 +4,7 @@ import Breakdown from './R_ratingsReviews_subs/Breakdown.jsx';
 import Reviews from './R_ratingsReviews_subs/Reviews.jsx';
 import styled from 'styled-components';
 
-const RatingsReviews = ({product}) => {
+const RatingsReviews = ({theme, product}) => {
   const [charBreak, setCharBreak] = useState({})
   const [starFilter, setStarFilter] = useState(
     {
@@ -41,11 +41,11 @@ const RatingsReviews = ({product}) => {
   }
 
   return (
-    <RRContainer>
+    <RRContainer theme={theme}>
       <H2>Ratings & Reviews</H2>
       <RR>
         <Breakdown productID={product.id} ratingsArray={ratingsArray} setCharBreak={setCharBreak} starFilter={starFilter}/>
-        <Reviews productID={product.id} name={product.name} starFilter={starFilter} charBreak={charBreak}/>
+        <Reviews theme={theme} productID={product.id} name={product.name} starFilter={starFilter} charBreak={charBreak}/>
       </RR>
     </RRContainer>
   )
@@ -60,7 +60,7 @@ const H2 = styled.h2`
 const RRContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: ${props => props.theme.bg};
   min-height: 300px;
   margin: 50px 0 0 0;
 `
