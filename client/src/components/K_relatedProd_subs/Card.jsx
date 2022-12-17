@@ -93,9 +93,9 @@ const Card = React.forwardRef(({ type, currentProd, item, deleteFromFavorites, s
   // handler for showing the right stars
   const decideIfFavorited = () => {
     if (window.localStorage.getItem('favorites').includes(itemInfo.id)) {
-      return <i className="fa-solid fa-star"></i>;
+      return <CardButtonIcon className="fa-solid fa-star"></CardButtonIcon>;
     } else {
-      return <i className="far fa-star"></i>;
+      return <CardButtonIcon className="far fa-star"></CardButtonIcon>;
     }
   }
 
@@ -104,7 +104,7 @@ const Card = React.forwardRef(({ type, currentProd, item, deleteFromFavorites, s
       <CardDiv id={type} onClick={changeCards}>
 
         <CardButton onClick={buttonHandler}>
-          {type === 'related' ? decideIfFavorited() : <i className="fa-solid fa-xmark"></i>}
+          {type === 'related' ? decideIfFavorited() : <CardButtonIcon className="fa-solid fa-xmark"></CardButtonIcon>}
         </CardButton>
 
         {type === 'related' &&
@@ -134,9 +134,9 @@ const Card = React.forwardRef(({ type, currentProd, item, deleteFromFavorites, s
 export const CardDiv = styled.div`
   background-color: white;
   border-radius: 5px;
-  width: 200px;
-  height: 95%;
+  width: 180px;
   min-width: 180px;
+  height: 95%;
   margin-top: 0;
   margin-left: 10px;
   margin-right: 10px;
@@ -162,6 +162,12 @@ const CardButton = styled.button`
   }
 `;
 
+const CardButtonIcon = styled.i`
+  &:hover {
+    text-shadow: 0px 0px 10px purple;
+  }
+`;
+
 const CardImage = styled.img`
   position: relative;
   margin-bottom: 0px;
@@ -181,8 +187,9 @@ const CardInfo = styled.span`
 `;
 
 const CardCategory = styled.p`
+  text-transform: uppercase;
+  color: rgb(125, 120, 161);
   font-size: 0.7em;
-  color: gray;
   padding: 0px;
   margin: 2px;
 `;
@@ -197,6 +204,7 @@ const CardPrice = styled.p`
   font-size: .85em;
   padding: 0px;
   margin: 2px;
+  color: rgb(125, 120, 161);
 `;
 
 const CardSalePrice = styled.p`

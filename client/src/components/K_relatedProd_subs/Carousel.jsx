@@ -94,7 +94,10 @@ const Carousel = React.forwardRef(({ type, currentState, currentProd, addToFavor
             {type === 'outfits' &&
               <CardDiv>
                 <AddToOutfitCard>
-                  <AddToOutfitButton onClick={addOutfit}>+<br/>Add to Outfit</AddToOutfitButton>
+                  {currentState.includes(currentProd) ?
+                    <AddToOutfitButton onClick={addOutfit}>+<br/>Add to Outfit</AddToOutfitButton> :
+                    <AddedToOutfitState>Product<br/>Already<br/>Added</AddedToOutfitState>
+                    }
                 </AddToOutfitCard>
               </CardDiv> }
 
@@ -156,12 +159,13 @@ const CarouselDiv = styled.div`
 
 const AddToOutfitCard = styled.div`
   position: relative;
-  margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 0px;
   bottom: 0;
   width: 100%;
+  min-width: 180px;
   height: 75%;
+  width: 180px;
   max-height: 250px;
   min-height: 180px;
   background-color: rgb(211,211,211);
@@ -173,12 +177,26 @@ const AddToOutfitCard = styled.div`
 
 const AddToOutfitButton = styled.button`
   vertical-align: middle;
+  font-family: 'PT Sans Caption', sans-serif;
   text-align: center;
+  text-transform: uppercase;
   background-color: transparent;
   border: 0px;
   position: relative;
   top: 25%;
-  left: 9%;
+  left: 1.5%;
+`;
+
+const AddedToOutfitState = styled.button`
+  vertical-align: middle;
+  font-family: 'PT Sans Caption', sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: transparent;
+  border: 0px;
+  position: relative;
+  top: 25%;
+  left: 11%;
 `;
 
 export default Carousel;
