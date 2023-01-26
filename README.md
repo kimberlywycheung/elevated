@@ -6,8 +6,11 @@ This is a front-end e-commerce platform for Elevated Clothing Co. It utlitizes a
 
 ## Related Products & Favorites Module
 
-<img width="1176" alt="Screen Shot 2023-01-26 at 12 31 46 PM" src="https://user-images.githubusercontent.com/37416800/214944304-b9c1dbbb-2bc1-42de-9da5-c6203b278d12.png">
-<img width="1178" alt="Screen Shot 2023-01-26 at 12 31 55 PM" src="https://user-images.githubusercontent.com/37416800/214944326-2d9212b9-a7f0-42f0-ac69-e0e81144c1b0.png">
+
+Light Theme             |  Dark Theme
+:-------------------------:|:-------------------------:
+<img width="1176" alt="rlight" src="https://user-images.githubusercontent.com/37416800/214944738-a343ef15-e5cc-4f4e-99b0-72afd00b0486.png">  |  <img width="1178" alt="rdark" src="https://user-images.githubusercontent.com/37416800/214944746-354772f2-a170-4214-8e42-dc402b4b944a.png">
+
 <details>
     <summary>See Comparison Details</summary>
 
