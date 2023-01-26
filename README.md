@@ -3,16 +3,6 @@
 ## Introduction
 This is a front-end e-commerce platform for Elevated Clothing Co. It utlitizes an exteral API that seeds the website with product information. React hooks and styled components were used to render an interactive and responsive platform. The main features of the website include:
 
-## Technology Stack
-* React
-* Node.js
-* StylizedComponents
-* Webpack & Babel
-* DevServer via Webpack
-* React Testing Library
-* Jest
-* Cypress
-* AWS
 
 ## Related Products & Favorites Module
 
@@ -34,3 +24,15 @@ The Related Products section features two carousels that show related products. 
 * The Add to Outfit card adds the currently viewed product to the “Your Outfit” list.
 * Allows for persistence of list across different sessions, as long as the relevant cookies exist.
 * Maintains a saved list of unique products only.
+
+
+## Technology Stack
+* React
+* Node.js
+* StylizedComponents
+* Webpack & Babel
+* DevServer via Webpack
+* React Testing Library
+* Jest
+* Cypress
+* AWS
