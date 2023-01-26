@@ -50,7 +50,7 @@ The Related Products section features two carousels that show related products. 
 ### Ratings & Reviews
 
 ## Contributors
-Aristotle Jalalianfard - Product Overview
-Evan O Shea - Q&A
-Kimberly Cheung - Related Products
-Ryan Gehris - Ratings & Reviews
+* Aristotle Jalalianfard - Product Overview
+* Evan O Shea - Q&A
+* Kimberly Cheung - Related Products
+* Ryan Gehris - Ratings & Reviews
