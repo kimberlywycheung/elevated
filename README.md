@@ -1,7 +1,7 @@
 # Elevated Clothing Co
 
 ## Introduction
-This is a front-end e-commerce platform for Elevated Clothing Co. It utlitizes an exteral API that seeds the website with product information. React hooks and styled components were used to render an interactive and responsive platform.
+This is a front-end e-commerce platform for Elevated Clothing Co. It utlitizes an external API that seeds the website with product information. React hooks and styled components were used to render an interactive and responsive platform.
 
 
 ## Related Products & Favorites Module
